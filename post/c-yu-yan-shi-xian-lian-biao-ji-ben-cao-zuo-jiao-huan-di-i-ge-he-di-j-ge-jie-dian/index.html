@@ -1,15 +1,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0">
-    <meta name="description" content="👏  欢迎使用 Gridea ！
-✍️  Gridea 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...
+    <meta name="description" content="C语言实现链表基本操作（交换第i个和第j个节点）
+当i或者j为1时，需要让链表的表头指向j。
 
-Github
-Gridea 主页
-示例网站
-特性👇
-📝  你可以使用最酷的 Markdo..." />
-    <meta name="keywords" content="Gridea" />
+
+
+
+
+代码为
+/*i和j为1时情况比较特殊，需要让表头重新指向交换后的那个节点*/
+    if (i == 1) { 
+        t1..." />
+    <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://SakuraTears.cn//media/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://SakuraTears.cn//styles/main.css">
     
@@ -475,25 +478,21 @@ Gridea 主页
         <div class="postshow" style="padding-bottom: 0;">
             
             <div class="postdetailimg" style="width:100%;overflow: hidden;">
-                <img src="https://SakuraTears.cn//post-images/hello-gridea.png" class="postimage" style="cursor:auto">
+                <img src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(3).jpg.webp" class="postimage" style="cursor:auto">
             </div>
             <div class="postinfo-detail">
                 <div class="postdate"><i class="fa fa-calendar"></i>2020-09-18</div>
-                <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 2 min read</div>
+                <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 5 min read</div>
                 <div class="posttag">
-                    
-                    <a href="https://SakuraTears.cn/tag/-VkNDzNrn/" class="postlink">
-                        <i class="fa fa-tag"></i> Gridea
-                    </a>
                     
                 </div>
             </div>
             
         <div id="articlecontent">
             <div id="texttitle" style="text-align: center">
-                <h2>Hello Gridea</h2>
+                <h2>C语言实现链表基本操作（交换第i个和第j个节点）</h2>
                 <!-- id 将作为查询条件 -->
-                <div id="pl" style="display:none">https://SakuraTears.cn/post/hello-gridea/</div>
+                <div id="pl" style="display:none">https://SakuraTears.cn/post/c-yu-yan-shi-xian-lian-biao-ji-ben-cao-zuo-jiao-huan-di-i-ge-he-di-j-ge-jie-dian/</div>
                 <div id="rootaddr" style="display:none">https://SakuraTears.cn/</div>
                 <span id="hotnum">
                     <h4><i class="fa fa-eye" aria-hidden="true" style="color: #FF8C00;"></i>&nbsp;&nbsp;热度</i>: <i
@@ -501,27 +500,230 @@ Gridea 主页
                 </span>
             </div>
             <div class="text ">
-                <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-<!-- more -->
-<p><a href="https://github.com/getgridea/gridea">Github</a><br>
-<a href="https://gridea.dev/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
-<h2 id="特性">特性👇</h2>
-<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
-<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
-<p>🏷️  你可以对文章进行标签分组</p>
-<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
-<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
-<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
-<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
-<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
-<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
-<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
-<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
-<p>未来，它一定会成为你离不开的伙伴</p>
-<p>尽情发挥你的才华吧！</p>
-<p>😘 Enjoy~</p>
+                <h2 id="c语言实现链表基本操作交换第i个和第j个节点">C语言实现链表基本操作（交换第i个和第j个节点）</h2>
+<h3 id="当i或者j为1时需要让链表的表头指向j">当i或者j为1时，需要让链表的表头指向j。</h3>
+<figure data-type="image" tabindex="1"><img src="https://img-blog.csdnimg.cn/20200611081240188.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_8,color_FFFFFF,t_70" alt="开始时" loading="lazy"></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200611081335308.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_8,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/2020061108140129.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_8,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200611081415319.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_8,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200611081427878.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_8,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+代码为</p>
+<pre><code class="language-c">/*i和j为1时情况比较特殊，需要让表头重新指向交换后的那个节点*/
+    if (i == 1) { 
+        t1 = *L;
+        for (m = 1; temp-&gt;Next != NULL; m++, temp = temp-&gt;Next) {
+            if (m + 1 == j) {
+                *L = temp-&gt;Next;
+                t2 = temp-&gt;Next-&gt;Next;
+                temp-&gt;Next-&gt;Next = t1-&gt;Next;
+                t1-&gt;Next = t2;
+                temp-&gt;Next = t1;
+            }
+        }
+    }
+</code></pre>
+<h3 id="当i和j都不为1时">当i和j都不为1时。</h3>
+<p>节点相邻与不相邻也是不一样的。<br>
+不相邻的情况下就是让i前面的节点指向j，然后让j前面的节点指向i。如果两个节点相邻（假设i &lt; j）j前面的节点就是i，j前面的节点指向i就是指向了自己，所以要分开写。<br>
+不相邻节点时：<br>
+<img src="https://img-blog.csdnimg.cn/20200611083309796.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200611083331554.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200611083418720.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200611083435638.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+代码为：</p>
+<pre><code class="language-c">if ((i - j) != 1 &amp;&amp; (j- i) != 1) {//非相邻结点之间交换
+            for (m = 1; temp-&gt;Next != NULL; m++, temp = temp-&gt;Next) {
+                if (m + 1 == i) {
+                    t1 = temp;
+                }
+                if (m + 1 == j) {
+                    t2 = temp;
+                }
+            }
+            t5 = t1-&gt;Next-&gt;Next;
+            t3 = t1-&gt;Next;
+            t4 = t2-&gt;Next;
+            t1-&gt;Next = t4;
+            t2-&gt;Next = t3;
+            t3-&gt;Next = t4-&gt;Next;
+            t4-&gt;Next = t5;
+        }
+</code></pre>
+<h3 id="最后一种情况两个节点相邻">最后一种情况，两个节点相邻：</h3>
+<p><img src="https://img-blog.csdnimg.cn/20200611084227643.png" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200611084240634.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200611084255116.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200611084305639.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+代码为：</p>
+<pre><code class="language-c">for (m = 1; temp != NULL; m++, temp = temp-&gt;Next) {
+                if (m + 1 == i) {
+                    t1 = temp;
+                }
+                if (m == j) {
+                    t2 = temp;
+                }
+            }
+            temp = t2-&gt;Next;
+            t3 = t1-&gt;Next;
+            t1-&gt;Next = t2;
+            t3-&gt;Next = temp;
+            t2-&gt;Next = t3;
+        }
+</code></pre>
+<p>全部代码：</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;malloc.h&gt;
+
+typedef struct node
+{
+    int Score;
+    struct node * Next;
+}Node, * List;
+
+void Insert(List *L, Node e)
+{
+    List temp = *L;
+    List n = (List)malloc(sizeof(Node));
+    n-&gt;Score = e.Score;
+    if (temp == NULL) {
+        *L = n;
+    }
+    else {
+        while (temp-&gt;Next != NULL) {
+            temp = temp-&gt;Next;
+        }
+        temp-&gt;Next = n;
+    }
+    n-&gt;Next = NULL;
+}
+
+void Swap(List * L, int i, int j)
+{
+    List temp = *L;
+    List t1;
+    List t2;
+    List t3;
+    List t4;
+    List t5;
+    int m;
+    /*i和j为1时情况比较特殊，需要让表头重新指向交换后的那个节点*/
+    if (i == 1) { 
+        t1 = *L;
+        for (m = 1; temp-&gt;Next != NULL; m++, temp = temp-&gt;Next) {
+            if (m + 1 == j) {
+                *L = temp-&gt;Next;
+                t2 = temp-&gt;Next-&gt;Next;
+                temp-&gt;Next-&gt;Next = t1-&gt;Next;
+                t1-&gt;Next = t2;
+                temp-&gt;Next = t1;
+            }
+        }
+    }
+    if (j == 1) {
+        t1 = *L;
+        for (m = 1; temp-&gt;Next != NULL; m++, temp = temp-&gt;Next) {
+            if (m + 1 == i) {
+                *L = temp-&gt;Next;
+                t2 = temp-&gt;Next-&gt;Next;
+                temp-&gt;Next-&gt;Next = t1-&gt;Next;
+                t1-&gt;Next = t2;
+                temp-&gt;Next = t1;
+            }
+        }
+    }
+    /*相邻节点之间交换和非相邻结点之间交换不一样*/
+    else {
+        if ((i - j) != 1 &amp;&amp; (j- i) != 1) {//非相邻结点之间交换
+            for (m = 1; temp-&gt;Next != NULL; m++, temp = temp-&gt;Next) {
+                if (m + 1 == i) {
+                    t1 = temp;
+                }
+                if (m + 1 == j) {
+                    t2 = temp;
+                }
+            }
+            t5 = t1-&gt;Next-&gt;Next;
+            t3 = t1-&gt;Next;
+            t4 = t2-&gt;Next;
+            t1-&gt;Next = t4;
+            t2-&gt;Next = t3;
+            t3-&gt;Next = t4-&gt;Next;
+            t4-&gt;Next = t5;
+        }
+        else if (i &lt; j) {//相邻节点之间交换
+            for (m = 1; temp != NULL; m++, temp = temp-&gt;Next) {
+                if (m + 1 == i) {
+                    t1 = temp;
+                }
+                if (m == j) {
+                    t2 = temp;
+                }
+            }
+            temp = t2-&gt;Next;
+            t3 = t1-&gt;Next;
+            t1-&gt;Next = t2;
+            t3-&gt;Next = temp;
+            t2-&gt;Next = t3;
+        }
+        else if (i &gt; j) {
+            for (m = 1; temp != NULL; m++, temp = temp-&gt;Next) {
+                if (m + 1 == j) {
+                    t1 = temp;
+                }
+                if (m == i) {
+                    t2 = temp;
+                }
+            }
+            temp = t2-&gt;Next;
+            t3 = t1-&gt;Next;
+            t1-&gt;Next = t2;
+            t3-&gt;Next = temp;
+            t2-&gt;Next = t3;
+        }
+    }
+}
+
+void printflist(List list) 
+{
+    List temp;
+    for (temp = list; temp != NULL; temp = temp-&gt;Next) {
+        printf(&quot;%d\n&quot;, temp-&gt;Score);
+    }
+}
+
+void freelist(List *list)
+{
+    List temp = *list, del;
+    while (temp != NULL) {
+        del = temp;
+        temp = temp-&gt;Next;
+        free(del);
+    }
+}
+
+int main()
+{
+    List list = NULL;
+    Node n1, n2, n3, n4, e;//定义5个节点
+    e.Score = 5;
+    n1.Score = 1;
+    n2.Score = 2;
+    n3.Score = 3;
+    n4.Score = 4;
+    Insert(&amp;list, n1);
+    Insert(&amp;list, n2);
+    Insert(&amp;list, n3);
+    Insert(&amp;list, n4);
+    Insert(&amp;list, e);
+    // dellist(&amp;list, 8);
+    Swap(&amp;list, 5, 4);
+    printflist(list);
+    freelist(&amp;list);
+    return 0;
+}
+
+
+</code></pre>
 
             </div>
             <hr style="width: 80%;">
@@ -559,25 +761,25 @@ Gridea 主页
             <div class="postfooter">
                 <ul class="post-copyright">
                     <li><strong>文章作者：</strong>SakuraTears</li>
-            <li><strong>原文链接：</strong>https://SakuraTears.cn/post/hello-gridea/</li>
+            <li><strong>原文链接：</strong>https://SakuraTears.cn/post/c-yu-yan-shi-xian-lian-biao-ji-ben-cao-zuo-jiao-huan-di-i-ge-he-di-j-ge-jie-dian/</li>
             <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用<i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA
                 许可协议。转载请注明出处！</li>
             </ul>
         </div>
         <div id="otherpost">
             
-            <div class="prev-post-pc">
-                <div id="ppcontainer" onclick="window.location.href= 'https://SakuraTears.cn/post/c-yu-yan-lian-biao-ji-ben-cao-zuo-tou-cha-fa-ji-qi-ni-zhi/';return false">
+            
+            <div class="next-post-pc">
+                <div id="npcontainer" onclick="window.location.href= 'https://SakuraTears.cn/post/c-yu-yan-lian-biao-ji-ben-cao-zuo-tou-cha-fa-ji-qi-ni-zhi/';return false">
                     
                     <img src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(5).jpg.webp" style="width: 100%;" class="opimg">
                     
                     <h4 class="optitle">C语言链表基本操作（头插法及其逆置）</h4>
                 </div>
             </div>
-            <div class="prev-post">
-                上一篇 <a href="https://SakuraTears.cn/post/c-yu-yan-lian-biao-ji-ben-cao-zuo-tou-cha-fa-ji-qi-ni-zhi/">C语言链表基本操作（头插法及其逆置）</a>
+            <div class="next-post">
+                下一篇 <a href="https://SakuraTears.cn/post/c-yu-yan-lian-biao-ji-ben-cao-zuo-tou-cha-fa-ji-qi-ni-zhi/">C语言链表基本操作（头插法及其逆置）</a>
             </div>
-            
             
         </div>
     </div>
@@ -724,7 +926,13 @@ Gridea 主页
             <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E7%89%B9%E6%80%A7">特性👇</a></li>
+<li><a href="#c%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E9%93%BE%E8%A1%A8%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E4%BA%A4%E6%8D%A2%E7%AC%ACi%E4%B8%AA%E5%92%8C%E7%AC%ACj%E4%B8%AA%E8%8A%82%E7%82%B9">C语言实现链表基本操作（交换第i个和第j个节点）</a>
+<ul>
+<li><a href="#%E5%BD%93i%E6%88%96%E8%80%85j%E4%B8%BA1%E6%97%B6%E9%9C%80%E8%A6%81%E8%AE%A9%E9%93%BE%E8%A1%A8%E7%9A%84%E8%A1%A8%E5%A4%B4%E6%8C%87%E5%90%91j">当i或者j为1时，需要让链表的表头指向j。</a></li>
+<li><a href="#%E5%BD%93i%E5%92%8Cj%E9%83%BD%E4%B8%8D%E4%B8%BA1%E6%97%B6">当i和j都不为1时。</a></li>
+<li><a href="#%E6%9C%80%E5%90%8E%E4%B8%80%E7%A7%8D%E6%83%85%E5%86%B5%E4%B8%A4%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9B%B8%E9%82%BB">最后一种情况，两个节点相邻：</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -956,7 +1164,7 @@ Gridea 主页
                 var nc = new NewCounter();
                 nc.save({
                     time: 1,
-                    title: "Hello Gridea",
+                    title: "C语言实现链表基本操作（交换第i个和第j个节点）",
                     url: pl,
                     xid: pl,
                 }).then(function (object) {

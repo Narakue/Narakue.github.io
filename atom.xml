@@ -1,19 +1,339 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://zsakuratears.github.io/</id>
+    <id>https://SakuraTears.cn/</id>
     <title>SakuraTears</title>
-    <updated>2020-10-23T06:24:03.435Z</updated>
+    <updated>2020-10-23T06:43:53.449Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://zsakuratears.github.io/"/>
-    <link rel="self" href="https://zsakuratears.github.io/atom.xml"/>
+    <link rel="alternate" href="https://SakuraTears.cn/"/>
+    <link rel="self" href="https://SakuraTears.cn/atom.xml"/>
     <subtitle>努力不一定成功，但不努力一定很轻松</subtitle>
-    <logo>https://zsakuratears.github.io/images/avatar.png</logo>
-    <icon>https://zsakuratears.github.io/favicon.ico</icon>
+    <logo>https://SakuraTears.cn/images/avatar.png</logo>
+    <icon>https://SakuraTears.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, SakuraTears</rights>
     <entry>
+        <title type="html"><![CDATA[C语言实现链表基本操作（交换第i个和第j个节点）]]></title>
+        <id>https://SakuraTears.cn/post/c-yu-yan-shi-xian-lian-biao-ji-ben-cao-zuo-jiao-huan-di-i-ge-he-di-j-ge-jie-dian/</id>
+        <link href="https://SakuraTears.cn/post/c-yu-yan-shi-xian-lian-biao-ji-ben-cao-zuo-jiao-huan-di-i-ge-he-di-j-ge-jie-dian/">
+        </link>
+        <updated>2020-10-23T06:39:58.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="c语言实现链表基本操作交换第i个和第j个节点">C语言实现链表基本操作（交换第i个和第j个节点）</h2>
+<h3 id="当i或者j为1时需要让链表的表头指向j">当i或者j为1时，需要让链表的表头指向j。</h3>
+<figure data-type="image" tabindex="1"><img src="https://img-blog.csdnimg.cn/20200611081240188.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_8,color_FFFFFF,t_70" alt="开始时" loading="lazy"></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200611081335308.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_8,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/2020061108140129.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_8,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200611081415319.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_8,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200611081427878.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_8,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+代码为</p>
+<pre><code class="language-c">/*i和j为1时情况比较特殊，需要让表头重新指向交换后的那个节点*/
+    if (i == 1) { 
+        t1 = *L;
+        for (m = 1; temp-&gt;Next != NULL; m++, temp = temp-&gt;Next) {
+            if (m + 1 == j) {
+                *L = temp-&gt;Next;
+                t2 = temp-&gt;Next-&gt;Next;
+                temp-&gt;Next-&gt;Next = t1-&gt;Next;
+                t1-&gt;Next = t2;
+                temp-&gt;Next = t1;
+            }
+        }
+    }
+</code></pre>
+<h3 id="当i和j都不为1时">当i和j都不为1时。</h3>
+<p>节点相邻与不相邻也是不一样的。<br>
+不相邻的情况下就是让i前面的节点指向j，然后让j前面的节点指向i。如果两个节点相邻（假设i &lt; j）j前面的节点就是i，j前面的节点指向i就是指向了自己，所以要分开写。<br>
+不相邻节点时：<br>
+<img src="https://img-blog.csdnimg.cn/20200611083309796.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200611083331554.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200611083418720.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200611083435638.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+代码为：</p>
+<pre><code class="language-c">if ((i - j) != 1 &amp;&amp; (j- i) != 1) {//非相邻结点之间交换
+            for (m = 1; temp-&gt;Next != NULL; m++, temp = temp-&gt;Next) {
+                if (m + 1 == i) {
+                    t1 = temp;
+                }
+                if (m + 1 == j) {
+                    t2 = temp;
+                }
+            }
+            t5 = t1-&gt;Next-&gt;Next;
+            t3 = t1-&gt;Next;
+            t4 = t2-&gt;Next;
+            t1-&gt;Next = t4;
+            t2-&gt;Next = t3;
+            t3-&gt;Next = t4-&gt;Next;
+            t4-&gt;Next = t5;
+        }
+</code></pre>
+<h3 id="最后一种情况两个节点相邻">最后一种情况，两个节点相邻：</h3>
+<p><img src="https://img-blog.csdnimg.cn/20200611084227643.png" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200611084240634.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200611084255116.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+<img src="https://img-blog.csdnimg.cn/20200611084305639.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+代码为：</p>
+<pre><code class="language-c">for (m = 1; temp != NULL; m++, temp = temp-&gt;Next) {
+                if (m + 1 == i) {
+                    t1 = temp;
+                }
+                if (m == j) {
+                    t2 = temp;
+                }
+            }
+            temp = t2-&gt;Next;
+            t3 = t1-&gt;Next;
+            t1-&gt;Next = t2;
+            t3-&gt;Next = temp;
+            t2-&gt;Next = t3;
+        }
+</code></pre>
+<p>全部代码：</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;malloc.h&gt;
+
+typedef struct node
+{
+    int Score;
+    struct node * Next;
+}Node, * List;
+
+void Insert(List *L, Node e)
+{
+    List temp = *L;
+    List n = (List)malloc(sizeof(Node));
+    n-&gt;Score = e.Score;
+    if (temp == NULL) {
+        *L = n;
+    }
+    else {
+        while (temp-&gt;Next != NULL) {
+            temp = temp-&gt;Next;
+        }
+        temp-&gt;Next = n;
+    }
+    n-&gt;Next = NULL;
+}
+
+void Swap(List * L, int i, int j)
+{
+    List temp = *L;
+    List t1;
+    List t2;
+    List t3;
+    List t4;
+    List t5;
+    int m;
+    /*i和j为1时情况比较特殊，需要让表头重新指向交换后的那个节点*/
+    if (i == 1) { 
+        t1 = *L;
+        for (m = 1; temp-&gt;Next != NULL; m++, temp = temp-&gt;Next) {
+            if (m + 1 == j) {
+                *L = temp-&gt;Next;
+                t2 = temp-&gt;Next-&gt;Next;
+                temp-&gt;Next-&gt;Next = t1-&gt;Next;
+                t1-&gt;Next = t2;
+                temp-&gt;Next = t1;
+            }
+        }
+    }
+    if (j == 1) {
+        t1 = *L;
+        for (m = 1; temp-&gt;Next != NULL; m++, temp = temp-&gt;Next) {
+            if (m + 1 == i) {
+                *L = temp-&gt;Next;
+                t2 = temp-&gt;Next-&gt;Next;
+                temp-&gt;Next-&gt;Next = t1-&gt;Next;
+                t1-&gt;Next = t2;
+                temp-&gt;Next = t1;
+            }
+        }
+    }
+    /*相邻节点之间交换和非相邻结点之间交换不一样*/
+    else {
+        if ((i - j) != 1 &amp;&amp; (j- i) != 1) {//非相邻结点之间交换
+            for (m = 1; temp-&gt;Next != NULL; m++, temp = temp-&gt;Next) {
+                if (m + 1 == i) {
+                    t1 = temp;
+                }
+                if (m + 1 == j) {
+                    t2 = temp;
+                }
+            }
+            t5 = t1-&gt;Next-&gt;Next;
+            t3 = t1-&gt;Next;
+            t4 = t2-&gt;Next;
+            t1-&gt;Next = t4;
+            t2-&gt;Next = t3;
+            t3-&gt;Next = t4-&gt;Next;
+            t4-&gt;Next = t5;
+        }
+        else if (i &lt; j) {//相邻节点之间交换
+            for (m = 1; temp != NULL; m++, temp = temp-&gt;Next) {
+                if (m + 1 == i) {
+                    t1 = temp;
+                }
+                if (m == j) {
+                    t2 = temp;
+                }
+            }
+            temp = t2-&gt;Next;
+            t3 = t1-&gt;Next;
+            t1-&gt;Next = t2;
+            t3-&gt;Next = temp;
+            t2-&gt;Next = t3;
+        }
+        else if (i &gt; j) {
+            for (m = 1; temp != NULL; m++, temp = temp-&gt;Next) {
+                if (m + 1 == j) {
+                    t1 = temp;
+                }
+                if (m == i) {
+                    t2 = temp;
+                }
+            }
+            temp = t2-&gt;Next;
+            t3 = t1-&gt;Next;
+            t1-&gt;Next = t2;
+            t3-&gt;Next = temp;
+            t2-&gt;Next = t3;
+        }
+    }
+}
+
+void printflist(List list) 
+{
+    List temp;
+    for (temp = list; temp != NULL; temp = temp-&gt;Next) {
+        printf(&quot;%d\n&quot;, temp-&gt;Score);
+    }
+}
+
+void freelist(List *list)
+{
+    List temp = *list, del;
+    while (temp != NULL) {
+        del = temp;
+        temp = temp-&gt;Next;
+        free(del);
+    }
+}
+
+int main()
+{
+    List list = NULL;
+    Node n1, n2, n3, n4, e;//定义5个节点
+    e.Score = 5;
+    n1.Score = 1;
+    n2.Score = 2;
+    n3.Score = 3;
+    n4.Score = 4;
+    Insert(&amp;list, n1);
+    Insert(&amp;list, n2);
+    Insert(&amp;list, n3);
+    Insert(&amp;list, n4);
+    Insert(&amp;list, e);
+    // dellist(&amp;list, 8);
+    Swap(&amp;list, 5, 4);
+    printflist(list);
+    freelist(&amp;list);
+    return 0;
+}
+
+
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[C语言链表基本操作（头插法及其逆置）]]></title>
+        <id>https://SakuraTears.cn/post/c-yu-yan-lian-biao-ji-ben-cao-zuo-tou-cha-fa-ji-qi-ni-zhi/</id>
+        <link href="https://SakuraTears.cn/post/c-yu-yan-lian-biao-ji-ben-cao-zuo-tou-cha-fa-ji-qi-ni-zhi/">
+        </link>
+        <updated>2020-10-23T06:32:17.000Z</updated>
+        <content type="html"><![CDATA[<pre><code class="language-C/C++">#include &lt;stdio.h&gt;
+#include &lt;malloc.h&gt;
+
+typedef struct Node
+{
+    char data;
+	struct Node *next;
+}SN;
+
+SN * create(int n)
+{
+	int i;
+	SN *h,*p;
+    h = NULL;
+    for(i = 0; i&lt;n; i++)
+	{
+		p=(SN*)malloc(sizeof(SN));
+		printf(&quot;请输入第%d个字符：&quot;,i+1);
+		p-&gt;data = getchar();
+		fflush(stdin);
+		p-&gt;next = h;
+		h=p;
+	}
+	return h;
+}
+
+SN * def(SN * h)
+{ 
+    SN * n1, *n2;
+	n1 = h;
+	n2 = NULL;
+	while(n1 != NULL)
+	{
+		SN *temp;
+		temp = n1;
+		n1 = n1-&gt;next;
+		temp-&gt;next = n2;
+		n2 = temp;
+	}
+	h = n2;
+	return h;
+}
+void visit(SN * h)
+{ 
+	while(h != NULL)
+	{
+		printf(&quot;%c&quot;, h-&gt;data);
+		h = h-&gt;next;
+	}
+	printf(&quot;\n&quot;);
+}
+
+void freelist(SN *h)
+{
+    SN *temp = h;
+	SN *del;
+	while (temp != NULL) {
+        del = temp;
+        temp = temp-&gt;next;
+        free(del);
+    }
+}
+
+int main() 
+{
+	int n;
+	SN *h;
+	printf(&quot;请输入字符个数：\n&quot;);
+	scanf(&quot;%d&quot;, &amp;n);
+	fflush(stdin);
+	h = create(n);
+	printf(&quot;链表创建成功，对其遍历\n&quot;);
+    visit(h);
+	printf(&quot;链表逆置成功，对其遍历\n&quot;);
+	h = def(h);
+	visit(h);
+	freelist(h);
+	return 0;
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://zsakuratears.github.io/post/hello-gridea/</id>
-        <link href="https://zsakuratears.github.io/post/hello-gridea/">
+        <id>https://SakuraTears.cn/post/hello-gridea/</id>
+        <link href="https://SakuraTears.cn/post/hello-gridea/">
         </link>
         <updated>2018-12-11T16:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
