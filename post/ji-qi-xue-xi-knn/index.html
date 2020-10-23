@@ -1,17 +1,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0">
-    <meta name="description" content="#include &lt;stdio.h&gt;
-#include &lt;malloc.h&gt;
+    <meta name="description" content="import math
+import numpy#导入两个库
 
-typedef struct Node
-{
-    char data;
-	struct Node *next;
-}SN;
-
-SN * ..." />
-    <meta name="keywords" content="" />
+def knn(c):#定义knn函数
+    k_a = 0
+    k_b = 0
+    distance_a = []#定义a和c的距离列表
+    distance_..." />
+    <meta name="keywords" content="机器学习" />
     <link rel="stylesheet" href="https://SakuraTears.cn//media/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://SakuraTears.cn//styles/main.css">
     
@@ -477,21 +475,25 @@ SN * ..." />
         <div class="postshow" style="padding-bottom: 0;">
             
             <div class="postdetailimg" style="width:100%;overflow: hidden;">
-                <img src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(5).jpg.webp" class="postimage" style="cursor:auto">
+                <img src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(9).jpg.webp" class="postimage" style="cursor:auto">
             </div>
             <div class="postinfo-detail">
                 <div class="postdate"><i class="fa fa-calendar"></i>2020-09-18</div>
                 <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 2 min read</div>
                 <div class="posttag">
                     
+                    <a href="https://SakuraTears.cn/tag/a6phiPWyI/" class="postlink">
+                        <i class="fa fa-tag"></i> 机器学习
+                    </a>
+                    
                 </div>
             </div>
             
         <div id="articlecontent">
             <div id="texttitle" style="text-align: center">
-                <h2>C语言链表基本操作（头插法及其逆置）</h2>
+                <h2>机器学习-knn</h2>
                 <!-- id 将作为查询条件 -->
-                <div id="pl" style="display:none">https://SakuraTears.cn/post/c-yu-yan-lian-biao-ji-ben-cao-zuo-tou-cha-fa-ji-qi-ni-zhi/</div>
+                <div id="pl" style="display:none">https://SakuraTears.cn/post/ji-qi-xue-xi-knn/</div>
                 <div id="rootaddr" style="display:none">https://SakuraTears.cn/</div>
                 <span id="hotnum">
                     <h4><i class="fa fa-eye" aria-hidden="true" style="color: #FF8C00;"></i>&nbsp;&nbsp;热度</i>: <i
@@ -499,85 +501,42 @@ SN * ..." />
                 </span>
             </div>
             <div class="text ">
-                <pre><code class="language-C/C++">#include &lt;stdio.h&gt;
-#include &lt;malloc.h&gt;
+                <pre><code class="language-python">import math
+import numpy#导入两个库
 
-typedef struct Node
-{
-    char data;
-	struct Node *next;
-}SN;
+def knn(c):#定义knn函数
+    k_a = 0
+    k_b = 0
+    distance_a = []#定义a和c的距离列表
+    distance_b = []#定义b和c的距离列表
+    distance = []#所有数据距离列表
+    for i in range(0, len(a)):#a的每个数据和c的每个数据的距离
+        distance_a.append(math.sqrt(numpy.square(a[i][0] - c[0]) + numpy.square(a[i][1] - c[1])))
+    for i in range(0, len(b)):#b的每个数据和c的每个数据的距离
+        distance_b.append(math.sqrt(numpy.square(b[i][0] - c[0]) + numpy.square(b[i][1] - c[1])))
+    distance = distance_a + distance_b
+    distance.sort()#排序距离
+    k = int(len(distance) / 2) + 1#取k的值
+    for i in range(k):
+        if distance_a.count(distance[i]) != 0:#判断该距离是否是a和c的距离
+            k_a = k_a + 1
+        if distance_b.count(distance[i]) != 0:#判断该距离是否是b和c的距离
+            k_b = k_b + 1
+    if k_a &gt; k_b:#判断c的数据和哪个类别接近
+        print(&quot;你属于肥胖身材&quot;)
+    else:
+        print(&quot;你属于标准身材&quot;)
 
-SN * create(int n)
-{
-	int i;
-	SN *h,*p;
-    h = NULL;
-    for(i = 0; i&lt;n; i++)
-	{
-		p=(SN*)malloc(sizeof(SN));
-		printf(&quot;请输入第%d个字符：&quot;,i+1);
-		p-&gt;data = getchar();
-		fflush(stdin);
-		p-&gt;next = h;
-		h=p;
-	}
-	return h;
-}
 
-SN * def(SN * h)
-{ 
-    SN * n1, *n2;
-	n1 = h;
-	n2 = NULL;
-	while(n1 != NULL)
-	{
-		SN *temp;
-		temp = n1;
-		n1 = n1-&gt;next;
-		temp-&gt;next = n2;
-		n2 = temp;
-	}
-	h = n2;
-	return h;
-}
-void visit(SN * h)
-{ 
-	while(h != NULL)
-	{
-		printf(&quot;%c&quot;, h-&gt;data);
-		h = h-&gt;next;
-	}
-	printf(&quot;\n&quot;);
-}
+a = [[150, 60], [152, 65], [154, 68], [156, 70], [158, 72]]#类别a
+b = [[150, 49.5], [152, 50.8], [154, 52.2], [156, 53.5], [158, 54.9]]#类别b
+c = []  #判断类别c
+print(&quot;输入身高体重&quot;)
+for i in range(2):#输入c
+    num = int(input())
+    c.append(num)
+knn(c)#调用函数knn
 
-void freelist(SN *h)
-{
-    SN *temp = h;
-	SN *del;
-	while (temp != NULL) {
-        del = temp;
-        temp = temp-&gt;next;
-        free(del);
-    }
-}
-
-int main() 
-{
-	int n;
-	SN *h;
-	printf(&quot;请输入字符个数：\n&quot;);
-	scanf(&quot;%d&quot;, &amp;n);
-	fflush(stdin);
-	h = create(n);
-	printf(&quot;链表创建成功，对其遍历\n&quot;);
-    visit(h);
-	printf(&quot;链表逆置成功，对其遍历\n&quot;);
-	h = def(h);
-	visit(h);
-	freelist(h);
-	return 0;
-}
 </code></pre>
 
             </div>
@@ -616,7 +575,7 @@ int main()
             <div class="postfooter">
                 <ul class="post-copyright">
                     <li><strong>文章作者：</strong>SakuraTears</li>
-            <li><strong>原文链接：</strong>https://SakuraTears.cn/post/c-yu-yan-lian-biao-ji-ben-cao-zuo-tou-cha-fa-ji-qi-ni-zhi/</li>
+            <li><strong>原文链接：</strong>https://SakuraTears.cn/post/ji-qi-xue-xi-knn/</li>
             <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用<i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA
                 许可协议。转载请注明出处！</li>
             </ul>
@@ -624,28 +583,28 @@ int main()
         <div id="otherpost">
             
             <div class="prev-post-pc">
-                <div id="ppcontainer" onclick="window.location.href= 'https://SakuraTears.cn/post/c-yu-yan-shi-xian-lian-biao-ji-ben-cao-zuo-jiao-huan-di-i-ge-he-di-j-ge-jie-dian/';return false">
+                <div id="ppcontainer" onclick="window.location.href= 'https://SakuraTears.cn/post/kuai-su-pai-xu/';return false">
                     
                     <img src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(3).jpg.webp" style="width: 100%;" class="opimg">
                     
-                    <h4 class="optitle">C语言实现链表基本操作（交换第i个和第j个节点）</h4>
+                    <h4 class="optitle">快速排序</h4>
                 </div>
             </div>
             <div class="prev-post">
-                上一篇 <a href="https://SakuraTears.cn/post/c-yu-yan-shi-xian-lian-biao-ji-ben-cao-zuo-jiao-huan-di-i-ge-he-di-j-ge-jie-dian/">C语言实现链表基本操作（交换第i个和第j个节点）</a>
+                上一篇 <a href="https://SakuraTears.cn/post/kuai-su-pai-xu/">快速排序</a>
             </div>
             
             
             <div class="next-post-pc">
-                <div id="npcontainer" onclick="window.location.href= 'https://SakuraTears.cn/post/hello-gridea/';return false">
+                <div id="npcontainer" onclick="window.location.href= 'https://SakuraTears.cn/post/gui-bing-pai-xu/';return false">
                     
-                    <img src="https://SakuraTears.cn//post-images/hello-gridea.png" style="width: 100%;" class="opimg">
+                    <img src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(6).jpg.webp" style="width: 100%;" class="opimg">
                     
-                    <h4 class="optitle">Hello Gridea</h4>
+                    <h4 class="optitle">归并排序</h4>
                 </div>
             </div>
             <div class="next-post">
-                下一篇 <a href="https://SakuraTears.cn/post/hello-gridea/">Hello Gridea</a>
+                下一篇 <a href="https://SakuraTears.cn/post/gui-bing-pai-xu/">归并排序</a>
             </div>
             
         </div>
@@ -1018,7 +977,7 @@ int main()
                 var nc = new NewCounter();
                 nc.save({
                     time: 1,
-                    title: "C语言链表基本操作（头插法及其逆置）",
+                    title: "机器学习-knn",
                     url: pl,
                     xid: pl,
                 }).then(function (object) {
