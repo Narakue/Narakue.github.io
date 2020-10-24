@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://SakuraTears.cn/</id>
     <title>SakuraTears</title>
-    <updated>2020-10-24T06:10:07.929Z</updated>
+    <updated>2020-10-24T10:54:34.332Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://SakuraTears.cn/"/>
     <link rel="self" href="https://SakuraTears.cn/atom.xml"/>
@@ -10,6 +10,16 @@
     <logo>https://SakuraTears.cn/images/avatar.png</logo>
     <icon>https://SakuraTears.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, SakuraTears</rights>
+    <entry>
+        <title type="html"><![CDATA[Python解决用pip装第三方库慢的方法]]></title>
+        <id>https://SakuraTears.cn/post/python-jie-jue-yong-pip-zhuang-di-san-fang-ku-man-de-fang-fa/</id>
+        <link href="https://SakuraTears.cn/post/python-jie-jue-yong-pip-zhuang-di-san-fang-ku-man-de-fang-fa/">
+        </link>
+        <updated>2020-10-24T10:48:49.000Z</updated>
+        <content type="html"><![CDATA[<p>由于政策原因使用pip(pycharm也是)装第三方库有时会很慢有时会失败，有条件的可以使用不可描述方法进行安装或者我们可以使用清华源镜像装库<br>
+链接https://mirrors.tuna.tsinghua.edu.cn/help/pypi/</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[KMP算法]]></title>
         <id>https://SakuraTears.cn/post/kmp-suan-fa/</id>
@@ -885,51 +895,6 @@ int main()
 	freelist(h);
 	return 0;
 }
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[机器学习-knn]]></title>
-        <id>https://SakuraTears.cn/post/ji-qi-xue-xi-knn/</id>
-        <link href="https://SakuraTears.cn/post/ji-qi-xue-xi-knn/">
-        </link>
-        <updated>2020-10-04T06:58:31.000Z</updated>
-        <content type="html"><![CDATA[<pre><code class="language-python">import math
-import numpy#导入两个库
-
-def knn(c):#定义knn函数
-    k_a = 0
-    k_b = 0
-    distance_a = []#定义a和c的距离列表
-    distance_b = []#定义b和c的距离列表
-    distance = []#所有数据距离列表
-    for i in range(0, len(a)):#a的每个数据和c的每个数据的距离
-        distance_a.append(math.sqrt(numpy.square(a[i][0] - c[0]) + numpy.square(a[i][1] - c[1])))
-    for i in range(0, len(b)):#b的每个数据和c的每个数据的距离
-        distance_b.append(math.sqrt(numpy.square(b[i][0] - c[0]) + numpy.square(b[i][1] - c[1])))
-    distance = distance_a + distance_b
-    distance.sort()#排序距离
-    k = int(len(distance) / 2) + 1#取k的值
-    for i in range(k):
-        if distance_a.count(distance[i]) != 0:#判断该距离是否是a和c的距离
-            k_a = k_a + 1
-        if distance_b.count(distance[i]) != 0:#判断该距离是否是b和c的距离
-            k_b = k_b + 1
-    if k_a &gt; k_b:#判断c的数据和哪个类别接近
-        print(&quot;你属于肥胖身材&quot;)
-    else:
-        print(&quot;你属于标准身材&quot;)
-
-
-a = [[150, 60], [152, 65], [154, 68], [156, 70], [158, 72]]#类别a
-b = [[150, 49.5], [152, 50.8], [154, 52.2], [156, 53.5], [158, 54.9]]#类别b
-c = []  #判断类别c
-print(&quot;输入身高体重&quot;)
-for i in range(2):#输入c
-    num = int(input())
-    c.append(num)
-knn(c)#调用函数knn
-
 </code></pre>
 ]]></content>
     </entry>
