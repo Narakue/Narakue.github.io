@@ -1,139 +1,21 @@
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="https://SakuraTears.cn//media/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/css/live2d.css">
-    <link rel="stylesheet" href="https://SakuraTears.cn//styles/main.css">
-    <meta name="description" content="努力不一定成功，但不努力一定很轻松" />
-    <link rel="stylesheet" href="https://SakuraTears.cn//media/css/font-awesome.css">
-    <title>SakuraTears</title>
-</head>
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="https://SakuraTears.cn//media/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/css/live2d.css">
+<link rel="stylesheet" href="https://SakuraTears.cn//styles/main.css">
+<link rel="stylesheet" href="https://SakuraTears.cn//media/css/font-awesome.css">
+<title>SakuraTears</title>
+
+
 <body>
     <!-- 响应式布局，针对PC端内容显示 -->
     <div id="content">
-        <div class="fricontent">
-            <div id="bar">
-                <head>
-  <!-- 引入Bootstrap核心样式文件 -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/css/bootstrap.min.css">
-</head>
-<style>
-  @media screen and (max-width:1200px) and (min-width: 768px) {
-    @media (min-width: 768px) {
-      .navbar-nav {
-        float: right;
-        margin: 0;
-      }
-    }
-  }
-  @media screen and (max-width:768px){
-    .mbapspan{
-      padding: 0;
-    }
-  }
-</style>
-
-<body>
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#barmenu"
-          aria-expanded="false" id="barbutton">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="https://SakuraTears.cn/">SakuraTears&nbsp;&nbsp;|</a>
-        <span class="navbar-brand mbapspan"><i id="mbaplayer" class="fa fa-play-circle-o" aria-hidden="true"
-            style="font-size: 28px;top: 12px;position: absolute;" onclick="aplayerPlay();"></i></span>
-      </div>
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="barmenu">
-        <ul class="nav navbar-nav">
-          
-          
-          <li>
-            <a href="/">
-              首页
-            </a>
-          </li>
-          
-          
-          
-          <li>
-            <a href="/archives">
-              归档
-            </a>
-          </li>
-          
-          
-          
-          <li>
-            <a href="/tags">
-              标签
-            </a>
-          </li>
-          
-          
-          
-          <li>
-            <a href="https://SakuraTears.cn/post/huan-ying-lai-dao-wo-de-xiao-zhan">
-              关于
-            </a>
-          </li>
-          
-          
-          
-          <li><a href="https://SakuraTears.cn//talk">说说</a></li>
-          
-          
-          <li><a href="https://SakuraTears.cn//friends">友链</a></li>
-
-          
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
-
-
-  <!-- 引入jQuery核心js文件 -->
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
-  <script>
-  var btstate = false;
-  var bt = $("#barbutton");
-  var bm = $("#barmenu");
-  bt.click(function(){
-    dropdown();
-  })
-  function dropdown(){
-    console.log(btstate);
-    //下拉
-    if(btstate==false){
-      bt.removeClass("collapsed");
-      bt.attr("aria-expanded","true");
-      bm.attr("aria-expanded","true")
-      bm.fadeIn(700);
-      btstate = true;
-    }
-    else{
-      bt.addClass("collapsed");
-      bt.attr("aria-expanded","false");
-      bm.removeClass("in");
-      bm.hide();
-      bm.attr("aria-expanded","false");
-      btstate = false;
-    }
-  }
-  </script> 
-</body>
-            </div>
+        <div class="nav-large">
             <div class="row">
+                
                 <div class="side"><body>
     
     <div id=side>
@@ -404,95 +286,90 @@
     }
 </script>
 </div>
-                
-                <div id="tab1" class="tab">
-                    <div class="bars">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <div class="close"></div>
-                </div>
                 <div class="col-md-1 col-lg-3"></div>
-                <div id="main" class="col-xs-12 col-sm-12 col-md-10 col-lg-8">
-                    <body>
-    <div id="friendscontainermobile">
-        
-        
-        
-    </div>
-
-    <div id="friendscontainer">
-        
-        
-        
-    </div>
-</body>
-                <div id="comment" class="fcl" style="background: white;">
-                    <div class="commentcontainer">
-                        
-                        <style>
-
-
-    @media screen and (min-width: 1300px) {
-        .veditor::placeholder {
-            color: #b3b3b3;
-            font-size: 18px;
-            text-align: center;
-            line-height: 3rem;
-            font-family: kaiti;
-        }
-    }
-</style>
-
-<body>
-    <div id="vcomments">
-    </div>
-    <script src="https://SakuraTears.cn//media/js/valine.min.js"></script>
-    <!-- <script src="https://unpkg.com/valine/dist/Valine.min.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
-    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-    <script>
-        new Valine({
-            el: '#vcomments',
-            appId: 'nfWVdgg866VIUK3XcpJYSmAP-gzGzoHsz',
-            appKey: 'XA26Jr7NmeT5eIqrAQYsk51a',
-            notify: true,
-            verify: false,
-            avatar: 'retro',
-            pageSize: 10,
-            placeholder: '既然来了，何不畅所欲言呢？',
-            visitor: true, // 阅读量统计
-        });
-    </script>
-    <script type="text/javascript">
-        // jinrishici.load(function (result) {
-        //     var jrsc_plac = result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin
-        //         .dynasty + " · " + result.data.origin.author;
-        //     if (jrsc_plac != undefined)
-        //         document.getElementById("veditor").setAttribute("placeholder", jrsc_plac);
-        // 
-        var jrsc = '既然来了，何不畅所欲言呢？';
-        jinrishici.load(function (result) {
-                // 自己的处理逻辑
-                jrsc = result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin
-                 .dynasty + " · " + result.data.origin.author;
-            });
-    </script> 
+                <div id="main" class="col-xs-12 col-sm-12 col-md-10 col-lg-7">
+                    <link rel="stylesheet" href="https://SakuraTears.cn//media/css/font-awesome.css">
+<div class="tag-container">
     
-</body>
-                        <div class="clear"></div>
-                        
-                    </div>
-                </div>
-                </div>
-                <div class="col-md-1 col-lg-1"></div>
-                <div id="bg">
+    <div class="postshow">
+        
+        <div id="post" style="width:100%">
+            <img src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(6).jpg.webp" class="postimage"
+                onclick="window.location.href= 'https://SakuraTears.cn/post/huan-ying-lai-dao-wo-de-xiao-zhan/';return false">
+            <div class="posttitlebox">
+                <div class="posttitle" onclick="window.location.href= 'https://SakuraTears.cn/post/huan-ying-lai-dao-wo-de-xiao-zhan/';return false">
+                    欢迎来到我的小站
                 </div>
             </div>
-            
+        </div>
+        <div class="postinfo">
+            <div class="postdate"><i class="fa fa-calendar"></i>2020/10/24</div>
+            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 1 min read</div>
+            <div class="posttag">
+                
+                <a href="https://SakuraTears.cn/tag/5UBo7QGYK/" class="postlink">
+                    <i class="fa fa-tag"></i> 关于
+                </a>
+                
+            </div>
+        </div>
         
-        <head>
+</div>
+
+</div>
+                    <div>
+                        <div class="pagi">
+    <ul>
+        
+        <li><a style="width:100px">&nbsp;</a></li>
+        
+                <li><a id="page1">1</a></li>
+                <li><a id="page2" class="active">2</a></li>
+                <li><a id="page3">3</a></li>
+                
+        <li><a style="width:100px">&nbsp;</a></li>
+        
+            </ul>
+</div>
+
+<div id="pagination-prev" style="display:none"> 
+</div>
+<div id="pagination-next" style="display:none"> </div>
+
+
+<script>
+    var prevstr = document.getElementById("pagination-prev").innerHTML;
+    var nextstr = document.getElementById("pagination-next").innerHTML;
+    var page1 = document.getElementById("page1");
+    var page2 = document.getElementById("page2");
+    var page3 = document.getElementById("page3");
+    page1.innerHTML = '-';
+    page2.innerHTML = '1';
+    page3.innerHTML = '-';
+    if (prevstr.length > 5) {
+        if (prevstr.indexOf("page/") != -1) {
+            var prevnum = parseInt(prevstr.split("page/")[1]);
+            page1.innerHTML = prevnum;
+            page2.innerHTML = prevnum + 1;
+        } else {
+            page1.innerHTML = 1;
+            page2.innerHTML = 2;
+        }
+    }
+    if (nextstr.indexOf("page/") != -1) {
+        var nextnum = parseInt(nextstr.split("page/")[1]);
+        page3.innerHTML = nextnum;
+        page2.innerHTML = nextnum - 1;
+    }
+</script>
+                        <div style="padding-bottom:10%"></div>
+                    </div>
+                </div>
+                <div class="col-md-1 col-lg-2"></div>
+                
+            </div>
+            
+                <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
 </head>
 <body>
@@ -555,29 +432,180 @@
         }
     }
 </script>
-        
-
+            
+        </div>
+        <div id="bg">
+        </div>
+        <div id="bgchoice" style="display: none">link
+            </div>
+            
+            <div id="bgurl" style="display:none">https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/vKXn1oIoZi.jpg</div>
+               
     </div>
-    <div class="tog">
-        <div class="toggleContainer">
-            <div class="toggle">
-                <i class="fas fa-angle-double-up"></i>
+
+
+    <!-- 响应式布局，针对手机端内容显示 -->
+    <div class="nav-small">
+        <head>
+  <!-- 引入Bootstrap核心样式文件 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/css/bootstrap.min.css">
+</head>
+<style>
+  @media screen and (max-width:1200px) and (min-width: 768px) {
+    @media (min-width: 768px) {
+      .navbar-nav {
+        float: right;
+        margin: 0;
+      }
+    }
+  }
+  @media screen and (max-width:768px){
+    .mbapspan{
+      padding: 0;
+    }
+  }
+</style>
+
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#barmenu"
+          aria-expanded="false" id="barbutton">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="https://SakuraTears.cn/">SakuraTears&nbsp;&nbsp;|</a>
+        <span class="navbar-brand mbapspan"><i id="mbaplayer" class="fa fa-play-circle-o" aria-hidden="true"
+            style="font-size: 28px;top: 12px;position: absolute;" onclick="aplayerPlay();"></i></span>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="barmenu">
+        <ul class="nav navbar-nav">
+          
+          
+          <li>
+            <a href="/">
+              首页
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/archives">
+              归档
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/tags">
+              标签
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="https://SakuraTears.cn/post/huan-ying-lai-dao-wo-de-xiao-zhan">
+              关于
+            </a>
+          </li>
+          
+          
+          
+          <li><a href="https://SakuraTears.cn//talk">说说</a></li>
+          
+          
+          <li><a href="https://SakuraTears.cn//friends">友链</a></li>
+
+          
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+
+  <!-- 引入jQuery核心js文件 -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+  <script>
+  var btstate = false;
+  var bt = $("#barbutton");
+  var bm = $("#barmenu");
+  bt.click(function(){
+    dropdown();
+  })
+  function dropdown(){
+    console.log(btstate);
+    //下拉
+    if(btstate==false){
+      bt.removeClass("collapsed");
+      bt.attr("aria-expanded","true");
+      bm.attr("aria-expanded","true")
+      bm.fadeIn(700);
+      btstate = true;
+    }
+    else{
+      bt.addClass("collapsed");
+      bt.attr("aria-expanded","false");
+      bm.removeClass("in");
+      bm.hide();
+      bm.attr("aria-expanded","false");
+      btstate = false;
+    }
+  }
+  </script> 
+</body>
+            <div style="margin-top:50px"></div>
+            <link rel="stylesheet" href="https://SakuraTears.cn//media/css/font-awesome.css">
+<div class="tag-container">
+    
+    <div class="postshow">
+        
+        <div id="post" style="width:100%">
+            <img src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(6).jpg.webp" class="postimage"
+                onclick="window.location.href= 'https://SakuraTears.cn/post/huan-ying-lai-dao-wo-de-xiao-zhan/';return false">
+            <div class="posttitlebox">
+                <div class="posttitle" onclick="window.location.href= 'https://SakuraTears.cn/post/huan-ying-lai-dao-wo-de-xiao-zhan/';return false">
+                    欢迎来到我的小站
+                </div>
             </div>
         </div>
-    </div>
-    <div id="bgchoice" style="display: none">link</div>
-    
-    <div id="bgurl" style="display:none">https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/vKXn1oIoZi.jpg</div>
-    
-    </div>
-    <div id="landlord">
-        <div class="message" style="opacity:0"></div>
-        <canvas id="live2d" width="240" height="250" class="live2d"></canvas>
-    </div>
-    <div id="domainname" style="display:none">https://SakuraTears.cn/</div>
+        <div class="postinfo">
+            <div class="postdate"><i class="fa fa-calendar"></i>2020/10/24</div>
+            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 1 min read</div>
+            <div class="posttag">
+                
+                <a href="https://SakuraTears.cn/tag/5UBo7QGYK/" class="postlink">
+                    <i class="fa fa-tag"></i> 关于
+                </a>
+                
+            </div>
+        </div>
+        
+</div>
+
+</div>
+            <div class="pagination-container">
+                
+                
+            </div>
+        </div>
+        <div id="landlord">
+            <div class="message" style="opacity:0"></div>
+            <canvas id="live2d" width="240" height="250" class="live2d"></canvas>
+        </div>
+        <div id="domainname" style="display:none">https://SakuraTears.cn/</div>
 </body>
 
 </html>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
 
 
 <script>
@@ -594,4 +622,4 @@
         }
 </script>
 
-    <script src="https://SakuraTears.cn//media/js/index.js"></script>
+<script src="https://SakuraTears.cn//media/js/index.js"></script>
