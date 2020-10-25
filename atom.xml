@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/</id>
+    <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-10-25T03:15:28.752Z</updated>
+    <updated>2020-10-25T03:24:46.553Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/"/>
-    <link rel="self" href="https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/atom.xml"/>
+    <link rel="alternate" href="https://sakuratears.cn"/>
+    <link rel="self" href="https://sakuratears.cn/atom.xml"/>
     <subtitle>努力不一定成功，但不努力一定很轻松</subtitle>
-    <logo>https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/images/avatar.png</logo>
-    <icon>https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/favicon.ico</icon>
+    <logo>https://sakuratears.cn/images/avatar.png</logo>
+    <icon>https://sakuratears.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, SakuraTears</rights>
     <entry>
         <title type="html"><![CDATA[Python解决用pip装第三方库慢的方法]]></title>
-        <id>https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/python-jie-jue-yong-pip-zhuang-di-san-fang-ku-man-de-fang-fa/</id>
-        <link href="https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/python-jie-jue-yong-pip-zhuang-di-san-fang-ku-man-de-fang-fa/">
+        <id>https://sakuratears.cn/post/python-jie-jue-yong-pip-zhuang-di-san-fang-ku-man-de-fang-fa/</id>
+        <link href="https://sakuratears.cn/post/python-jie-jue-yong-pip-zhuang-di-san-fang-ku-man-de-fang-fa/">
         </link>
         <updated>2020-10-24T10:48:49.000Z</updated>
         <content type="html"><![CDATA[<p>由于政策原因使用pip(pycharm也是)装第三方库有时会很慢有时会失败，有条件的可以使用不可描述方法进行安装或者我们可以使用清华源镜像装库<br>
@@ -22,8 +22,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[KMP算法]]></title>
-        <id>https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/kmp-suan-fa/</id>
-        <link href="https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/kmp-suan-fa/">
+        <id>https://sakuratears.cn/post/kmp-suan-fa/</id>
+        <link href="https://sakuratears.cn/post/kmp-suan-fa/">
         </link>
         <updated>2020-10-23T07:02:13.000Z</updated>
         <content type="html"><![CDATA[<p>本文转载自知乎“洛谷网校 阮行止”</p>
@@ -118,8 +118,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[希尔排序]]></title>
-        <id>https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/xi-er-pai-xu/</id>
-        <link href="https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/xi-er-pai-xu/">
+        <id>https://sakuratears.cn/post/xi-er-pai-xu/</id>
+        <link href="https://sakuratears.cn/post/xi-er-pai-xu/">
         </link>
         <updated>2020-10-23T07:00:09.000Z</updated>
         <content type="html"><![CDATA[<p>为了展示初级排序算法性质的价值，接下来我们将学习一种基于插入排序的快速的排序算法。<br>
@@ -153,8 +153,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[快速排序]]></title>
-        <id>https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/kuai-su-pai-xu/</id>
-        <link href="https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/kuai-su-pai-xu/">
+        <id>https://sakuratears.cn/post/kuai-su-pai-xu/</id>
+        <link href="https://sakuratears.cn/post/kuai-su-pai-xu/">
         </link>
         <updated>2020-10-23T06:59:36.000Z</updated>
         <content type="html"><![CDATA[<p>快速排序的特点是他是原地排序（只需要一个很小的辅助栈），且长度为N的数组时间复杂度为NlgN。<br>
@@ -199,8 +199,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[归并排序]]></title>
-        <id>https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/gui-bing-pai-xu/</id>
-        <link href="https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/gui-bing-pai-xu/">
+        <id>https://sakuratears.cn/post/gui-bing-pai-xu/</id>
+        <link href="https://sakuratears.cn/post/gui-bing-pai-xu/">
         </link>
         <updated>2020-10-23T06:57:28.000Z</updated>
         <content type="html"><![CDATA[<p>归并排序将两个有序的排列归并为一个有序的排列。</p>
@@ -288,8 +288,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[负进制]]></title>
-        <id>https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/fu-jin-zhi/</id>
-        <link href="https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/fu-jin-zhi/">
+        <id>https://sakuratears.cn/post/fu-jin-zhi/</id>
+        <link href="https://sakuratears.cn/post/fu-jin-zhi/">
         </link>
         <updated>2020-10-23T06:55:30.000Z</updated>
         <content type="html"><![CDATA[<h3 id="题目描述">题目描述</h3>
@@ -352,8 +352,8 @@ int main()
     </entry>
     <entry>
         <title type="html"><![CDATA[带备忘录和dp的递归]]></title>
-        <id>https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/dai-bei-wang-lu-he-dp-de-di-gui/</id>
-        <link href="https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/dai-bei-wang-lu-he-dp-de-di-gui/">
+        <id>https://sakuratears.cn/post/dai-bei-wang-lu-he-dp-de-di-gui/</id>
+        <link href="https://sakuratears.cn/post/dai-bei-wang-lu-he-dp-de-di-gui/">
         </link>
         <updated>2020-10-23T06:49:02.000Z</updated>
         <content type="html"><![CDATA[<h4 id="备忘录算法">备忘录算法</h4>
@@ -464,8 +464,8 @@ int main()
     </entry>
     <entry>
         <title type="html"><![CDATA[凑零钱问题]]></title>
-        <id>https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/cou-ling-qian-wen-ti/</id>
-        <link href="https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/cou-ling-qian-wen-ti/">
+        <id>https://sakuratears.cn/post/cou-ling-qian-wen-ti/</id>
+        <link href="https://sakuratears.cn/post/cou-ling-qian-wen-ti/">
         </link>
         <updated>2020-10-23T06:45:52.000Z</updated>
         <content type="html"><![CDATA[<pre><code class="language-C/C++">#include &lt;iostream&gt;
@@ -580,8 +580,8 @@ int main()
     </entry>
     <entry>
         <title type="html"><![CDATA[C语言实现链表基本操作（交换第i个和第j个节点）]]></title>
-        <id>https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/c-yu-yan-shi-xian-lian-biao-ji-ben-cao-zuo-jiao-huan-di-i-ge-he-di-j-ge-jie-dian/</id>
-        <link href="https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/c-yu-yan-shi-xian-lian-biao-ji-ben-cao-zuo-jiao-huan-di-i-ge-he-di-j-ge-jie-dian/">
+        <id>https://sakuratears.cn/post/c-yu-yan-shi-xian-lian-biao-ji-ben-cao-zuo-jiao-huan-di-i-ge-he-di-j-ge-jie-dian/</id>
+        <link href="https://sakuratears.cn/post/c-yu-yan-shi-xian-lian-biao-ji-ben-cao-zuo-jiao-huan-di-i-ge-he-di-j-ge-jie-dian/">
         </link>
         <updated>2020-10-23T06:39:58.000Z</updated>
         <content type="html"><![CDATA[<h2 id="c语言实现链表基本操作交换第i个和第j个节点">C语言实现链表基本操作（交换第i个和第j个节点）</h2>
@@ -812,8 +812,8 @@ int main()
     </entry>
     <entry>
         <title type="html"><![CDATA[C语言链表基本操作（头插法及其逆置）]]></title>
-        <id>https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/c-yu-yan-lian-biao-ji-ben-cao-zuo-tou-cha-fa-ji-qi-ni-zhi/</id>
-        <link href="https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/c-yu-yan-lian-biao-ji-ben-cao-zuo-tou-cha-fa-ji-qi-ni-zhi/">
+        <id>https://sakuratears.cn/post/c-yu-yan-lian-biao-ji-ben-cao-zuo-tou-cha-fa-ji-qi-ni-zhi/</id>
+        <link href="https://sakuratears.cn/post/c-yu-yan-lian-biao-ji-ben-cao-zuo-tou-cha-fa-ji-qi-ni-zhi/">
         </link>
         <updated>2020-10-23T06:32:17.000Z</updated>
         <content type="html"><![CDATA[<pre><code class="language-C/C++">#include &lt;stdio.h&gt;
