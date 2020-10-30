@@ -1,14 +1,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0">
-    <meta name="description" content="备忘录算法
-#include &lt;iostream&gt;
-#include &lt;vector&gt;
+    <meta name="description" content="[TOC]
+基本功能
+基本操作
+from PyQt5.QtWidgets import QApplication, QWidget
 
-using namespace std;
+app = QApplication(sys.argv)
 
-int helper(vector&lt;int&gt; &amp;m, int ..." />
-    <meta name="keywords" content="算法" />
+每一pyqt5应用程序必须创建一个应用程序对象..." />
+    <meta name="keywords" content="Python" />
     <link rel="stylesheet" href="https://sakuratears.cn/media/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://sakuratears.cn/styles/main.css">
     
@@ -483,12 +484,12 @@ int helper(vector&lt;int&gt; &amp;m, int ..." />
                 <img src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(4).jpg.webp" class="postimage" style="cursor:auto">
             </div>
             <div class="postinfo-detail">
-                <div class="postdate"><i class="fa fa-calendar"></i>2020/10/23</div>
-                <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 2 min read</div>
+                <div class="postdate"><i class="fa fa-calendar"></i>2020/10/30</div>
+                <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 8 min read</div>
                 <div class="posttag">
                     
-                    <a href="https://sakuratears.cn/tag/e0ZtA0F1A/" class="postlink">
-                        <i class="fa fa-tag"></i> 算法
+                    <a href="https://sakuratears.cn/tag/PzPwXvrBB/" class="postlink">
+                        <i class="fa fa-tag"></i> Python
                     </a>
                     
                 </div>
@@ -496,9 +497,9 @@ int helper(vector&lt;int&gt; &amp;m, int ..." />
             
         <div id="articlecontent">
             <div id="texttitle" style="text-align: center">
-                <h2>带备忘录和dp的递归</h2>
+                <h2>PyQt5总结</h2>
                 <!-- id 将作为查询条件 -->
-                <div id="pl" style="display:none">https://sakuratears.cn/post/dai-bei-wang-lu-he-dp-de-di-gui/</div>
+                <div id="pl" style="display:none">https://sakuratears.cn/post/pyqt5-zong-jie/</div>
                 <div id="rootaddr" style="display:none">https://sakuratears.cn</div>
                 <span id="hotnum">
                     <h4><i class="fa fa-eye" aria-hidden="true" style="color: #FF8C00;"></i>&nbsp;&nbsp;热度</i>: <i
@@ -506,110 +507,312 @@ int helper(vector&lt;int&gt; &amp;m, int ..." />
                 </span>
             </div>
             <div class="text ">
-                <h4 id="备忘录算法">备忘录算法</h4>
-<pre><code class="language-C/C++">#include &lt;iostream&gt;
-#include &lt;vector&gt;
-
-using namespace std;
-
-int helper(vector&lt;int&gt; &amp;m, int n);
-int fib(int n);
-
-int fib(int n)
-{
-    if(n &lt; 1)
-    {
-        return 0;
-    }
-    vector&lt;int&gt; m(n + 1, 0);
-    return helper(m, n);
-}
-
-int helper(vector&lt;int&gt;&amp;m, int n)
-{
-    if(n == 1 || n == 2) 
-    {
-        return 1;
-    }
-    if (m[n] != 0)
-    {
-        return m[n];
-    }
-    m[n] = helper(m, n - 1) + helper(m, n - 2);
-    return m[n];
-} 
-
-int main()
-{
-    int n;
-    cin &gt;&gt; n;
-    cout &lt;&lt; fib(n);
-    return 0;
-}
+                <p>[TOC]</p>
+<h1 id="基本功能">基本功能</h1>
+<h2 id="基本操作">基本操作</h2>
+<pre><code class="language-python">from PyQt5.QtWidgets import QApplication, QWidget
 </code></pre>
-<h4 id="dp数组迭代">dp数组迭代</h4>
-<pre><code class="language-C/C++">#include &lt;iostream&gt;
-#include &lt;vector&gt;
-
-using namespace std;
-
-int fib(int n);
-
-int fib(int n)
-{
-    if(n &lt; 1)
-    {
-        return 0;
-    }
-    vector&lt;int&gt; dp(n + 1, 0);
-    dp[1] = dp[2] = 1;
-    for (int i = 3; i &lt;= n; i++) 
-    {
-        dp[i] = dp[i - 1] + dp[i - 2];
-    }
-    return dp[n];
-}
-
-int main()
-{
-    int n;
-    cin &gt;&gt; n;
-    cout &lt;&lt; fib(n);
-    return 0;
-}
+<pre><code class="language-python">app = QApplication(sys.argv)
 </code></pre>
-<h4 id="空间优化">空间优化</h4>
-<pre><code class="language-C/c++">#include &lt;iostream&gt;
-
-using namespace std;
-
-int fib(int n);
-
-int fib(int n)
-{
-    if (n == 1 || n == 2)
-    {
-        return 1;
-    }
-    int a, b, sum;
-    a = b = 1;
-    for (int i = 3; i &lt;= n; i++) 
-    {
-        sum = a + b;
-        a = b;
-        b = sum;
-    }
-    return sum;
-}
-
-int main()
-{
-    int n;
-    cin &gt;&gt; n;
-    cout &lt;&lt; fib(n);
-    return 0;
-}
+<p>每一pyqt5应用程序必须创建一个应用程序对象。sys.argv参数是一个列表，从命令行输入参数</p>
+<pre><code class="language-python">w = QWidget()
 </code></pre>
+<p>QWidget部件是pyqt5所有用户界面对象的基类。他为QWidget提供默认构造函数。</p>
+<pre><code class="language-python">w.resize(250, 250)
+</code></pre>
+<p>resize方法调整窗口大小</p>
+<pre><code class="language-python">w.move(300, 300)
+</code></pre>
+<p>move方法移动窗口在屏幕的位置</p>
+<pre><code class="language-python">w.setWindowTitle('Simple')
+</code></pre>
+<p>设置窗口标题</p>
+<pre><code class="language-python">w.show()
+</code></pre>
+<p>显示在屏幕上</p>
+<pre><code class="language-python">self.setGeometry(300, 300, 300, 300)
+</code></pre>
+<p>设置窗口位置和大小</p>
+<h2 id="图标">图标</h2>
+<pre><code class="language-python">self.setWindowIcon(QIcon('路径'))
+</code></pre>
+<p>设置窗口的图标</p>
+<h2 id="提示语">提示语</h2>
+<pre><code class="language-python">from PyQt5.QtWidgets import (QWidget, QToolTip, 
+    QPushButton, QApplication)
+from PyQt5.QtGui import QFont   
+</code></pre>
+<pre><code class="language-python">QToolTip.setFont(QFont('SansSerif', 10))
+</code></pre>
+<p>这种静态的方法设置一个用于显示工具提示的字体。我们使用10px滑体字体</p>
+<pre><code class="language-python">self.setToolTip('This is a &lt;b&gt;QWidget&lt;/b&gt; widget')
+</code></pre>
+<p>创建一个提示，我们称之为settooltip()方法。我们可以使用丰富的文本格式</p>
+<pre><code class="language-python">btn = QPushButton('Button', self)
+btn.setToolTip('This is a &lt;b&gt;QPushButton&lt;/b&gt; widget')
+</code></pre>
+<p>创建一个PushButton并为他设置一个tooltip</p>
+<pre><code class="language-python">btn.resize(btn.sizeHint())
+</code></pre>
+<p>btn.sizeHint()为默认尺寸</p>
+<h2 id="关闭窗口">关闭窗口</h2>
+<pre><code class="language-python">qbtn = QPushButton('Quit', self)
+qbtn.clicked.connect(QCoreApplication.instance().quit)
+</code></pre>
+<h2 id="消息框">消息框</h2>
+<pre><code class="language-python">from PyQt5.QtWidgets import QWidget, QMessageBox, QApplication
+</code></pre>
+<pre><code class="language-python">def closeEvent(self, event):
+        
+        reply = QMessageBox.question(self, 'Message',
+            &quot;Are you sure to quit?&quot;, QMessageBox.Yes | 
+            QMessageBox.No, QMessageBox.No)
+ 
+        if reply == QMessageBox.Yes:
+            event.accept()
+        else:
+            event.ignore()
+</code></pre>
+<p>关闭窗口是出发QCloseEvent。我们需要重写closeEvent方法</p>
+<h2 id="窗口显示在屏幕的中间">窗口显示在屏幕的中间</h2>
+<pre><code class="language-python">#控制窗口显示在屏幕中心的方法    
+    def center(self):
+        #获得窗口
+        qr = self.frameGeometry()
+        #获得屏幕中心点
+        cp = QDesktopWidget().availableGeometry().center()
+        #显示到屏幕中心
+        qr.moveCenter(cp)
+        self.move(qr.topLeft())
+</code></pre>
+<p>QtGui,QDesktopWidget类提供了用户的桌面信息,包括屏幕大小。</p>
+<h1 id="布局管理">布局管理</h1>
+<h2 id="绝对定位">绝对定位</h2>
+<pre><code class="language-python">lbl1 = QLabel('Zetcode', self)
+lbl1.move(15, 10)
+ 
+lbl2 = QLabel('tutorials', self)
+lbl2.move(35, 40)
+        
+lbl3 = QLabel('for programmers', self)
+lbl3.move(55, 70)        
+        
+self.setGeometry(300, 300, 250, 150)
+self.setWindowTitle('Absolute')    
+self.show()
+</code></pre>
+<h2 id="框布局-boxlayout">框布局 Boxlayout</h2>
+<pre><code class="language-python">okButton = QPushButton(&quot;OK&quot;)
+cancelButton = QPushButton(&quot;Cancel&quot;)
+ 
+hbox = QHBoxLayout()
+hbox.addStretch(1)
+hbox.addWidget(okButton)
+hbox.addWidget(cancelButton)
+ 
+vbox = QVBoxLayout()
+vbox.addStretch(1)
+vbox.addLayout(hbox)
+        
+self.setLayout(vbox)    
+        
+self.setGeometry(300, 300, 300, 150)
+self.setWindowTitle('Buttons')    
+self.show()
+</code></pre>
+<p>我们使用QHBoxLayout和QVBoxLayout，来分别创建横向布局和纵向布局。</p>
+<pre><code class="language-python">hbox = QHBoxLayout()
+hbox.addStretch(1)
+hbox.addWidget(okButton)
+hbox.addWidget(cancelButton)
+</code></pre>
+<p>我们创建一个水平布局和添加一个伸展因子和两个按钮。两个按钮前的伸展增加了一个可伸缩的空间。这将推动他们靠右显示。</p>
+<pre><code class="language-python">vbox = QVBoxLayout()
+vbox.addStretch(1)
+vbox.addLayout(hbox)
+</code></pre>
+<p>创建一个垂直布局，并添加伸展因子，让水平布局显示在窗口底部</p>
+<pre><code class="language-python">self.setLayout(vbox)
+</code></pre>
+<p>最后,我们设置窗口的布局界面</p>
+<h2 id="表格布局-qgridlayout">表格布局 QGridLayout</h2>
+<pre><code class="language-python">grid = QGridLayout()
+self.setLayout(grid)
+
+names = ['Cls', 'Bck', '', 'Close',
+          '7', '8', '9', '/',
+           '4', '5', '6', '*',
+          '1', '2', '3', '-',
+             '0', '.', '=', '+']
+
+ positions = [(i, j) for i in range(5) for j in range(4)]
+
+  for position, name in zip(positions, names):
+
+       if name == '':
+            continue
+        button = QPushButton(name)
+        grid.addWidget(button, *position)
+
+</code></pre>
+<pre><code class="language-python">grid = QGridLayout()
+self.setLayout(grid)
+</code></pre>
+<p>QGridLayout的实例被创建并设置应用程序窗口的布局。</p>
+<p>names列表为这些按钮的标签</p>
+<h2 id="评论的例子">评论的例子</h2>
+<pre><code class="language-python">def initUI(self):
+
+    title = QLabel('Title')
+    author = QLabel('Author')
+    review = QLabel('Review')
+
+    titleEdit = QLineEdit()
+    authorEdit = QLineEdit()
+    reviewEdit = QTextEdit()
+
+    grid = QGridLayout()
+    grid.setSpacing(10)
+
+    grid.addWidget(title, 1, 0)
+    grid.addWidget(titleEdit, 1, 1)
+
+    grid.addWidget(author, 2, 0)
+    grid.addWidget(authorEdit, 2, 1)
+
+    grid.addWidget(review, 3, 0)
+    grid.addWidget(reviewEdit, 3, 1, 5, 1)
+
+    self.setLayout(grid)
+
+    self.setGeometry(300, 300, 350, 300)
+    self.setWindowTitle('Review')
+    self.show()
+</code></pre>
+<p>我们创建一个窗口,其中有三个标签,两个行编辑和一个文本编辑窗口小控件。然后使用QGridLayout完成布局。</p>
+<pre><code class="language-python">grid = QGridLayout()
+grid.setSpacing(10)
+</code></pre>
+<p>创建一个网格布局和设置组件之间的间距。</p>
+<pre><code class="language-python">grid.addWidget(reviewEdit, 3, 1, 5, 1)
+</code></pre>
+<p>在添加一个小的控件到网格的时候,我们可以提供小部件的行和列跨。在例子中,reviewEdit控件跨度5行。</p>
+<h1 id="菜单和工具栏">菜单和工具栏</h1>
+<h2 id="状态栏">状态栏</h2>
+<pre><code class="language-python">def initUI(self):
+
+    self.statusBar().showMessage('Ready')
+
+    self.setGeometry(300, 300, 250, 150)
+    self.setWindowTitle('Statusbar')
+    self.show()
+
+</code></pre>
+<p>用QMainWindow创建状态栏的小窗口</p>
+<pre><code class="language-python">self.statusBar().showMessage('Ready')
+</code></pre>
+<p>QMainWindow类第一次调用statusBar()方法创建一个状态栏。后续调用返回的状态栏对象。showMessage()状态栏上显示一条消息。</p>
+<h2 id="菜单栏">菜单栏</h2>
+<p>菜单栏是常见的窗口应用程序的一部分。(Mac OS将菜单条不同。得到类似的结果,我们可以添加以下行:menubar.setNativeMenuBar(假)。)</p>
+<pre><code class="language-python">def initUI(self):
+
+    exitAction = QAction(QIcon('exit.png'), '&amp;Exit', self)
+    exitAction.setShortcut('Ctrl+Q')
+    exitAction.setStatusTip('Exit application')
+    exitAction.triggered.connect(qApp.quit)
+
+    self.statusBar()
+
+    # 创建一个菜单栏
+    menubar = self.menuBar()
+    # 添加菜单
+    fileMenu = menubar.addMenu('&amp;File')
+    # 添加事件
+    fileMenu.addAction(exitAction)
+
+    self.setGeometry(300, 300, 300, 200)
+    self.setWindowTitle('Menubar')
+    self.show()
+
+</code></pre>
+<pre><code class="language-python">exitAction = QAction(QIcon('exit.png'), '&amp;Exit', self)        
+exitAction.setShortcut('Ctrl+Q')
+exitAction.setStatusTip('Exit application')
+</code></pre>
+<p>QAction可以操作菜单栏,工具栏,或自定义键盘快捷键。上面三行,我们创建一个事件和一个特定的图标和一个“退出”的标签。然后,在定义该操作的快捷键。<br>
+第三行创建一个鼠标指针悬停在该菜单项上时的提示。</p>
+<pre><code class="language-python">exitAction.triggered.connect(qApp.quit)
+</code></pre>
+<p>当我们点击菜单的时候，调用qApp.quit,终止应用程序。</p>
+<h2 id="工具栏">工具栏</h2>
+<pre><code class="language-python">def initUI(self):
+
+    exitAction = QAction(QIcon('exit24.png'), 'Exit', self)
+    exitAction.setShortcut('Ctrl+Q')
+    exitAction.triggered.connect(qApp.quit)
+
+    self.toolbar = self.addToolBar('Exit')
+    self.toolbar.addAction(exitAction)
+
+    self.setGeometry(300, 300, 300, 200)
+    self.setWindowTitle('Toolbar')
+    self.show()
+
+</code></pre>
+<p>在上面的例子中,我们创建一个简单的工具栏。工具栏有有一个按钮,点击关闭窗口。</p>
+<pre><code class="language-python">exitAction = QAction(QIcon('exit24.png'), 'Exit', self)
+exitAction.setShortcut('Ctrl+Q')
+exitAction.triggered.connect(qApp.quit)
+</code></pre>
+<p>类似于上面的菜单栏的例子,我们创建一个QAction事件。该事件有一个标签、图标和快捷键。退出窗口的方法</p>
+<h2 id="把他们放在一起">把他们放在一起</h2>
+<pre><code class="language-python">import sys
+from PyQt5.QtWidgets import QMainWindow, QTextEdit, QAction, QApplication
+from PyQt5.QtGui import QIcon
+ 
+ 
+class Example(QMainWindow):
+    
+    def __init__(self):
+        super().__init__()
+        
+        self.initUI()
+        
+        
+    def initUI(self):               
+        
+        textEdit = QTextEdit()
+        self.setCentralWidget(textEdit)
+ 
+        exitAction = QAction(QIcon('exit24.png'), 'Exit', self)
+        exitAction.setShortcut('Ctrl+Q')
+        exitAction.setStatusTip('Exit application')
+        exitAction.triggered.connect(self.close)
+ 
+        self.statusBar()
+ 
+        menubar = self.menuBar()
+        fileMenu = menubar.addMenu('&amp;File')
+        fileMenu.addAction(exitAction)
+ 
+        toolbar = self.addToolBar('Exit')
+        toolbar.addAction(exitAction)
+        
+        self.setGeometry(300, 300, 350, 250)
+        self.setWindowTitle('Main window')    
+        self.show()
+        
+        
+if __name__ == '__main__':
+    
+    app = QApplication(sys.argv)
+    ex = Example()
+    sys.exit(app.exec_())
+</code></pre>
+<pre><code class="language-python">textEdit = QTextEdit()
+self.setCentralWidget(textEdit)
+</code></pre>
+<p>我们创建了一个QTextEdit,并把他设置为窗口的布局</p>
 
             </div>
             <hr style="width: 80%;">
@@ -640,36 +843,24 @@ int main()
             <div class="postfooter">
                 <ul class="post-copyright">
                     <li><strong>文章作者：</strong>SakuraTears</li>
-            <li><strong>原文链接：</strong>https://sakuratears.cn/post/dai-bei-wang-lu-he-dp-de-di-gui/</li>
+            <li><strong>原文链接：</strong>https://sakuratears.cn/post/pyqt5-zong-jie/</li>
             <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用<i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA
                 许可协议。转载请注明出处！</li>
             </ul>
         </div>
         <div id="otherpost">
             
-            <div class="prev-post-pc">
-                <div id="ppcontainer" onclick="window.location.href= 'https://sakuratears.cn/post/fu-jin-zhi/';return false">
-                    
-                    <img src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(8).jpg.webp" style="width: 100%;" class="opimg">
-                    
-                    <h4 class="optitle">负进制</h4>
-                </div>
-            </div>
-            <div class="prev-post">
-                上一篇 <a href="https://sakuratears.cn/post/fu-jin-zhi/">负进制</a>
-            </div>
-            
             
             <div class="next-post-pc">
-                <div id="npcontainer" onclick="window.location.href= 'https://sakuratears.cn/post/cou-ling-qian-wen-ti/';return false">
+                <div id="npcontainer" onclick="window.location.href= 'https://sakuratears.cn/post/python-shi-xian-tu-pian-zhuan-zi-fu-hua/';return false">
                     
-                    <img src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(7).jpg.webp" style="width: 100%;" class="opimg">
+                    <img src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(1).jpg.webp" style="width: 100%;" class="opimg">
                     
-                    <h4 class="optitle">凑零钱问题</h4>
+                    <h4 class="optitle">Python实现图片转字符画</h4>
                 </div>
             </div>
             <div class="next-post">
-                下一篇 <a href="https://sakuratears.cn/post/cou-ling-qian-wen-ti/">凑零钱问题</a>
+                下一篇 <a href="https://sakuratears.cn/post/python-shi-xian-tu-pian-zhuan-zi-fu-hua/">Python实现图片转字符画</a>
             </div>
             
         </div>
@@ -815,19 +1006,30 @@ int main()
         
         <div class="toc-container">
             <ul class="markdownIt-TOC">
-<li>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD">基本功能</a>
 <ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#%E5%A4%87%E5%BF%98%E5%BD%95%E7%AE%97%E6%B3%95">备忘录算法</a></li>
-<li><a href="#dp%E6%95%B0%E7%BB%84%E8%BF%AD%E4%BB%A3">dp数组迭代</a></li>
-<li><a href="#%E7%A9%BA%E9%97%B4%E4%BC%98%E5%8C%96">空间优化</a></li>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C">基本操作</a></li>
+<li><a href="#%E5%9B%BE%E6%A0%87">图标</a></li>
+<li><a href="#%E6%8F%90%E7%A4%BA%E8%AF%AD">提示语</a></li>
+<li><a href="#%E5%85%B3%E9%97%AD%E7%AA%97%E5%8F%A3">关闭窗口</a></li>
+<li><a href="#%E6%B6%88%E6%81%AF%E6%A1%86">消息框</a></li>
+<li><a href="#%E7%AA%97%E5%8F%A3%E6%98%BE%E7%A4%BA%E5%9C%A8%E5%B1%8F%E5%B9%95%E7%9A%84%E4%B8%AD%E9%97%B4">窗口显示在屏幕的中间</a></li>
 </ul>
 </li>
+<li><a href="#%E5%B8%83%E5%B1%80%E7%AE%A1%E7%90%86">布局管理</a>
+<ul>
+<li><a href="#%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D">绝对定位</a></li>
+<li><a href="#%E6%A1%86%E5%B8%83%E5%B1%80-boxlayout">框布局 Boxlayout</a></li>
+<li><a href="#%E8%A1%A8%E6%A0%BC%E5%B8%83%E5%B1%80-qgridlayout">表格布局 QGridLayout</a></li>
+<li><a href="#%E8%AF%84%E8%AE%BA%E7%9A%84%E4%BE%8B%E5%AD%90">评论的例子</a></li>
 </ul>
 </li>
+<li><a href="#%E8%8F%9C%E5%8D%95%E5%92%8C%E5%B7%A5%E5%85%B7%E6%A0%8F">菜单和工具栏</a>
+<ul>
+<li><a href="#%E7%8A%B6%E6%80%81%E6%A0%8F">状态栏</a></li>
+<li><a href="#%E8%8F%9C%E5%8D%95%E6%A0%8F">菜单栏</a></li>
+<li><a href="#%E5%B7%A5%E5%85%B7%E6%A0%8F">工具栏</a></li>
+<li><a href="#%E6%8A%8A%E4%BB%96%E4%BB%AC%E6%94%BE%E5%9C%A8%E4%B8%80%E8%B5%B7">把他们放在一起</a></li>
 </ul>
 </li>
 </ul>
@@ -1059,7 +1261,7 @@ int main()
                 var nc = new NewCounter();
                 nc.save({
                     time: 1,
-                    title: "带备忘录和dp的递归",
+                    title: "PyQt5总结",
                     url: pl,
                     xid: pl,
                 }).then(function (object) {

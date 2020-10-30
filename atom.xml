@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-10-27T12:51:36.005Z</updated>
+    <updated>2020-10-30T12:26:52.534Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -10,6 +10,320 @@
     <logo>https://sakuratears.cn/images/avatar.png</logo>
     <icon>https://sakuratears.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, SakuraTears</rights>
+    <entry>
+        <title type="html"><![CDATA[PyQt5总结]]></title>
+        <id>https://sakuratears.cn/post/pyqt5-zong-jie/</id>
+        <link href="https://sakuratears.cn/post/pyqt5-zong-jie/">
+        </link>
+        <updated>2020-10-30T12:24:46.000Z</updated>
+        <content type="html"><![CDATA[<p>[TOC]</p>
+<h1 id="基本功能">基本功能</h1>
+<h2 id="基本操作">基本操作</h2>
+<pre><code class="language-python">from PyQt5.QtWidgets import QApplication, QWidget
+</code></pre>
+<pre><code class="language-python">app = QApplication(sys.argv)
+</code></pre>
+<p>每一pyqt5应用程序必须创建一个应用程序对象。sys.argv参数是一个列表，从命令行输入参数</p>
+<pre><code class="language-python">w = QWidget()
+</code></pre>
+<p>QWidget部件是pyqt5所有用户界面对象的基类。他为QWidget提供默认构造函数。</p>
+<pre><code class="language-python">w.resize(250, 250)
+</code></pre>
+<p>resize方法调整窗口大小</p>
+<pre><code class="language-python">w.move(300, 300)
+</code></pre>
+<p>move方法移动窗口在屏幕的位置</p>
+<pre><code class="language-python">w.setWindowTitle('Simple')
+</code></pre>
+<p>设置窗口标题</p>
+<pre><code class="language-python">w.show()
+</code></pre>
+<p>显示在屏幕上</p>
+<pre><code class="language-python">self.setGeometry(300, 300, 300, 300)
+</code></pre>
+<p>设置窗口位置和大小</p>
+<h2 id="图标">图标</h2>
+<pre><code class="language-python">self.setWindowIcon(QIcon('路径'))
+</code></pre>
+<p>设置窗口的图标</p>
+<h2 id="提示语">提示语</h2>
+<pre><code class="language-python">from PyQt5.QtWidgets import (QWidget, QToolTip, 
+    QPushButton, QApplication)
+from PyQt5.QtGui import QFont   
+</code></pre>
+<pre><code class="language-python">QToolTip.setFont(QFont('SansSerif', 10))
+</code></pre>
+<p>这种静态的方法设置一个用于显示工具提示的字体。我们使用10px滑体字体</p>
+<pre><code class="language-python">self.setToolTip('This is a &lt;b&gt;QWidget&lt;/b&gt; widget')
+</code></pre>
+<p>创建一个提示，我们称之为settooltip()方法。我们可以使用丰富的文本格式</p>
+<pre><code class="language-python">btn = QPushButton('Button', self)
+btn.setToolTip('This is a &lt;b&gt;QPushButton&lt;/b&gt; widget')
+</code></pre>
+<p>创建一个PushButton并为他设置一个tooltip</p>
+<pre><code class="language-python">btn.resize(btn.sizeHint())
+</code></pre>
+<p>btn.sizeHint()为默认尺寸</p>
+<h2 id="关闭窗口">关闭窗口</h2>
+<pre><code class="language-python">qbtn = QPushButton('Quit', self)
+qbtn.clicked.connect(QCoreApplication.instance().quit)
+</code></pre>
+<h2 id="消息框">消息框</h2>
+<pre><code class="language-python">from PyQt5.QtWidgets import QWidget, QMessageBox, QApplication
+</code></pre>
+<pre><code class="language-python">def closeEvent(self, event):
+        
+        reply = QMessageBox.question(self, 'Message',
+            &quot;Are you sure to quit?&quot;, QMessageBox.Yes | 
+            QMessageBox.No, QMessageBox.No)
+ 
+        if reply == QMessageBox.Yes:
+            event.accept()
+        else:
+            event.ignore()
+</code></pre>
+<p>关闭窗口是出发QCloseEvent。我们需要重写closeEvent方法</p>
+<h2 id="窗口显示在屏幕的中间">窗口显示在屏幕的中间</h2>
+<pre><code class="language-python">#控制窗口显示在屏幕中心的方法    
+    def center(self):
+        #获得窗口
+        qr = self.frameGeometry()
+        #获得屏幕中心点
+        cp = QDesktopWidget().availableGeometry().center()
+        #显示到屏幕中心
+        qr.moveCenter(cp)
+        self.move(qr.topLeft())
+</code></pre>
+<p>QtGui,QDesktopWidget类提供了用户的桌面信息,包括屏幕大小。</p>
+<h1 id="布局管理">布局管理</h1>
+<h2 id="绝对定位">绝对定位</h2>
+<pre><code class="language-python">lbl1 = QLabel('Zetcode', self)
+lbl1.move(15, 10)
+ 
+lbl2 = QLabel('tutorials', self)
+lbl2.move(35, 40)
+        
+lbl3 = QLabel('for programmers', self)
+lbl3.move(55, 70)        
+        
+self.setGeometry(300, 300, 250, 150)
+self.setWindowTitle('Absolute')    
+self.show()
+</code></pre>
+<h2 id="框布局-boxlayout">框布局 Boxlayout</h2>
+<pre><code class="language-python">okButton = QPushButton(&quot;OK&quot;)
+cancelButton = QPushButton(&quot;Cancel&quot;)
+ 
+hbox = QHBoxLayout()
+hbox.addStretch(1)
+hbox.addWidget(okButton)
+hbox.addWidget(cancelButton)
+ 
+vbox = QVBoxLayout()
+vbox.addStretch(1)
+vbox.addLayout(hbox)
+        
+self.setLayout(vbox)    
+        
+self.setGeometry(300, 300, 300, 150)
+self.setWindowTitle('Buttons')    
+self.show()
+</code></pre>
+<p>我们使用QHBoxLayout和QVBoxLayout，来分别创建横向布局和纵向布局。</p>
+<pre><code class="language-python">hbox = QHBoxLayout()
+hbox.addStretch(1)
+hbox.addWidget(okButton)
+hbox.addWidget(cancelButton)
+</code></pre>
+<p>我们创建一个水平布局和添加一个伸展因子和两个按钮。两个按钮前的伸展增加了一个可伸缩的空间。这将推动他们靠右显示。</p>
+<pre><code class="language-python">vbox = QVBoxLayout()
+vbox.addStretch(1)
+vbox.addLayout(hbox)
+</code></pre>
+<p>创建一个垂直布局，并添加伸展因子，让水平布局显示在窗口底部</p>
+<pre><code class="language-python">self.setLayout(vbox)
+</code></pre>
+<p>最后,我们设置窗口的布局界面</p>
+<h2 id="表格布局-qgridlayout">表格布局 QGridLayout</h2>
+<pre><code class="language-python">grid = QGridLayout()
+self.setLayout(grid)
+
+names = ['Cls', 'Bck', '', 'Close',
+          '7', '8', '9', '/',
+           '4', '5', '6', '*',
+          '1', '2', '3', '-',
+             '0', '.', '=', '+']
+
+ positions = [(i, j) for i in range(5) for j in range(4)]
+
+  for position, name in zip(positions, names):
+
+       if name == '':
+            continue
+        button = QPushButton(name)
+        grid.addWidget(button, *position)
+
+</code></pre>
+<pre><code class="language-python">grid = QGridLayout()
+self.setLayout(grid)
+</code></pre>
+<p>QGridLayout的实例被创建并设置应用程序窗口的布局。</p>
+<p>names列表为这些按钮的标签</p>
+<h2 id="评论的例子">评论的例子</h2>
+<pre><code class="language-python">def initUI(self):
+
+    title = QLabel('Title')
+    author = QLabel('Author')
+    review = QLabel('Review')
+
+    titleEdit = QLineEdit()
+    authorEdit = QLineEdit()
+    reviewEdit = QTextEdit()
+
+    grid = QGridLayout()
+    grid.setSpacing(10)
+
+    grid.addWidget(title, 1, 0)
+    grid.addWidget(titleEdit, 1, 1)
+
+    grid.addWidget(author, 2, 0)
+    grid.addWidget(authorEdit, 2, 1)
+
+    grid.addWidget(review, 3, 0)
+    grid.addWidget(reviewEdit, 3, 1, 5, 1)
+
+    self.setLayout(grid)
+
+    self.setGeometry(300, 300, 350, 300)
+    self.setWindowTitle('Review')
+    self.show()
+</code></pre>
+<p>我们创建一个窗口,其中有三个标签,两个行编辑和一个文本编辑窗口小控件。然后使用QGridLayout完成布局。</p>
+<pre><code class="language-python">grid = QGridLayout()
+grid.setSpacing(10)
+</code></pre>
+<p>创建一个网格布局和设置组件之间的间距。</p>
+<pre><code class="language-python">grid.addWidget(reviewEdit, 3, 1, 5, 1)
+</code></pre>
+<p>在添加一个小的控件到网格的时候,我们可以提供小部件的行和列跨。在例子中,reviewEdit控件跨度5行。</p>
+<h1 id="菜单和工具栏">菜单和工具栏</h1>
+<h2 id="状态栏">状态栏</h2>
+<pre><code class="language-python">def initUI(self):
+
+    self.statusBar().showMessage('Ready')
+
+    self.setGeometry(300, 300, 250, 150)
+    self.setWindowTitle('Statusbar')
+    self.show()
+
+</code></pre>
+<p>用QMainWindow创建状态栏的小窗口</p>
+<pre><code class="language-python">self.statusBar().showMessage('Ready')
+</code></pre>
+<p>QMainWindow类第一次调用statusBar()方法创建一个状态栏。后续调用返回的状态栏对象。showMessage()状态栏上显示一条消息。</p>
+<h2 id="菜单栏">菜单栏</h2>
+<p>菜单栏是常见的窗口应用程序的一部分。(Mac OS将菜单条不同。得到类似的结果,我们可以添加以下行:menubar.setNativeMenuBar(假)。)</p>
+<pre><code class="language-python">def initUI(self):
+
+    exitAction = QAction(QIcon('exit.png'), '&amp;Exit', self)
+    exitAction.setShortcut('Ctrl+Q')
+    exitAction.setStatusTip('Exit application')
+    exitAction.triggered.connect(qApp.quit)
+
+    self.statusBar()
+
+    # 创建一个菜单栏
+    menubar = self.menuBar()
+    # 添加菜单
+    fileMenu = menubar.addMenu('&amp;File')
+    # 添加事件
+    fileMenu.addAction(exitAction)
+
+    self.setGeometry(300, 300, 300, 200)
+    self.setWindowTitle('Menubar')
+    self.show()
+
+</code></pre>
+<pre><code class="language-python">exitAction = QAction(QIcon('exit.png'), '&amp;Exit', self)        
+exitAction.setShortcut('Ctrl+Q')
+exitAction.setStatusTip('Exit application')
+</code></pre>
+<p>QAction可以操作菜单栏,工具栏,或自定义键盘快捷键。上面三行,我们创建一个事件和一个特定的图标和一个“退出”的标签。然后,在定义该操作的快捷键。<br>
+第三行创建一个鼠标指针悬停在该菜单项上时的提示。</p>
+<pre><code class="language-python">exitAction.triggered.connect(qApp.quit)
+</code></pre>
+<p>当我们点击菜单的时候，调用qApp.quit,终止应用程序。</p>
+<h2 id="工具栏">工具栏</h2>
+<pre><code class="language-python">def initUI(self):
+
+    exitAction = QAction(QIcon('exit24.png'), 'Exit', self)
+    exitAction.setShortcut('Ctrl+Q')
+    exitAction.triggered.connect(qApp.quit)
+
+    self.toolbar = self.addToolBar('Exit')
+    self.toolbar.addAction(exitAction)
+
+    self.setGeometry(300, 300, 300, 200)
+    self.setWindowTitle('Toolbar')
+    self.show()
+
+</code></pre>
+<p>在上面的例子中,我们创建一个简单的工具栏。工具栏有有一个按钮,点击关闭窗口。</p>
+<pre><code class="language-python">exitAction = QAction(QIcon('exit24.png'), 'Exit', self)
+exitAction.setShortcut('Ctrl+Q')
+exitAction.triggered.connect(qApp.quit)
+</code></pre>
+<p>类似于上面的菜单栏的例子,我们创建一个QAction事件。该事件有一个标签、图标和快捷键。退出窗口的方法</p>
+<h2 id="把他们放在一起">把他们放在一起</h2>
+<pre><code class="language-python">import sys
+from PyQt5.QtWidgets import QMainWindow, QTextEdit, QAction, QApplication
+from PyQt5.QtGui import QIcon
+ 
+ 
+class Example(QMainWindow):
+    
+    def __init__(self):
+        super().__init__()
+        
+        self.initUI()
+        
+        
+    def initUI(self):               
+        
+        textEdit = QTextEdit()
+        self.setCentralWidget(textEdit)
+ 
+        exitAction = QAction(QIcon('exit24.png'), 'Exit', self)
+        exitAction.setShortcut('Ctrl+Q')
+        exitAction.setStatusTip('Exit application')
+        exitAction.triggered.connect(self.close)
+ 
+        self.statusBar()
+ 
+        menubar = self.menuBar()
+        fileMenu = menubar.addMenu('&amp;File')
+        fileMenu.addAction(exitAction)
+ 
+        toolbar = self.addToolBar('Exit')
+        toolbar.addAction(exitAction)
+        
+        self.setGeometry(300, 300, 350, 250)
+        self.setWindowTitle('Main window')    
+        self.show()
+        
+        
+if __name__ == '__main__':
+    
+    app = QApplication(sys.argv)
+    ex = Example()
+    sys.exit(app.exec_())
+</code></pre>
+<pre><code class="language-python">textEdit = QTextEdit()
+self.setCentralWidget(textEdit)
+</code></pre>
+<p>我们创建了一个QTextEdit,并把他设置为窗口的布局</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Python实现图片转字符画]]></title>
         <id>https://sakuratears.cn/post/python-shi-xian-tu-pian-zhuan-zi-fu-hua/</id>
@@ -653,238 +967,6 @@ int main()
     cout &lt;&lt; m;
     return 0;
 }
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[C语言实现链表基本操作（交换第i个和第j个节点）]]></title>
-        <id>https://sakuratears.cn/post/c-yu-yan-shi-xian-lian-biao-ji-ben-cao-zuo-jiao-huan-di-i-ge-he-di-j-ge-jie-dian/</id>
-        <link href="https://sakuratears.cn/post/c-yu-yan-shi-xian-lian-biao-ji-ben-cao-zuo-jiao-huan-di-i-ge-he-di-j-ge-jie-dian/">
-        </link>
-        <updated>2020-10-23T06:39:58.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="c语言实现链表基本操作交换第i个和第j个节点">C语言实现链表基本操作（交换第i个和第j个节点）</h2>
-<h3 id="当i或者j为1时需要让链表的表头指向j">当i或者j为1时，需要让链表的表头指向j。</h3>
-<figure data-type="image" tabindex="1"><img src="https://img-blog.csdnimg.cn/20200611081240188.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_8,color_FFFFFF,t_70" alt="开始时" loading="lazy"></figure>
-<p><img src="https://img-blog.csdnimg.cn/20200611081335308.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_8,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/2020061108140129.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_8,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200611081415319.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_8,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200611081427878.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_8,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-代码为</p>
-<pre><code class="language-c">/*i和j为1时情况比较特殊，需要让表头重新指向交换后的那个节点*/
-    if (i == 1) { 
-        t1 = *L;
-        for (m = 1; temp-&gt;Next != NULL; m++, temp = temp-&gt;Next) {
-            if (m + 1 == j) {
-                *L = temp-&gt;Next;
-                t2 = temp-&gt;Next-&gt;Next;
-                temp-&gt;Next-&gt;Next = t1-&gt;Next;
-                t1-&gt;Next = t2;
-                temp-&gt;Next = t1;
-            }
-        }
-    }
-</code></pre>
-<h3 id="当i和j都不为1时">当i和j都不为1时。</h3>
-<p>节点相邻与不相邻也是不一样的。<br>
-不相邻的情况下就是让i前面的节点指向j，然后让j前面的节点指向i。如果两个节点相邻（假设i &lt; j）j前面的节点就是i，j前面的节点指向i就是指向了自己，所以要分开写。<br>
-不相邻节点时：<br>
-<img src="https://img-blog.csdnimg.cn/20200611083309796.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200611083331554.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200611083418720.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200611083435638.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-代码为：</p>
-<pre><code class="language-c">if ((i - j) != 1 &amp;&amp; (j- i) != 1) {//非相邻结点之间交换
-            for (m = 1; temp-&gt;Next != NULL; m++, temp = temp-&gt;Next) {
-                if (m + 1 == i) {
-                    t1 = temp;
-                }
-                if (m + 1 == j) {
-                    t2 = temp;
-                }
-            }
-            t5 = t1-&gt;Next-&gt;Next;
-            t3 = t1-&gt;Next;
-            t4 = t2-&gt;Next;
-            t1-&gt;Next = t4;
-            t2-&gt;Next = t3;
-            t3-&gt;Next = t4-&gt;Next;
-            t4-&gt;Next = t5;
-        }
-</code></pre>
-<h3 id="最后一种情况两个节点相邻">最后一种情况，两个节点相邻：</h3>
-<p><img src="https://img-blog.csdnimg.cn/20200611084227643.png" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200611084240634.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200611084255116.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200611084305639.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-代码为：</p>
-<pre><code class="language-c">for (m = 1; temp != NULL; m++, temp = temp-&gt;Next) {
-                if (m + 1 == i) {
-                    t1 = temp;
-                }
-                if (m == j) {
-                    t2 = temp;
-                }
-            }
-            temp = t2-&gt;Next;
-            t3 = t1-&gt;Next;
-            t1-&gt;Next = t2;
-            t3-&gt;Next = temp;
-            t2-&gt;Next = t3;
-        }
-</code></pre>
-<p>全部代码：</p>
-<pre><code class="language-c">#include &lt;stdio.h&gt;
-#include &lt;malloc.h&gt;
-
-typedef struct node
-{
-    int Score;
-    struct node * Next;
-}Node, * List;
-
-void Insert(List *L, Node e)
-{
-    List temp = *L;
-    List n = (List)malloc(sizeof(Node));
-    n-&gt;Score = e.Score;
-    if (temp == NULL) {
-        *L = n;
-    }
-    else {
-        while (temp-&gt;Next != NULL) {
-            temp = temp-&gt;Next;
-        }
-        temp-&gt;Next = n;
-    }
-    n-&gt;Next = NULL;
-}
-
-void Swap(List * L, int i, int j)
-{
-    List temp = *L;
-    List t1;
-    List t2;
-    List t3;
-    List t4;
-    List t5;
-    int m;
-    /*i和j为1时情况比较特殊，需要让表头重新指向交换后的那个节点*/
-    if (i == 1) { 
-        t1 = *L;
-        for (m = 1; temp-&gt;Next != NULL; m++, temp = temp-&gt;Next) {
-            if (m + 1 == j) {
-                *L = temp-&gt;Next;
-                t2 = temp-&gt;Next-&gt;Next;
-                temp-&gt;Next-&gt;Next = t1-&gt;Next;
-                t1-&gt;Next = t2;
-                temp-&gt;Next = t1;
-            }
-        }
-    }
-    if (j == 1) {
-        t1 = *L;
-        for (m = 1; temp-&gt;Next != NULL; m++, temp = temp-&gt;Next) {
-            if (m + 1 == i) {
-                *L = temp-&gt;Next;
-                t2 = temp-&gt;Next-&gt;Next;
-                temp-&gt;Next-&gt;Next = t1-&gt;Next;
-                t1-&gt;Next = t2;
-                temp-&gt;Next = t1;
-            }
-        }
-    }
-    /*相邻节点之间交换和非相邻结点之间交换不一样*/
-    else {
-        if ((i - j) != 1 &amp;&amp; (j- i) != 1) {//非相邻结点之间交换
-            for (m = 1; temp-&gt;Next != NULL; m++, temp = temp-&gt;Next) {
-                if (m + 1 == i) {
-                    t1 = temp;
-                }
-                if (m + 1 == j) {
-                    t2 = temp;
-                }
-            }
-            t5 = t1-&gt;Next-&gt;Next;
-            t3 = t1-&gt;Next;
-            t4 = t2-&gt;Next;
-            t1-&gt;Next = t4;
-            t2-&gt;Next = t3;
-            t3-&gt;Next = t4-&gt;Next;
-            t4-&gt;Next = t5;
-        }
-        else if (i &lt; j) {//相邻节点之间交换
-            for (m = 1; temp != NULL; m++, temp = temp-&gt;Next) {
-                if (m + 1 == i) {
-                    t1 = temp;
-                }
-                if (m == j) {
-                    t2 = temp;
-                }
-            }
-            temp = t2-&gt;Next;
-            t3 = t1-&gt;Next;
-            t1-&gt;Next = t2;
-            t3-&gt;Next = temp;
-            t2-&gt;Next = t3;
-        }
-        else if (i &gt; j) {
-            for (m = 1; temp != NULL; m++, temp = temp-&gt;Next) {
-                if (m + 1 == j) {
-                    t1 = temp;
-                }
-                if (m == i) {
-                    t2 = temp;
-                }
-            }
-            temp = t2-&gt;Next;
-            t3 = t1-&gt;Next;
-            t1-&gt;Next = t2;
-            t3-&gt;Next = temp;
-            t2-&gt;Next = t3;
-        }
-    }
-}
-
-void printflist(List list) 
-{
-    List temp;
-    for (temp = list; temp != NULL; temp = temp-&gt;Next) {
-        printf(&quot;%d\n&quot;, temp-&gt;Score);
-    }
-}
-
-void freelist(List *list)
-{
-    List temp = *list, del;
-    while (temp != NULL) {
-        del = temp;
-        temp = temp-&gt;Next;
-        free(del);
-    }
-}
-
-int main()
-{
-    List list = NULL;
-    Node n1, n2, n3, n4, e;//定义5个节点
-    e.Score = 5;
-    n1.Score = 1;
-    n2.Score = 2;
-    n3.Score = 3;
-    n4.Score = 4;
-    Insert(&amp;list, n1);
-    Insert(&amp;list, n2);
-    Insert(&amp;list, n3);
-    Insert(&amp;list, n4);
-    Insert(&amp;list, e);
-    // dellist(&amp;list, 8);
-    Swap(&amp;list, 5, 4);
-    printflist(list);
-    freelist(&amp;list);
-    return 0;
-}
-
-
 </code></pre>
 ]]></content>
     </entry>
