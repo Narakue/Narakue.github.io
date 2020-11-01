@@ -1,15 +1,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0">
-    <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
-
-🏠 关于本站
-在使用一段时间hexo后还是放弃了hexo选择了简单方便的Gridea（其实就是不会用hexo）
-感谢Ericam_blog大佬的fog主题
-👨‍💻 关于博主
-一枚啥也不会的菜..." />
-    <meta name="keywords" content="" />
+    <meta name="description" content="题目描述：
+给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。
+注..." />
+    <meta name="keywords" content="算法" />
     <link rel="stylesheet" href="https://sakuratears.cn/media/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://sakuratears.cn/styles/main.css">
     
@@ -481,23 +476,25 @@
         <div class="postshow" style="padding-bottom: 0;">
             
             <div class="postdetailimg" style="width:100%;overflow: hidden;">
-                
-                <img src="https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/gridea-zhu-ti-fog-geng-xin-ri-zhi.jpeg" class="postimage">
-                
+                <img src="https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/54lqq0%20(1).jpg" class="postimage" style="cursor:auto">
             </div>
             <div class="postinfo-detail">
-                <div class="postdate"><i class="fa fa-calendar"></i>2020/10/23</div>
-            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 1 min read</div>
-            <div class="posttag">
-                
+                <div class="postdate"><i class="fa fa-calendar"></i>2020/11/01</div>
+                <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 2 min read</div>
+                <div class="posttag">
+                    
+                    <a href="https://sakuratears.cn/tag/e0ZtA0F1A/" class="postlink">
+                        <i class="fa fa-tag"></i> 算法
+                    </a>
+                    
+                </div>
             </div>
-        </div>
-        
+            
         <div id="articlecontent">
             <div id="texttitle" style="text-align: center">
-                <h2>奇妙的自我描述</h2>
+                <h2>四数之和</h2>
                 <!-- id 将作为查询条件 -->
-                <div id="pl" style="display:none">https://sakuratears.cn/post/about/</div>
+                <div id="pl" style="display:none">https://sakuratears.cn/post/si-shu-zhi-he/</div>
                 <div id="rootaddr" style="display:none">https://sakuratears.cn</div>
                 <span id="hotnum">
                     <h4><i class="fa fa-eye" aria-hidden="true" style="color: #FF8C00;"></i>&nbsp;&nbsp;热度</i>: <i
@@ -505,19 +502,68 @@
                 </span>
             </div>
             <div class="text ">
-                <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<p>在使用一段时间hexo后还是放弃了hexo选择了简单方便的Gridea（其实就是不会用hexo）<br>
-感谢Ericam_blog大佬的fog主题</p>
-<h2 id="关于博主">👨‍💻 关于博主</h2>
-<p>一枚啥也不会的菜鸡程序猿<br>
-主攻python开发，机器学习略知一二（狗头保命！）</p>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<p>QQ：2538598846<br>
-微信：2538598846<br>
-欢迎好友交流😎</p>
+                <h4 id="题目描述">题目描述：</h4>
+<p>给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。</p>
+<p>注意：</p>
+<p>答案中不可以包含重复的四元组。</p>
+<p>示例：</p>
+<p>给定数组 nums = [1, 0, -1, 0, -2, 2]，和 target = 0。</p>
+<p>满足要求的四元组集合为：<br>
+[<br>
+[-1,  0, 0, 1],<br>
+[-2, -1, 1, 2],<br>
+[-2,  0, 0, 2]<br>
+]</p>
+<p>来源：力扣18题（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/4sum</p>
+<h4 id="题目分析">题目分析</h4>
+<p>此题可以用双指针法解决，先用两个for循环i, j遍历前面，两个指针left, right收缩，当nums[i] + nums[j] + nums[left] + nums[right] == target 时，入数组，然后注意一下去重。（三数之和一个for循环，四数之和用两个，五数之和用三个......）</p>
+<h4 id="代码题解">代码题解</h4>
+<pre><code class="language-c++">vector&lt;vector&lt;int&gt;&gt; fourSum(vector&lt;int&gt; &amp;nums, int target)
+{
+    vector&lt;vector&lt;int&gt;&gt; re;
+    sort(nums.begin(), nums.end());
+    for (int i = 0; i &lt; nums.size(); i++)
+    {
+        if (i &gt; 0 &amp;&amp; nums[i] == nums[i - 1])//去重
+            continue;
+        for (int j = i + 1; j &lt; nums.size(); j++)
+        {
+            if (j &gt; i + 1 &amp;&amp; nums[j] == nums[j - 1])//去重
+                continue;
+            int left = j + 1;
+            int right = nums.size() - 1;
+            while (left &lt; right)
+            {
+                if (nums[i] + nums[j] + nums[left] + nums[right] &gt; target)
+                {
+                    right--;
+                }
+                else if (nums[i] + nums[j] + nums[left] + nums[right] &lt; target)
+                {
+                    left++;
+                }
+                else
+                {
+                    re.push_back(vector&lt;int&gt;{nums[i], nums[j], nums[left], nums[right]});//下面两个循环去重
+                    while (right &gt; left &amp;&amp; nums[right] == nums[right - 1])
+                    {
+                        right--;
+                    }
+                    while (right &gt; left &amp;&amp; nums[left] == nums[left + 1])
+                    {
+                        left++;
+                    }
+                    //找到一个适合的后左右指针收缩
+                    left++;
+                    right--;
+                }
+            }
+        }
+    }
+    return re;
+}
+</code></pre>
 
             </div>
             <hr style="width: 80%;">
@@ -548,13 +594,25 @@
             <div class="postfooter">
                 <ul class="post-copyright">
                     <li><strong>文章作者：</strong>SakuraTears</li>
-            <li><strong>原文链接：</strong>https://sakuratears.cn/post/about/</li>
+            <li><strong>原文链接：</strong>https://sakuratears.cn/post/si-shu-zhi-he/</li>
             <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用<i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA
                 许可协议。转载请注明出处！</li>
             </ul>
         </div>
         <div id="otherpost">
             
+            
+            <div class="next-post-pc">
+                <div id="npcontainer" onclick="window.location.href= 'https://sakuratears.cn/post/pyqt5-zong-jie/';return false">
+                    
+                    <img src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(4).jpg.webp" style="width: 100%;" class="opimg">
+                    
+                    <h4 class="optitle">PyQt5总结</h4>
+                </div>
+            </div>
+            <div class="next-post">
+                下一篇 <a href="https://sakuratears.cn/post/pyqt5-zong-jie/">PyQt5总结</a>
+            </div>
             
         </div>
     </div>
@@ -701,9 +759,17 @@
             <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%85%B3%E4%BA%8E%E5%8D%9A%E4%B8%BB">👨‍💻 关于博主</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0">题目描述：</a></li>
+<li><a href="#%E9%A2%98%E7%9B%AE%E5%88%86%E6%9E%90">题目分析</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E9%A2%98%E8%A7%A3">代码题解</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -935,7 +1001,7 @@
                 var nc = new NewCounter();
                 nc.save({
                     time: 1,
-                    title: "奇妙的自我描述",
+                    title: "四数之和",
                     url: pl,
                     xid: pl,
                 }).then(function (object) {

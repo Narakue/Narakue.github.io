@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-10-31T08:23:44.027Z</updated>
+    <updated>2020-11-01T13:32:59.781Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -10,6 +10,76 @@
     <logo>https://sakuratears.cn/images/avatar.png</logo>
     <icon>https://sakuratears.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, SakuraTears</rights>
+    <entry>
+        <title type="html"><![CDATA[四数之和]]></title>
+        <id>https://sakuratears.cn/post/si-shu-zhi-he/</id>
+        <link href="https://sakuratears.cn/post/si-shu-zhi-he/">
+        </link>
+        <updated>2020-11-01T13:32:08.000Z</updated>
+        <content type="html"><![CDATA[<h4 id="题目描述">题目描述：</h4>
+<p>给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。</p>
+<p>注意：</p>
+<p>答案中不可以包含重复的四元组。</p>
+<p>示例：</p>
+<p>给定数组 nums = [1, 0, -1, 0, -2, 2]，和 target = 0。</p>
+<p>满足要求的四元组集合为：<br>
+[<br>
+[-1,  0, 0, 1],<br>
+[-2, -1, 1, 2],<br>
+[-2,  0, 0, 2]<br>
+]</p>
+<p>来源：力扣18题（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/4sum</p>
+<h4 id="题目分析">题目分析</h4>
+<p>此题可以用双指针法解决，先用两个for循环i, j遍历前面，两个指针left, right收缩，当nums[i] + nums[j] + nums[left] + nums[right] == target 时，入数组，然后注意一下去重。（三数之和一个for循环，四数之和用两个，五数之和用三个......）</p>
+<h4 id="代码题解">代码题解</h4>
+<pre><code class="language-c++">vector&lt;vector&lt;int&gt;&gt; fourSum(vector&lt;int&gt; &amp;nums, int target)
+{
+    vector&lt;vector&lt;int&gt;&gt; re;
+    sort(nums.begin(), nums.end());
+    for (int i = 0; i &lt; nums.size(); i++)
+    {
+        if (i &gt; 0 &amp;&amp; nums[i] == nums[i - 1])//去重
+            continue;
+        for (int j = i + 1; j &lt; nums.size(); j++)
+        {
+            if (j &gt; i + 1 &amp;&amp; nums[j] == nums[j - 1])//去重
+                continue;
+            int left = j + 1;
+            int right = nums.size() - 1;
+            while (left &lt; right)
+            {
+                if (nums[i] + nums[j] + nums[left] + nums[right] &gt; target)
+                {
+                    right--;
+                }
+                else if (nums[i] + nums[j] + nums[left] + nums[right] &lt; target)
+                {
+                    left++;
+                }
+                else
+                {
+                    re.push_back(vector&lt;int&gt;{nums[i], nums[j], nums[left], nums[right]});//下面两个循环去重
+                    while (right &gt; left &amp;&amp; nums[right] == nums[right - 1])
+                    {
+                        right--;
+                    }
+                    while (right &gt; left &amp;&amp; nums[left] == nums[left + 1])
+                    {
+                        left++;
+                    }
+                    //找到一个适合的后左右指针收缩
+                    left++;
+                    right--;
+                }
+            }
+        }
+    }
+    return re;
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[PyQt5总结]]></title>
         <id>https://sakuratears.cn/post/pyqt5-zong-jie/</id>
@@ -849,122 +919,6 @@ int main()
     int n;
     cin &gt;&gt; n;
     cout &lt;&lt; fib(n);
-    return 0;
-}
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[凑零钱问题]]></title>
-        <id>https://sakuratears.cn/post/cou-ling-qian-wen-ti/</id>
-        <link href="https://sakuratears.cn/post/cou-ling-qian-wen-ti/">
-        </link>
-        <updated>2020-10-23T06:45:52.000Z</updated>
-        <content type="html"><![CDATA[<pre><code class="language-C/C++">#include &lt;iostream&gt;
-#include &lt;vector&gt;
-#include &lt;limits.h&gt;
-#define INT_MAX 2147483647;
-using namespace std;
-
-int coinchange(int coin, vector&lt;int&gt; &amp;coins, int amount, vector&lt;int&gt; &amp;bwl) 
-{
-    if (amount &lt; 0) return -1;
-    if (amount == 0) return 0;
-    if (bwl[amount] != 0) return bwl[amount];
-    int res, i, j, dp = 0, m;
-    m = INT_MAX;
-    j = 0;
-    res = INT_MAX;
-    while (j &lt; coin) {
-        i = coins[j];
-        dp = coinchange(coin, coins, amount - i, bwl);
-        if (dp == -1) {
-            j++;
-            continue;
-        }
-        if (res &gt; 1 + dp) {
-            res = 1 + dp;
-        }
-        j++;
-    }
-    if (res != m) {
-        bwl[amount] = res;
-    }
-    else {
-        bwl[amount] = -1;
-    }
-    return bwl[amount];
-}
-
-int coinChange(vector&lt;int&gt;&amp; coins, int amount) 
-{
-    int coin = coins.size();
-    vector&lt;int&gt; bwl(amount + 1, 0);
-    return coinchange(coin, coins, amount, bwl);
-}
-
-
-int main() 
-{
-    vector&lt;int&gt; coins;
-    int a, n, i = 0, amount, m;
-    cin &gt;&gt; n;
-    coins.clear();
-    while (i &lt; n) {
-        cin &gt;&gt; a;
-        coins.push_back(a);
-        i++;
-    }
-    cin &gt;&gt; amount;
-    m = coinChange(coins, amount);
-    cout &lt;&lt; m;
-    return 0;
-}
-
-</code></pre>
-<pre><code class="language-C/C++">#include &lt;iostream&gt;
-#include &lt;limits.h&gt;
-#include &lt;vector&gt;
-#define INT_MAX 2147483647;
-using namespace std;
-
-int coinChange(vector&lt;int&gt; &amp;coins, int amount)
-{
-    vector&lt;int&gt; dp(amount + 1, amount + 1);
-    dp[0] = 0;
-    int i, j;
-    for (i = 0; i &lt; dp.size(); i++) 
-    {
-        for (j = 0; j &lt; coins.size(); j++)
-        {
-            if (i &lt; coins[j])
-            {
-                continue;
-            }
-            if (dp[i] &gt; dp[i - coins[j]]) 
-            {
-                dp[i] = 1 + dp[i - coins[j]];
-            }
-        }
-    }
-    return (dp[amount] == amount + 1) ? -1 : dp[amount];
-}
-
-int main()
-{
-    vector&lt;int&gt; coins;
-    int a, n, i = 0, amount, m;
-    cin &gt;&gt; n;
-    coins.clear();
-    while (i &lt; n)
-    {
-        cin &gt;&gt; a;
-        coins.push_back(a);
-        i++;
-    }
-    cin &gt;&gt; amount;
-    m = coinChange(coins, amount);
-    cout &lt;&lt; m;
     return 0;
 }
 </code></pre>
