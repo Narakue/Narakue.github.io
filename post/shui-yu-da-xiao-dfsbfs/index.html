@@ -1,15 +1,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0">
-    <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
-
-🏠 关于本站
-在使用一段时间hexo后还是放弃了hexo选择了简单方便的Gridea（其实就是不会用hexo）
-感谢Ericam_blog大佬的fog主题
-👨‍💻 关于博主
-一枚啥也不会的菜..." />
-    <meta name="keywords" content="" />
+    <meta name="description" content="来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/pond-sizes-lcci
+你有一个用于表示一片土地的整数矩阵land，该矩阵中每个点的值代表对应地点的海拔高度。若值为0则表示水域..." />
+    <meta name="keywords" content="算法" />
     <link rel="stylesheet" href="https://sakuratears.cn/media/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://sakuratears.cn/styles/main.css">
     
@@ -486,18 +481,22 @@
                 
             </div>
             <div class="postinfo-detail">
-                <div class="postdate"><i class="fa fa-calendar"></i>2020/10/23</div>
-            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 1 min read</div>
+                <div class="postdate"><i class="fa fa-calendar"></i>2020/11/04</div>
+            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 4 min read</div>
             <div class="posttag">
+                
+                <a href="https://sakuratears.cn/tag/e0ZtA0F1A/" class="postlink">
+                    <i class="fa fa-tag"></i> 算法
+                </a>
                 
             </div>
         </div>
         
         <div id="articlecontent">
             <div id="texttitle" style="text-align: center">
-                <h2>奇妙的自我描述</h2>
+                <h2>水域大小（DFS）（BFS）</h2>
                 <!-- id 将作为查询条件 -->
-                <div id="pl" style="display:none">https://sakuratears.cn/post/about/</div>
+                <div id="pl" style="display:none">https://sakuratears.cn/post/shui-yu-da-xiao-dfsbfs/</div>
                 <div id="rootaddr" style="display:none">https://sakuratears.cn</div>
                 <span id="hotnum">
                     <h4><i class="fa fa-eye" aria-hidden="true" style="color: #FF8C00;"></i>&nbsp;&nbsp;热度</i>: <i
@@ -505,19 +504,121 @@
                 </span>
             </div>
             <div class="text ">
-                <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<p>在使用一段时间hexo后还是放弃了hexo选择了简单方便的Gridea（其实就是不会用hexo）<br>
-感谢Ericam_blog大佬的fog主题</p>
-<h2 id="关于博主">👨‍💻 关于博主</h2>
-<p>一枚啥也不会的菜鸡程序猿<br>
-主攻python开发，机器学习略知一二（狗头保命！）</p>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<p>QQ：2538598846<br>
-微信：2538598846<br>
-欢迎好友交流😎</p>
+                <p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/pond-sizes-lcci</p>
+<p>你有一个用于表示一片土地的整数矩阵land，该矩阵中每个点的值代表对应地点的海拔高度。若值为0则表示水域。由垂直、水平或对角连接的水域为池塘。池塘的大小是指相连接的水域的个数。编写一个方法来计算矩阵中所有池塘的大小，返回值需要从小到大排序。</p>
+<p>示例：</p>
+<p>输入：<br>
+[<br>
+[0,2,1,0],<br>
+[0,1,0,1],<br>
+[1,1,0,1],<br>
+[0,1,0,1]<br>
+]<br>
+输出： [1,2,4]<br>
+提示：</p>
+<p>0 &lt; len(land) &lt;= 1000<br>
+0 &lt; len(land[i]) &lt;= 1000</p>
+<p>此题DFS，BFS都可以用。<br>
+(代码格式为leetcode模板格式)<br>
+代码:</p>
+<h5 id="bfs">BFS</h5>
+<pre><code class="language-C++">class Solution {
+public:
+    int n = 0;
+    vector&lt;vector&lt;int&gt;&gt; dirs = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};//可以斜着所以是8个方向
+    struct Node {int x; int y;};
+    queue&lt;Node&gt; q;
+    int BFS(int i, int j, vector&lt;vector&lt;int&gt;&gt;&amp; land)
+    {
+        n = 1;
+        Node start, node;
+        start.x = i;
+        start.y = j;
+        land[i][j] = 1;
+        q.push(start);
+        while (!q.empty()) {
+            start = q.front();
+            q.pop();
+            for (int i = 0; i &lt; 8; i++)
+            {
+                node.x = start.x + dirs[i][0];
+                node.y = start.y + dirs[i][1];
+                if (node.x &gt;= 0 &amp;&amp; node.x &lt; land.size() &amp;&amp; node.y &gt;= 0 &amp;&amp; node.y &lt; land[0].size() &amp;&amp; land[node.x][node.y] == 0)//判断是否为鱼塘
+                {
+                    q.push(node);
+                    land[node.x][node.y] = 1;//染色
+                    n++;
+                }
+            }
+        }
+        return n;
+    }
+
+    vector&lt;int&gt; pondSizes(vector&lt;vector&lt;int&gt;&gt;&amp; land) {
+        vector&lt;int&gt; arr;
+        for (int i = 0; i &lt; land.size(); i++)
+        {
+            for (int j = 0; j &lt; land[i].size(); j++)
+            {
+                if (land[i][j] == 0)
+                {
+                    arr.push_back(BFS(i, j, land));
+                }
+                else 
+                {
+                    continue;
+                }
+            }
+        }
+        sort(arr.begin(), arr.end());
+        return arr;
+    }
+};
+</code></pre>
+<h5 id="dfs">DFS</h5>
+<pre><code class="language-C++">class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; dirs = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
+    struct Node {int x; int y;};
+    
+    int DFS(int i, int j, vector&lt;vector&lt;int&gt;&gt;&amp; land)
+    {
+        if (i &lt; 0 || i &gt;= land.size() || j &lt; 0 || j &gt;= land[0].size()) return 0;
+        if (land[i][j] != 0) return 0;//判断是否为鱼塘
+        land[i][j] = 1;//染色
+        Node next;
+        int n = 1;
+        for (int m = 0; m &lt; 8; m++)
+        {
+            next.x = i + dirs[m][0];
+            next.y = j + dirs[m][1];
+            n += DFS(next.x, next.y, land);
+        }
+        return n;
+    }
+
+    vector&lt;int&gt; pondSizes(vector&lt;vector&lt;int&gt;&gt;&amp; land) {
+        vector&lt;int&gt; arr;
+        for (int i = 0; i &lt; land.size(); i++)
+        {
+            for (int j = 0; j &lt; land[i].size(); j++)
+            {
+                if (land[i][j] == 0)
+                {
+                    arr.push_back(DFS(i, j, land));
+                }
+                else 
+                {
+                    continue;
+                }
+            }
+        }
+        sort(arr.begin(), arr.end());
+        return arr;
+    }
+};
+</code></pre>
 
             </div>
             <hr style="width: 80%;">
@@ -548,13 +649,25 @@
             <div class="postfooter">
                 <ul class="post-copyright">
                     <li><strong>文章作者：</strong>SakuraTears</li>
-            <li><strong>原文链接：</strong>https://sakuratears.cn/post/about/</li>
+            <li><strong>原文链接：</strong>https://sakuratears.cn/post/shui-yu-da-xiao-dfsbfs/</li>
             <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用<i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA
                 许可协议。转载请注明出处！</li>
             </ul>
         </div>
         <div id="otherpost">
             
+            
+            <div class="next-post-pc">
+                <div id="npcontainer" onclick="window.location.href= 'https://sakuratears.cn/post/si-shu-zhi-he/';return false">
+                    
+                    <img src="https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/54lqq0%20(1).jpg" style="width: 100%;" class="opimg">
+                    
+                    <h4 class="optitle">四数之和（双指针）</h4>
+                </div>
+            </div>
+            <div class="next-post">
+                下一篇 <a href="https://sakuratears.cn/post/si-shu-zhi-he/">四数之和（双指针）</a>
+            </div>
             
         </div>
     </div>
@@ -701,9 +814,20 @@
             <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%85%B3%E4%BA%8E%E5%8D%9A%E4%B8%BB">👨‍💻 关于博主</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#bfs">BFS</a></li>
+<li><a href="#dfs">DFS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -935,7 +1059,7 @@
                 var nc = new NewCounter();
                 nc.save({
                     time: 1,
-                    title: "奇妙的自我描述",
+                    title: "水域大小（DFS）（BFS）",
                     url: pl,
                     xid: pl,
                 }).then(function (object) {

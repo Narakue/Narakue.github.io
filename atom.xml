@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-11-03T06:55:05.774Z</updated>
+    <updated>2020-11-04T12:52:18.495Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -10,6 +10,129 @@
     <logo>https://sakuratears.cn/images/avatar.png</logo>
     <icon>https://sakuratears.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, SakuraTears</rights>
+    <entry>
+        <title type="html"><![CDATA[水域大小（DFS）（BFS）]]></title>
+        <id>https://sakuratears.cn/post/shui-yu-da-xiao-dfsbfs/</id>
+        <link href="https://sakuratears.cn/post/shui-yu-da-xiao-dfsbfs/">
+        </link>
+        <updated>2020-11-04T12:46:03.000Z</updated>
+        <content type="html"><![CDATA[<p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/pond-sizes-lcci</p>
+<p>你有一个用于表示一片土地的整数矩阵land，该矩阵中每个点的值代表对应地点的海拔高度。若值为0则表示水域。由垂直、水平或对角连接的水域为池塘。池塘的大小是指相连接的水域的个数。编写一个方法来计算矩阵中所有池塘的大小，返回值需要从小到大排序。</p>
+<p>示例：</p>
+<p>输入：<br>
+[<br>
+[0,2,1,0],<br>
+[0,1,0,1],<br>
+[1,1,0,1],<br>
+[0,1,0,1]<br>
+]<br>
+输出： [1,2,4]<br>
+提示：</p>
+<p>0 &lt; len(land) &lt;= 1000<br>
+0 &lt; len(land[i]) &lt;= 1000</p>
+<p>此题DFS，BFS都可以用。<br>
+(代码格式为leetcode模板格式)<br>
+代码:</p>
+<h5 id="bfs">BFS</h5>
+<pre><code class="language-C++">class Solution {
+public:
+    int n = 0;
+    vector&lt;vector&lt;int&gt;&gt; dirs = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};//可以斜着所以是8个方向
+    struct Node {int x; int y;};
+    queue&lt;Node&gt; q;
+    int BFS(int i, int j, vector&lt;vector&lt;int&gt;&gt;&amp; land)
+    {
+        n = 1;
+        Node start, node;
+        start.x = i;
+        start.y = j;
+        land[i][j] = 1;
+        q.push(start);
+        while (!q.empty()) {
+            start = q.front();
+            q.pop();
+            for (int i = 0; i &lt; 8; i++)
+            {
+                node.x = start.x + dirs[i][0];
+                node.y = start.y + dirs[i][1];
+                if (node.x &gt;= 0 &amp;&amp; node.x &lt; land.size() &amp;&amp; node.y &gt;= 0 &amp;&amp; node.y &lt; land[0].size() &amp;&amp; land[node.x][node.y] == 0)//判断是否为鱼塘
+                {
+                    q.push(node);
+                    land[node.x][node.y] = 1;//染色
+                    n++;
+                }
+            }
+        }
+        return n;
+    }
+
+    vector&lt;int&gt; pondSizes(vector&lt;vector&lt;int&gt;&gt;&amp; land) {
+        vector&lt;int&gt; arr;
+        for (int i = 0; i &lt; land.size(); i++)
+        {
+            for (int j = 0; j &lt; land[i].size(); j++)
+            {
+                if (land[i][j] == 0)
+                {
+                    arr.push_back(BFS(i, j, land));
+                }
+                else 
+                {
+                    continue;
+                }
+            }
+        }
+        sort(arr.begin(), arr.end());
+        return arr;
+    }
+};
+</code></pre>
+<h5 id="dfs">DFS</h5>
+<pre><code class="language-C++">class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; dirs = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
+    struct Node {int x; int y;};
+    
+    int DFS(int i, int j, vector&lt;vector&lt;int&gt;&gt;&amp; land)
+    {
+        if (i &lt; 0 || i &gt;= land.size() || j &lt; 0 || j &gt;= land[0].size()) return 0;
+        if (land[i][j] != 0) return 0;//判断是否为鱼塘
+        land[i][j] = 1;//染色
+        Node next;
+        int n = 1;
+        for (int m = 0; m &lt; 8; m++)
+        {
+            next.x = i + dirs[m][0];
+            next.y = j + dirs[m][1];
+            n += DFS(next.x, next.y, land);
+        }
+        return n;
+    }
+
+    vector&lt;int&gt; pondSizes(vector&lt;vector&lt;int&gt;&gt;&amp; land) {
+        vector&lt;int&gt; arr;
+        for (int i = 0; i &lt; land.size(); i++)
+        {
+            for (int j = 0; j &lt; land[i].size(); j++)
+            {
+                if (land[i][j] == 0)
+                {
+                    arr.push_back(DFS(i, j, land));
+                }
+                else 
+                {
+                    continue;
+                }
+            }
+        }
+        sort(arr.begin(), arr.end());
+        return arr;
+    }
+};
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[四数之和（双指针）]]></title>
         <id>https://sakuratears.cn/post/si-shu-zhi-he/</id>
@@ -807,118 +930,6 @@ int main()
     printf(&quot;%d=&quot;, a);
     zh(a, b);
     printf(&quot;(base%d)&quot;, b);
-    return 0;
-}
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[带备忘录和dp的递归]]></title>
-        <id>https://sakuratears.cn/post/dai-bei-wang-lu-he-dp-de-di-gui/</id>
-        <link href="https://sakuratears.cn/post/dai-bei-wang-lu-he-dp-de-di-gui/">
-        </link>
-        <updated>2020-10-23T06:49:02.000Z</updated>
-        <content type="html"><![CDATA[<h4 id="备忘录算法">备忘录算法</h4>
-<pre><code class="language-C/C++">#include &lt;iostream&gt;
-#include &lt;vector&gt;
-
-using namespace std;
-
-int helper(vector&lt;int&gt; &amp;m, int n);
-int fib(int n);
-
-int fib(int n)
-{
-    if(n &lt; 1)
-    {
-        return 0;
-    }
-    vector&lt;int&gt; m(n + 1, 0);
-    return helper(m, n);
-}
-
-int helper(vector&lt;int&gt;&amp;m, int n)
-{
-    if(n == 1 || n == 2) 
-    {
-        return 1;
-    }
-    if (m[n] != 0)
-    {
-        return m[n];
-    }
-    m[n] = helper(m, n - 1) + helper(m, n - 2);
-    return m[n];
-} 
-
-int main()
-{
-    int n;
-    cin &gt;&gt; n;
-    cout &lt;&lt; fib(n);
-    return 0;
-}
-</code></pre>
-<h4 id="dp数组迭代">dp数组迭代</h4>
-<pre><code class="language-C/C++">#include &lt;iostream&gt;
-#include &lt;vector&gt;
-
-using namespace std;
-
-int fib(int n);
-
-int fib(int n)
-{
-    if(n &lt; 1)
-    {
-        return 0;
-    }
-    vector&lt;int&gt; dp(n + 1, 0);
-    dp[1] = dp[2] = 1;
-    for (int i = 3; i &lt;= n; i++) 
-    {
-        dp[i] = dp[i - 1] + dp[i - 2];
-    }
-    return dp[n];
-}
-
-int main()
-{
-    int n;
-    cin &gt;&gt; n;
-    cout &lt;&lt; fib(n);
-    return 0;
-}
-</code></pre>
-<h4 id="空间优化">空间优化</h4>
-<pre><code class="language-C/c++">#include &lt;iostream&gt;
-
-using namespace std;
-
-int fib(int n);
-
-int fib(int n)
-{
-    if (n == 1 || n == 2)
-    {
-        return 1;
-    }
-    int a, b, sum;
-    a = b = 1;
-    for (int i = 3; i &lt;= n; i++) 
-    {
-        sum = a + b;
-        a = b;
-        b = sum;
-    }
-    return sum;
-}
-
-int main()
-{
-    int n;
-    cin &gt;&gt; n;
-    cout &lt;&lt; fib(n);
     return 0;
 }
 </code></pre>
