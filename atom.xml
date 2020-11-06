@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-11-04T12:52:18.495Z</updated>
+    <updated>2020-11-06T00:58:48.961Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -10,6 +10,108 @@
     <logo>https://sakuratears.cn/images/avatar.png</logo>
     <icon>https://sakuratears.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, SakuraTears</rights>
+    <entry>
+        <title type="html"><![CDATA[N皇后]]></title>
+        <id>https://sakuratears.cn/post/n-huang-hou/</id>
+        <link href="https://sakuratears.cn/post/n-huang-hou/">
+        </link>
+        <updated>2020-11-06T00:56:46.000Z</updated>
+        <content type="html"><![CDATA[<p>n 皇后问题研究的是如何将 n 个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。</p>
+<figure data-type="image" tabindex="1"><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/10/12/8-queens.png" alt="图" loading="lazy"></figure>
+<p>上图为 8 皇后问题的一种解法。</p>
+<p>给定一个整数 n，返回所有不同的 n 皇后问题的解决方案。</p>
+<p>每一种解法包含一个明确的 n 皇后问题的棋子放置方案，该方案中 'Q' 和 '.' 分别代表了皇后和空位。</p>
+<p></p>
+<p>示例：</p>
+<p>输入：4<br>
+输出：[<br>
+[&quot;.Q..&quot;,  // 解法 1<br>
+&quot;...Q&quot;,<br>
+&quot;Q...&quot;,<br>
+&quot;..Q.&quot;],</p>
+<p>[&quot;..Q.&quot;,  // 解法 2<br>
+&quot;Q...&quot;,<br>
+&quot;...Q&quot;,<br>
+&quot;.Q..&quot;]<br>
+]<br>
+解释: 4 皇后问题存在两个不同的解法。</p>
+<p>提示：</p>
+<p>皇后彼此不能相互攻击，也就是说：任何两个皇后都不能处于同一条横行、纵行或斜线上。</p>
+<p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/n-queens</p>
+<p>代码：</p>
+<pre><code class="language-C++">class Solution {
+public:
+    int col[12] = {};
+    vector&lt;vector&lt;string&gt;&gt; arr;
+    vector&lt;string&gt; brr;
+    char crr[100][100];
+    int cnumber = 0;
+    int num, number = 0, jud = 0, tot = 0;
+    bool check(int c, int r)
+    {
+        int i = 0;
+        for (i = 0; i &lt; r; i++)
+        {
+            if (col[i] == c || (abs(col[i] - c) == abs(i - r)))
+                return false;
+        }
+        return true;
+    }
+
+    void DFS(int r)
+    {
+        if (r == num)
+        {
+            string str = &quot;&quot;;
+            brr.clear();
+            for (int j = 0; j &lt; num; j++)
+            {
+                str = &quot;&quot;;
+                
+                for (int i = 0; i &lt; num; i++)
+                {
+                    if (crr[j][i] == 'Q')
+                        str += &quot;Q&quot;;
+                    else
+                        str += &quot;.&quot;;
+                }
+                brr.push_back(str);
+            }
+            arr.push_back(brr);
+            return;
+        }
+        for (int c = 0; c &lt; num; c++)
+        {
+            if (check(c, r) == true)
+            {
+                col[r] = c;
+                int i = 0;
+                while (i &lt; num)
+                {
+                    if (i == c)
+                    {
+                        crr[r][i] = 'Q';
+                    }
+                    else
+                        crr[r][i] = '.';
+                    i++;
+                }
+                DFS(r + 1);
+            }
+        }
+    }
+
+    vector&lt;vector&lt;string&gt;&gt; solveNQueens(int n)
+    {
+        num = n;
+        DFS(0);
+        return arr;
+    }
+};
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[水域大小（DFS）（BFS）]]></title>
         <id>https://sakuratears.cn/post/shui-yu-da-xiao-dfsbfs/</id>
@@ -867,70 +969,6 @@ if __name__ == '__main__':
             }
         }
     }
-}
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[负进制]]></title>
-        <id>https://sakuratears.cn/post/fu-jin-zhi/</id>
-        <link href="https://sakuratears.cn/post/fu-jin-zhi/">
-        </link>
-        <updated>2020-10-23T06:55:30.000Z</updated>
-        <content type="html"><![CDATA[<h3 id="题目描述">题目描述</h3>
-<figure data-type="image" tabindex="1"><img src="https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/chrome_kZgFEYVhht.png" alt="洛谷" loading="lazy"></figure>
-<h3 id="输入格式">输入格式</h3>
-<p>输入的每行有两个输入数据。<br>
-第一个是十进制数 n。 第二个是负进制数的基数 −R。</p>
-<h3 id="输出格式">输出格式</h3>
-<p>输出此负进制数及其基数，若此基数超过 10，则参照 16 进制的方式处理。</p>
-<h3 id="输入输出样例">输入输出样例</h3>
-<p>输入 3000 -2<br>
-输出 30000=11011010101110000(base-2)<br>
-输入 -20000 -2<br>
-输出 -20000=1111011000100000(base-2)<br>
-输入 28800 -16<br>
-输出 28800=19180(base-16)<br>
-输入 -25000 -16<br>
-输出 -25000=7FB8(base-16)</p>
-<h3 id="说明">说明</h3>
-<p>【数据范围】<br>
-对于 100% 的数据,−20≤R≤−2,∣n∣≤37336。</p>
-<p>NOIp2000提高组第一题</p>
-<h3 id="题解">题解：</h3>
-<p>正常情况下-7 % -2 商4 余1<br>
-但是C语言（或者说所有语言）这里是商3 余-1<br>
-这就很明显了，只需要把商+1，被除数+1就和正常计算情况一样了</p>
-<h4 id="代码为">代码为：</h4>
-<pre><code class="language-C/C++">#include &lt;stdio.h&gt;
-
-void zh(int a, int b)
-{
-    if (a == 0) {
-        return;
-    }
-    int m = a % b;
-    if (m &lt; 0) {
-        m -= b;
-        a += b;
-    }
-    if (m &gt; 9) {
-        m = 'A' + m - 10;
-    }
-    else
-        m += '0';
-    zh(a / b, b);
-    printf(&quot;%c&quot;, m);
-}
-
-int main()
-{
-    int a, b;
-    scanf(&quot;%d%d&quot;, &amp;a, &amp;b);
-    printf(&quot;%d=&quot;, a);
-    zh(a, b);
-    printf(&quot;(base%d)&quot;, b);
-    return 0;
 }
 </code></pre>
 ]]></content>
