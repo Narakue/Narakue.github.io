@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-11-06T00:58:48.961Z</updated>
+    <updated>2020-11-07T12:06:59.840Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -11,13 +11,13 @@
     <icon>https://sakuratears.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, SakuraTears</rights>
     <entry>
-        <title type="html"><![CDATA[N皇后]]></title>
+        <title type="html"><![CDATA[N皇后(回溯)]]></title>
         <id>https://sakuratears.cn/post/n-huang-hou/</id>
         <link href="https://sakuratears.cn/post/n-huang-hou/">
         </link>
         <updated>2020-11-06T00:56:46.000Z</updated>
         <content type="html"><![CDATA[<p>n 皇后问题研究的是如何将 n 个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。</p>
-<figure data-type="image" tabindex="1"><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/10/12/8-queens.png" alt="图" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/8-queens.png" alt="图" loading="lazy"></figure>
 <p>上图为 8 皇后问题的一种解法。</p>
 <p>给定一个整数 n，返回所有不同的 n 皇后问题的解决方案。</p>
 <p>每一种解法包含一个明确的 n 皇后问题的棋子放置方案，该方案中 'Q' 和 '.' 分别代表了皇后和空位。</p>
