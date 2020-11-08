@@ -1,12 +1,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0">
-    <meta name="description" content="#include &lt;iostream&gt;
-#include &lt;vector&gt;
-#include &lt;limits.h&gt;
-#define INT_MAX 2147483647;
-using namespace ..." />
-    <meta name="keywords" content="算法" />
+    <meta name="description" content="一般传递二维数组的基本规则好像是这样的：可以用二维数组名作为实参或者形参，在被调用函数中对形参数组定义时可以可以指定所有维数的大小，也可以省略第一维的大小说明。如：
+void Func(int array[3][10]);
+
+void Fu..." />
+    <meta name="keywords" content="C/C++" />
     <link rel="stylesheet" href="https://sakuratears.cn/media/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://sakuratears.cn/styles/main.css">
     
@@ -478,15 +477,15 @@ using namespace ..." />
         <div class="postshow" style="padding-bottom: 0;">
             
             <div class="postdetailimg" style="width:100%;overflow: hidden;">
-                <img src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(7).jpg.webp" class="postimage" style="cursor:auto">
+                <img src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(8).jpg.webp" class="postimage" style="cursor:auto">
             </div>
             <div class="postinfo-detail">
-                <div class="postdate"><i class="fa fa-calendar"></i>2020/10/23</div>
-                <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 2 min read</div>
+                <div class="postdate"><i class="fa fa-calendar"></i>2020/11/08</div>
+                <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 4 min read</div>
                 <div class="posttag">
                     
-                    <a href="https://sakuratears.cn/tag/e0ZtA0F1A/" class="postlink">
-                        <i class="fa fa-tag"></i> 算法
+                    <a href="https://sakuratears.cn/tag/C0PkJhDwp/" class="postlink">
+                        <i class="fa fa-tag"></i> C/C++
                     </a>
                     
                 </div>
@@ -494,9 +493,9 @@ using namespace ..." />
             
         <div id="articlecontent">
             <div id="texttitle" style="text-align: center">
-                <h2>凑零钱问题</h2>
+                <h2>C/C++如何传递二维数组？</h2>
                 <!-- id 将作为查询条件 -->
-                <div id="pl" style="display:none">https://sakuratears.cn/post/cou-ling-qian-wen-ti/</div>
+                <div id="pl" style="display:none">https://sakuratears.cn/post/ccru-he-chuan-di-er-wei-shu-zu/</div>
                 <div id="rootaddr" style="display:none">https://sakuratears.cn</div>
                 <span id="hotnum">
                     <h4><i class="fa fa-eye" aria-hidden="true" style="color: #FF8C00;"></i>&nbsp;&nbsp;热度</i>: <i
@@ -504,114 +503,49 @@ using namespace ..." />
                 </span>
             </div>
             <div class="text ">
-                <pre><code class="language-C/C++">#include &lt;iostream&gt;
-#include &lt;vector&gt;
-#include &lt;limits.h&gt;
-#define INT_MAX 2147483647;
-using namespace std;
+                <p>一般传递二维数组的基本规则好像是这样的：可以用二维数组名作为实参或者形参，在被调用函数中对形参数组定义时可以可以指定所有维数的大小，也可以省略第一维的大小说明。如：</p>
+<pre><code class="language-C++">void Func(int array[3][10]);
 
-int coinchange(int coin, vector&lt;int&gt; &amp;coins, int amount, vector&lt;int&gt; &amp;bwl) 
-{
-    if (amount &lt; 0) return -1;
-    if (amount == 0) return 0;
-    if (bwl[amount] != 0) return bwl[amount];
-    int res, i, j, dp = 0, m;
-    m = INT_MAX;
-    j = 0;
-    res = INT_MAX;
-    while (j &lt; coin) {
-        i = coins[j];
-        dp = coinchange(coin, coins, amount - i, bwl);
-        if (dp == -1) {
-            j++;
-            continue;
-        }
-        if (res &gt; 1 + dp) {
-            res = 1 + dp;
-        }
-        j++;
-    }
-    if (res != m) {
-        bwl[amount] = res;
-    }
-    else {
-        bwl[amount] = -1;
-    }
-    return bwl[amount];
-}
-
-int coinChange(vector&lt;int&gt;&amp; coins, int amount) 
-{
-    int coin = coins.size();
-    vector&lt;int&gt; bwl(amount + 1, 0);
-    return coinchange(coin, coins, amount, bwl);
-}
-
-
-int main() 
-{
-    vector&lt;int&gt; coins;
-    int a, n, i = 0, amount, m;
-    cin &gt;&gt; n;
-    coins.clear();
-    while (i &lt; n) {
-        cin &gt;&gt; a;
-        coins.push_back(a);
-        i++;
-    }
-    cin &gt;&gt; amount;
-    m = coinChange(coins, amount);
-    cout &lt;&lt; m;
-    return 0;
-}
-
+void Func(int array[][10]);
 </code></pre>
-<pre><code class="language-C/C++">#include &lt;iostream&gt;
-#include &lt;limits.h&gt;
-#include &lt;vector&gt;
-#define INT_MAX 2147483647;
-using namespace std;
-
-int coinChange(vector&lt;int&gt; &amp;coins, int amount)
-{
-    vector&lt;int&gt; dp(amount + 1, amount + 1);
-    dp[0] = 0;
-    int i, j;
-    for (i = 0; i &lt; dp.size(); i++) 
-    {
-        for (j = 0; j &lt; coins.size(); j++)
-        {
-            if (i &lt; coins[j])
-            {
-                continue;
-            }
-            if (dp[i] &gt; dp[i - coins[j]]) 
-            {
-                dp[i] = 1 + dp[i - coins[j]];
-            }
-        }
-    }
-    return (dp[amount] == amount + 1) ? -1 : dp[amount];
-}
-
-int main()
-{
-    vector&lt;int&gt; coins;
-    int a, n, i = 0, amount, m;
-    cin &gt;&gt; n;
-    coins.clear();
-    while (i &lt; n)
-    {
-        cin &gt;&gt; a;
-        coins.push_back(a);
-        i++;
-    }
-    cin &gt;&gt; amount;
-    m = coinChange(coins, amount);
-    cout &lt;&lt; m;
-    return 0;
-}
+<p>​</p>
+<p>二者都是合法而且等价，但是不能把第二维或者更高维的大小省略，如下面的定义是不合法的：</p>
+<pre><code class="language-C++">void Func(int array[][]);
 </code></pre>
+<p>将二维数组当作参数的时候，必须指明所有维数大小或者省略第一维的，但是不能省略第二维或者更高维的大小，这是由编译器原理限制的。在学编译原理这么课程的时候知道编译器是这样处理数组的：</p>
+<p>对于数组 int p[m][n]; 如果要取p[i][j]的值(i&gt;=0 &amp;&amp; i&lt;m &amp;&amp; 0&lt;=j &amp;&amp; j &lt; n)，编译器是这样寻址的，它的地址为：</p>
+<pre><code class="language-C++">p + i*n + j;
+</code></pre>
+<p>从以上可以看出，如果我们省略了第二维或者更高维的大小，编译器将不知道如何正确的寻址。但是我们在编写程序的时候却需要用到各个维数都不固定的二维数组作为参数，这就难办了，编译器不能识别阿，怎么办呢？不要着急，编译器虽然不能识别，但是我们完全可以不把它当作一个二维数组，而是把它当作一个普通的指针，再另外加上两个参数指明各个维数，然后我们为二维数组手工寻址，这样就达到了将二维数组作为函数的参数传递的目的，根据这个思想，我们可以把维数固定的参数变为维数随即的参数，例如：</p>
+<pre><code class="language-C++">void Func(int array[3][10]); 
+
+void Func(int array[][10]);
+</code></pre>
+<p>变为：</p>
+<pre><code class="language-C++">void Func(int **array, int m, int n);
+</code></pre>
+<p>在转变后的函数中，array[i][j]这样的式子是不对的(不信，大家可以试一下)，因为编译器不能正确的为它寻址，所以我们需要模仿编译器的行为把array[i][j]这样的式子手工转变为</p>
+<pre><code class="language-C++">*((int*)array + n*i + j);
+</code></pre>
+<p>​</p>
+<p>在调用这样的函数的时候，需要注意一下，如下面的例子：</p>
+<pre><code class="language-C++">int a[3][3] = 
+
+    {
+{1, 1, 1},
+{2, 2, 2},
+{3, 3, 3}
+};
+
+Func(a, 3, 3);
+</code></pre>
+<p>根据不同编译器不同的设置，可能出现warning 或者error,可以进行强制转换如下调用：</p>
+<pre><code class="language-C++">Func((int**)a, 3, 3);
+</code></pre>
+<p>需要(int**）的强制转换，是因为二维数组和二级指针是不同的，a实质上是一个int (<em>a)[3]，它是一个数组指针，即a[0]是第一维数组的首个元素的地址，a[1]是第二维数组的首个元素的地址，a[2]是第三维数组的首个元素的地址，与int*<em>是不同的类型；如果转为int*</em>，就失去了像数组指针那样a + i = a + i</em>3的效果了</p>
+<p>而如果又定义一个char *p[3]，它是一个一维的指针数组，此时p是指向了一个指针，而不是数组。那么这时如果定义char **q = p，就是可以的，而且可以通过q[0]，q[1]来访问字符串。</p>
+<p>数组和指针这种东西真是太繁琐复杂了，个人愚见，在C++里就尽量使用STL，并且可以用模板的非类型形参来解决这种灵活处理不固定行列数矩阵的函数，Effective C++里面应该有介绍，并且有对这种模板的优化。</p>
+<p>转载自CSDN</p>
 
             </div>
             <hr style="width: 80%;">
@@ -642,36 +576,24 @@ int main()
             <div class="postfooter">
                 <ul class="post-copyright">
                     <li><strong>文章作者：</strong>SakuraTears</li>
-            <li><strong>原文链接：</strong>https://sakuratears.cn/post/cou-ling-qian-wen-ti/</li>
+            <li><strong>原文链接：</strong>https://sakuratears.cn/post/ccru-he-chuan-di-er-wei-shu-zu/</li>
             <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用<i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA
                 许可协议。转载请注明出处！</li>
             </ul>
         </div>
         <div id="otherpost">
             
-            <div class="prev-post-pc">
-                <div id="ppcontainer" onclick="window.location.href= 'https://sakuratears.cn/post/dai-bei-wang-lu-he-dp-de-di-gui/';return false">
-                    
-                    <img src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(4).jpg.webp" style="width: 100%;" class="opimg">
-                    
-                    <h4 class="optitle">带备忘录和dp的递归</h4>
-                </div>
-            </div>
-            <div class="prev-post">
-                上一篇 <a href="https://sakuratears.cn/post/dai-bei-wang-lu-he-dp-de-di-gui/">带备忘录和dp的递归</a>
-            </div>
-            
             
             <div class="next-post-pc">
-                <div id="npcontainer" onclick="window.location.href= 'https://sakuratears.cn/post/c-yu-yan-shi-xian-lian-biao-ji-ben-cao-zuo-jiao-huan-di-i-ge-he-di-j-ge-jie-dian/';return false">
+                <div id="npcontainer" onclick="window.location.href= 'https://sakuratears.cn/post/n-huang-hou/';return false">
                     
-                    <img src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(3).jpg.webp" style="width: 100%;" class="opimg">
+                    <img src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(9).jpg.webp" style="width: 100%;" class="opimg">
                     
-                    <h4 class="optitle">C语言实现链表基本操作（交换第i个和第j个节点）</h4>
+                    <h4 class="optitle">N皇后(回溯)</h4>
                 </div>
             </div>
             <div class="next-post">
-                下一篇 <a href="https://sakuratears.cn/post/c-yu-yan-shi-xian-lian-biao-ji-ben-cao-zuo-jiao-huan-di-i-ge-he-di-j-ge-jie-dian/">C语言实现链表基本操作（交换第i个和第j个节点）</a>
+                下一篇 <a href="https://sakuratears.cn/post/n-huang-hou/">N皇后(回溯)</a>
             </div>
             
         </div>
@@ -1044,7 +966,7 @@ int main()
                 var nc = new NewCounter();
                 nc.save({
                     time: 1,
-                    title: "凑零钱问题",
+                    title: "C/C++如何传递二维数组？",
                     url: pl,
                     xid: pl,
                 }).then(function (object) {

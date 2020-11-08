@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-11-07T12:06:59.840Z</updated>
+    <updated>2020-11-08T12:15:55.743Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -10,6 +10,57 @@
     <logo>https://sakuratears.cn/images/avatar.png</logo>
     <icon>https://sakuratears.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, SakuraTears</rights>
+    <entry>
+        <title type="html"><![CDATA[C/C++如何传递二维数组？]]></title>
+        <id>https://sakuratears.cn/post/ccru-he-chuan-di-er-wei-shu-zu/</id>
+        <link href="https://sakuratears.cn/post/ccru-he-chuan-di-er-wei-shu-zu/">
+        </link>
+        <updated>2020-11-08T12:06:47.000Z</updated>
+        <content type="html"><![CDATA[<p>一般传递二维数组的基本规则好像是这样的：可以用二维数组名作为实参或者形参，在被调用函数中对形参数组定义时可以可以指定所有维数的大小，也可以省略第一维的大小说明。如：</p>
+<pre><code class="language-C++">void Func(int array[3][10]);
+
+void Func(int array[][10]);
+</code></pre>
+<p>​</p>
+<p>二者都是合法而且等价，但是不能把第二维或者更高维的大小省略，如下面的定义是不合法的：</p>
+<pre><code class="language-C++">void Func(int array[][]);
+</code></pre>
+<p>将二维数组当作参数的时候，必须指明所有维数大小或者省略第一维的，但是不能省略第二维或者更高维的大小，这是由编译器原理限制的。在学编译原理这么课程的时候知道编译器是这样处理数组的：</p>
+<p>对于数组 int p[m][n]; 如果要取p[i][j]的值(i&gt;=0 &amp;&amp; i&lt;m &amp;&amp; 0&lt;=j &amp;&amp; j &lt; n)，编译器是这样寻址的，它的地址为：</p>
+<pre><code class="language-C++">p + i*n + j;
+</code></pre>
+<p>从以上可以看出，如果我们省略了第二维或者更高维的大小，编译器将不知道如何正确的寻址。但是我们在编写程序的时候却需要用到各个维数都不固定的二维数组作为参数，这就难办了，编译器不能识别阿，怎么办呢？不要着急，编译器虽然不能识别，但是我们完全可以不把它当作一个二维数组，而是把它当作一个普通的指针，再另外加上两个参数指明各个维数，然后我们为二维数组手工寻址，这样就达到了将二维数组作为函数的参数传递的目的，根据这个思想，我们可以把维数固定的参数变为维数随即的参数，例如：</p>
+<pre><code class="language-C++">void Func(int array[3][10]); 
+
+void Func(int array[][10]);
+</code></pre>
+<p>变为：</p>
+<pre><code class="language-C++">void Func(int **array, int m, int n);
+</code></pre>
+<p>在转变后的函数中，array[i][j]这样的式子是不对的(不信，大家可以试一下)，因为编译器不能正确的为它寻址，所以我们需要模仿编译器的行为把array[i][j]这样的式子手工转变为</p>
+<pre><code class="language-C++">*((int*)array + n*i + j);
+</code></pre>
+<p>​</p>
+<p>在调用这样的函数的时候，需要注意一下，如下面的例子：</p>
+<pre><code class="language-C++">int a[3][3] = 
+
+    {
+{1, 1, 1},
+{2, 2, 2},
+{3, 3, 3}
+};
+
+Func(a, 3, 3);
+</code></pre>
+<p>根据不同编译器不同的设置，可能出现warning 或者error,可以进行强制转换如下调用：</p>
+<pre><code class="language-C++">Func((int**)a, 3, 3);
+</code></pre>
+<p>需要(int**）的强制转换，是因为二维数组和二级指针是不同的，a实质上是一个int (<em>a)[3]，它是一个数组指针，即a[0]是第一维数组的首个元素的地址，a[1]是第二维数组的首个元素的地址，a[2]是第三维数组的首个元素的地址，与int*<em>是不同的类型；如果转为int*</em>，就失去了像数组指针那样a + i = a + i</em>3的效果了</p>
+<p>而如果又定义一个char *p[3]，它是一个一维的指针数组，此时p是指向了一个指针，而不是数组。那么这时如果定义char **q = p，就是可以的，而且可以通过q[0]，q[1]来访问字符串。</p>
+<p>数组和指针这种东西真是太繁琐复杂了，个人愚见，在C++里就尽量使用STL，并且可以用模板的非类型形参来解决这种灵活处理不固定行列数矩阵的函数，Effective C++里面应该有介绍，并且有对这种模板的优化。</p>
+<p>转载自CSDN</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[N皇后(回溯)]]></title>
         <id>https://sakuratears.cn/post/n-huang-hou/</id>
@@ -39,10 +90,11 @@
 <p>皇后彼此不能相互攻击，也就是说：任何两个皇后都不能处于同一条横行、纵行或斜线上。</p>
 <p>来源：力扣（LeetCode）<br>
 链接：https://leetcode-cn.com/problems/n-queens</p>
+<p>经典回溯+递归问题，当发现这种情况不行时就回溯到之前的点。</p>
 <p>代码：</p>
 <pre><code class="language-C++">class Solution {
 public:
-    int col[12] = {};
+    int col[12] = {};//将合适的皇后行数放入数组中
     vector&lt;vector&lt;string&gt;&gt; arr;
     vector&lt;string&gt; brr;
     char crr[100][100];
@@ -880,95 +932,6 @@ if __name__ == '__main__':
     mid = j;
     qsort(a, lo, mid - 1);
     qsort(a, mid + 1, hi);
-}
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[归并排序]]></title>
-        <id>https://sakuratears.cn/post/gui-bing-pai-xu/</id>
-        <link href="https://sakuratears.cn/post/gui-bing-pai-xu/">
-        </link>
-        <updated>2020-10-23T06:57:28.000Z</updated>
-        <content type="html"><![CDATA[<p>归并排序将两个有序的排列归并为一个有序的排列。</p>
-<p>归并算法都基于归并这个简单的操作，即将两个有序的数组归并成一个更大的有序数组。很快人们就根据这个操作发明了一种简单的递归排序算法：归并排序。要将一个数组排序，可以先（递归地）将它分成两半分别排序，然后将结果归并起来：你将会看到，归并排序最<br>
-吸引人的性质是它能够保证将任意长度为，的数组排序所需时间和，成正比；它的主要缺点则是它所需的额外空间。简单的归并排序如图所示。</p>
-<figure data-type="image" tabindex="1"><img src="https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/FoxitPhantom_6xnNTxUAow.png" alt="图" loading="lazy"></figure>
-<h4 id="原地归并">原地归并</h4>
-<p>先创建一个数组aux将a的元素全部赋给aux。然后开始将两个有序的数组归并成一个有序的数组。<br>
-将a[lo, mid]和a[mid + 1, hi]两个有序数组归并为一个有序数组<br>
-<img src="https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/FoxitPhantom_1FWin67kuQ.png" alt="图" loading="lazy"></p>
-<pre><code class="language-C/C++">void merge(int a[], int lo, int mid, int hi)
-{
-    int i, j;
-    i = lo;
-    j = mid + 1;
-    int aux[hi + 1];
-    for (int k = lo; k &lt;= hi; k++)
-    {
-        aux[k] = a[k];
-    }
-    for (int k = lo; k &lt;= hi; k++)
-    {
-        if (i &gt; mid)
-        {
-            a[k] = aux[j++];
-        }
-        else if (j &gt; hi)
-        {
-            a[k] = aux[i++];
-        }
-        else if (aux[j] &lt; aux[i])
-        {
-            a[k] = aux[j++];
-        }
-        else
-        {
-            a[k] = aux[i++];
-        }
-    }
-}
-</code></pre>
-<p>当左边（mid为中界）元素已经全部赋值到a中时，则不需要再考虑左边元素，直接把右边剩余元素全部赋值给a即可  if(i &gt; mid)<br>
-当右边（mid为中界）元素已经全部赋值到a中时，则不需要再考虑右边元素，直接把左边剩余元素全部赋值给a即可  if(j &gt; hi)<br>
-如果右边当前元素小于左边当前元素则将右边当前元素赋给a,(aux[j] &lt; aux[i])<br>
-右边当前元素大于等于左边当前元素，最后一个else</p>
-<h4 id="自上向下">自上向下</h4>
-<p>自顶向下归并将一个数组先中间拆分，再把拆分的数组拆分，直到只有一个元素的数组，然后将每两个数组就行归并。最后归并为一个有序数组。<br>
-<img src="https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/FoxitPhantom_pNM5lWqMZA.png" alt="图" loading="lazy"><br>
-<img src="https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/FoxitPhantom_VlHXNLFh2k.png" alt="图" loading="lazy"></p>
-<pre><code class="language-C/C++">void gbsort(int a[], int lo, int hi)
-{
-    if (hi &lt;= lo)
-    {
-        return;
-    }
-    int mid;
-    mid = lo + (hi - lo) / 2;
-    gbsort(a, lo, mid);
-    gbsort(a, mid + 1, hi);
-    merge(a, lo, mid, hi);
-}
-</code></pre>
-<h4 id="自底向上">自底向上</h4>
-<p>自底向上归并第一次每两个元素的数组归并，然后每四个，八个......归并，最终归并成一个有序数组<br>
-<img src="https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/FoxitPhantom_3ixOLZEZqD.png" alt="图" loading="lazy"></p>
-<pre><code class="language-c/c++">void gbsort(int a[], int lo, int hi)
-{
-    int n = hi + 1; //n为数组长度
-    for (int i = 1; i &lt; n; i += i)//每次循环完了归并前一次翻倍的数组元素个数
-    {
-        for (int j = 0; j &lt; n - i; j += i * 2)
-        {
-            if (j + i * 2 - 1 &lt; hi)
-            {
-                merge(a, j, j + i - 1, j + i * 2 - 1);
-            }
-            else {
-                merge(a, j, j + i - 1, hi);
-            }
-        }
-    }
 }
 </code></pre>
 ]]></content>

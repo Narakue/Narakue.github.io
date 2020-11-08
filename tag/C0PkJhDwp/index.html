@@ -1,15 +1,13 @@
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/css/live2d.css">
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="https://sakuratears.cn/media/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://sakuratears.cn/styles/main.css">
-    <link rel="stylesheet" href="https://sakuratears.cn/media/css/font-awesome.css">
-    <title>SakuraTears</title>
-</head>
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="https://sakuratears.cn/media/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/css/live2d.css">
+<link rel="stylesheet" href="https://sakuratears.cn/styles/main.css">
+<link rel="stylesheet" href="https://sakuratears.cn/media/css/font-awesome.css">
+<title>SakuraTears</title>
 
 
 <body>
@@ -17,6 +15,7 @@
     <div id="content">
         <div class="nav-large">
             <div class="row">
+                
                 <div class="side"><body>
     
     <div id=side>
@@ -287,32 +286,87 @@
     }
 </script>
 </div>
-                
                 <div class="col-md-1 col-lg-3"></div>
                 <div id="main" class="col-xs-12 col-sm-12 col-md-10 col-lg-7">
-                    <div class="tagsbackgroundleft"></div>
-                    <div class="tags-container">
-                        
-                        <img class="tagsimg" src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(7).jpg.webp" alt="">
-                        
-                        
-                        <a class="tag" href="https://sakuratears.cn/tag/C0PkJhDwp/"># C/C++</a>
-                        
-                        <a class="tag" href="https://sakuratears.cn/tag/e0ZtA0F1A/"># 算法</a>
-                        
-                        <a class="tag" href="https://sakuratears.cn/tag/PzPwXvrBB/"># Python</a>
-                        
-                        <a class="tag" href="https://sakuratears.cn/tag/k8BNlgjE1/"># 排序</a>
-                        
-                        <a class="tag" href="https://sakuratears.cn/tag/a6phiPWyI/"># 机器学习</a>
-                        
-                        <a class="tag" href="https://sakuratears.cn/tag/-VkNDzNrn/"># Gridea</a>
-                        
+                    <link rel="stylesheet" href="https://sakuratears.cn/media/css/font-awesome.css">
+<div class="tag-container">
+    
+    <div class="postshow">
+        
+        <div id="post" style="width:100%">
+            <img src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(8).jpg.webp" class="postimage"
+                onclick="window.location.href= 'https://sakuratears.cn/post/ccru-he-chuan-di-er-wei-shu-zu/';return false">
+            <div class="posttitlebox">
+                <div class="posttitle" onclick="window.location.href= 'https://sakuratears.cn/post/ccru-he-chuan-di-er-wei-shu-zu/';return false">
+                    C/C++如何传递二维数组？
+                </div>
+            </div>
+        </div>
+        <div class="postinfo">
+            <div class="postdate"><i class="fa fa-calendar"></i>2020/11/08</div>
+            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 4 min read</div>
+            <div class="posttag">
+                
+                <a href="https://sakuratears.cn/tag/C0PkJhDwp/" class="postlink">
+                    <i class="fa fa-tag"></i> C/C++
+                </a>
+                
+            </div>
+        </div>
+        
+</div>
+
+</div>
+                    <div>
+                        <div class="pagi">
+    <ul>
+        
+        <li><a style="width:100px">&nbsp;</a></li>
+        
+                <li><a id="page1">1</a></li>
+                <li><a id="page2" class="active">2</a></li>
+                <li><a id="page3">3</a></li>
+                
+        <li><a style="width:100px">&nbsp;</a></li>
+        
+            </ul>
+</div>
+
+<div id="pagination-prev" style="display:none"> 
+</div>
+<div id="pagination-next" style="display:none"> </div>
+
+
+<script>
+    var prevstr = document.getElementById("pagination-prev").innerHTML;
+    var nextstr = document.getElementById("pagination-next").innerHTML;
+    var page1 = document.getElementById("page1");
+    var page2 = document.getElementById("page2");
+    var page3 = document.getElementById("page3");
+    page1.innerHTML = '-';
+    page2.innerHTML = '1';
+    page3.innerHTML = '-';
+    if (prevstr.length > 5) {
+        if (prevstr.indexOf("page/") != -1) {
+            var prevnum = parseInt(prevstr.split("page/")[1]);
+            page1.innerHTML = prevnum;
+            page2.innerHTML = prevnum + 1;
+        } else {
+            page1.innerHTML = 1;
+            page2.innerHTML = 2;
+        }
+    }
+    if (nextstr.indexOf("page/") != -1) {
+        var nextnum = parseInt(nextstr.split("page/")[1]);
+        page3.innerHTML = nextnum;
+        page2.innerHTML = nextnum - 1;
+    }
+</script>
+                        <div style="padding-bottom:10%"></div>
                     </div>
                 </div>
                 <div class="col-md-1 col-lg-2"></div>
                 
-                <div class="col-xs-6 col-sm-2"></div>
             </div>
             
                 <head>
@@ -388,6 +442,7 @@
             <div id="bgurl" style="display:none">https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/vKXn1oIoZi.jpg</div>
                
     </div>
+
 
     <!-- 响应式布局，针对手机端内容显示 -->
     <div class="nav-small">
@@ -508,22 +563,37 @@
   </script> 
 </body>
             <div style="margin-top:50px"></div>
-            <div class="tags-container">
+            <link rel="stylesheet" href="https://sakuratears.cn/media/css/font-awesome.css">
+<div class="tag-container">
+    
+    <div class="postshow">
+        
+        <div id="post" style="width:100%">
+            <img src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(8).jpg.webp" class="postimage"
+                onclick="window.location.href= 'https://sakuratears.cn/post/ccru-he-chuan-di-er-wei-shu-zu/';return false">
+            <div class="posttitlebox">
+                <div class="posttitle" onclick="window.location.href= 'https://sakuratears.cn/post/ccru-he-chuan-di-er-wei-shu-zu/';return false">
+                    C/C++如何传递二维数组？
+                </div>
+            </div>
+        </div>
+        <div class="postinfo">
+            <div class="postdate"><i class="fa fa-calendar"></i>2020/11/08</div>
+            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 4 min read</div>
+            <div class="posttag">
                 
-                <img class="tagsimg" src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(7).jpg.webp" alt="">
+                <a href="https://sakuratears.cn/tag/C0PkJhDwp/" class="postlink">
+                    <i class="fa fa-tag"></i> C/C++
+                </a>
                 
-            
-                <a class="tag" href="https://sakuratears.cn/tag/C0PkJhDwp/"># C/C++</a>
+            </div>
+        </div>
+        
+</div>
+
+</div>
+            <div class="pagination-container">
                 
-                <a class="tag" href="https://sakuratears.cn/tag/e0ZtA0F1A/"># 算法</a>
-                
-                <a class="tag" href="https://sakuratears.cn/tag/PzPwXvrBB/"># Python</a>
-                
-                <a class="tag" href="https://sakuratears.cn/tag/k8BNlgjE1/"># 排序</a>
-                
-                <a class="tag" href="https://sakuratears.cn/tag/a6phiPWyI/"># 机器学习</a>
-                
-                <a class="tag" href="https://sakuratears.cn/tag/-VkNDzNrn/"># Gridea</a>
                 
             </div>
         </div>
@@ -535,12 +605,7 @@
 </body>
 
 </html>
-<script>
-    $(".tag").each(function () {
-        var rgb = '#' + Math.floor((Math.random()) * 0xffffff).toString(16);;
-        $(this).css('color', rgb);
-    });
-</script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
 
 
 <script>
@@ -557,4 +622,4 @@
         }
 </script>
 
-    <script src="https://sakuratears.cn/media/js/index.js"></script>
+<script src="https://sakuratears.cn/media/js/index.js"></script>
