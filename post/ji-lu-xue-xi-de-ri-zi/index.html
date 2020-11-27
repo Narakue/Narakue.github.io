@@ -10,14 +10,14 @@
 <meta name="keywords" content="">
 <meta name="description" content="欢迎访问[SakuraTears]的个人博客">
 <meta name="author" content="kveln">
-<title>C语言实现链表基本操作（交换第i个和第j个节点） | SakuraTears</title>
+<title>记录学习的日子 | SakuraTears</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 <link
   href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
   rel='stylesheet' type='text/css'>
-<link rel="alternate" type="application/rss+xml" title="C语言实现链表基本操作（交换第i个和第j个节点） | SakuraTears » Feed"
+<link rel="alternate" type="application/rss+xml" title="记录学习的日子 | SakuraTears » Feed"
   href="https://sakuratears.cn/atom.xml">
 <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/styles/androidstudio.min.css">
@@ -30,8 +30,8 @@
 
 <script>hljs.initHighlightingOnLoad();</script>
 
-  <meta property="og:description" content="C语言实现链表基本操作（交换第i个和第j个节点）" />
-  <meta property="og:url" content="https://sakuratears.cn/post/c-yu-yan-shi-xian-lian-biao-ji-ben-cao-zuo-jiao-huan-di-i-ge-he-di-j-ge-jie-dian/" />
+  <meta property="og:description" content="记录学习的日子" />
+  <meta property="og:url" content="https://sakuratears.cn/post/ji-lu-xue-xi-de-ri-zi/" />
   <meta property="og:locale" content="zh-CN" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="SakuraTears" />
@@ -163,15 +163,11 @@
             <div class="post-heading">
               <span class="tags">
                 
-                <a href="https://sakuratears.cn/tag/paeI_AUuZ/" class="tag">数据结构</a>
-                
-                <a href="https://sakuratears.cn/tag/C0PkJhDwp/" class="tag">C/C++</a>
-                
               </span>
-              <h1>C语言实现链表基本操作（交换第i个和第j个节点）</h1>
+              <h1>记录学习的日子</h1>
               <span class="meta">
                 Posted on
-                2020/10/23，5 min read
+                2020/11/27，1 min read
               </span>
             </div>
           
@@ -186,262 +182,18 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto post-content-container">
           
-          <img class="post-feature-header-image" src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(3).jpg.webp" alt="封面图">
-          </img>
-          
-          <h2 id="c语言实现链表基本操作交换第i个和第j个节点">C语言实现链表基本操作（交换第i个和第j个节点）</h2>
-<h3 id="当i或者j为1时需要让链表的表头指向j">当i或者j为1时，需要让链表的表头指向j。</h3>
-<figure data-type="image" tabindex="1"><img src="https://img-blog.csdnimg.cn/20200611081240188.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_8,color_FFFFFF,t_70" alt="开始时" loading="lazy"></figure>
-<p><img src="https://img-blog.csdnimg.cn/20200611081335308.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_8,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/2020061108140129.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_8,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200611081415319.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_8,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200611081427878.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_8,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-代码为</p>
-<pre><code class="language-c">/*i和j为1时情况比较特殊，需要让表头重新指向交换后的那个节点*/
-    if (i == 1) { 
-        t1 = *L;
-        for (m = 1; temp-&gt;Next != NULL; m++, temp = temp-&gt;Next) {
-            if (m + 1 == j) {
-                *L = temp-&gt;Next;
-                t2 = temp-&gt;Next-&gt;Next;
-                temp-&gt;Next-&gt;Next = t1-&gt;Next;
-                t1-&gt;Next = t2;
-                temp-&gt;Next = t1;
-            }
-        }
-    }
-</code></pre>
-<h3 id="当i和j都不为1时">当i和j都不为1时。</h3>
-<p>节点相邻与不相邻也是不一样的。<br>
-不相邻的情况下就是让i前面的节点指向j，然后让j前面的节点指向i。如果两个节点相邻（假设i &lt; j）j前面的节点就是i，j前面的节点指向i就是指向了自己，所以要分开写。<br>
-不相邻节点时：<br>
-<img src="https://img-blog.csdnimg.cn/20200611083309796.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200611083331554.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200611083418720.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200611083435638.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-代码为：</p>
-<pre><code class="language-c">if ((i - j) != 1 &amp;&amp; (j- i) != 1) {//非相邻结点之间交换
-            for (m = 1; temp-&gt;Next != NULL; m++, temp = temp-&gt;Next) {
-                if (m + 1 == i) {
-                    t1 = temp;
-                }
-                if (m + 1 == j) {
-                    t2 = temp;
-                }
-            }
-            t5 = t1-&gt;Next-&gt;Next;
-            t3 = t1-&gt;Next;
-            t4 = t2-&gt;Next;
-            t1-&gt;Next = t4;
-            t2-&gt;Next = t3;
-            t3-&gt;Next = t4-&gt;Next;
-            t4-&gt;Next = t5;
-        }
-</code></pre>
-<h3 id="最后一种情况两个节点相邻">最后一种情况，两个节点相邻：</h3>
-<p><img src="https://img-blog.csdnimg.cn/20200611084227643.png" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200611084240634.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200611084255116.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-<img src="https://img-blog.csdnimg.cn/20200611084305639.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MDg5ODUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-代码为：</p>
-<pre><code class="language-c">for (m = 1; temp != NULL; m++, temp = temp-&gt;Next) {
-                if (m + 1 == i) {
-                    t1 = temp;
-                }
-                if (m == j) {
-                    t2 = temp;
-                }
-            }
-            temp = t2-&gt;Next;
-            t3 = t1-&gt;Next;
-            t1-&gt;Next = t2;
-            t3-&gt;Next = temp;
-            t2-&gt;Next = t3;
-        }
-</code></pre>
-<p>全部代码：</p>
-<pre><code class="language-c">#include &lt;stdio.h&gt;
-#include &lt;malloc.h&gt;
-
-typedef struct node
-{
-    int Score;
-    struct node * Next;
-}Node, * List;
-
-void Insert(List *L, Node e)
-{
-    List temp = *L;
-    List n = (List)malloc(sizeof(Node));
-    n-&gt;Score = e.Score;
-    if (temp == NULL) {
-        *L = n;
-    }
-    else {
-        while (temp-&gt;Next != NULL) {
-            temp = temp-&gt;Next;
-        }
-        temp-&gt;Next = n;
-    }
-    n-&gt;Next = NULL;
-}
-
-void Swap(List * L, int i, int j)
-{
-    List temp = *L;
-    List t1;
-    List t2;
-    List t3;
-    List t4;
-    List t5;
-    int m;
-    /*i和j为1时情况比较特殊，需要让表头重新指向交换后的那个节点*/
-    if (i == 1) { 
-        t1 = *L;
-        for (m = 1; temp-&gt;Next != NULL; m++, temp = temp-&gt;Next) {
-            if (m + 1 == j) {
-                *L = temp-&gt;Next;
-                t2 = temp-&gt;Next-&gt;Next;
-                temp-&gt;Next-&gt;Next = t1-&gt;Next;
-                t1-&gt;Next = t2;
-                temp-&gt;Next = t1;
-            }
-        }
-    }
-    if (j == 1) {
-        t1 = *L;
-        for (m = 1; temp-&gt;Next != NULL; m++, temp = temp-&gt;Next) {
-            if (m + 1 == i) {
-                *L = temp-&gt;Next;
-                t2 = temp-&gt;Next-&gt;Next;
-                temp-&gt;Next-&gt;Next = t1-&gt;Next;
-                t1-&gt;Next = t2;
-                temp-&gt;Next = t1;
-            }
-        }
-    }
-    /*相邻节点之间交换和非相邻结点之间交换不一样*/
-    else {
-        if ((i - j) != 1 &amp;&amp; (j- i) != 1) {//非相邻结点之间交换
-            for (m = 1; temp-&gt;Next != NULL; m++, temp = temp-&gt;Next) {
-                if (m + 1 == i) {
-                    t1 = temp;
-                }
-                if (m + 1 == j) {
-                    t2 = temp;
-                }
-            }
-            t5 = t1-&gt;Next-&gt;Next;
-            t3 = t1-&gt;Next;
-            t4 = t2-&gt;Next;
-            t1-&gt;Next = t4;
-            t2-&gt;Next = t3;
-            t3-&gt;Next = t4-&gt;Next;
-            t4-&gt;Next = t5;
-        }
-        else if (i &lt; j) {//相邻节点之间交换
-            for (m = 1; temp != NULL; m++, temp = temp-&gt;Next) {
-                if (m + 1 == i) {
-                    t1 = temp;
-                }
-                if (m == j) {
-                    t2 = temp;
-                }
-            }
-            temp = t2-&gt;Next;
-            t3 = t1-&gt;Next;
-            t1-&gt;Next = t2;
-            t3-&gt;Next = temp;
-            t2-&gt;Next = t3;
-        }
-        else if (i &gt; j) {
-            for (m = 1; temp != NULL; m++, temp = temp-&gt;Next) {
-                if (m + 1 == j) {
-                    t1 = temp;
-                }
-                if (m == i) {
-                    t2 = temp;
-                }
-            }
-            temp = t2-&gt;Next;
-            t3 = t1-&gt;Next;
-            t1-&gt;Next = t2;
-            t3-&gt;Next = temp;
-            t2-&gt;Next = t3;
-        }
-    }
-}
-
-void printflist(List list) 
-{
-    List temp;
-    for (temp = list; temp != NULL; temp = temp-&gt;Next) {
-        printf(&quot;%d\n&quot;, temp-&gt;Score);
-    }
-}
-
-void freelist(List *list)
-{
-    List temp = *list, del;
-    while (temp != NULL) {
-        del = temp;
-        temp = temp-&gt;Next;
-        free(del);
-    }
-}
-
-int main()
-{
-    List list = NULL;
-    Node n1, n2, n3, n4, e;//定义5个节点
-    e.Score = 5;
-    n1.Score = 1;
-    n2.Score = 2;
-    n3.Score = 3;
-    n4.Score = 4;
-    Insert(&amp;list, n1);
-    Insert(&amp;list, n2);
-    Insert(&amp;list, n3);
-    Insert(&amp;list, n4);
-    Insert(&amp;list, e);
-    // dellist(&amp;list, 8);
-    Swap(&amp;list, 5, 4);
-    printflist(list);
-    freelist(&amp;list);
-    return 0;
-}
-
-
-</code></pre>
+          <h1 id="1127">11/27</h1>
+<p>开始记录学习的生活，争取早日成为大佬！</p>
 
           <div class="toc-container"><ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#c%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E9%93%BE%E8%A1%A8%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E4%BA%A4%E6%8D%A2%E7%AC%ACi%E4%B8%AA%E5%92%8C%E7%AC%ACj%E4%B8%AA%E8%8A%82%E7%82%B9">C语言实现链表基本操作（交换第i个和第j个节点）</a>
-<ul>
-<li><a href="#%E5%BD%93i%E6%88%96%E8%80%85j%E4%B8%BA1%E6%97%B6%E9%9C%80%E8%A6%81%E8%AE%A9%E9%93%BE%E8%A1%A8%E7%9A%84%E8%A1%A8%E5%A4%B4%E6%8C%87%E5%90%91j">当i或者j为1时，需要让链表的表头指向j。</a></li>
-<li><a href="#%E5%BD%93i%E5%92%8Cj%E9%83%BD%E4%B8%8D%E4%B8%BA1%E6%97%B6">当i和j都不为1时。</a></li>
-<li><a href="#%E6%9C%80%E5%90%8E%E4%B8%80%E7%A7%8D%E6%83%85%E5%86%B5%E4%B8%A4%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9B%B8%E9%82%BB">最后一种情况，两个节点相邻：</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a href="#1127">11/27</a></li>
 </ul>
 </div>
           
-          <hr />
-          <p class="next-post">下一篇：
-            <a href="https://sakuratears.cn/post/c-yu-yan-lian-biao-ji-ben-cao-zuo-tou-cha-fa-ji-qi-ni-zhi/">
-              <span class="post-title">
-                C语言链表基本操作（头插法及其逆置）&rarr;
-              </span>
-            </a>
-          </p>
-          
           <div class="comment" style="text-align: center;">
             
-            <span id="/post/c-yu-yan-shi-xian-lian-biao-ji-ben-cao-zuo-jiao-huan-di-i-ge-he-di-j-ge-jie-dian/" class="leancloud_visitors"
-              data-flag-title="C语言实现链表基本操作（交换第i个和第j个节点）">
+            <span id="/post/ji-lu-xue-xi-de-ri-zi/" class="leancloud_visitors"
+              data-flag-title="记录学习的日子">
               <em class="post-meta-item-text">阅读量 </em>
               <i class="leancloud-visitors-count">loading...</i>
             </span>
