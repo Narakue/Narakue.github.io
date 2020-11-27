@@ -78,7 +78,7 @@
         
         <li class="nav-item">
           <div class="gridea-search-container">
-            <form id="gridea-search-form" style="position: relative" data-update="1606440542466"
+            <form id="gridea-search-form" style="position: relative" data-update="1606457116674"
               action="/search/index.html">
               <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
               <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
@@ -128,7 +128,7 @@
         
         <li class="nav-item">
           <div class="gridea-search-container">
-            <form id="gridea-search-form" style="position: relative" data-update="1606440542466"
+            <form id="gridea-search-form" style="position: relative" data-update="1606457116674"
               action="/search/index.html">
               <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
               <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
@@ -150,6 +150,8 @@
             <!-- 没Title并且有headerType为Post：文章Header -->
             <div class="post-heading">
               <span class="tags">
+                
+                <a href="https://sakuratears.cn/tag/k8BNlgjE1/" class="tag">排序</a>
                 
                 <a href="https://sakuratears.cn/tag/e0ZtA0F1A/" class="tag">算法</a>
                 
@@ -175,8 +177,9 @@
           <img class="post-feature-header-image" src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(4).jpg.webp" alt="封面图">
           </img>
           
-          <p>为了展示初级排序算法性质的价值，接下来我们将学习一种基于插入排序的快速的排序算法。<br>
-对于大规模乱序数组插入排序很慢，因为它只会交换相邻的元素，因此元素只能一点一点地从数组的一端移动到另一端。例如，如果主键最小的元素正好在数组的尽头，要将它挪到正确的位置就需要№1次移动。希尔排序为了加快速度简单地改进了插入排序，交换不相邻的元素以对数组的局部进行排序，并最终用插入排序将局部有序的数组排序。</p>
+          <p>为了展示初级排序算法性质的价值，接下来我们将学习一种基于插入排序的快速的排序算法。</p>
+<!-- more -->
+<p>对于大规模乱序数组插入排序很慢，因为它只会交换相邻的元素，因此元素只能一点一点地从数组的一端移动到另一端。例如，如果主键最小的元素正好在数组的尽头，要将它挪到正确的位置就需要№1次移动。希尔排序为了加快速度简单地改进了插入排序，交换不相邻的元素以对数组的局部进行排序，并最终用插入排序将局部有序的数组排序。</p>
 <p>实现希尔排序的一种方法是对于每个h，用插入排序将h个子数组独立地排序。但因为子数组是相互独立的，一个更简单的方法是在h-子数组中将每个元素交换到比它大的元素之前去（将比它大的元素向右移动一格）。只需要在插人排序的代码中将移动元素的距离由1改为h即可。这样，希尔排序的实现就转化为了一个类似于插人排序但使用不同增量的过程。</p>
 <p>希尔排序为插入排序高级版，先把几个部分的数组用插入排序排好，然后再把这几个分散数组排序成有序数组。<br>
 确定一个增量h（h可以是数组总长/3 or /2），每次循环完增量变小直到为1，每次把分散的数组整合成一个大的有序数组，直到增量为1时，整个数组排序完成。</p>

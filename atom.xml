@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-11-27T01:29:05.399Z</updated>
+    <updated>2020-11-27T06:05:24.772Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -231,7 +231,11 @@ public:
         <link href="https://sakuratears.cn/post/shui-yu-da-xiao-dfsbfs/">
         </link>
         <updated>2020-11-04T12:46:03.000Z</updated>
-        <content type="html"><![CDATA[<p>来源：力扣（LeetCode）<br>
+        <summary type="html"><![CDATA[<p>DFS BFS例题</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>DFS BFS例题</p>
+<!-- more -->
+<p>来源：力扣（LeetCode）<br>
 链接：https://leetcode-cn.com/problems/pond-sizes-lcci</p>
 <p>你有一个用于表示一片土地的整数矩阵land，该矩阵中每个点的值代表对应地点的海拔高度。若值为0则表示水域。由垂直、水平或对角连接的水域为池塘。池塘的大小是指相连接的水域的个数。编写一个方法来计算矩阵中所有池塘的大小，返回值需要从小到大排序。</p>
 <p>示例：</p>
@@ -354,8 +358,12 @@ public:
         <link href="https://sakuratears.cn/post/si-shu-zhi-he/">
         </link>
         <updated>2020-11-01T13:32:08.000Z</updated>
+        <summary type="html"><![CDATA[<h4 id="题目描述">题目描述：</h4>
+<p>给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。</p>
+]]></summary>
         <content type="html"><![CDATA[<h4 id="题目描述">题目描述：</h4>
 <p>给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。</p>
+<!-- more -->
 <p>注意：</p>
 <p>答案中不可以包含重复的四元组。</p>
 <p>示例：</p>
@@ -818,7 +826,7 @@ if __name__ == '__main__':
         <updated>2020-10-24T10:48:49.000Z</updated>
         <content type="html"><![CDATA[<p>由于政策原因使用pip(pycharm也是)装第三方库有时会很慢有时会失败，有条件的可以使用不可描述方法进行安装或者我们可以使用清华源镜像装库<br>
 链接https://mirrors.tuna.tsinghua.edu.cn/help/pypi/</p>
-]]></content>
+<!-- more -->]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[KMP算法]]></title>
@@ -826,9 +834,12 @@ if __name__ == '__main__':
         <link href="https://sakuratears.cn/post/kmp-suan-fa/">
         </link>
         <updated>2020-10-23T07:02:13.000Z</updated>
-        <content type="html"><![CDATA[<p>本文转载自知乎“洛谷网校 阮行止”</p>
+        <summary type="html"><![CDATA[<p>KMP算法是一种<strong>字符串匹配</strong>算法，可以在 O(n+m) 的时间复杂度内实现两个字符串的匹配。本文将引导您学习KMP算法。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>KMP算法是一种<strong>字符串匹配</strong>算法，可以在 O(n+m) 的时间复杂度内实现两个字符串的匹配。本文将引导您学习KMP算法。</p>
+<!-- more -->
+<p>本文转载自知乎“洛谷网校 阮行止”</p>
 <p>网址：https://www.zhihu.com/question/21923021/answer/1032665486?utm_source=qq&amp;utm_medium=social&amp;utm_oi=952480495343259648</p>
-<p>KMP算法是一种<strong>字符串匹配</strong>算法，可以在 O(n+m) 的时间复杂度内实现两个字符串的匹配。本文将引导您学习KMP算法。</p>
 <h4 id="字符串匹配问题">字符串匹配问题</h4>
 <p>所谓字符串匹配，是这样一种问题：“字符串 P 是否为字符串 S 的子串？如果是，它出现在 S 的哪些位置？” 其中 S 称为<strong>主串</strong>；P 称为<strong>模式串</strong>。下面的图片展示了一个例子。</p>
 <figure data-type="image" tabindex="1"><img src="https://pic4.zhimg.com/v2-2967e415f490e03a2a9400a92b185310_r.jpg?source=1940ef5c" alt="图" loading="lazy"></figure>
@@ -922,8 +933,11 @@ if __name__ == '__main__':
         <link href="https://sakuratears.cn/post/xi-er-pai-xu/">
         </link>
         <updated>2020-10-23T07:00:09.000Z</updated>
-        <content type="html"><![CDATA[<p>为了展示初级排序算法性质的价值，接下来我们将学习一种基于插入排序的快速的排序算法。<br>
-对于大规模乱序数组插入排序很慢，因为它只会交换相邻的元素，因此元素只能一点一点地从数组的一端移动到另一端。例如，如果主键最小的元素正好在数组的尽头，要将它挪到正确的位置就需要№1次移动。希尔排序为了加快速度简单地改进了插入排序，交换不相邻的元素以对数组的局部进行排序，并最终用插入排序将局部有序的数组排序。</p>
+        <summary type="html"><![CDATA[<p>为了展示初级排序算法性质的价值，接下来我们将学习一种基于插入排序的快速的排序算法。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>为了展示初级排序算法性质的价值，接下来我们将学习一种基于插入排序的快速的排序算法。</p>
+<!-- more -->
+<p>对于大规模乱序数组插入排序很慢，因为它只会交换相邻的元素，因此元素只能一点一点地从数组的一端移动到另一端。例如，如果主键最小的元素正好在数组的尽头，要将它挪到正确的位置就需要№1次移动。希尔排序为了加快速度简单地改进了插入排序，交换不相邻的元素以对数组的局部进行排序，并最终用插入排序将局部有序的数组排序。</p>
 <p>实现希尔排序的一种方法是对于每个h，用插入排序将h个子数组独立地排序。但因为子数组是相互独立的，一个更简单的方法是在h-子数组中将每个元素交换到比它大的元素之前去（将比它大的元素向右移动一格）。只需要在插人排序的代码中将移动元素的距离由1改为h即可。这样，希尔排序的实现就转化为了一个类似于插人排序但使用不同增量的过程。</p>
 <p>希尔排序为插入排序高级版，先把几个部分的数组用插入排序排好，然后再把这几个分散数组排序成有序数组。<br>
 确定一个增量h（h可以是数组总长/3 or /2），每次循环完增量变小直到为1，每次把分散的数组整合成一个大的有序数组，直到增量为1时，整个数组排序完成。</p>
