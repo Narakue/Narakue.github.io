@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-11-27T01:17:51.154Z</updated>
+    <updated>2020-11-27T01:29:05.399Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -16,9 +16,14 @@
         <link href="https://sakuratears.cn/post/mai-mai-gu-piao-de-zui-jia-shi-ji-iitan-xin/">
         </link>
         <updated>2020-11-12T12:22:38.000Z</updated>
+        <summary type="html"><![CDATA[<h4 id="题目">题目</h4>
+<p>给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。<br>
+设计一个算法来计算你所能获取的最大利润。你可以尽可能地完成更多的交易（多次买卖一支股票）。</p>
+]]></summary>
         <content type="html"><![CDATA[<h4 id="题目">题目</h4>
 <p>给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。<br>
 设计一个算法来计算你所能获取的最大利润。你可以尽可能地完成更多的交易（多次买卖一支股票）。</p>
+<!-- more -->
 <p>注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</p>
 <p>示例 1:<br>
 输入: [7,1,5,3,6,4]<br>
@@ -65,7 +70,11 @@ public:
         <link href="https://sakuratears.cn/post/ccru-he-chuan-di-er-wei-shu-zu/">
         </link>
         <updated>2020-11-08T12:06:47.000Z</updated>
-        <content type="html"><![CDATA[<p>一般传递二维数组的基本规则好像是这样的：可以用二维数组名作为实参或者形参，在被调用函数中对形参数组定义时可以可以指定所有维数的大小，也可以省略第一维的大小说明。如：</p>
+        <summary type="html"><![CDATA[<p>一般传递二维数组的基本规则好像是这样的：可以用二维数组名作为实参或者形参，在被调用函数中对形参数组定义时可以可以指定所有维数的大小，也可以省略第一维的大小说明。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>一般传递二维数组的基本规则好像是这样的：可以用二维数组名作为实参或者形参，在被调用函数中对形参数组定义时可以可以指定所有维数的大小，也可以省略第一维的大小说明。</p>
+<!-- more -->
+<p>如：</p>
 <pre><code class="language-C++">void Func(int array[3][10]);
 
 void Func(int array[][10]);
@@ -116,7 +125,10 @@ Func(a, 3, 3);
         <link href="https://sakuratears.cn/post/n-huang-hou/">
         </link>
         <updated>2020-11-06T00:56:46.000Z</updated>
+        <summary type="html"><![CDATA[<p>n 皇后问题研究的是如何将 n 个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。</p>
+]]></summary>
         <content type="html"><![CDATA[<p>n 皇后问题研究的是如何将 n 个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。</p>
+<!-- more -->
 <figure data-type="image" tabindex="1"><img src="https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/8-queens.png" alt="图" loading="lazy"></figure>
 <p>上图为 8 皇后问题的一种解法。</p>
 <p>给定一个整数 n，返回所有不同的 n 皇后问题的解决方案。</p>
