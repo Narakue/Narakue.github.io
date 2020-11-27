@@ -1148,17 +1148,17 @@ h3.serchedPreview {
 }
 
 			body {
-				background-color: #ffffff !important;
+				background-color: #fcecd4 !important;
 				color: #4a4a4a !important;
 			}
 
 			#mainNav.is-fixed {
-				background-color: RGBA(255,255,255,0.9);
+				background-color: RGBA(252,236,212,0.9);
 				border-bottom: 1px solid #ffffff;
 			}
 
 			.fixed-top {
-				background-color: #ffffff;
+				background-color: #fcecd4;
 			}
 			.fixed-top .navbar-brand,
 			.fixed-top .navbar-nav > li.nav-item > a,
@@ -1262,7 +1262,7 @@ h3.serchedPreview {
 
 			.toc-container .markdownIt-TOC {
 				border: 1px solid RGBA(74,74,74,0.3);
-				background-color: #ffffff;
+				background-color: #fcecd4;
 			}
 
 			.toc-container .markdownIt-TOC li a {
