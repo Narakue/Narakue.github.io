@@ -84,7 +84,7 @@
         
         <li class="nav-item">
           <div class="gridea-search-container">
-            <form id="gridea-search-form" style="position: relative" data-update="1607146460645"
+            <form id="gridea-search-form" style="position: relative" data-update="1607147472966"
               action="/search/index.html">
               <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
               <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
@@ -140,7 +140,7 @@
         
         <li class="nav-item">
           <div class="gridea-search-container">
-            <form id="gridea-search-form" style="position: relative" data-update="1607146460645"
+            <form id="gridea-search-form" style="position: relative" data-update="1607147472966"
               action="/search/index.html">
               <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
               <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
@@ -192,10 +192,10 @@
           </img>
           
           <h4 id="题目描述">题目描述：</h4>
-<p>给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。</p>
+<p>给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。<br><br></p>
 <!-- more -->
 <p>注意：</p>
-<p>答案中不可以包含重复的四元组。</p>
+<p>答案中不可以包含重复的四元组。<br><br></p>
 <p>示例：</p>
 <p>给定数组 nums = [1, 0, -1, 0, -2, 2]，和 target = 0。</p>
 <p>满足要求的四元组集合为：<br>
@@ -203,11 +203,11 @@
 [-1,  0, 0, 1],<br>
 [-2, -1, 1, 2],<br>
 [-2,  0, 0, 2]<br>
-]</p>
+]<br><br></p>
 <p>来源：力扣18题（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/4sum</p>
+链接：https://leetcode-cn.com/problems/4sum<br><br></p>
 <h4 id="题目分析">题目分析</h4>
-<p>此题可以用双指针法解决，先用两个for循环i, j遍历前面，两个指针left, right收缩，当nums[i] + nums[j] + nums[left] + nums[right] == target 时，入数组，然后注意一下去重。（三数之和一个for循环，四数之和用两个，五数之和用三个......）</p>
+<p>此题可以用双指针法解决，先用两个for循环i, j遍历前面，两个指针left, right收缩，当nums[i] + nums[j] + nums[left] + nums[right] == target 时，入数组，然后注意一下去重。（三数之和一个for循环，四数之和用两个，五数之和用三个......）<br><br></p>
 <h4 id="代码题解">代码题解</h4>
 <pre><code class="language-c++">vector&lt;vector&lt;int&gt;&gt; fourSum(vector&lt;int&gt; &amp;nums, int target)
 {

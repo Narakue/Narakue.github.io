@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-12-05T05:34:29.800Z</updated>
+    <updated>2020-12-05T05:51:19.622Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -17,21 +17,21 @@
         </link>
         <updated>2020-12-04T11:47:51.000Z</updated>
         <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。</p>
+<p>给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。<br><br></p>
 ]]></summary>
         <content type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。</p>
+<p>给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。<br><br></p>
 <!-- more -->
-<p>示例 1：<br></p>
-<p>输入: &quot;babad&quot;<br>
+<p>示例 1：<br>
+输入: &quot;babad&quot;<br>
 输出: &quot;bab&quot;<br>
-注意: &quot;aba&quot; 也是一个有效答案。<br>
-示例 2：<br></p>
-<p>输入: &quot;cbbd&quot;<br>
-输出: &quot;bb&quot;<br></p>
+注意: &quot;aba&quot; 也是一个有效答案。<br><br></p>
+<p>示例 2：<br>
+输入: &quot;cbbd&quot;<br>
+输出: &quot;bb&quot;<br><br></p>
 <p>来源：力扣（LeetCode）<br>
 链接：https://leetcode-cn.com/problems/longest-palindromic-substring<br>
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br></p>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br><br></p>
 <h3 id="题解">题解</h3>
 <h4 id="暴力求解">暴力求解</h4>
 <p>把每个长度大于二的子串都进行验证，然后取最大，时间复杂度O(n3)，然后就愉快的超时0.0</p>
@@ -71,14 +71,14 @@ public:
 如果一个字符串的头尾两个字符都不相等，那么这个字符串一定不是回文串；<br>
 如果一个字符串的头尾两个字符相等，才有必要继续判断下去。<br>
 如果里面的子串是回文，整体就是回文串；<br>
-如果里面的子串不是回文串，整体就不是回文串。<br></p>
-<p>定义dp[i][j]表示s[i....j]是否为回文串(左闭右闭)，根据“如果里面的子串判断是否回文”，可以得到转移方程：dp[i][j] = (s[i] == s[j]) &amp;&amp; dp[i + 1][j - 1] == true<br></p>
-<p>然后考虑一下边界问题：<br><br>
+如果里面的子串不是回文串，整体就不是回文串。<br><br></p>
+<p>定义dp[i][j]表示s[i....j]是否为回文串(左闭右闭)，根据“如果里面的子串判断是否回文”，可以得到转移方程：dp[i][j] = (s[i] == s[j]) &amp;&amp; dp[i + 1][j - 1] == true<br><br></p>
+<p>然后考虑一下边界问题：<br><br><br>
 s[i + 1......j - 1]，成立的条件为长度小于2，即j - 1 - (i + 1) &lt; 2，即j - i &lt; 3.<br>
-j - i &lt; 3 等价于 j - i + 1 &lt; 4，即当子串 s[i..j] 的长度等于 2 或者等于 3 的时候，其实只需要判断一下头尾两个字符是否相等就可以直接下结论了。<br></p>
+j - i &lt; 3 等价于 j - i + 1 &lt; 4，即当子串 s[i..j] 的长度等于 2 或者等于 3 的时候，其实只需要判断一下头尾两个字符是否相等就可以直接下结论了。<br><br></p>
 <p>如果子串 s[i + 1..j - 1] 只有 1 个字符，即去掉两头，剩下中间部分只有 1 个字符，显然是回文；<br>
-如果子串 s[i + 1..j - 1] 为空串，那么子串 s[i, j] 一定是回文子串。<br></p>
-<p>因此，在 s[i] == s[j] 成立和 j - i &lt; 3 的前提下，直接可以下结论，dp[i][j] = true，否则才执行状态转移。<br></p>
+如果子串 s[i + 1..j - 1] 为空串，那么子串 s[i, j] 一定是回文子串。<br><br></p>
+<p>因此，在 s[i] == s[j] 成立和 j - i &lt; 3 的前提下，直接可以下结论，dp[i][j] = true，否则才执行状态转移。<br><br></p>
 <pre><code class="language-C++">class Solution {
 public:
     string longestPalindrome(string s) {
@@ -132,38 +132,37 @@ public:
         <content type="html"><![CDATA[<p>力扣的困难题<s>极其简单！！！</s></p>
 <!-- more -->
 <h3 id="题目">题目</h3>
-<p>给定两个大小为 m 和 n 的正序（从小到大）数组 nums1 和 nums2。请你找出并返回这两个正序数组的中位数。<br></p>
+<p>给定两个大小为 m 和 n 的正序（从小到大）数组 nums1 和 nums2。请你找出并返回这两个正序数组的中位数。<br><br></p>
 <p>进阶：你能设计一个时间复杂度为 O(log (m+n)) 的算法解决此问题吗？<br><br></p>
-<p></p>
-<p>示例 1：<br></p>
-<p>输入：nums1 = [1,3], nums2 = [2]<br>
+<p>示例 1：<br>
+输入：nums1 = [1,3], nums2 = [2]<br>
 输出：2.00000<br>
-解释：合并数组 = [1,2,3] ，中位数 2<br></p>
-<p>示例 2：<br><br>
+解释：合并数组 = [1,2,3] ，中位数 2<br><br></p>
+<p>示例 2：<br>
 输入：nums1 = [1,2], nums2 = [3,4]<br>
 输出：2.50000<br>
-解释：合并数组 = [1,2,3,4] ，中位数 (2 + 3) / 2 = 2.5<br></p>
+解释：合并数组 = [1,2,3,4] ，中位数 (2 + 3) / 2 = 2.5<br><br></p>
 <p>示例 3：<br>
 输入：nums1 = [0,0], nums2 = [0,0]<br>
-输出：0.00000<br></p>
+输出：0.00000<br><br></p>
 <p>示例 4：<br>
 输入：nums1 = [], nums2 = [1]<br>
-输出：1.00000<br></p>
+输出：1.00000<br><br></p>
 <p>示例 5：<br>
 输入：nums1 = [2], nums2 = []<br>
-输出：2.00000<br></p>
-<p>提示：<br></p>
+输出：2.00000<br><br></p>
+<p>提示：<br><br></p>
 <p>nums1.length == m<br>
 nums2.length == n<br>
 0 &lt;= m &lt;= 1000<br>
 0 &lt;= n &lt;= 1000<br>
 1 &lt;= m + n &lt;= 2000<br>
--106 &lt;= nums1[i], nums2[i] &lt;= 106<br></p>
+-106 &lt;= nums1[i], nums2[i] &lt;= 106<br><br></p>
 <p>来源：力扣（LeetCode）<br>
 链接：https://leetcode-cn.com/problems/median-of-two-sorted-arrays<br>
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br></p>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br><br></p>
 <h3 id="思路">思路</h3>
-<p>题目过于简单，把小的数组加到大的数组题然后sort，再找中位数。0.0<br></p>
+<p>题目过于简单，把小的数组加到大的数组题然后sort，再找中位数。0.0<br><br></p>
 <h3 id="代码">代码</h3>
 <pre><code class="language-C++">class Solution {
 public:
@@ -211,31 +210,31 @@ public:
         <content type="html"><![CDATA[<p>LeetCode547题 朋友圈</p>
 <!-- more -->
 <h3 id="题目">题目</h3>
-<p>班上有 N 名学生。其中有些人是朋友，有些则不是。他们的友谊具有是传递性。如果已知 A 是 B 的朋友，B 是 C 的朋友，那么我们可以认为 A 也是 C 的朋友。所谓的朋友圈，是指所有朋友的集合。<br></p>
+<p>班上有 N 名学生。其中有些人是朋友，有些则不是。他们的友谊具有是传递性。如果已知 A 是 B 的朋友，B 是 C 的朋友，那么我们可以认为 A 也是 C 的朋友。所谓的朋友圈，是指所有朋友的集合。<br><br></p>
 <p>给定一个 N * N 的矩阵 M，表示班级中学生之间的朋友关系。如果M[i][j] = 1，表示已知第 i 个和 j 个学生互为朋友关系，否则为不知道。你必须输出所有学生中的已知的朋友圈总数。<br><br><br></p>
 <p></p>
 <p>示例 1：<br><br>
 输入：<br>
 [[1,1,0],<br>
 [1,1,0],<br>
-[0,0,1]]<br><br>
+[0,0,1]]<br><br><br>
 输出：2<br>
 解释：已知学生 0 和学生 1 互为朋友，他们在一个朋友圈。<br>
-第2个学生自己在一个朋友圈。所以返回 2 。<br></p>
+第2个学生自己在一个朋友圈。所以返回 2 。<br><br></p>
 <p>示例 2：<br><br>
 输入：<br>
 [[1,1,0],<br>
 [1,1,1],<br>
-[0,1,1]]<br><br>
+[0,1,1]]<br><br><br>
 输出：1<br>
 解释：已知学生 0 和学生 1 互为朋友，学生 1 和学生 2 互为朋友，所以学生 0 和学生 2 也是朋友，所以他们三个在一个朋友圈，返回 1 。<br><br></p>
-<p>提示：<br></p>
+<p>提示：<br><br></p>
 <p>1 &lt;= N &lt;= 200<br>
 M[i][i] == 1<br>
-M[i][j] == M[j][i]<br></p>
+M[i][j] == M[j][i]<br><br></p>
 <p>来源：力扣（LeetCode）<br>
 链接：https://leetcode-cn.com/problems/friend-circles<br>
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br></p>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br><br></p>
 <h3 id="思路">思路</h3>
 <p>运用并查集算出相关集合</p>
 <h4 id="并查集不优化代码">并查集不优化代码：</h4>
@@ -287,7 +286,7 @@ int count() {
 <br>
 ##### 路径~~亚索~~压缩
 如果我们可以进一步压缩树的高度，让树的高度始终为常数，那find的复杂度就是O(1).
-压缩完是一个根节点下面都是叶子节点，这样树的高度就为常数，非常友好。<br>
+压缩完是一个根节点下面都是叶子节点，这样树的高度就为常数，非常友好。<br><br>
 ```C++
 int find(int x) {
     int r = x;
@@ -302,7 +301,7 @@ int find(int x) {
     return r;
 }
 ```
-<br>
+<br><br>
 ### 代码
 ```C++
 class Solution {
@@ -444,28 +443,28 @@ blacklist snd_pcsp
 <p>给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。<br>
 设计一个算法来计算你所能获取的最大利润。你可以尽可能地完成更多的交易（多次买卖一支股票）。</p>
 <!-- more -->
-<p>注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。<br></p>
+<p>注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。<br><br></p>
 <p>示例 1:<br>
 输入: [7,1,5,3,6,4]<br>
 输出: 7<br>
-解释: 在第 2 天（股票价格 = 1）的时候买入，在第 3 天（股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 = 4 。随后，在第 4 天（股票价格 = 3）的时候买入，在第 5 天（股票价格 = 6）的时候卖出, 这笔交易所能获得利润 = 6-3 = 3 。<br></p>
+解释: 在第 2 天（股票价格 = 1）的时候买入，在第 3 天（股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 = 4 。随后，在第 4 天（股票价格 = 3）的时候买入，在第 5 天（股票价格 = 6）的时候卖出, 这笔交易所能获得利润 = 6-3 = 3 。<br><br></p>
 <p>示例 2:<br>
 输入: [1,2,3,4,5]<br>
 输出: 4<br>
-解释: 在第 1 天（股票价格 = 1）的时候买入，在第 5 天 （股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 = 4 。注意你不能在第 1 天和第 2 天接连购买股票，之后再将它们卖出。因为这样属于同时参与了多笔交易，你必须在再次购买前出售掉之前的股票。<br></p>
+解释: 在第 1 天（股票价格 = 1）的时候买入，在第 5 天 （股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 = 4 。注意你不能在第 1 天和第 2 天接连购买股票，之后再将它们卖出。因为这样属于同时参与了多笔交易，你必须在再次购买前出售掉之前的股票。<br><br></p>
 <p>示例 3:<br>
 输入: [7,6,4,3,1]<br>
 输出: 0<br>
 解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。<br><br></p>
-<p>提示：<br></p>
+<p>提示：<br><br></p>
 <p>1 &lt;= prices.length &lt;= 3 * 10 ^ 4<br>
-0 &lt;= prices[i] &lt;= 10 ^ 4<br></p>
+0 &lt;= prices[i] &lt;= 10 ^ 4<br><br></p>
 <p>来源：力扣（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii<br></p>
+链接：https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii<br><br></p>
 <h4 id="思路">思路</h4>
 <p>第一天买入，第三天卖出的利润是prices[3] - prices[1],也就是(prices[3] - prices[2]) + (prices[2] - porces[1])<br>
-可以发现，我们需要收集每天的正利润就可以，收集正利润的区间，就是股票买卖的区间，而我们只需要关注最终利润就可以了，不需要记录区间。<br></p>
-<p><strong>这就是贪心所贪的地方，只收集正利润。</strong><br></p>
+可以发现，我们需要收集每天的正利润就可以，收集正利润的区间，就是股票买卖的区间，而我们只需要关注最终利润就可以了，不需要记录区间。<br><br></p>
+<p><strong>这就是贪心所贪的地方，只收集正利润。</strong><br><br></p>
 <figure data-type="image" tabindex="1"><img src="https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/1604803105-SzWZhG-122.%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BAII.png" alt="图" loading="lazy"></figure>
 <h4 id="代码">代码</h4>
 <pre><code class="language-C++">class Solution {
@@ -495,7 +494,7 @@ public:
 ]]></summary>
         <content type="html"><![CDATA[<p>一般传递二维数组的基本规则好像是这样的：可以用二维数组名作为实参或者形参，在被调用函数中对形参数组定义时可以可以指定所有维数的大小，也可以省略第一维的大小说明。</p>
 <!-- more -->
-<p>如：<br></p>
+<p>如：<br><br></p>
 <pre><code class="language-C++">void Func(int array[3][10]);
 
 void Func(int array[][10]);
@@ -505,33 +504,27 @@ void Func(int array[][10]);
 <p>二者都是合法而且等价，但是不能把第二维或者更高维的大小省略，如下面的定义是不合法的：<br></p>
 <pre><code class="language-C++">void Func(int array[][]);
 </code></pre>
-<br>
-将二维数组当作参数的时候，必须指明所有维数大小或者省略第一维的，但是不能省略第二维或者更高维的大小，这是由编译器原理限制的。在学编译原理这么课程的时候知道编译器是这样处理数组的：<br>
-<p>对于数组 int p[m][n]; 如果要取p[i][j]的值(i&gt;=0 &amp;&amp; i&lt;m &amp;&amp; 0&lt;=j &amp;&amp; j &lt; n)，编译器是这样寻址的，它的地址为：<br></p>
+<p><br><br><br>
+将二维数组当作参数的时候，必须指明所有维数大小或者省略第一维的，但是不能省略第二维或者更高维的大小，这是由编译器原理限制的。在学编译原理这么课程的时候知道编译器是这样处理数组的：<br><br></p>
+<p>对于数组 int p[m][n]; 如果要取p[i][j]的值(i&gt;=0 &amp;&amp; i&lt;m &amp;&amp; 0&lt;=j &amp;&amp; j &lt; n)，编译器是这样寻址的，它的地址为：<br><br></p>
 <pre><code class="language-C++">p + i*n + j;
-```&lt;br&gt;
-
-从以上可以看出，如果我们省略了第二维或者更高维的大小，编译器将不知道如何正确的寻址。但是我们在编写程序的时候却需要用到各个维数都不固定的二维数组作为参数，这就难办了，编译器不能识别阿，怎么办呢？不要着急，编译器虽然不能识别，但是我们完全可以不把它当作一个二维数组，而是把它当作一个普通的指针，再另外加上两个参数指明各个维数，然后我们为二维数组手工寻址，这样就达到了将二维数组作为函数的参数传递的目的，根据这个思想，我们可以把维数固定的参数变为维数随即的参数，例如：&lt;br&gt;
-
-```C++
-void Func(int array[3][10]); 
+</code></pre>
+<br>
+<p>从以上可以看出，如果我们省略了第二维或者更高维的大小，编译器将不知道如何正确的寻址。但是我们在编写程序的时候却需要用到各个维数都不固定的二维数组作为参数，这就难办了，编译器不能识别阿，怎么办呢？不要着急，编译器虽然不能识别，但是我们完全可以不把它当作一个二维数组，而是把它当作一个普通的指针，再另外加上两个参数指明各个维数，然后我们为二维数组手工寻址，这样就达到了将二维数组作为函数的参数传递的目的，根据这个思想，我们可以把维数固定的参数变为维数随即的参数，例如：<br><br></p>
+<pre><code class="language-C++">void Func(int array[3][10]); 
 
 void Func(int array[][10]);
-```&lt;br&gt;
-
-变为：&lt;br&gt;
-
-```C++
-void Func(int **array, int m, int n);
-```&lt;br&gt;
-
-在转变后的函数中，array[i][j]这样的式子是不对的(不信，大家可以试一下)，因为编译器不能正确的为它寻址，所以我们需要模仿编译器的行为把array[i][j]这样的式子手工转变为&lt;br&gt;
-
-```C++
-*((int*)array + n*i + j);
+</code></pre>
+<br>
+<p>变为：<br><br></p>
+<pre><code class="language-C++">void Func(int **array, int m, int n);
+</code></pre>
+<br>
+<p>在转变后的函数中，array[i][j]这样的式子是不对的(不信，大家可以试一下)，因为编译器不能正确的为它寻址，所以我们需要模仿编译器的行为把array[i][j]这样的式子手工转变为<br><br></p>
+<pre><code class="language-C++">*((int*)array + n*i + j);
 </code></pre>
 <p>​    <br></p>
-<p>在调用这样的函数的时候，需要注意一下，如下面的例子：<br></p>
+<p>在调用这样的函数的时候，需要注意一下，如下面的例子：<br><br></p>
 <pre><code class="language-C++">int a[3][3] = 
 
     {
@@ -542,14 +535,14 @@ void Func(int **array, int m, int n);
 
 Func(a, 3, 3);
 </code></pre>
-<br>
-<p>根据不同编译器不同的设置，可能出现warning 或者error,可以进行强制转换如下调用：  <br></p>
+<p><br><br></p>
+<p>根据不同编译器不同的设置，可能出现warning 或者error,可以进行强制转换如下调用：  <br><br></p>
 <pre><code class="language-C++">Func((int**)a, 3, 3);
 </code></pre>
-<br>
-<p>需要(int**）的强制转换，是因为二维数组和二级指针是不同的，a实质上是一个int (<em>a)[3]，它是一个数组指针，即a[0]是第一维数组的首个元素的地址，a[1]是第二维数组的首个元素的地址，a[2]是第三维数组的首个元素的地址，与int*<em>是不同的类型；如果转为int*</em>，就失去了像数组指针那样a + i = a + i</em>3的效果了<br></p>
-<p>而如果又定义一个char *p[3]，它是一个一维的指针数组，此时p是指向了一个指针，而不是数组。那么这时如果定义char **q = p，就是可以的，而且可以通过q[0]，q[1]来访问字符串。<br></p>
-<p>数组和指针这种东西真是太繁琐复杂了，个人愚见，在C++里就尽量使用STL，并且可以用模板的非类型形参来解决这种灵活处理不固定行列数矩阵的函数，Effective C++里面应该有介绍，并且有对这种模板的优化。<br></p>
+<p><br><br></p>
+<p>需要(int**）的强制转换，是因为二维数组和二级指针是不同的，a实质上是一个int (<em>a)[3]，它是一个数组指针，即a[0]是第一维数组的首个元素的地址，a[1]是第二维数组的首个元素的地址，a[2]是第三维数组的首个元素的地址，与int*<em>是不同的类型；如果转为int*</em>，就失去了像数组指针那样a + i = a + i</em>3的效果了<br><br></p>
+<p>而如果又定义一个char *p[3]，它是一个一维的指针数组，此时p是指向了一个指针，而不是数组。那么这时如果定义char **q = p，就是可以的，而且可以通过q[0]，q[1]来访问字符串。<br><br></p>
+<p>数组和指针这种东西真是太繁琐复杂了，个人愚见，在C++里就尽量使用STL，并且可以用模板的非类型形参来解决这种灵活处理不固定行列数矩阵的函数，Effective C++里面应该有介绍，并且有对这种模板的优化。<br><br></p>
 <p>转载自CSDN</p>
 ]]></content>
     </entry>
@@ -563,29 +556,29 @@ Func(a, 3, 3);
 ]]></summary>
         <content type="html"><![CDATA[<p>n 皇后问题研究的是如何将 n 个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。</p>
 <!-- more -->
-<p><img src="https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/8-queens.png" alt="图" loading="lazy"><br></p>
-<p>上图为 8 皇后问题的一种解法。<br></p>
-<p>给定一个整数 n，返回所有不同的 n 皇后问题的解决方案。<br></p>
-<p>每一种解法包含一个明确的 n 皇后问题的棋子放置方案，该方案中 'Q' 和 '.' 分别代表了皇后和空位。<br></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/8-queens.png" alt="图" loading="lazy"><br><br></p>
+<p>上图为 8 皇后问题的一种解法。<br><br></p>
+<p>给定一个整数 n，返回所有不同的 n 皇后问题的解决方案。<br><br></p>
+<p>每一种解法包含一个明确的 n 皇后问题的棋子放置方案，该方案中 'Q' 和 '.' 分别代表了皇后和空位。<br><br></p>
 <p></p>
-<p>示例：<br></p>
+<p>示例：<br><br></p>
 <p>输入：4<br>
 输出：[<br>
 [&quot;.Q..&quot;,  // 解法 1<br>
 &quot;...Q&quot;,<br>
 &quot;Q...&quot;,<br>
-&quot;..Q.&quot;],<br></p>
+&quot;..Q.&quot;],<br><br></p>
 <p>[&quot;..Q.&quot;,  // 解法 2<br>
 &quot;Q...&quot;,<br>
 &quot;...Q&quot;,<br>
 &quot;.Q..&quot;]<br>
 ]<br>
-解释: 4 皇后问题存在两个不同的解法。<br></p>
-<p>提示：<br></p>
-<p>皇后彼此不能相互攻击，也就是说：任何两个皇后都不能处于同一条横行、纵行或斜线上。<br></p>
+解释: 4 皇后问题存在两个不同的解法。<br><br></p>
+<p>提示：<br><br></p>
+<p>皇后彼此不能相互攻击，也就是说：任何两个皇后都不能处于同一条横行、纵行或斜线上。<br><br></p>
 <p>来源：力扣（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/n-queens</p>
-<p>经典回溯+递归问题，当发现这种情况不行时就回溯到之前的点。<br></p>
+链接：https://leetcode-cn.com/problems/n-queens<br><br></p>
+<p>经典回溯+递归问题，当发现这种情况不行时就回溯到之前的点。<br><br></p>
 <p>代码：</p>
 <pre><code class="language-C++">class Solution {
 public:
@@ -670,9 +663,9 @@ public:
         <content type="html"><![CDATA[<p>DFS BFS例题</p>
 <!-- more -->
 <p>来源：力扣（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/pond-sizes-lcci<br></p>
-<p>你有一个用于表示一片土地的整数矩阵land，该矩阵中每个点的值代表对应地点的海拔高度。若值为0则表示水域。由垂直、水平或对角连接的水域为池塘。池塘的大小是指相连接的水域的个数。编写一个方法来计算矩阵中所有池塘的大小，返回值需要从小到大排序。<br></p>
-<p>示例：<br></p>
+链接：https://leetcode-cn.com/problems/pond-sizes-lcci<br><br></p>
+<p>你有一个用于表示一片土地的整数矩阵land，该矩阵中每个点的值代表对应地点的海拔高度。若值为0则表示水域。由垂直、水平或对角连接的水域为池塘。池塘的大小是指相连接的水域的个数。编写一个方法来计算矩阵中所有池塘的大小，返回值需要从小到大排序。<br><br></p>
+<p>示例：<br><br></p>
 <p>输入：<br>
 [<br>
 [0,2,1,0],<br>
@@ -681,11 +674,11 @@ public:
 [0,1,0,1]<br>
 ]<br>
 输出： [1,2,4]<br>
-提示：<br></p>
+提示：<br><br></p>
 <p>0 &lt; len(land) &lt;= 1000<br>
-0 &lt; len(land[i]) &lt;= 1000<br></p>
+0 &lt; len(land[i]) &lt;= 1000<br><br></p>
 <p>此题DFS，BFS都可以用。<br>
-(代码格式为leetcode模板格式)<br></p>
+(代码格式为leetcode模板格式)<br><br></p>
 <p>代码:</p>
 <h5 id="bfs">BFS</h5>
 <pre><code class="language-C++">class Solution {
@@ -741,6 +734,7 @@ public:
     }
 };
 </code></pre>
+<p><br><br></p>
 <h5 id="dfs">DFS</h5>
 <pre><code class="language-C++">class Solution {
 public:
@@ -793,13 +787,13 @@ public:
         </link>
         <updated>2020-11-01T13:32:08.000Z</updated>
         <summary type="html"><![CDATA[<h4 id="题目描述">题目描述：</h4>
-<p>给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。</p>
+<p>给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。<br><br></p>
 ]]></summary>
         <content type="html"><![CDATA[<h4 id="题目描述">题目描述：</h4>
-<p>给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。</p>
+<p>给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。<br><br></p>
 <!-- more -->
 <p>注意：</p>
-<p>答案中不可以包含重复的四元组。</p>
+<p>答案中不可以包含重复的四元组。<br><br></p>
 <p>示例：</p>
 <p>给定数组 nums = [1, 0, -1, 0, -2, 2]，和 target = 0。</p>
 <p>满足要求的四元组集合为：<br>
@@ -807,11 +801,11 @@ public:
 [-1,  0, 0, 1],<br>
 [-2, -1, 1, 2],<br>
 [-2,  0, 0, 2]<br>
-]</p>
+]<br><br></p>
 <p>来源：力扣18题（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/4sum</p>
+链接：https://leetcode-cn.com/problems/4sum<br><br></p>
 <h4 id="题目分析">题目分析</h4>
-<p>此题可以用双指针法解决，先用两个for循环i, j遍历前面，两个指针left, right收缩，当nums[i] + nums[j] + nums[left] + nums[right] == target 时，入数组，然后注意一下去重。（三数之和一个for循环，四数之和用两个，五数之和用三个......）</p>
+<p>此题可以用双指针法解决，先用两个for循环i, j遍历前面，两个指针left, right收缩，当nums[i] + nums[j] + nums[left] + nums[right] == target 时，入数组，然后注意一下去重。（三数之和一个for循环，四数之和用两个，五数之和用三个......）<br><br></p>
 <h4 id="代码题解">代码题解</h4>
 <pre><code class="language-c++">vector&lt;vector&lt;int&gt;&gt; fourSum(vector&lt;int&gt; &amp;nums, int target)
 {
