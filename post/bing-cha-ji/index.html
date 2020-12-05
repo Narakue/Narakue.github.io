@@ -84,7 +84,7 @@
         
         <li class="nav-item">
           <div class="gridea-search-container">
-            <form id="gridea-search-form" style="position: relative" data-update="1607145888608"
+            <form id="gridea-search-form" style="position: relative" data-update="1607146460645"
               action="/search/index.html">
               <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
               <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
@@ -140,7 +140,7 @@
         
         <li class="nav-item">
           <div class="gridea-search-container">
-            <form id="gridea-search-form" style="position: relative" data-update="1607145888608"
+            <form id="gridea-search-form" style="position: relative" data-update="1607146460645"
               action="/search/index.html">
               <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
               <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
@@ -194,31 +194,31 @@
           <p>LeetCode547题 朋友圈</p>
 <!-- more -->
 <h3 id="题目">题目</h3>
-<p>班上有 N 名学生。其中有些人是朋友，有些则不是。他们的友谊具有是传递性。如果已知 A 是 B 的朋友，B 是 C 的朋友，那么我们可以认为 A 也是 C 的朋友。所谓的朋友圈，是指所有朋友的集合。</p>
-<p>给定一个 N * N 的矩阵 M，表示班级中学生之间的朋友关系。如果M[i][j] = 1，表示已知第 i 个和 j 个学生互为朋友关系，否则为不知道。你必须输出所有学生中的已知的朋友圈总数。</p>
+<p>班上有 N 名学生。其中有些人是朋友，有些则不是。他们的友谊具有是传递性。如果已知 A 是 B 的朋友，B 是 C 的朋友，那么我们可以认为 A 也是 C 的朋友。所谓的朋友圈，是指所有朋友的集合。<br></p>
+<p>给定一个 N * N 的矩阵 M，表示班级中学生之间的朋友关系。如果M[i][j] = 1，表示已知第 i 个和 j 个学生互为朋友关系，否则为不知道。你必须输出所有学生中的已知的朋友圈总数。<br><br><br></p>
 <p></p>
-<p>示例 1：</p>
-<p>输入：<br>
+<p>示例 1：<br><br>
+输入：<br>
 [[1,1,0],<br>
 [1,1,0],<br>
-[0,0,1]]<br>
+[0,0,1]]<br><br>
 输出：2<br>
 解释：已知学生 0 和学生 1 互为朋友，他们在一个朋友圈。<br>
-第2个学生自己在一个朋友圈。所以返回 2 。<br>
-示例 2：</p>
-<p>输入：<br>
+第2个学生自己在一个朋友圈。所以返回 2 。<br></p>
+<p>示例 2：<br><br>
+输入：<br>
 [[1,1,0],<br>
 [1,1,1],<br>
-[0,1,1]]<br>
+[0,1,1]]<br><br>
 输出：1<br>
-解释：已知学生 0 和学生 1 互为朋友，学生 1 和学生 2 互为朋友，所以学生 0 和学生 2 也是朋友，所以他们三个在一个朋友圈，返回 1 。</p>
-<p>提示：</p>
+解释：已知学生 0 和学生 1 互为朋友，学生 1 和学生 2 互为朋友，所以学生 0 和学生 2 也是朋友，所以他们三个在一个朋友圈，返回 1 。<br><br></p>
+<p>提示：<br></p>
 <p>1 &lt;= N &lt;= 200<br>
 M[i][i] == 1<br>
-M[i][j] == M[j][i]</p>
+M[i][j] == M[j][i]<br></p>
 <p>来源：力扣（LeetCode）<br>
 链接：https://leetcode-cn.com/problems/friend-circles<br>
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br></p>
 <h3 id="思路">思路</h3>
 <p>运用并查集算出相关集合</p>
 <h4 id="并查集不优化代码">并查集不优化代码：</h4>
@@ -246,10 +246,10 @@ int count() {
     return count;
 }
 </code></pre>
-<p>find函数是把一棵树直接接到另一棵树下面，这也就造成了树的退化(往链表退化)，就会使时间复杂度达到O(n)，union和connected都是要用到find，所以他们的时间复杂度也是O(n)。</p>
+<p>find函数是把一棵树直接接到另一棵树下面，这也就造成了树的退化(往链表退化)，就会使时间复杂度达到O(n)，union和connected都是要用到find，所以他们的时间复杂度也是O(n)。<br><br></p>
 <h4 id="优化方案">优化方案</h4>
 <h5 id="平衡优化">平衡优化</h5>
-<p>另外开一个数组记录每棵树的“重量”(节点数),节点数少的接到节点数多的树里面，就可以降低复杂度。</p>
+<p>另外开一个数组记录每棵树的“重量”(节点数),节点数少的接到节点数多的树里面，就可以降低复杂度。<br></p>
 <pre><code class="language-C++">void union(int p, int q) {
     int rootP = find(p);
     int rootQ = find(q);
@@ -267,10 +267,12 @@ int count() {
     count--;
 }
 </code></pre>
-<h5 id="路径亚索压缩">路径<s>亚索</s>压缩</h5>
-<p>如果我们可以进一步压缩树的高度，让树的高度始终为常数，那find的复杂度就是O(1).<br>
-压缩完是一个根节点下面都是叶子节点，这样树的高度就为常数，非常友好。</p>
-<pre><code class="language-C++">int find(int x) {
+<br>
+##### 路径~~亚索~~压缩
+如果我们可以进一步压缩树的高度，让树的高度始终为常数，那find的复杂度就是O(1).
+压缩完是一个根节点下面都是叶子节点，这样树的高度就为常数，非常友好。<br>
+```C++
+int find(int x) {
     int r = x;
     while (parent[r] != r)
         r = parent[r]; //找到根节点
@@ -282,73 +284,75 @@ int count() {
     }
     return r;
 }
-</code></pre>
-<h3 id="代码">代码</h3>
-<pre><code class="language-C++">class Solution {
+```
+<br>
+### 代码
+```C++
+class Solution {
 public:
     int counts;
-    vector&lt;int&gt; parent;
-    vector&lt;int&gt; size;
+    vector<int> parent;
+    vector<int> size;
     void UF(int n) {
         counts = n;
-        for (int i = 0; i &lt; n; i++) {
+        for (int i = 0; i < n; i++) {
             parent.push_back(i);
             size.push_back(1);
         }
     }
-
-    void Union(int p, int q) {
-        int rootp = find(p);
-        int rootq = find(q);
-        if (rootp == rootq)
-            return;
-        if (size[rootp] &gt; size[rootq]) {
-            parent[rootq] = rootp;
-            size[rootp] += size[rootq];
-        }
-        else {
-            parent[rootp] = rootq;
-            size[rootq] += size[rootp];
-        }
-        counts--;
+<pre><code>void Union(int p, int q) {
+    int rootp = find(p);
+    int rootq = find(q);
+    if (rootp == rootq)
+        return;
+    if (size[rootp] &gt; size[rootq]) {
+        parent[rootq] = rootp;
+        size[rootp] += size[rootq];
     }
-
-    int find(int x) {
-        int r = x;
-        while (parent[r] != r)
-            r = parent[r];
-        int i = x, j;
-        while (i != r) {
-            j = parent[i];
-            parent[i] = r;
-            i = j;
-        }
-        return r;
+    else {
+        parent[rootp] = rootq;
+        size[rootq] += size[rootp];
     }
+    counts--;
+}
 
-    bool connected(int p, int q) {
-        int rootp = find(p);
-        int rootq = find(q);
-        return rootp == rootq;
+int find(int x) {
+    int r = x;
+    while (parent[r] != r)
+        r = parent[r];
+    int i = x, j;
+    while (i != r) {
+        j = parent[i];
+        parent[i] = r;
+        i = j;
     }
+    return r;
+}
 
-    int count() {
-        return counts;
-    }
+bool connected(int p, int q) {
+    int rootp = find(p);
+    int rootq = find(q);
+    return rootp == rootq;
+}
 
-    int findCircleNum(vector&lt;vector&lt;int&gt;&gt;&amp; M) {
-        UF(M[0].size());
-        for (int i = 0; i &lt; M.size(); i++) {
-            for (int j = 0; j &lt; M[0].size(); j++) {
-                if (M[i][j] == 1) {
-                    Union(i, j);
-                }
+int count() {
+    return counts;
+}
+
+int findCircleNum(vector&lt;vector&lt;int&gt;&gt;&amp; M) {
+    UF(M[0].size());
+    for (int i = 0; i &lt; M.size(); i++) {
+        for (int j = 0; j &lt; M[0].size(); j++) {
+            if (M[i][j] == 1) {
+                Union(i, j);
             }
         }
-        return counts;
     }
-};
+    return counts;
+}
 </code></pre>
+<p>};</p>
+<pre><code></code></pre>
 
           <div class="toc-container"><ul class="markdownIt-TOC">
 <li>
@@ -362,12 +366,10 @@ public:
 <li><a href="#%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88">优化方案</a>
 <ul>
 <li><a href="#%E5%B9%B3%E8%A1%A1%E4%BC%98%E5%8C%96">平衡优化</a></li>
-<li><a href="#%E8%B7%AF%E5%BE%84%E4%BA%9A%E7%B4%A2%E5%8E%8B%E7%BC%A9">路径<s>亚索</s>压缩</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#%E4%BB%A3%E7%A0%81">代码</a></li>
 </ul>
 </li>
 </ul>

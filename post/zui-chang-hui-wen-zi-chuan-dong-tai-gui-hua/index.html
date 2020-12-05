@@ -84,7 +84,7 @@
         
         <li class="nav-item">
           <div class="gridea-search-container">
-            <form id="gridea-search-form" style="position: relative" data-update="1607145888608"
+            <form id="gridea-search-form" style="position: relative" data-update="1607146460645"
               action="/search/index.html">
               <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
               <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
@@ -140,7 +140,7 @@
         
         <li class="nav-item">
           <div class="gridea-search-container">
-            <form id="gridea-search-form" style="position: relative" data-update="1607145888608"
+            <form id="gridea-search-form" style="position: relative" data-update="1607146460645"
               action="/search/index.html">
               <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
               <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
@@ -194,17 +194,16 @@
           <h3 id="题目">题目</h3>
 <p>给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。</p>
 <!-- more -->
-<p>示例 1：<br>
-<br><br>
-输入: &quot;babad&quot;<br>
+<p>示例 1：<br></p>
+<p>输入: &quot;babad&quot;<br>
 输出: &quot;bab&quot;<br>
 注意: &quot;aba&quot; 也是一个有效答案。<br>
-示例 2：</p>
+示例 2：<br></p>
 <p>输入: &quot;cbbd&quot;<br>
-输出: &quot;bb&quot;</p>
+输出: &quot;bb&quot;<br></p>
 <p>来源：力扣（LeetCode）<br>
 链接：https://leetcode-cn.com/problems/longest-palindromic-substring<br>
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br></p>
 <h3 id="题解">题解</h3>
 <h4 id="暴力求解">暴力求解</h4>
 <p>把每个长度大于二的子串都进行验证，然后取最大，时间复杂度O(n3)，然后就愉快的超时0.0</p>
@@ -244,14 +243,14 @@ public:
 如果一个字符串的头尾两个字符都不相等，那么这个字符串一定不是回文串；<br>
 如果一个字符串的头尾两个字符相等，才有必要继续判断下去。<br>
 如果里面的子串是回文，整体就是回文串；<br>
-如果里面的子串不是回文串，整体就不是回文串。</p>
-<p>定义dp[i][j]表示s[i....j]是否为回文串(左闭右闭)，根据“如果里面的子串判断是否回文”，可以得到转移方程：dp[i][j] = (s[i] == s[j]) &amp;&amp; dp[i + 1][j - 1] == true</p>
-<p>然后考虑一下边界问题：<br>
+如果里面的子串不是回文串，整体就不是回文串。<br></p>
+<p>定义dp[i][j]表示s[i....j]是否为回文串(左闭右闭)，根据“如果里面的子串判断是否回文”，可以得到转移方程：dp[i][j] = (s[i] == s[j]) &amp;&amp; dp[i + 1][j - 1] == true<br></p>
+<p>然后考虑一下边界问题：<br><br>
 s[i + 1......j - 1]，成立的条件为长度小于2，即j - 1 - (i + 1) &lt; 2，即j - i &lt; 3.<br>
-j - i &lt; 3 等价于 j - i + 1 &lt; 4，即当子串 s[i..j] 的长度等于 2 或者等于 3 的时候，其实只需要判断一下头尾两个字符是否相等就可以直接下结论了。</p>
+j - i &lt; 3 等价于 j - i + 1 &lt; 4，即当子串 s[i..j] 的长度等于 2 或者等于 3 的时候，其实只需要判断一下头尾两个字符是否相等就可以直接下结论了。<br></p>
 <p>如果子串 s[i + 1..j - 1] 只有 1 个字符，即去掉两头，剩下中间部分只有 1 个字符，显然是回文；<br>
-如果子串 s[i + 1..j - 1] 为空串，那么子串 s[i, j] 一定是回文子串。</p>
-<p>因此，在 s[i] == s[j] 成立和 j - i &lt; 3 的前提下，直接可以下结论，dp[i][j] = true，否则才执行状态转移。</p>
+如果子串 s[i + 1..j - 1] 为空串，那么子串 s[i, j] 一定是回文子串。<br></p>
+<p>因此，在 s[i] == s[j] 成立和 j - i &lt; 3 的前提下，直接可以下结论，dp[i][j] = true，否则才执行状态转移。<br></p>
 <pre><code class="language-C++">class Solution {
 public:
     string longestPalindrome(string s) {
