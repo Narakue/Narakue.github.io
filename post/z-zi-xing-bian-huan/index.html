@@ -10,14 +10,14 @@
 <meta name="keywords" content="">
 <meta name="description" content="欢迎访问[SakuraTears]的个人博客">
 <meta name="author" content="kveln">
-<title>Z 字形变换 | SakuraTears</title>
+<title>Z 字形变换(字符串) | SakuraTears</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 <link
   href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
   rel='stylesheet' type='text/css'>
-<link rel="alternate" type="application/rss+xml" title="Z 字形变换 | SakuraTears » Feed"
+<link rel="alternate" type="application/rss+xml" title="Z 字形变换(字符串) | SakuraTears » Feed"
   href="https://sakuratears.cn/atom.xml">
 <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/styles/androidstudio.min.css">
@@ -30,7 +30,7 @@
 
 <script>hljs.initHighlightingOnLoad();</script>
 
-  <meta property="og:description" content="Z 字形变换" />
+  <meta property="og:description" content="Z 字形变换(字符串)" />
   <meta property="og:url" content="https://sakuratears.cn/post/z-zi-xing-bian-huan/" />
   <meta property="og:locale" content="zh-CN" />
   <meta property="og:type" content="website" />
@@ -84,7 +84,7 @@
         
         <li class="nav-item">
           <div class="gridea-search-container">
-            <form id="gridea-search-form" style="position: relative" data-update="1607173233823"
+            <form id="gridea-search-form" style="position: relative" data-update="1607177956579"
               action="/search/index.html">
               <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
               <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
@@ -140,7 +140,7 @@
         
         <li class="nav-item">
           <div class="gridea-search-container">
-            <form id="gridea-search-form" style="position: relative" data-update="1607173233823"
+            <form id="gridea-search-form" style="position: relative" data-update="1607177956579"
               action="/search/index.html">
               <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
               <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
@@ -163,15 +163,17 @@
             <div class="post-heading">
               <span class="tags">
                 
+                <a href="https://sakuratears.cn/tag/TkFkb6Kca/" class="tag">字符串</a>
+                
                 <a href="https://sakuratears.cn/tag/TN0UiB8Cf/" class="tag">LeetCode</a>
                 
                 <a href="https://sakuratears.cn/tag/e0ZtA0F1A/" class="tag">算法</a>
                 
               </span>
-              <h1>Z 字形变换</h1>
+              <h1>Z 字形变换(字符串)</h1>
               <span class="meta">
                 Posted on
-                2020/12/05，3 min read
+                2020/12/05，4 min read
               </span>
             </div>
           
@@ -214,6 +216,7 @@ T     S     G<br></p>
 链接：https://leetcode-cn.com/problems/zigzag-conversion<br>
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br></p>
 <h3 id="思路">思路</h3>
+<h4 id="代码1">代码1.</h4>
 <p>纯暴力写出来了，贴个代码算了0.0</p>
 <pre><code class="language-C++">class Solution {
 public:
@@ -284,6 +287,47 @@ public:
     }
 };
 </code></pre>
+<h4 id="代码2">代码2</h4>
+<p>1.res[i] += c： 把每个字符 c 填入对应行 s i;<br>
+2.i += flag： 更新当前字符 c 对应的行索引；<br>
+3.flag = - flag： 在达到 Z 字形转折点时，执行反向<br></p>
+<p>把每一行放到一个字符串数组里面，利用flag就行上下控制。<s>比我那菜鸡算法好太多了</s></p>
+<pre><code class="language-C++">class Solution {
+public:
+    string convert(string s, int numRows)
+    {
+        if (numRows == 1) {
+            return s;
+        }
+        string str[1000];
+        int i = 0, flag = 1, num = 0;
+        while (num &lt; s.size())
+        {
+
+            str[i] += s[num];
+            i += flag;
+            if (i &gt;= numRows)
+            {
+                flag = -flag;
+                i += flag;
+                i += flag;
+            }
+            if (i &lt; 0)
+            {
+                flag = -flag;
+                i += flag;
+                i += flag;
+            }
+            num++;
+        }
+        s = &quot;&quot;;
+        for (i = 0; i &lt; numRows; i++) {
+            s += str[i];
+        }
+        return s;
+    }
+};
+</code></pre>
 
           <div class="toc-container"><ul class="markdownIt-TOC">
 <li>
@@ -291,7 +335,12 @@ public:
 <li>
 <ul>
 <li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
-<li><a href="#%E6%80%9D%E8%B7%AF">思路</a></li>
+<li><a href="#%E6%80%9D%E8%B7%AF">思路</a>
+<ul>
+<li><a href="#%E4%BB%A3%E7%A0%811">代码1.</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%812">代码2</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -311,7 +360,7 @@ public:
           <div class="comment" style="text-align: center;">
             
             <span id="/post/z-zi-xing-bian-huan/" class="leancloud_visitors"
-              data-flag-title="Z 字形变换">
+              data-flag-title="Z 字形变换(字符串)">
               <em class="post-meta-item-text">阅读量 </em>
               <i class="leancloud-visitors-count">loading...</i>
             </span>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-12-05T13:01:23.511Z</updated>
+    <updated>2020-12-05T14:19:43.408Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -11,7 +11,7 @@
     <icon>https://sakuratears.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, SakuraTears</rights>
     <entry>
-        <title type="html"><![CDATA[Z 字形变换]]></title>
+        <title type="html"><![CDATA[Z 字形变换(字符串)]]></title>
         <id>https://sakuratears.cn/post/z-zi-xing-bian-huan/</id>
         <link href="https://sakuratears.cn/post/z-zi-xing-bian-huan/">
         </link>
@@ -44,6 +44,7 @@ T     S     G<br></p>
 链接：https://leetcode-cn.com/problems/zigzag-conversion<br>
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br></p>
 <h3 id="思路">思路</h3>
+<h4 id="代码1">代码1.</h4>
 <p>纯暴力写出来了，贴个代码算了0.0</p>
 <pre><code class="language-C++">class Solution {
 public:
@@ -111,6 +112,47 @@ public:
             }
         }
         return str;
+    }
+};
+</code></pre>
+<h4 id="代码2">代码2</h4>
+<p>1.res[i] += c： 把每个字符 c 填入对应行 s i;<br>
+2.i += flag： 更新当前字符 c 对应的行索引；<br>
+3.flag = - flag： 在达到 Z 字形转折点时，执行反向<br></p>
+<p>把每一行放到一个字符串数组里面，利用flag就行上下控制。<s>比我那菜鸡算法好太多了</s></p>
+<pre><code class="language-C++">class Solution {
+public:
+    string convert(string s, int numRows)
+    {
+        if (numRows == 1) {
+            return s;
+        }
+        string str[1000];
+        int i = 0, flag = 1, num = 0;
+        while (num &lt; s.size())
+        {
+
+            str[i] += s[num];
+            i += flag;
+            if (i &gt;= numRows)
+            {
+                flag = -flag;
+                i += flag;
+                i += flag;
+            }
+            if (i &lt; 0)
+            {
+                flag = -flag;
+                i += flag;
+                i += flag;
+            }
+            num++;
+        }
+        s = &quot;&quot;;
+        for (i = 0; i &lt; numRows; i++) {
+            s += str[i];
+        }
+        return s;
     }
 };
 </code></pre>
