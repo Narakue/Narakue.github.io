@@ -10,14 +10,14 @@
 <meta name="keywords" content="">
 <meta name="description" content="欢迎访问[SakuraTears]的个人博客">
 <meta name="author" content="kveln">
-<title>奇妙的自我描述 | SakuraTears</title>
+<title>朋友圈(并查集) | SakuraTears</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 <link
   href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
   rel='stylesheet' type='text/css'>
-<link rel="alternate" type="application/rss+xml" title="奇妙的自我描述 | SakuraTears » Feed"
+<link rel="alternate" type="application/rss+xml" title="朋友圈(并查集) | SakuraTears » Feed"
   href="https://sakuratears.cn/atom.xml">
 <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/styles/androidstudio.min.css">
@@ -30,8 +30,8 @@
 
 <script>hljs.initHighlightingOnLoad();</script>
 
-  <meta property="og:description" content="奇妙的自我描述" />
-  <meta property="og:url" content="https://sakuratears.cn/post/about/" />
+  <meta property="og:description" content="朋友圈(并查集)" />
+  <meta property="og:url" content="https://sakuratears.cn/post/bing-cha-ji/" />
   <meta property="og:locale" content="zh-CN" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="SakuraTears" />
@@ -163,11 +163,17 @@
             <div class="post-heading">
               <span class="tags">
                 
+                <a href="https://sakuratears.cn/tag/gVIPoX9MAQ/" class="tag">并查集</a>
+                
+                <a href="https://sakuratears.cn/tag/TN0UiB8Cf/" class="tag">LeetCode</a>
+                
+                <a href="https://sakuratears.cn/tag/e0ZtA0F1A/" class="tag">算法</a>
+                
               </span>
-              <h1>奇妙的自我描述</h1>
+              <h1>朋友圈(并查集)</h1>
               <span class="meta">
                 Posted on
-                2020/10/23，1 min read
+                2020/12/02，5 min read
               </span>
             </div>
           
@@ -182,34 +188,206 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto post-content-container">
           
-          <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<p>在使用一段时间hexo后还是放弃了hexo选择了简单方便的Gridea（其实就是不会用hexo）</p>
-<h2 id="关于博主">👨‍💻 关于博主</h2>
-<p>一枚啥也不会的菜鸡程序猿<br>
-主攻Java开发，Android开发（狗头保命！）</p>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<p>QQ：2538598846<br>
-微信：2538598846<br>
-欢迎好友交流😎</p>
+          <img class="post-feature-header-image" src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(4).jpg.webp" alt="封面图">
+          </img>
+          
+          <p>LeetCode547题 朋友圈</p>
+<!-- more -->
+<h3 id="题目">题目</h3>
+<p>班上有 N 名学生。其中有些人是朋友，有些则不是。他们的友谊具有是传递性。如果已知 A 是 B 的朋友，B 是 C 的朋友，那么我们可以认为 A 也是 C 的朋友。所谓的朋友圈，是指所有朋友的集合。</p>
+<p>给定一个 N * N 的矩阵 M，表示班级中学生之间的朋友关系。如果M[i][j] = 1，表示已知第 i 个和 j 个学生互为朋友关系，否则为不知道。你必须输出所有学生中的已知的朋友圈总数。</p>
+<p></p>
+<p>示例 1：</p>
+<p>输入：<br>
+[[1,1,0],<br>
+[1,1,0],<br>
+[0,0,1]]<br>
+输出：2<br>
+解释：已知学生 0 和学生 1 互为朋友，他们在一个朋友圈。<br>
+第2个学生自己在一个朋友圈。所以返回 2 。<br>
+示例 2：</p>
+<p>输入：<br>
+[[1,1,0],<br>
+[1,1,1],<br>
+[0,1,1]]<br>
+输出：1<br>
+解释：已知学生 0 和学生 1 互为朋友，学生 1 和学生 2 互为朋友，所以学生 0 和学生 2 也是朋友，所以他们三个在一个朋友圈，返回 1 。</p>
+<p>提示：</p>
+<p>1 &lt;= N &lt;= 200<br>
+M[i][i] == 1<br>
+M[i][j] == M[j][i]</p>
+<p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/friend-circles<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h3 id="思路">思路</h3>
+<p>运用并查集算出相关集合</p>
+<h4 id="并查集不优化代码">并查集不优化代码：</h4>
+<pre><code class="language-C++">void union(int p, int q) {
+    int rootP = find(p);
+    int rootQ = find(q);
+    if (rootP == rootQ)
+        return;
+    // 将两棵树合并为一棵
+    parent[rootP] = rootQ;
+    // parent[rootQ] = rootP 也一样
+    count--; // 两个分量合二为一
+}
+
+/* 返回某个节点 x 的根节点 */
+int find(int x) {
+    // 根节点的 parent[x] == x
+    while (parent[x] != x)
+        x = parent[x];
+    return x;
+}
+
+/* 返回当前的连通分量个数 */
+int count() { 
+    return count;
+}
+</code></pre>
+<p>find函数是把一棵树直接接到另一棵树下面，这也就造成了树的退化(往链表退化)，就会使时间复杂度达到O(n)，union和connected都是要用到find，所以他们的时间复杂度也是O(n)。</p>
+<h4 id="优化方案">优化方案</h4>
+<h5 id="平衡优化">平衡优化</h5>
+<p>另外开一个数组记录每棵树的“重量”(节点数),节点数少的接到节点数多的树里面，就可以降低复杂度。</p>
+<pre><code class="language-C++">void union(int p, int q) {
+    int rootP = find(p);
+    int rootQ = find(q);
+    if (rootP == rootQ)
+        return;
+    
+    // 小树接到大树下面，较平衡
+    if (size[rootP] &gt; size[rootQ]) {
+        parent[rootQ] = rootP;
+        size[rootP] += size[rootQ];
+    } else {
+        parent[rootP] = rootQ;
+        size[rootQ] += size[rootP];
+    }
+    count--;
+}
+</code></pre>
+<h5 id="路径亚索压缩">路径<s>亚索</s>压缩</h5>
+<p>如果我们可以进一步压缩树的高度，让树的高度始终为常数，那find的复杂度就是O(1).<br>
+压缩完是一个根节点下面都是叶子节点，这样树的高度就为常数，非常友好。</p>
+<pre><code class="language-C++">int find(int x) {
+    int r = x;
+    while (parent[r] != r)
+        r = parent[r]; //找到根节点
+    int i = x, j;
+    while (i != r) { //让每个节点都练到根节点上
+        j = parent[i];
+        parent[i] = r;
+        i = j;
+    }
+    return r;
+}
+</code></pre>
+<h3 id="代码">代码</h3>
+<pre><code class="language-C++">class Solution {
+public:
+    int counts;
+    vector&lt;int&gt; parent;
+    vector&lt;int&gt; size;
+    void UF(int n) {
+        counts = n;
+        for (int i = 0; i &lt; n; i++) {
+            parent.push_back(i);
+            size.push_back(1);
+        }
+    }
+
+    void Union(int p, int q) {
+        int rootp = find(p);
+        int rootq = find(q);
+        if (rootp == rootq)
+            return;
+        if (size[rootp] &gt; size[rootq]) {
+            parent[rootq] = rootp;
+            size[rootp] += size[rootq];
+        }
+        else {
+            parent[rootp] = rootq;
+            size[rootq] += size[rootp];
+        }
+        counts--;
+    }
+
+    int find(int x) {
+        int r = x;
+        while (parent[r] != r)
+            r = parent[r];
+        int i = x, j;
+        while (i != r) {
+            j = parent[i];
+            parent[i] = r;
+            i = j;
+        }
+        return r;
+    }
+
+    bool connected(int p, int q) {
+        int rootp = find(p);
+        int rootq = find(q);
+        return rootp == rootq;
+    }
+
+    int count() {
+        return counts;
+    }
+
+    int findCircleNum(vector&lt;vector&lt;int&gt;&gt;&amp; M) {
+        UF(M[0].size());
+        for (int i = 0; i &lt; M.size(); i++) {
+            for (int j = 0; j &lt; M[0].size(); j++) {
+                if (M[i][j] == 1) {
+                    Union(i, j);
+                }
+            }
+        }
+        return counts;
+    }
+};
+</code></pre>
 
           <div class="toc-container"><ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%85%B3%E4%BA%8E%E5%8D%9A%E4%B8%BB">👨‍💻 关于博主</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
+<li>
+<ul>
+<li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
+<li><a href="#%E6%80%9D%E8%B7%AF">思路</a>
+<ul>
+<li><a href="#%E5%B9%B6%E6%9F%A5%E9%9B%86%E4%B8%8D%E4%BC%98%E5%8C%96%E4%BB%A3%E7%A0%81">并查集不优化代码：</a></li>
+<li><a href="#%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88">优化方案</a>
+<ul>
+<li><a href="#%E5%B9%B3%E8%A1%A1%E4%BC%98%E5%8C%96">平衡优化</a></li>
+<li><a href="#%E8%B7%AF%E5%BE%84%E4%BA%9A%E7%B4%A2%E5%8E%8B%E7%BC%A9">路径<s>亚索</s>压缩</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E4%BB%A3%E7%A0%81">代码</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
           
+          <hr />
+          <p class="next-post">下一篇：
+            <a href="https://sakuratears.cn/post/linux-yi-xie-huan-jing-pei-zhi/">
+              <span class="post-title">
+                Linux一些环境配置&rarr;
+              </span>
+            </a>
+          </p>
+          
           <div class="comment" style="text-align: center;">
             
-            <span id="/post/about/" class="leancloud_visitors"
-              data-flag-title="奇妙的自我描述">
+            <span id="/post/bing-cha-ji/" class="leancloud_visitors"
+              data-flag-title="朋友圈(并查集)">
               <em class="post-meta-item-text">阅读量 </em>
               <i class="leancloud-visitors-count">loading...</i>
             </span>

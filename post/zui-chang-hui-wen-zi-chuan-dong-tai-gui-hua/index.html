@@ -10,14 +10,14 @@
 <meta name="keywords" content="">
 <meta name="description" content="欢迎访问[SakuraTears]的个人博客">
 <meta name="author" content="kveln">
-<title>奇妙的自我描述 | SakuraTears</title>
+<title>最长回文子串(动态规划) | SakuraTears</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 <link
   href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
   rel='stylesheet' type='text/css'>
-<link rel="alternate" type="application/rss+xml" title="奇妙的自我描述 | SakuraTears » Feed"
+<link rel="alternate" type="application/rss+xml" title="最长回文子串(动态规划) | SakuraTears » Feed"
   href="https://sakuratears.cn/atom.xml">
 <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/styles/androidstudio.min.css">
@@ -30,8 +30,8 @@
 
 <script>hljs.initHighlightingOnLoad();</script>
 
-  <meta property="og:description" content="奇妙的自我描述" />
-  <meta property="og:url" content="https://sakuratears.cn/post/about/" />
+  <meta property="og:description" content="最长回文子串(动态规划)" />
+  <meta property="og:url" content="https://sakuratears.cn/post/zui-chang-hui-wen-zi-chuan-dong-tai-gui-hua/" />
   <meta property="og:locale" content="zh-CN" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="SakuraTears" />
@@ -163,11 +163,17 @@
             <div class="post-heading">
               <span class="tags">
                 
+                <a href="https://sakuratears.cn/tag/bmv9G7VzW/" class="tag">动态规划</a>
+                
+                <a href="https://sakuratears.cn/tag/TN0UiB8Cf/" class="tag">LeetCode</a>
+                
+                <a href="https://sakuratears.cn/tag/e0ZtA0F1A/" class="tag">算法</a>
+                
               </span>
-              <h1>奇妙的自我描述</h1>
+              <h1>最长回文子串(动态规划)</h1>
               <span class="meta">
                 Posted on
-                2020/10/23，1 min read
+                2020/12/04，4 min read
               </span>
             </div>
           
@@ -182,34 +188,143 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto post-content-container">
           
-          <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<p>在使用一段时间hexo后还是放弃了hexo选择了简单方便的Gridea（其实就是不会用hexo）</p>
-<h2 id="关于博主">👨‍💻 关于博主</h2>
-<p>一枚啥也不会的菜鸡程序猿<br>
-主攻Java开发，Android开发（狗头保命！）</p>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<p>QQ：2538598846<br>
-微信：2538598846<br>
-欢迎好友交流😎</p>
+          <img class="post-feature-header-image" src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(3).jpg.webp" alt="封面图">
+          </img>
+          
+          <h3 id="题目">题目</h3>
+<p>给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。</p>
+<!-- more -->
+<p>示例 1：<br>
+<br><br/><br>
+输入: &quot;babad&quot;<br>
+输出: &quot;bab&quot;<br>
+注意: &quot;aba&quot; 也是一个有效答案。<br>
+示例 2：</p>
+<p>输入: &quot;cbbd&quot;<br>
+输出: &quot;bb&quot;</p>
+<p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/longest-palindromic-substring<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h3 id="题解">题解</h3>
+<h4 id="暴力求解">暴力求解</h4>
+<p>把每个长度大于二的子串都进行验证，然后取最大，时间复杂度O(n3)，然后就愉快的超时0.0</p>
+<pre><code class="language-C++">class Solution {
+public:
+    bool vali(string s, int i, int j)
+    {
+        while (i &lt;= j) {
+            if (s[i] != s[j])
+                return false;
+            i++;
+            j--;
+        }
+        return true;
+    }
+    string longestPalindrome(string s) {
+        int size = s.size();
+        if (size &lt; 2)
+            return s;
+        int max = 1;
+        string str = s.substr(0, 1);
+        for (int i = 0; i &lt; size - 1; i++) {
+            for (int j = i + 1; j &lt; size; j++) {
+                if (j - i + 1 &gt; max &amp;&amp; vali(s, i, j)) {
+                    max = j - i + 1;
+                    str = s.substr(i, max);
+                }
+            }
+        }
+        return str;
+    }
+};
+</code></pre>
+<h4 id="动态规划">动态规划</h4>
+<p>动态规划关键步骤状态转移：<br>
+一个回文去掉两头以后，剩下的部分依然是回文；<br>
+如果一个字符串的头尾两个字符都不相等，那么这个字符串一定不是回文串；<br>
+如果一个字符串的头尾两个字符相等，才有必要继续判断下去。<br>
+如果里面的子串是回文，整体就是回文串；<br>
+如果里面的子串不是回文串，整体就不是回文串。</p>
+<p>定义dp[i][j]表示s[i....j]是否为回文串(左闭右闭)，根据“如果里面的子串判断是否回文”，可以得到转移方程：dp[i][j] = (s[i] == s[j]) &amp;&amp; dp[i + 1][j - 1] == true</p>
+<p>然后考虑一下边界问题：<br>
+s[i + 1......j - 1]，成立的条件为长度小于2，即j - 1 - (i + 1) &lt; 2，即j - i &lt; 3.<br>
+j - i &lt; 3 等价于 j - i + 1 &lt; 4，即当子串 s[i..j] 的长度等于 2 或者等于 3 的时候，其实只需要判断一下头尾两个字符是否相等就可以直接下结论了。</p>
+<p>如果子串 s[i + 1..j - 1] 只有 1 个字符，即去掉两头，剩下中间部分只有 1 个字符，显然是回文；<br>
+如果子串 s[i + 1..j - 1] 为空串，那么子串 s[i, j] 一定是回文子串。</p>
+<p>因此，在 s[i] == s[j] 成立和 j - i &lt; 3 的前提下，直接可以下结论，dp[i][j] = true，否则才执行状态转移。</p>
+<pre><code class="language-C++">class Solution {
+public:
+    string longestPalindrome(string s) {
+        int len = s.size();
+        if (len &lt; 2)
+            return s;
+        int begin = 0;
+        int max = 1; //记录回文子串开始位置和长度
+        bool dp[len][len];
+        for (int i = 0; i &lt; len; i++) {
+            dp[i][i] = true; //初始化，单个字符一定是回文串，因此把对角线先初始化为 true，即 dp[i][i] = true 
+        }
+        for (int j = 1; j &lt; len; j++) {
+            for (int i = 0; i &lt; j; i++) {
+                if (s[i] != s[j]) {
+                    dp[i][j] = false;
+                }
+                else {
+                    if (j - i &lt; 3) {
+                        dp[i][j] = true;
+                    }
+                    else {
+                        dp[i][j] = dp[i + 1][j - 1];
+                    }
+                }
+                if (dp[i][j] &amp;&amp; j - i + 1 &gt; max) {
+                    begin = i;
+                    max = j - i + 1;
+                }
+            }
+        }
+        string str = &quot;&quot;;
+        for (int i = begin; i &lt; begin + max; i++) {
+            str += s[i];
+        }
+        return str;
+    }
+};
+</code></pre>
+<p>思路参考：liweiwei1419</p>
 
           <div class="toc-container"><ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%85%B3%E4%BA%8E%E5%8D%9A%E4%B8%BB">👨‍💻 关于博主</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
+<li>
+<ul>
+<li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
+<li><a href="#%E9%A2%98%E8%A7%A3">题解</a>
+<ul>
+<li><a href="#%E6%9A%B4%E5%8A%9B%E6%B1%82%E8%A7%A3">暴力求解</a></li>
+<li><a href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92">动态规划</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
           
+          <hr />
+          <p class="next-post">下一篇：
+            <a href="https://sakuratears.cn/post/xun-zhao-liang-ge-zheng-xu-shu-zu-de-zhong-wei-shu-fen-zhi/">
+              <span class="post-title">
+                寻找两个正序数组的中位数(分治)&rarr;
+              </span>
+            </a>
+          </p>
+          
           <div class="comment" style="text-align: center;">
             
-            <span id="/post/about/" class="leancloud_visitors"
-              data-flag-title="奇妙的自我描述">
+            <span id="/post/zui-chang-hui-wen-zi-chuan-dong-tai-gui-hua/" class="leancloud_visitors"
+              data-flag-title="最长回文子串(动态规划)">
               <em class="post-meta-item-text">阅读量 </em>
               <i class="leancloud-visitors-count">loading...</i>
             </span>

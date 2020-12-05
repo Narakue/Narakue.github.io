@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-11-28T05:32:51.375Z</updated>
+    <updated>2020-12-05T04:37:23.572Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -10,6 +10,423 @@
     <logo>https://sakuratears.cn/images/avatar.png</logo>
     <icon>https://sakuratears.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, SakuraTears</rights>
+    <entry>
+        <title type="html"><![CDATA[最长回文子串(动态规划)]]></title>
+        <id>https://sakuratears.cn/post/zui-chang-hui-wen-zi-chuan-dong-tai-gui-hua/</id>
+        <link href="https://sakuratears.cn/post/zui-chang-hui-wen-zi-chuan-dong-tai-gui-hua/">
+        </link>
+        <updated>2020-12-04T11:47:51.000Z</updated>
+        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。</p>
+]]></summary>
+        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。</p>
+<!-- more -->
+<p>示例 1：<br>
+<br><br/><br>
+输入: &quot;babad&quot;<br>
+输出: &quot;bab&quot;<br>
+注意: &quot;aba&quot; 也是一个有效答案。<br>
+示例 2：</p>
+<p>输入: &quot;cbbd&quot;<br>
+输出: &quot;bb&quot;</p>
+<p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/longest-palindromic-substring<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h3 id="题解">题解</h3>
+<h4 id="暴力求解">暴力求解</h4>
+<p>把每个长度大于二的子串都进行验证，然后取最大，时间复杂度O(n3)，然后就愉快的超时0.0</p>
+<pre><code class="language-C++">class Solution {
+public:
+    bool vali(string s, int i, int j)
+    {
+        while (i &lt;= j) {
+            if (s[i] != s[j])
+                return false;
+            i++;
+            j--;
+        }
+        return true;
+    }
+    string longestPalindrome(string s) {
+        int size = s.size();
+        if (size &lt; 2)
+            return s;
+        int max = 1;
+        string str = s.substr(0, 1);
+        for (int i = 0; i &lt; size - 1; i++) {
+            for (int j = i + 1; j &lt; size; j++) {
+                if (j - i + 1 &gt; max &amp;&amp; vali(s, i, j)) {
+                    max = j - i + 1;
+                    str = s.substr(i, max);
+                }
+            }
+        }
+        return str;
+    }
+};
+</code></pre>
+<h4 id="动态规划">动态规划</h4>
+<p>动态规划关键步骤状态转移：<br>
+一个回文去掉两头以后，剩下的部分依然是回文；<br>
+如果一个字符串的头尾两个字符都不相等，那么这个字符串一定不是回文串；<br>
+如果一个字符串的头尾两个字符相等，才有必要继续判断下去。<br>
+如果里面的子串是回文，整体就是回文串；<br>
+如果里面的子串不是回文串，整体就不是回文串。</p>
+<p>定义dp[i][j]表示s[i....j]是否为回文串(左闭右闭)，根据“如果里面的子串判断是否回文”，可以得到转移方程：dp[i][j] = (s[i] == s[j]) &amp;&amp; dp[i + 1][j - 1] == true</p>
+<p>然后考虑一下边界问题：<br>
+s[i + 1......j - 1]，成立的条件为长度小于2，即j - 1 - (i + 1) &lt; 2，即j - i &lt; 3.<br>
+j - i &lt; 3 等价于 j - i + 1 &lt; 4，即当子串 s[i..j] 的长度等于 2 或者等于 3 的时候，其实只需要判断一下头尾两个字符是否相等就可以直接下结论了。</p>
+<p>如果子串 s[i + 1..j - 1] 只有 1 个字符，即去掉两头，剩下中间部分只有 1 个字符，显然是回文；<br>
+如果子串 s[i + 1..j - 1] 为空串，那么子串 s[i, j] 一定是回文子串。</p>
+<p>因此，在 s[i] == s[j] 成立和 j - i &lt; 3 的前提下，直接可以下结论，dp[i][j] = true，否则才执行状态转移。</p>
+<pre><code class="language-C++">class Solution {
+public:
+    string longestPalindrome(string s) {
+        int len = s.size();
+        if (len &lt; 2)
+            return s;
+        int begin = 0;
+        int max = 1; //记录回文子串开始位置和长度
+        bool dp[len][len];
+        for (int i = 0; i &lt; len; i++) {
+            dp[i][i] = true; //初始化，单个字符一定是回文串，因此把对角线先初始化为 true，即 dp[i][i] = true 
+        }
+        for (int j = 1; j &lt; len; j++) {
+            for (int i = 0; i &lt; j; i++) {
+                if (s[i] != s[j]) {
+                    dp[i][j] = false;
+                }
+                else {
+                    if (j - i &lt; 3) {
+                        dp[i][j] = true;
+                    }
+                    else {
+                        dp[i][j] = dp[i + 1][j - 1];
+                    }
+                }
+                if (dp[i][j] &amp;&amp; j - i + 1 &gt; max) {
+                    begin = i;
+                    max = j - i + 1;
+                }
+            }
+        }
+        string str = &quot;&quot;;
+        for (int i = begin; i &lt; begin + max; i++) {
+            str += s[i];
+        }
+        return str;
+    }
+};
+</code></pre>
+<p>思路参考：liweiwei1419</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[寻找两个正序数组的中位数(分治)]]></title>
+        <id>https://sakuratears.cn/post/xun-zhao-liang-ge-zheng-xu-shu-zu-de-zhong-wei-shu-fen-zhi/</id>
+        <link href="https://sakuratears.cn/post/xun-zhao-liang-ge-zheng-xu-shu-zu-de-zhong-wei-shu-fen-zhi/">
+        </link>
+        <updated>2020-12-04T06:42:22.000Z</updated>
+        <summary type="html"><![CDATA[<p>力扣的困难题<s>极其简单！！！</s></p>
+]]></summary>
+        <content type="html"><![CDATA[<p>力扣的困难题<s>极其简单！！！</s></p>
+<!-- more -->
+<h3 id="题目">题目</h3>
+<p>给定两个大小为 m 和 n 的正序（从小到大）数组 nums1 和 nums2。请你找出并返回这两个正序数组的中位数。</p>
+<p>进阶：你能设计一个时间复杂度为 O(log (m+n)) 的算法解决此问题吗？</p>
+<p></p>
+<p>示例 1：</p>
+<p>输入：nums1 = [1,3], nums2 = [2]<br>
+输出：2.00000<br>
+解释：合并数组 = [1,2,3] ，中位数 2<br>
+示例 2：</p>
+<p>输入：nums1 = [1,2], nums2 = [3,4]<br>
+输出：2.50000<br>
+解释：合并数组 = [1,2,3,4] ，中位数 (2 + 3) / 2 = 2.5<br>
+示例 3：</p>
+<p>输入：nums1 = [0,0], nums2 = [0,0]<br>
+输出：0.00000<br>
+示例 4：</p>
+<p>输入：nums1 = [], nums2 = [1]<br>
+输出：1.00000<br>
+示例 5：</p>
+<p>输入：nums1 = [2], nums2 = []<br>
+输出：2.00000</p>
+<p>提示：</p>
+<p>nums1.length == m<br>
+nums2.length == n<br>
+0 &lt;= m &lt;= 1000<br>
+0 &lt;= n &lt;= 1000<br>
+1 &lt;= m + n &lt;= 2000<br>
+-106 &lt;= nums1[i], nums2[i] &lt;= 106</p>
+<p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/median-of-two-sorted-arrays<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h3 id="思路">思路</h3>
+<p>题目过于简单，把小的数组加到大的数组题然后sort，再找中位数。0.0</p>
+<h3 id="代码">代码</h3>
+<pre><code class="language-C++">class Solution {
+public:
+    double median(vector&lt;int&gt; nums) {
+        if (nums.size() % 2 == 0) {
+            double dou0 = nums[nums.size() / 2];
+            double dou1 = nums[nums.size() / 2 - 1];
+            return (dou0 + dou1) / 2;
+        }
+        else {
+            double dou0 = nums[nums.size() / 2];
+            return dou0;
+        }
+    } 
+    double findMedianSortedArrays(vector&lt;int&gt;&amp; nums1, vector&lt;int&gt;&amp; nums2) {
+        if (nums1.size() == 0 &amp;&amp; nums2.size() == 0)
+            return 0;
+        if (nums1.size() &gt;= nums2.size()) {
+            for (int i = 0; i &lt; nums2.size(); i++) {
+                nums1.push_back(nums2[i]);
+            }
+            sort(nums1.begin(), nums1.end());
+            return median(nums1);
+        }
+        else {
+            for (int i = 0; i &lt; nums1.size(); i++) {
+                nums2.push_back(nums1[i]);
+            }
+            sort(nums2.begin(), nums2.end());
+            return median(nums2);
+        }
+    }
+};
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[朋友圈(并查集)]]></title>
+        <id>https://sakuratears.cn/post/bing-cha-ji/</id>
+        <link href="https://sakuratears.cn/post/bing-cha-ji/">
+        </link>
+        <updated>2020-12-02T11:02:21.000Z</updated>
+        <summary type="html"><![CDATA[<p>LeetCode547题 朋友圈</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>LeetCode547题 朋友圈</p>
+<!-- more -->
+<h3 id="题目">题目</h3>
+<p>班上有 N 名学生。其中有些人是朋友，有些则不是。他们的友谊具有是传递性。如果已知 A 是 B 的朋友，B 是 C 的朋友，那么我们可以认为 A 也是 C 的朋友。所谓的朋友圈，是指所有朋友的集合。</p>
+<p>给定一个 N * N 的矩阵 M，表示班级中学生之间的朋友关系。如果M[i][j] = 1，表示已知第 i 个和 j 个学生互为朋友关系，否则为不知道。你必须输出所有学生中的已知的朋友圈总数。</p>
+<p></p>
+<p>示例 1：</p>
+<p>输入：<br>
+[[1,1,0],<br>
+[1,1,0],<br>
+[0,0,1]]<br>
+输出：2<br>
+解释：已知学生 0 和学生 1 互为朋友，他们在一个朋友圈。<br>
+第2个学生自己在一个朋友圈。所以返回 2 。<br>
+示例 2：</p>
+<p>输入：<br>
+[[1,1,0],<br>
+[1,1,1],<br>
+[0,1,1]]<br>
+输出：1<br>
+解释：已知学生 0 和学生 1 互为朋友，学生 1 和学生 2 互为朋友，所以学生 0 和学生 2 也是朋友，所以他们三个在一个朋友圈，返回 1 。</p>
+<p>提示：</p>
+<p>1 &lt;= N &lt;= 200<br>
+M[i][i] == 1<br>
+M[i][j] == M[j][i]</p>
+<p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/friend-circles<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h3 id="思路">思路</h3>
+<p>运用并查集算出相关集合</p>
+<h4 id="并查集不优化代码">并查集不优化代码：</h4>
+<pre><code class="language-C++">void union(int p, int q) {
+    int rootP = find(p);
+    int rootQ = find(q);
+    if (rootP == rootQ)
+        return;
+    // 将两棵树合并为一棵
+    parent[rootP] = rootQ;
+    // parent[rootQ] = rootP 也一样
+    count--; // 两个分量合二为一
+}
+
+/* 返回某个节点 x 的根节点 */
+int find(int x) {
+    // 根节点的 parent[x] == x
+    while (parent[x] != x)
+        x = parent[x];
+    return x;
+}
+
+/* 返回当前的连通分量个数 */
+int count() { 
+    return count;
+}
+</code></pre>
+<p>find函数是把一棵树直接接到另一棵树下面，这也就造成了树的退化(往链表退化)，就会使时间复杂度达到O(n)，union和connected都是要用到find，所以他们的时间复杂度也是O(n)。</p>
+<h4 id="优化方案">优化方案</h4>
+<h5 id="平衡优化">平衡优化</h5>
+<p>另外开一个数组记录每棵树的“重量”(节点数),节点数少的接到节点数多的树里面，就可以降低复杂度。</p>
+<pre><code class="language-C++">void union(int p, int q) {
+    int rootP = find(p);
+    int rootQ = find(q);
+    if (rootP == rootQ)
+        return;
+    
+    // 小树接到大树下面，较平衡
+    if (size[rootP] &gt; size[rootQ]) {
+        parent[rootQ] = rootP;
+        size[rootP] += size[rootQ];
+    } else {
+        parent[rootP] = rootQ;
+        size[rootQ] += size[rootP];
+    }
+    count--;
+}
+</code></pre>
+<h5 id="路径亚索压缩">路径<s>亚索</s>压缩</h5>
+<p>如果我们可以进一步压缩树的高度，让树的高度始终为常数，那find的复杂度就是O(1).<br>
+压缩完是一个根节点下面都是叶子节点，这样树的高度就为常数，非常友好。</p>
+<pre><code class="language-C++">int find(int x) {
+    int r = x;
+    while (parent[r] != r)
+        r = parent[r]; //找到根节点
+    int i = x, j;
+    while (i != r) { //让每个节点都练到根节点上
+        j = parent[i];
+        parent[i] = r;
+        i = j;
+    }
+    return r;
+}
+</code></pre>
+<h3 id="代码">代码</h3>
+<pre><code class="language-C++">class Solution {
+public:
+    int counts;
+    vector&lt;int&gt; parent;
+    vector&lt;int&gt; size;
+    void UF(int n) {
+        counts = n;
+        for (int i = 0; i &lt; n; i++) {
+            parent.push_back(i);
+            size.push_back(1);
+        }
+    }
+
+    void Union(int p, int q) {
+        int rootp = find(p);
+        int rootq = find(q);
+        if (rootp == rootq)
+            return;
+        if (size[rootp] &gt; size[rootq]) {
+            parent[rootq] = rootp;
+            size[rootp] += size[rootq];
+        }
+        else {
+            parent[rootp] = rootq;
+            size[rootq] += size[rootp];
+        }
+        counts--;
+    }
+
+    int find(int x) {
+        int r = x;
+        while (parent[r] != r)
+            r = parent[r];
+        int i = x, j;
+        while (i != r) {
+            j = parent[i];
+            parent[i] = r;
+            i = j;
+        }
+        return r;
+    }
+
+    bool connected(int p, int q) {
+        int rootp = find(p);
+        int rootq = find(q);
+        return rootp == rootq;
+    }
+
+    int count() {
+        return counts;
+    }
+
+    int findCircleNum(vector&lt;vector&lt;int&gt;&gt;&amp; M) {
+        UF(M[0].size());
+        for (int i = 0; i &lt; M.size(); i++) {
+            for (int j = 0; j &lt; M[0].size(); j++) {
+                if (M[i][j] == 1) {
+                    Union(i, j);
+                }
+            }
+        }
+        return counts;
+    }
+};
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Linux一些环境配置]]></title>
+        <id>https://sakuratears.cn/post/linux-yi-xie-huan-jing-pei-zhi/</id>
+        <link href="https://sakuratears.cn/post/linux-yi-xie-huan-jing-pei-zhi/">
+        </link>
+        <updated>2020-11-29T10:00:28.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="cc">C/C++</h2>
+<p>安装环境g++,gcc,gdb<br>
+终端命令</p>
+<pre><code>sudo apt-get install g++
+sudo apt-get install gcc
+sudo apt-get install gdb
+</code></pre>
+<h2 id="java">Java</h2>
+<p>jdk,jre</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Linux(deepin)日常操作]]></title>
+        <id>https://sakuratears.cn/post/linuxdeepinri-chang-cao-zuo/</id>
+        <link href="https://sakuratears.cn/post/linuxdeepinri-chang-cao-zuo/">
+        </link>
+        <updated>2020-11-29T09:53:09.000Z</updated>
+        <summary type="html"><![CDATA[<p>记录日常使用linux一些操作<br>
+deepin永远滴神！！！</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>记录日常使用linux一些操作<br>
+deepin永远滴神！！！</p>
+<!-- more -->
+<h3 id="安装deb文件">安装deb文件</h3>
+<p>在deb文件目录下终端输入<code>sudo apt-get xx.deb</code>(xx为文件名)</p>
+<h3 id="打开taggz文件">打开tag.gz文件</h3>
+<p>情况一(没有可执行文件)：解压缩后终端进入文件目录，然后cd进入/bin，执行./xxx.sh(xxx为程序名)<br>
+情况二(有可执行文件)：直接运行可执行文件即可运行</p>
+<h3 id="进入root身份">进入root身份</h3>
+<p>终端输入<code>su</code>然后输入密码(开机密码)<br>
+如果提示su鉴定故障可以输入<code>sudo su</code></p>
+<h3 id="双系统切换时间问题">双系统切换时间问题</h3>
+<p>终端输入<code>timedatectl set-local-rtc 1</code></p>
+<h3 id="双系统开机默认linux更改">双系统开机默认linux更改</h3>
+<p>1.ctrl+alt+T打开终端，输入<code>sudo gedit /etc/default/grub</code><br>
+2.验证密码，grub配置文件被打开<br>
+3.将弹出的文件中文本“GRUB-DEFAULT=0”中的0修改为2.（我这里是2，具体数字应该和选择系统的时候win系统的位置-1相同。注意这个-1，因为它是从上到下从0开始排序，所以我这里win系统是第三位，就改成2）<br>
+4.保存文件。←这时可能会弹出警告框，但是一般情况下好像并没有什么关系<br>
+5.在终端输入<code>sudo update-grub</code>以更新配置<br>
+6.重启即可发现已经修改完毕</p>
+<h3 id="linux显示系统信息">linux显示系统信息</h3>
+<p>终端执行<code>sudo apt-get install screenfetch</code>安装screenfetch<br>
+然后执行<code>screenfetch -s</code>显示系统信息</p>
+<h3 id="bios声音问题">BIOS声音问题</h3>
+<p>(deepin)有时候发生错误(比如在QQ输入框没有字的情况下按退格),会出现“嘟”的一声。这是主板BIOS声音没关的问题。<br>
+执行 <code>sudo dedit /etc/modprobe.d/alsa-base-blacklist.conf</code>，输入</p>
+<pre><code>blacklist pcspkr
+blacklist snd_pcsp
+</code></pre>
+<p>保存后执行 <code>sudo update-initramfs -u</code>后重启即可。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[买卖股票的最佳时机 II(贪心)]]></title>
         <id>https://sakuratears.cn/post/mai-mai-gu-piao-de-zui-jia-shi-ji-iitan-xin/</id>
@@ -422,545 +839,6 @@ public:
         }
     }
     return re;
-}
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[PyQt5总结]]></title>
-        <id>https://sakuratears.cn/post/pyqt5-zong-jie/</id>
-        <link href="https://sakuratears.cn/post/pyqt5-zong-jie/">
-        </link>
-        <updated>2020-10-30T12:24:46.000Z</updated>
-        <content type="html"><![CDATA[<p>[TOC]</p>
-<h1 id="基本功能">基本功能</h1>
-<h2 id="基本操作">基本操作</h2>
-<pre><code class="language-python">from PyQt5.QtWidgets import QApplication, QWidget
-</code></pre>
-<pre><code class="language-python">app = QApplication(sys.argv)
-</code></pre>
-<p>每一pyqt5应用程序必须创建一个应用程序对象。sys.argv参数是一个列表，从命令行输入参数</p>
-<pre><code class="language-python">w = QWidget()
-</code></pre>
-<p>QWidget部件是pyqt5所有用户界面对象的基类。他为QWidget提供默认构造函数。</p>
-<pre><code class="language-python">w.resize(250, 250)
-</code></pre>
-<p>resize方法调整窗口大小</p>
-<pre><code class="language-python">w.move(300, 300)
-</code></pre>
-<p>move方法移动窗口在屏幕的位置</p>
-<pre><code class="language-python">w.setWindowTitle('Simple')
-</code></pre>
-<p>设置窗口标题</p>
-<pre><code class="language-python">w.show()
-</code></pre>
-<p>显示在屏幕上</p>
-<pre><code class="language-python">self.setGeometry(300, 300, 300, 300)
-</code></pre>
-<p>设置窗口位置和大小</p>
-<h2 id="图标">图标</h2>
-<pre><code class="language-python">self.setWindowIcon(QIcon('路径'))
-</code></pre>
-<p>设置窗口的图标</p>
-<h2 id="提示语">提示语</h2>
-<pre><code class="language-python">from PyQt5.QtWidgets import (QWidget, QToolTip, 
-    QPushButton, QApplication)
-from PyQt5.QtGui import QFont   
-</code></pre>
-<pre><code class="language-python">QToolTip.setFont(QFont('SansSerif', 10))
-</code></pre>
-<p>这种静态的方法设置一个用于显示工具提示的字体。我们使用10px滑体字体</p>
-<pre><code class="language-python">self.setToolTip('This is a &lt;b&gt;QWidget&lt;/b&gt; widget')
-</code></pre>
-<p>创建一个提示，我们称之为settooltip()方法。我们可以使用丰富的文本格式</p>
-<pre><code class="language-python">btn = QPushButton('Button', self)
-btn.setToolTip('This is a &lt;b&gt;QPushButton&lt;/b&gt; widget')
-</code></pre>
-<p>创建一个PushButton并为他设置一个tooltip</p>
-<pre><code class="language-python">btn.resize(btn.sizeHint())
-</code></pre>
-<p>btn.sizeHint()为默认尺寸</p>
-<h2 id="关闭窗口">关闭窗口</h2>
-<pre><code class="language-python">qbtn = QPushButton('Quit', self)
-qbtn.clicked.connect(QCoreApplication.instance().quit)
-</code></pre>
-<h2 id="消息框">消息框</h2>
-<pre><code class="language-python">from PyQt5.QtWidgets import QWidget, QMessageBox, QApplication
-</code></pre>
-<pre><code class="language-python">def closeEvent(self, event):
-        
-        reply = QMessageBox.question(self, 'Message',
-            &quot;Are you sure to quit?&quot;, QMessageBox.Yes | 
-            QMessageBox.No, QMessageBox.No)
- 
-        if reply == QMessageBox.Yes:
-            event.accept()
-        else:
-            event.ignore()
-</code></pre>
-<p>关闭窗口是出发QCloseEvent。我们需要重写closeEvent方法</p>
-<h2 id="窗口显示在屏幕的中间">窗口显示在屏幕的中间</h2>
-<pre><code class="language-python">#控制窗口显示在屏幕中心的方法    
-    def center(self):
-        #获得窗口
-        qr = self.frameGeometry()
-        #获得屏幕中心点
-        cp = QDesktopWidget().availableGeometry().center()
-        #显示到屏幕中心
-        qr.moveCenter(cp)
-        self.move(qr.topLeft())
-</code></pre>
-<p>QtGui,QDesktopWidget类提供了用户的桌面信息,包括屏幕大小。</p>
-<h1 id="布局管理">布局管理</h1>
-<h2 id="绝对定位">绝对定位</h2>
-<pre><code class="language-python">lbl1 = QLabel('Zetcode', self)
-lbl1.move(15, 10)
- 
-lbl2 = QLabel('tutorials', self)
-lbl2.move(35, 40)
-        
-lbl3 = QLabel('for programmers', self)
-lbl3.move(55, 70)        
-        
-self.setGeometry(300, 300, 250, 150)
-self.setWindowTitle('Absolute')    
-self.show()
-</code></pre>
-<h2 id="框布局-boxlayout">框布局 Boxlayout</h2>
-<pre><code class="language-python">okButton = QPushButton(&quot;OK&quot;)
-cancelButton = QPushButton(&quot;Cancel&quot;)
- 
-hbox = QHBoxLayout()
-hbox.addStretch(1)
-hbox.addWidget(okButton)
-hbox.addWidget(cancelButton)
- 
-vbox = QVBoxLayout()
-vbox.addStretch(1)
-vbox.addLayout(hbox)
-        
-self.setLayout(vbox)    
-        
-self.setGeometry(300, 300, 300, 150)
-self.setWindowTitle('Buttons')    
-self.show()
-</code></pre>
-<p>我们使用QHBoxLayout和QVBoxLayout，来分别创建横向布局和纵向布局。</p>
-<pre><code class="language-python">hbox = QHBoxLayout()
-hbox.addStretch(1)
-hbox.addWidget(okButton)
-hbox.addWidget(cancelButton)
-</code></pre>
-<p>我们创建一个水平布局和添加一个伸展因子和两个按钮。两个按钮前的伸展增加了一个可伸缩的空间。这将推动他们靠右显示。</p>
-<pre><code class="language-python">vbox = QVBoxLayout()
-vbox.addStretch(1)
-vbox.addLayout(hbox)
-</code></pre>
-<p>创建一个垂直布局，并添加伸展因子，让水平布局显示在窗口底部</p>
-<pre><code class="language-python">self.setLayout(vbox)
-</code></pre>
-<p>最后,我们设置窗口的布局界面</p>
-<h2 id="表格布局-qgridlayout">表格布局 QGridLayout</h2>
-<pre><code class="language-python">grid = QGridLayout()
-self.setLayout(grid)
-
-names = ['Cls', 'Bck', '', 'Close',
-          '7', '8', '9', '/',
-           '4', '5', '6', '*',
-          '1', '2', '3', '-',
-             '0', '.', '=', '+']
-
- positions = [(i, j) for i in range(5) for j in range(4)]
-
-  for position, name in zip(positions, names):
-
-       if name == '':
-            continue
-        button = QPushButton(name)
-        grid.addWidget(button, *position)
-
-</code></pre>
-<pre><code class="language-python">grid = QGridLayout()
-self.setLayout(grid)
-</code></pre>
-<p>QGridLayout的实例被创建并设置应用程序窗口的布局。</p>
-<p>names列表为这些按钮的标签</p>
-<h2 id="评论的例子">评论的例子</h2>
-<pre><code class="language-python">def initUI(self):
-
-    title = QLabel('Title')
-    author = QLabel('Author')
-    review = QLabel('Review')
-
-    titleEdit = QLineEdit()
-    authorEdit = QLineEdit()
-    reviewEdit = QTextEdit()
-
-    grid = QGridLayout()
-    grid.setSpacing(10)
-
-    grid.addWidget(title, 1, 0)
-    grid.addWidget(titleEdit, 1, 1)
-
-    grid.addWidget(author, 2, 0)
-    grid.addWidget(authorEdit, 2, 1)
-
-    grid.addWidget(review, 3, 0)
-    grid.addWidget(reviewEdit, 3, 1, 5, 1)
-
-    self.setLayout(grid)
-
-    self.setGeometry(300, 300, 350, 300)
-    self.setWindowTitle('Review')
-    self.show()
-</code></pre>
-<p>我们创建一个窗口,其中有三个标签,两个行编辑和一个文本编辑窗口小控件。然后使用QGridLayout完成布局。</p>
-<pre><code class="language-python">grid = QGridLayout()
-grid.setSpacing(10)
-</code></pre>
-<p>创建一个网格布局和设置组件之间的间距。</p>
-<pre><code class="language-python">grid.addWidget(reviewEdit, 3, 1, 5, 1)
-</code></pre>
-<p>在添加一个小的控件到网格的时候,我们可以提供小部件的行和列跨。在例子中,reviewEdit控件跨度5行。</p>
-<h1 id="菜单和工具栏">菜单和工具栏</h1>
-<h2 id="状态栏">状态栏</h2>
-<pre><code class="language-python">def initUI(self):
-
-    self.statusBar().showMessage('Ready')
-
-    self.setGeometry(300, 300, 250, 150)
-    self.setWindowTitle('Statusbar')
-    self.show()
-
-</code></pre>
-<p>用QMainWindow创建状态栏的小窗口</p>
-<pre><code class="language-python">self.statusBar().showMessage('Ready')
-</code></pre>
-<p>QMainWindow类第一次调用statusBar()方法创建一个状态栏。后续调用返回的状态栏对象。showMessage()状态栏上显示一条消息。</p>
-<h2 id="菜单栏">菜单栏</h2>
-<p>菜单栏是常见的窗口应用程序的一部分。(Mac OS将菜单条不同。得到类似的结果,我们可以添加以下行:menubar.setNativeMenuBar(假)。)</p>
-<pre><code class="language-python">def initUI(self):
-
-    exitAction = QAction(QIcon('exit.png'), '&amp;Exit', self)
-    exitAction.setShortcut('Ctrl+Q')
-    exitAction.setStatusTip('Exit application')
-    exitAction.triggered.connect(qApp.quit)
-
-    self.statusBar()
-
-    # 创建一个菜单栏
-    menubar = self.menuBar()
-    # 添加菜单
-    fileMenu = menubar.addMenu('&amp;File')
-    # 添加事件
-    fileMenu.addAction(exitAction)
-
-    self.setGeometry(300, 300, 300, 200)
-    self.setWindowTitle('Menubar')
-    self.show()
-
-</code></pre>
-<pre><code class="language-python">exitAction = QAction(QIcon('exit.png'), '&amp;Exit', self)        
-exitAction.setShortcut('Ctrl+Q')
-exitAction.setStatusTip('Exit application')
-</code></pre>
-<p>QAction可以操作菜单栏,工具栏,或自定义键盘快捷键。上面三行,我们创建一个事件和一个特定的图标和一个“退出”的标签。然后,在定义该操作的快捷键。<br>
-第三行创建一个鼠标指针悬停在该菜单项上时的提示。</p>
-<pre><code class="language-python">exitAction.triggered.connect(qApp.quit)
-</code></pre>
-<p>当我们点击菜单的时候，调用qApp.quit,终止应用程序。</p>
-<h2 id="工具栏">工具栏</h2>
-<pre><code class="language-python">def initUI(self):
-
-    exitAction = QAction(QIcon('exit24.png'), 'Exit', self)
-    exitAction.setShortcut('Ctrl+Q')
-    exitAction.triggered.connect(qApp.quit)
-
-    self.toolbar = self.addToolBar('Exit')
-    self.toolbar.addAction(exitAction)
-
-    self.setGeometry(300, 300, 300, 200)
-    self.setWindowTitle('Toolbar')
-    self.show()
-
-</code></pre>
-<p>在上面的例子中,我们创建一个简单的工具栏。工具栏有有一个按钮,点击关闭窗口。</p>
-<pre><code class="language-python">exitAction = QAction(QIcon('exit24.png'), 'Exit', self)
-exitAction.setShortcut('Ctrl+Q')
-exitAction.triggered.connect(qApp.quit)
-</code></pre>
-<p>类似于上面的菜单栏的例子,我们创建一个QAction事件。该事件有一个标签、图标和快捷键。退出窗口的方法</p>
-<h2 id="把他们放在一起">把他们放在一起</h2>
-<pre><code class="language-python">import sys
-from PyQt5.QtWidgets import QMainWindow, QTextEdit, QAction, QApplication
-from PyQt5.QtGui import QIcon
- 
- 
-class Example(QMainWindow):
-    
-    def __init__(self):
-        super().__init__()
-        
-        self.initUI()
-        
-        
-    def initUI(self):               
-        
-        textEdit = QTextEdit()
-        self.setCentralWidget(textEdit)
- 
-        exitAction = QAction(QIcon('exit24.png'), 'Exit', self)
-        exitAction.setShortcut('Ctrl+Q')
-        exitAction.setStatusTip('Exit application')
-        exitAction.triggered.connect(self.close)
- 
-        self.statusBar()
- 
-        menubar = self.menuBar()
-        fileMenu = menubar.addMenu('&amp;File')
-        fileMenu.addAction(exitAction)
- 
-        toolbar = self.addToolBar('Exit')
-        toolbar.addAction(exitAction)
-        
-        self.setGeometry(300, 300, 350, 250)
-        self.setWindowTitle('Main window')    
-        self.show()
-        
-        
-if __name__ == '__main__':
-    
-    app = QApplication(sys.argv)
-    ex = Example()
-    sys.exit(app.exec_())
-</code></pre>
-<pre><code class="language-python">textEdit = QTextEdit()
-self.setCentralWidget(textEdit)
-</code></pre>
-<p>我们创建了一个QTextEdit,并把他设置为窗口的布局</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Python实现图片转字符画]]></title>
-        <id>https://sakuratears.cn/post/python-shi-xian-tu-pian-zhuan-zi-fu-hua/</id>
-        <link href="https://sakuratears.cn/post/python-shi-xian-tu-pian-zhuan-zi-fu-hua/">
-        </link>
-        <updated>2020-10-26T12:37:31.000Z</updated>
-        <content type="html"><![CDATA[<p>首先，安装 Python 图像处理库 pillow（PIL）<br>
-argparse是 Python 标准库中推荐的命令行解析模块。<br>
-具体方法可以查看官方文档是 https://docs.python.org/zh-cn/3/howto/argparse.html</p>
-<pre><code class="language-Python"># -*- coding=utf-8 -*-
-
-from PIL import Image
-import argparse
-
-#命令行输入参数处理
-parser = argparse.ArgumentParser()
-
-parser.add_argument('file')     #输入文件
-parser.add_argument('-o', '--output')   #输出文件
-parser.add_argument('--width', type = int, default = 80) #输出字符画宽
-parser.add_argument('--height', type = int, default = 80) #输出字符画高
-
-#获取参数
-args = parser.parse_args()
-
-IMG = args.file
-WIDTH = args.width
-HEIGHT = args.height
-OUTPUT = args.output
-
-ascii_char = list(&quot;$@B%8&amp;WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~&lt;&gt;i!lI;:,\&quot;^`'. &quot;)
-
-# 将256灰度映射到70个字符上
-def get_char(r,g,b,alpha = 256):
-    if alpha == 0:
-        return ' '
-    length = len(ascii_char)
-    gray = int(0.2126 * r + 0.7152 * g + 0.0722 * b)
-
-    unit = (256.0 + 1)/length
-    return ascii_char[int(gray/unit)]
-
-if __name__ == '__main__':
-
-    # 打开并调整图片的宽和高
-    im = Image.open(IMG)
-    im = im.resize((WIDTH,HEIGHT), Image.NEAREST)
-
-    # 初始化输出的字符串
-    txt = &quot;&quot;
-
-    # 遍历图片中的每一行
-    for i in range(HEIGHT):
-        # 遍历该行中的每一列
-        for j in range(WIDTH):
-            # 将 (j,i) 坐标的 RGB 像素转为字符后添加到 txt 字符串
-            txt += get_char(*im.getpixel((j,i)))
-        # 遍历完一行后需要增加换行符
-        txt += '\n'
-    # 输出到屏幕
-    print(txt)
-
-    # 字符画输出到文件
-    if OUTPUT:
-        with open(OUTPUT,'w') as f:
-            f.write(txt)
-    else:
-        with open(&quot;output.txt&quot;,'w') as f:
-            f.write(txt)
-
-</code></pre>
-<p>使用图片https://labfile.oss.aliyuncs.com/courses/370/ascii_dora.png<br>
-在命令行使用命令<br>
-<code>python ascii.py ascii_dora.png</code><br>
-效果：<br>
-<img src="https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/notepad_DvSgM1djjf.png" alt="效果图" loading="lazy"></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Python解决用pip装第三方库慢的方法]]></title>
-        <id>https://sakuratears.cn/post/python-jie-jue-yong-pip-zhuang-di-san-fang-ku-man-de-fang-fa/</id>
-        <link href="https://sakuratears.cn/post/python-jie-jue-yong-pip-zhuang-di-san-fang-ku-man-de-fang-fa/">
-        </link>
-        <updated>2020-10-24T10:48:49.000Z</updated>
-        <content type="html"><![CDATA[<p>由于政策原因使用pip(pycharm也是)装第三方库有时会很慢有时会失败，有条件的可以使用不可描述方法进行安装或者我们可以使用清华源镜像装库<br>
-链接https://mirrors.tuna.tsinghua.edu.cn/help/pypi/</p>
-<!-- more -->]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[KMP算法]]></title>
-        <id>https://sakuratears.cn/post/kmp-suan-fa/</id>
-        <link href="https://sakuratears.cn/post/kmp-suan-fa/">
-        </link>
-        <updated>2020-10-23T07:02:13.000Z</updated>
-        <summary type="html"><![CDATA[<p>KMP算法是一种<strong>字符串匹配</strong>算法，可以在 O(n+m) 的时间复杂度内实现两个字符串的匹配。本文将引导您学习KMP算法。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>KMP算法是一种<strong>字符串匹配</strong>算法，可以在 O(n+m) 的时间复杂度内实现两个字符串的匹配。本文将引导您学习KMP算法。</p>
-<!-- more -->
-<p>本文转载自知乎“洛谷网校 阮行止”</p>
-<p>网址：https://www.zhihu.com/question/21923021/answer/1032665486?utm_source=qq&amp;utm_medium=social&amp;utm_oi=952480495343259648</p>
-<h4 id="字符串匹配问题">字符串匹配问题</h4>
-<p>所谓字符串匹配，是这样一种问题：“字符串 P 是否为字符串 S 的子串？如果是，它出现在 S 的哪些位置？” 其中 S 称为<strong>主串</strong>；P 称为<strong>模式串</strong>。下面的图片展示了一个例子。</p>
-<figure data-type="image" tabindex="1"><img src="https://pic4.zhimg.com/v2-2967e415f490e03a2a9400a92b185310_r.jpg?source=1940ef5c" alt="图" loading="lazy"></figure>
-<p>主串是莎翁那句著名的 “to be or not to be”，这里删去了空格。“no” 这个模式串的匹配结果是“出现了一次，从S[6]开始”；“ob”这个模式串的匹配结果是“出现了两次，分别从s[1]、s[10]开始”。按惯例，主串和模式串都以0开始编号。<br>
-　　字符串匹配是一个非常频繁的任务。例如，今有一份名单，你急切地想知道自己在不在名单上；又如，假设你拿到了一份文献，你希望快速地找到某个关键字（keyword）所在的章节……凡此种种，不胜枚举。<br>
-　　我们先从最朴素的Brute-Force算法开始讲起。</p>
-<h4 id="brute-force">Brute-Force</h4>
-<p>顾名思义，Brute-Force是一个纯暴力算法。说句题外话，我怀疑，“暴力”一词在算法领域表示“穷举、极低效率的实现”，可能就是源于这个英文词。<br>
-　　首先，我们应该如何实现两个字符串 A,B 的比较？所谓<strong>字符串比较</strong>，就是问“两个字符串是否相等”。最朴素的思想，就是从前往后逐字符比较，一旦遇到不相同的字符，就返回False；如果两个字符串都结束了，仍然没有出现不对应的字符，则返回True。实现如下：<br>
-<img src="https://pic2.zhimg.com/80/v2-f9a7d55f60e346529f70c409dfcda786_720w.jpg?source=1940ef5c" alt="图" loading="lazy"></p>
-<p>既然我们可以知道“两个字符串是否相等”，那么最朴素的字符串匹配算法 Brute-Force 就呼之欲出了——<br>
-· 枚举 i = 0, 1, 2 ... , len(S)-len(P)<br>
-· 将 S[i : i+len(P)] 与 P 作比较。如果一致，则找到了一个匹配。</p>
-<p>现在我们来模拟 Brute-Force 算法，对主串 “AAAAAABC” 和模式串 “AAAB” 做匹配：<br>
-<img src="https://pic3.zhimg.com/80/v2-1892c7f6bee02e0fc7baf22aaef7151f_720w.jpg?source=1940ef5c" alt="图" loading="lazy"><br>
-这是一个清晰明了的算法，实现也极其简单。下面给出Python和C++的实现：<br>
-<img src="https://pic4.zhimg.com/80/v2-36589bc0279263ec8641a295aea66a0c_720w.jpg?source=1940ef5c" alt="图" loading="lazy"><br>
-<img src="https://pic4.zhimg.com/80/v2-ed28c8d60516720cc38c48d135091a58_720w.jpg?source=1940ef5c" alt="图" loading="lazy"></p>
-<p>我们成功实现了 Brute-Force 算法。现在，我们需要对它的时间复杂度做一点讨论。按照惯例，记 n = |S| 为串 S 的长度，m = |P| 为串 P 的长度。<br>
-　　考虑“字符串比较”这个小任务的复杂度。最坏情况发生在：两个字符串唯一的差别在最后一个字符。这种情况下，字符串比较必须走完整个字符串，才能给出结果，因此复杂度是 O(len) 的。</p>
-<p>由此，不难想到 Brute-Force 算法所面对的最坏情况：主串形如“AAAAAAAAAAA...B”，而模式串形如“AAAAA...B”。每次字符串比较都需要付出 |P| 次字符比较的代价，总共需要比较 |S| - |P| + 1次，因此总时间复杂度是  <img src="https://www.zhihu.com/equation?tex=O%28%7CP%7C%5Ccdot+%28%7CS%7C+-+%7CP%7C+%2B+1%29+%29" alt="[公式]" loading="lazy"> . 考虑到主串一般比模式串长很多，故 Brute-Force 的复杂度是 <img src="https://www.zhihu.com/equation?tex=O%28%7CP%7C+%5Ccdot+%7CS%7C%29" alt="[公式]" loading="lazy"> ，也就是 O(nm)的。这太慢了！</p>
-<h4 id="brute-force的改进思路">Brute-Force的改进思路</h4>
-<p>经过刚刚的分析，您已经看到，Brute-Force 慢得像爬一样。它最坏的情况如下图所示：<br>
-<img src="https://pic4.zhimg.com/80/v2-4fe5612ff13a6286e1a8e50a0b06cd96_720w.jpg?source=1940ef5c" alt="图" loading="lazy"></p>
-<p>我们很难降低字符串比较的复杂度（因为比较两个字符串，真的只能逐个比较字符）。因此，我们考虑<strong>降低比较的趟数</strong>。如果比较的趟数能降到足够低，那么总的复杂度也将会下降很多。　　要优化一个算法，首先要回答的问题是“我手上有什么信息？”　我们手上的信息是否足够、是否有效，决定了我们能把算法优化到何种程度。请记住：<strong>尽可能利用残余的信息，是KMP算法的思想所在</strong>。<br>
-　　在 Brute-Force 中，如果从 S[i] 开始的那一趟比较失败了，算法会直接开始尝试从 S[i+1] 开始比较。这种行为，属于典型的“没有从之前的错误中学到东西”。我们应当注意到，一次失败的匹配，会给我们提供宝贵的信息——如果 S[i : i+len(P)] 与 P 的匹配是在第 r 个位置失败的，那么从 S[i] 开始的 (r-1) 个连续字符，一定与 P 的前 (r-1) 个字符一模一样！</p>
-<figure data-type="image" tabindex="2"><img src="https://pic2.zhimg.com/80/v2-7dc61b0836af61e302d9474eeeecfe83_720w.jpg?source=1940ef5c" alt="图" loading="lazy"></figure>
-<p>需要实现的任务是“字符串匹配”，而每一次失败都会给我们换来一些信息——能告诉我们，主串的某一个子串等于模式串的某一个前缀。但是这又有什么用呢？</p>
-<h4 id="跳过不可能成功的字符串比较">跳过不可能成功的字符串比较</h4>
-<p>有些趟字符串比较是有可能会成功的；有些则毫无可能。我们刚刚提到过，优化 Brute-Force 的路线是“尽量减少比较的趟数”，而如果我们跳过那些<strong>绝不可能成功的</strong>字符串比较，则可以希望复杂度降低到能接受的范围。<br>
-　　那么，哪些字符串比较是不可能成功的？来看一个例子。已知信息如下：</p>
-<ul>
-<li>模式串 P = &quot;abcabd&quot;.</li>
-<li>和主串从S[0]开始匹配时，在 P[5] 处失配。</li>
-</ul>
-<figure data-type="image" tabindex="3"><img src="https://pic4.zhimg.com/50/v2-372dc6c567ba53a1e4559fdb0cb6b206_hd.jpg?source=1940ef5c" alt="img" loading="lazy"></figure>
-<p>首先，利用上一节的结论。既然是在 P[5] 失配的，那么说明 S[0:5] 等于 P[0:5]，即&quot;abcab&quot;. 现在我们来考虑：从 S[1]、S[2]、S[3] 开始的匹配尝试，有没有可能成功？<br>
-　　从 S[1] 开始肯定没办法成功，因为 S[1] = P[1] = 'b'，和 P[0] 并不相等。从 S[2] 开始也是没戏的，因为 S[2] = P[2] = 'c'，并不等于P[0]. 但是从 S[3] 开始是有可能成功的——至少按照已知的信息，我们推不出矛盾。</p>
-<figure data-type="image" tabindex="4"><img src="https://pic4.zhimg.com/50/v2-67dd66b86323d3d08f976589cf712a1a_hd.jpg?source=1940ef5c" alt="img" loading="lazy"></figure>
-<p>带着“跳过不可能成功的尝试”的思想，我们来看next数组。</p>
-<h4 id="next数组">next数组</h4>
-<p>next数组是对于模式串而言的。P 的 next 数组定义为：next[i] 表示 P[0] ~ P[i] 这一个子串，使得 <strong>前k个字符</strong>恰等于<strong>后k个字符</strong> 的最大的k. 特别地，k不能取i+1（因为这个子串一共才 i+1 个字符，自己肯定与自己相等，就没有意义了）。</p>
-<figure data-type="image" tabindex="5"><img src="https://pic2.zhimg.com/80/v2-49c7168b5184cc1744459f325e426a4a_720w.jpg?source=1940ef5c" alt="img" loading="lazy"></figure>
-<p>上图给出了一个例子。P=&quot;abcabd&quot;时，next[4]=2，这是因为P[0] ~ P[4] 这个子串是&quot;abcab&quot;，前两个字符与后两个字符相等，因此next[4]取2. 而next[5]=0，是因为&quot;abcabd&quot;找不到前缀与后缀相同，因此只能取0.</p>
-<p>如果把模式串视为一把标尺，在主串上移动，那么 Brute-Force 就是每次失配之后只右移一位；改进算法则是<strong>每次失配之后，移很多位</strong>，跳过那些不可能匹配成功的位置。但是该如何确定要移多少位呢？</p>
-<figure data-type="image" tabindex="6"><img src="https://pic4.zhimg.com/80/v2-d6c6d433813595dce5aad08b40dc0b72_720w.jpg?source=1940ef5c" alt="img" loading="lazy"></figure>
-<p>在 S[0] 尝试匹配，失配于 S[3] &lt;=&gt; P[3] 之后，我们直接把模式串往右移了两位，让 S[3] 对准 P[1]. 接着继续匹配，失配于 S[8] &lt;=&gt; P[6], 接下来我们把 P 往右平移了三位，把 S[8] 对准 P[3]. 此后继续匹配直到成功。<br>
-　　我们应该如何移动这把标尺？<strong>很明显，如图中蓝色箭头所示，旧的后缀要与新的前缀一致</strong>（如果不一致，那就肯定没法匹配上了）！</p>
-<p>回忆next数组的性质：P[0] 到 P[i] 这一段子串中，前next[i]个字符与后next[i]个字符一模一样。既然如此，如果失配在 P[r], 那么P[0]~P[r-1]这一段里面，<strong>前next[r-1]个字符恰好和后next[r-1]个字符相等</strong>——也就是说，我们可以拿长度为 next[r-1] 的那一段前缀，来顶替当前后缀的位置，让匹配继续下去！<br>
-　　您可以验证一下上面的匹配例子：P[3]失配后，把P[next[3-1]]也就是P[1]对准了主串刚刚失配的那一位；P[6]失配后，把P[next[6-1]]也就是P[3]对准了主串刚刚失配的那一位。</p>
-<figure data-type="image" tabindex="7"><img src="https://pic2.zhimg.com/80/v2-6ddb50d021e9fa660b5add8ea225383a_720w.jpg?source=1940ef5c" alt="img" loading="lazy"></figure>
-<p>如上图所示，绿色部分是成功匹配，失配于红色部分。深绿色手绘线条标出了相等的前缀和后缀，<strong>其长度为next[右端]</strong>. 由于手绘线条部分的字符是一样的，所以直接把前面那条移到后面那条的位置。因此说，<strong>next数组为我们如何移动标尺提供了依据</strong>。接下来，我们实现这个优化的算法。</p>
-<h4 id="利用next数组进行匹配">利用next数组进行匹配</h4>
-<p>了解了利用next数组加速字符串匹配的原理，我们接下来代码实现之。分为两个部分：建立next数组、利用next数组进行匹配。<br>
-　　首先是建立next数组。我们暂且用最朴素的做法，以后再回来优化：</p>
-<p><img src="https://pic1.zhimg.com/50/v2-1dda8f33e5847449cd9784e76e972cab_hd.jpg?source=1940ef5c" alt="img" loading="lazy"><img src="https://pic1.zhimg.com/80/v2-1dda8f33e5847449cd9784e76e972cab_720w.jpg?source=1940ef5c" alt="img" loading="lazy"></p>
-<p>如上图代码所示，直接根据next数组的定义来建立next数组。不难发现它的复杂度是 <img src="https://www.zhihu.com/equation?tex=O%28m%5E2%29" alt="[公式]" loading="lazy"> 的。<br>
-　　接下来，实现利用next数组加速字符串匹配。代码如下：</p>
-<figure data-type="image" tabindex="8"><img src="https://pic2.zhimg.com/50/v2-a6bd81af7cf9bbda32b2cfb0e4858276_hd.jpg?source=1940ef5c" alt="img" loading="lazy"></figure>
-<p>如何分析这个字符串匹配的复杂度呢？乍一看，pos值可能不停地变成next[pos-1]，代价会很高；但我们使用摊还分析，显然pos值一共顶多自增len(S)次，因此pos值减少的次数不会高于len(S)次。由此，复杂度是可以接受的，不难分析出整个匹配算法的时间复杂度：O(n+m).</p>
-<h4 id="快速求next数组">快速求next数组</h4>
-<p>终于来到了我们最后一个问题——如何快速构建next数组。<br>
-　　首先说一句：快速构建next数组，是KMP算法的精髓所在，核心思想是“<strong>P自己与自己做匹配</strong>”。<br>
-　　为什么这样说呢？回顾next数组的完整定义：</p>
-<ul>
-<li>定义 “k-前缀” 为一个字符串的前 k 个字符； “k-后缀” 为一个字符串的后 k 个字符。k 必须小于字符串长度。</li>
-<li>next[x] 定义为： P[0]~P[x] 这一段字符串，使得<strong>k-前缀恰等于k-后缀</strong>的最大的k.</li>
-</ul>
-<p>这个定义中，不知不觉地就包含了一个匹配——前缀和后缀相等。接下来，我们考虑采用递推的方式求出next数组。如果next[0], next[1], ... next[x-1]均已知，那么如何求出 next[x] 呢？</p>
-<p>来分情况讨论。首先，已经知道了 next[x-1]（以下记为now），如果 P[x] 与 P[now] 一样，那最长相等前后缀的长度就可以扩展一位，很明显 next[x] = now + 1. 图示如下。</p>
-<figure data-type="image" tabindex="9"><img src="https://pic3.zhimg.com/80/v2-6d6a40331cd9e44bfccd27ac5a764618_720w.jpg?source=1940ef5c" alt="img" loading="lazy"></figure>
-<p>刚刚解决了 P[x] = P[now] 的情况。那如果 P[x] 与 P[now] 不一样，又该怎么办？</p>
-<figure data-type="image" tabindex="10"><img src="https://pic1.zhimg.com/80/v2-ce1d46a1e3603b07a13789b6ece6022f_720w.jpg?source=1940ef5c" alt="img" loading="lazy"></figure>
-<p>如图。长度为 now 的子串 A 和子串 B 是 P[0]~P[x-1] 中最长的公共前后缀。可惜 A 右边的字符和 B 右边的那个字符不相等，next[x]不能改成 now+1 了。因此，我们应该<strong>缩短这个now</strong>，把它改成小一点的值，再来试试 P[x] 是否等于 P[now].<br>
-　　now该缩小到多少呢？显然，我们不想让now缩小太多。因此我们决定，在保持“P[0]~P[x-1]的now-前缀仍然等于now-后缀”的前提下，让这个新的now尽可能大一点。 P[0]~P[x-1] 的公共前后缀，前缀一定落在串A里面、后缀一定落在串B里面。换句话讲：接下来now应该改成：使得 <strong>A的k-前缀</strong>等于<strong>B的k-后缀</strong> 的最大的k.<br>
-　　您应该已经注意到了一个非常强的性质——<strong>串A和串B是相同的</strong>！B的后缀等于A的后缀！因此，使得A的k-前缀等于B的k-后缀的最大的k，其实就是串A的最长公共前后缀的长度 —— next[now-1]！</p>
-<figure data-type="image" tabindex="11"><img src="https://pic2.zhimg.com/80/v2-c5ff4faaab9c3e13690deb86d8d17d71_720w.jpg?source=1940ef5c" alt="img" loading="lazy"></figure>
-<p>来看上面的例子。当P[now]与P[x]不相等的时候，我们需要缩小now——把now变成next[now-1]，直到P[now]=P[x]为止。P[now]=P[x]时，就可以直接向右扩展了。</p>
-<p>代码实现如下：</p>
-<p><img src="https://pic4.zhimg.com/50/v2-010a582b0c92a92044c43a2a2ea88928_hd.jpg?source=1940ef5c" alt="img" loading="lazy"><img src="https://pic4.zhimg.com/80/v2-010a582b0c92a92044c43a2a2ea88928_720w.jpg?source=1940ef5c" alt="img" loading="lazy"></p>
-<p>应用摊还分析，不难证明构建next数组的时间复杂度是O(m)的。至此，我们以O(n+m)的时间复杂度，实现了构建next数组、利用next数组进行字符串匹配。</p>
-<p>以上就是KMP算法。它于1977年被提出，全称 Knuth–Morris–Pratt 算法。让我们记住前辈们的名字：<a href="https://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/Donald_Knuth">Donald Knuth</a>(K), <a href="https://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/James_H._Morris">James H. Morris</a>(M), <a href="https://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/Vaughan_Pratt">Vaughan Pratt</a>(P).</p>
-<p>作者：阮行止<br>
-链接：https://www.zhihu.com/question/21923021/answer/1032665486<br>
-来源：知乎</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[希尔排序]]></title>
-        <id>https://sakuratears.cn/post/xi-er-pai-xu/</id>
-        <link href="https://sakuratears.cn/post/xi-er-pai-xu/">
-        </link>
-        <updated>2020-10-23T07:00:09.000Z</updated>
-        <summary type="html"><![CDATA[<p>为了展示初级排序算法性质的价值，接下来我们将学习一种基于插入排序的快速的排序算法。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>为了展示初级排序算法性质的价值，接下来我们将学习一种基于插入排序的快速的排序算法。</p>
-<!-- more -->
-<p>对于大规模乱序数组插入排序很慢，因为它只会交换相邻的元素，因此元素只能一点一点地从数组的一端移动到另一端。例如，如果主键最小的元素正好在数组的尽头，要将它挪到正确的位置就需要№1次移动。希尔排序为了加快速度简单地改进了插入排序，交换不相邻的元素以对数组的局部进行排序，并最终用插入排序将局部有序的数组排序。</p>
-<p>实现希尔排序的一种方法是对于每个h，用插入排序将h个子数组独立地排序。但因为子数组是相互独立的，一个更简单的方法是在h-子数组中将每个元素交换到比它大的元素之前去（将比它大的元素向右移动一格）。只需要在插人排序的代码中将移动元素的距离由1改为h即可。这样，希尔排序的实现就转化为了一个类似于插人排序但使用不同增量的过程。</p>
-<p>希尔排序为插入排序高级版，先把几个部分的数组用插入排序排好，然后再把这几个分散数组排序成有序数组。<br>
-确定一个增量h（h可以是数组总长/3 or /2），每次循环完增量变小直到为1，每次把分散的数组整合成一个大的有序数组，直到增量为1时，整个数组排序完成。</p>
-<pre><code class="language-C/C++">void shellsort(int a[], int m)
-{
-    int h = m / 2; //确定增量h
-    for (h; h &gt;= 1; h /= 2) //每次增量变小
-    {
-        for (int i = h; i &lt; m; i += h)
-        {
-            for (int j = i; j &gt;= 0 &amp;&amp; j - h &gt;= 0 &amp;&amp; a[j] &lt; a[j - h]; j -= h)
-            {
-                int temp = a[j];
-                a[j] = a[j - h];
-                a[j - h] = temp;
-            }
-        }
-    }
-
-    for (int i = 0; i &lt; m; i++)
-    {
-        cout &lt;&lt; a[i] &lt;&lt; &quot; &quot;;
-    }
 }
 </code></pre>
 ]]></content>
