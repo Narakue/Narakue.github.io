@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-12-05T04:37:23.572Z</updated>
+    <updated>2020-12-05T04:40:51.856Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -23,7 +23,7 @@
 <p>给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。</p>
 <!-- more -->
 <p>示例 1：<br>
-<br><br/><br>
+<br><br>
 输入: &quot;babad&quot;<br>
 输出: &quot;bab&quot;<br>
 注意: &quot;aba&quot; 也是一个有效答案。<br>
