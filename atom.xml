@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-12-05T05:51:19.622Z</updated>
+    <updated>2020-12-05T13:01:23.511Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -10,6 +10,112 @@
     <logo>https://sakuratears.cn/images/avatar.png</logo>
     <icon>https://sakuratears.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, SakuraTears</rights>
+    <entry>
+        <title type="html"><![CDATA[Z 字形变换]]></title>
+        <id>https://sakuratears.cn/post/z-zi-xing-bian-huan/</id>
+        <link href="https://sakuratears.cn/post/z-zi-xing-bian-huan/">
+        </link>
+        <updated>2020-12-05T12:51:16.000Z</updated>
+        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>将一个给定字符串根据给定的行数，以从上往下、从左到右进行 Z 字形排列。<br></p>
+]]></summary>
+        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>将一个给定字符串根据给定的行数，以从上往下、从左到右进行 Z 字形排列。<br></p>
+<!-- more -->
+<p>比如输入字符串为 &quot;LEETCODEISHIRING&quot; 行数为 3 时，排列如下：<br></p>
+<p>L   C   I   R<br>
+E T O E S I I G<br>
+E   D   H   N<br>
+之后，你的输出需要从左往右逐行读取，产生出一个新的字符串，比如：&quot;LCIRETOESIIGEDHN&quot;。<br></p>
+<p>请你实现这个将字符串进行指定行数变换的函数：<br></p>
+<p>string convert(string s, int numRows);<br></p>
+<p>示例 1:<br>
+输入: s = &quot;LEETCODEISHIRING&quot;, numRows = 3<br>
+输出: &quot;LCIRETOESIIGEDHN&quot;<br></p>
+<p>示例 2:<br>
+输入: s = &quot;LEETCODEISHIRING&quot;, numRows = 4<br>
+输出: &quot;LDREOEIIECIHNTSG&quot;<br>
+解释:<br></p>
+<p>L     D     R<br>
+E   O E   I I<br>
+E C   I H   N<br>
+T     S     G<br></p>
+<p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/zigzag-conversion<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br></p>
+<h3 id="思路">思路</h3>
+<p>纯暴力写出来了，贴个代码算了0.0</p>
+<pre><code class="language-C++">class Solution {
+public:
+    string convert(string s, int numRows)
+    {
+        if (numRows == 1)
+            return s;
+        int num = 0, m = 0, p = 1, j = 0;
+        char arr[1000][1000];
+        string str;
+        for (int i = 0; i &lt; 1000; i++)
+        {
+            for (int j = 0; j &lt; 1000; j++)
+            {
+                arr[i][j] = NULL;
+            }
+        }
+        for (int i = 0; num &lt; s.size(); i++)
+        {
+            for (j = 0; j &lt; numRows &amp;&amp; num &lt; s.size(); j++)
+            {
+                if (i == 0 || i == m + numRows - 1)
+                {
+                    m = i;
+                    for (j = 0; j &lt; numRows &amp;&amp; num &lt; s.size(); j++)
+                    {
+                        arr[j][i] = s[num];
+                        num++;
+                    }
+                    p = 0;
+                    continue;
+                }
+                else
+                {
+                    if (j != numRows - 1 &amp;&amp; arr[j + 1][i - 1] != NULL)
+                    {
+                        if (i != m + 1 &amp;&amp; i != 1)
+                        {
+                            arr[j][i] = s[num];
+                            p = 0;
+                            num++;
+                            continue;
+                        }
+                        else
+                        {
+                            j = numRows - 2;
+                            arr[j][i] = s[num];
+                            i++;
+                            j = -1;
+                            num++;
+                            continue;
+                        }
+                    }
+                }
+            }
+        }
+        for (int i = 0; i &lt; s.size() &amp;&amp; str.size() != s.size(); i++)
+        {
+            for (int j = 0; j &lt; s.size() &amp;&amp; str.size() != s.size(); j++)
+            {
+                if (arr[i][j] &gt;= 41 &amp;&amp; arr[i][j] &lt;= 176)
+                {
+                    str += arr[i][j];
+                }
+            }
+        }
+        return str;
+    }
+};
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[最长回文子串(动态规划)]]></title>
         <id>https://sakuratears.cn/post/zui-chang-hui-wen-zi-chuan-dong-tai-gui-hua/</id>
@@ -777,80 +883,6 @@ public:
         return arr;
     }
 };
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[四数之和（双指针）]]></title>
-        <id>https://sakuratears.cn/post/si-shu-zhi-he/</id>
-        <link href="https://sakuratears.cn/post/si-shu-zhi-he/">
-        </link>
-        <updated>2020-11-01T13:32:08.000Z</updated>
-        <summary type="html"><![CDATA[<h4 id="题目描述">题目描述：</h4>
-<p>给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。<br><br></p>
-]]></summary>
-        <content type="html"><![CDATA[<h4 id="题目描述">题目描述：</h4>
-<p>给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。<br><br></p>
-<!-- more -->
-<p>注意：</p>
-<p>答案中不可以包含重复的四元组。<br><br></p>
-<p>示例：</p>
-<p>给定数组 nums = [1, 0, -1, 0, -2, 2]，和 target = 0。</p>
-<p>满足要求的四元组集合为：<br>
-[<br>
-[-1,  0, 0, 1],<br>
-[-2, -1, 1, 2],<br>
-[-2,  0, 0, 2]<br>
-]<br><br></p>
-<p>来源：力扣18题（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/4sum<br><br></p>
-<h4 id="题目分析">题目分析</h4>
-<p>此题可以用双指针法解决，先用两个for循环i, j遍历前面，两个指针left, right收缩，当nums[i] + nums[j] + nums[left] + nums[right] == target 时，入数组，然后注意一下去重。（三数之和一个for循环，四数之和用两个，五数之和用三个......）<br><br></p>
-<h4 id="代码题解">代码题解</h4>
-<pre><code class="language-c++">vector&lt;vector&lt;int&gt;&gt; fourSum(vector&lt;int&gt; &amp;nums, int target)
-{
-    vector&lt;vector&lt;int&gt;&gt; re;
-    sort(nums.begin(), nums.end());
-    for (int i = 0; i &lt; nums.size(); i++)
-    {
-        if (i &gt; 0 &amp;&amp; nums[i] == nums[i - 1])//去重
-            continue;
-        for (int j = i + 1; j &lt; nums.size(); j++)
-        {
-            if (j &gt; i + 1 &amp;&amp; nums[j] == nums[j - 1])//去重
-                continue;
-            int left = j + 1;
-            int right = nums.size() - 1;
-            while (left &lt; right)
-            {
-                if (nums[i] + nums[j] + nums[left] + nums[right] &gt; target)
-                {
-                    right--;
-                }
-                else if (nums[i] + nums[j] + nums[left] + nums[right] &lt; target)
-                {
-                    left++;
-                }
-                else
-                {
-                    re.push_back(vector&lt;int&gt;{nums[i], nums[j], nums[left], nums[right]});//下面两个循环去重
-                    while (right &gt; left &amp;&amp; nums[right] == nums[right - 1])
-                    {
-                        right--;
-                    }
-                    while (right &gt; left &amp;&amp; nums[left] == nums[left + 1])
-                    {
-                        left++;
-                    }
-                    //找到一个适合的后左右指针收缩
-                    left++;
-                    right--;
-                }
-            }
-        }
-    }
-    return re;
-}
 </code></pre>
 ]]></content>
     </entry>
