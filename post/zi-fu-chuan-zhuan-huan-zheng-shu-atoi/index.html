@@ -10,14 +10,14 @@
 <meta name="keywords" content="">
 <meta name="description" content="欢迎访问[SakuraTears]的个人博客">
 <meta name="author" content="kveln">
-<title>水域大小（DFS）（BFS） | SakuraTears</title>
+<title>字符串转换整数 (atoi) | SakuraTears</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 <link
   href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
   rel='stylesheet' type='text/css'>
-<link rel="alternate" type="application/rss+xml" title="水域大小（DFS）（BFS） | SakuraTears » Feed"
+<link rel="alternate" type="application/rss+xml" title="字符串转换整数 (atoi) | SakuraTears » Feed"
   href="https://sakuratears.cn/atom.xml">
 <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/styles/androidstudio.min.css">
@@ -30,8 +30,8 @@
 
 <script>hljs.initHighlightingOnLoad();</script>
 
-  <meta property="og:description" content="水域大小（DFS）（BFS）" />
-  <meta property="og:url" content="https://sakuratears.cn/post/shui-yu-da-xiao-dfsbfs/" />
+  <meta property="og:description" content="字符串转换整数 (atoi)" />
+  <meta property="og:url" content="https://sakuratears.cn/post/zi-fu-chuan-zhuan-huan-zheng-shu-atoi/" />
   <meta property="og:locale" content="zh-CN" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="SakuraTears" />
@@ -163,17 +163,17 @@
             <div class="post-heading">
               <span class="tags">
                 
-                <a href="https://sakuratears.cn/tag/ssMjTlXf4/" class="tag">搜索</a>
+                <a href="https://sakuratears.cn/tag/TkFkb6Kca/" class="tag">字符串</a>
                 
                 <a href="https://sakuratears.cn/tag/TN0UiB8Cf/" class="tag">LeetCode</a>
                 
                 <a href="https://sakuratears.cn/tag/e0ZtA0F1A/" class="tag">算法</a>
                 
               </span>
-              <h1>水域大小（DFS）（BFS）</h1>
+              <h1>字符串转换整数 (atoi)</h1>
               <span class="meta">
                 Posted on
-                2020/11/04，4 min read
+                2020/12/06，4 min read
               </span>
             </div>
           
@@ -188,124 +188,96 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto post-content-container">
           
-          <img class="post-feature-header-image" src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(8).jpg.webp" alt="封面图">
+          <img class="post-feature-header-image" src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(9).jpg.webp" alt="封面图">
           </img>
           
-          <p>DFS BFS例题</p>
+          <h3 id="题目">题目</h3>
+<p>请你来实现一个 atoi 函数，使其能将字符串转换成整数。<br><br></p>
 <!-- more -->
+<p>首先，该函数会根据需要丢弃无用的开头空格字符，直到寻找到第一个非空格的字符为止。接下来的转化规则如下：<br><br></p>
+<p>如果第一个非空字符为正或者负号时，则将该符号与之后面尽可能多的连续数字字符组合起来，形成一个有符号整数。<br>
+假如第一个非空字符是数字，则直接将其与之后连续的数字字符组合起来，形成一个整数。<br>
+该字符串在有效的整数部分之后也可能会存在多余的字符，那么这些字符可以被忽略，它们对函数不应该造成影响。<br>
+注意：假如该字符串中的第一个非空格字符不是一个有效整数字符、字符串为空或字符串仅包含空白字符时，则你的函数不需要进行转换，即无法进行有效转换。<br><br></p>
+<p>在任何情况下，若函数不能进行有效的转换时，请返回 0 。<br><br></p>
+<p>提示：<br><br></p>
+<p>本题中的空白字符只包括空格字符 ' ' 。<br>
+假设我们的环境只能存储 32 位大小的有符号整数，那么其数值范围为 [−231,  231 − 1]。如果数值超过这个范围，请返回  INT_MAX (231 − 1) 或 INT_MIN (−231) 。<br><br></p>
+<p>示例 1:</p>
+<p>输入: &quot;42&quot;<br>
+输出: 42<br><br><br>
+示例 2:</p>
+<p>输入: &quot;   -42&quot;<br>
+输出: -42<br>
+解释: 第一个非空白字符为 '-', 它是一个负号。<br>
+     我们尽可能将负号与后面所有连续出现的数字组合起来，最后得到 -42 。<br><br><br>
+示例 3:</p>
+<p>输入: &quot;4193 with words&quot;<br>
+输出: 4193<br>
+解释: 转换截止于数字 '3' ，因为它的下一个字符不为数字。<br><br><br>
+示例 4:</p>
+<p>输入: &quot;words and 987&quot;<br>
+输出: 0<br>
+解释: 第一个非空字符是 'w', 但它不是数字或正、负号。<br>
+因此无法执行有效的转换。<br><br><br>
+示例 5:</p>
+<p>输入: &quot;-91283472332&quot;<br>
+输出: -2147483648<br>
+解释: 数字 &quot;-91283472332&quot; 超过 32 位有符号整数范围。<br>
+     因此返回 INT_MIN (−231) 。<br><br></p>
 <p>来源：力扣（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/pond-sizes-lcci<br><br></p>
-<p>你有一个用于表示一片土地的整数矩阵land，该矩阵中每个点的值代表对应地点的海拔高度。若值为0则表示水域。由垂直、水平或对角连接的水域为池塘。池塘的大小是指相连接的水域的个数。编写一个方法来计算矩阵中所有池塘的大小，返回值需要从小到大排序。<br><br></p>
-<p>示例：<br><br></p>
-<p>输入：<br>
-[<br>
-[0,2,1,0],<br>
-[0,1,0,1],<br>
-[1,1,0,1],<br>
-[0,1,0,1]<br>
-]<br>
-输出： [1,2,4]<br>
-提示：<br><br></p>
-<p>0 &lt; len(land) &lt;= 1000<br>
-0 &lt; len(land[i]) &lt;= 1000<br><br></p>
-<p>此题DFS，BFS都可以用。<br>
-(代码格式为leetcode模板格式)<br><br></p>
-<p>代码:</p>
-<h5 id="bfs">BFS</h5>
+链接：https://leetcode-cn.com/problems/string-to-integer-atoi<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h3 id="思路">思路</h3>
 <pre><code class="language-C++">class Solution {
 public:
-    int n = 0;
-    vector&lt;vector&lt;int&gt;&gt; dirs = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};//可以斜着所以是8个方向
-    struct Node {int x; int y;};
-    queue&lt;Node&gt; q;
-    int BFS(int i, int j, vector&lt;vector&lt;int&gt;&gt;&amp; land)
-    {
-        n = 1;
-        Node start, node;
-        start.x = i;
-        start.y = j;
-        land[i][j] = 1;
-        q.push(start);
-        while (!q.empty()) {
-            start = q.front();
-            q.pop();
-            for (int i = 0; i &lt; 8; i++)
-            {
-                node.x = start.x + dirs[i][0];
-                node.y = start.y + dirs[i][1];
-                if (node.x &gt;= 0 &amp;&amp; node.x &lt; land.size() &amp;&amp; node.y &gt;= 0 &amp;&amp; node.y &lt; land[0].size() &amp;&amp; land[node.x][node.y] == 0)//判断是否为鱼塘
-                {
-                    q.push(node);
-                    land[node.x][node.y] = 1;//染色
-                    n++;
-                }
+    int myAtoi(string s) {
+        int i = 0, m = 0, jud = 0, n = 0, p, j = 0;
+        while (s[i] == ' ') {
+            i++;
+        }
+        if (s[i] != '-' &amp;&amp; s[i] != '+' &amp;&amp; (s[i] &gt; 57 || s[i] &lt; 48))
+            return 0;
+        if ((s[i] == '-' || s[i] == '+') &amp;&amp; (s[i + 1] &gt; 57 || s[i + 1] &lt; 48))
+            return 0;
+        while (s[i] &gt; 57 || s[i] &lt; 48) {
+            i++;
+        }
+        if (i &gt; 0 &amp;&amp; s[i - 1] == '-') {
+            jud = 1;
+        }
+        while (s[i] == '0') {
+            i++;
+        }
+        if (s[i] &gt; 57 || s[i] &lt; 48) {
+            return 0;
+        }
+        j = i;
+        while (s[i] &lt;= 57 &amp;&amp; s[i] &gt;= 48) {
+            i++;
+            n++;//位数
+        }
+        if (n &gt; 10) {
+            if (jud == 0)
+                return pow(2, 31) - 1;
+            else
+                return -pow(2, 31);
+        }
+        p = n - 1;
+        for (; j &lt; i; j++) {
+            if ((m + (s[j] - 48) * pow(10, p) &gt; pow(2, 31) - 1) &amp;&amp; jud == 0) {
+                return pow(2, 31) - 1;
             }
-        }
-        return n;
-    }
-
-    vector&lt;int&gt; pondSizes(vector&lt;vector&lt;int&gt;&gt;&amp; land) {
-        vector&lt;int&gt; arr;
-        for (int i = 0; i &lt; land.size(); i++)
-        {
-            for (int j = 0; j &lt; land[i].size(); j++)
-            {
-                if (land[i][j] == 0)
-                {
-                    arr.push_back(BFS(i, j, land));
-                }
-                else 
-                {
-                    continue;
-                }
+            if ((m + (s[j] - 48) * pow(10, p) &gt;= pow(2, 31)) &amp;&amp; jud == 1) {
+                return -pow(2, 31);
             }
+            m += (s[j] - 48) * pow(10, p);
+            p--;
         }
-        sort(arr.begin(), arr.end());
-        return arr;
-    }
-};
-</code></pre>
-<p><br><br></p>
-<h5 id="dfs">DFS</h5>
-<pre><code class="language-C++">class Solution {
-public:
-    vector&lt;vector&lt;int&gt;&gt; dirs = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
-    struct Node {int x; int y;};
-    
-    int DFS(int i, int j, vector&lt;vector&lt;int&gt;&gt;&amp; land)
-    {
-        if (i &lt; 0 || i &gt;= land.size() || j &lt; 0 || j &gt;= land[0].size()) return 0;
-        if (land[i][j] != 0) return 0;//判断是否为鱼塘
-        land[i][j] = 1;//染色
-        Node next;
-        int n = 1;
-        for (int m = 0; m &lt; 8; m++)
-        {
-            next.x = i + dirs[m][0];
-            next.y = j + dirs[m][1];
-            n += DFS(next.x, next.y, land);
+        if (jud == 1) {
+            m = -m;
         }
-        return n;
-    }
-
-    vector&lt;int&gt; pondSizes(vector&lt;vector&lt;int&gt;&gt;&amp; land) {
-        vector&lt;int&gt; arr;
-        for (int i = 0; i &lt; land.size(); i++)
-        {
-            for (int j = 0; j &lt; land[i].size(); j++)
-            {
-                if (land[i][j] == 0)
-                {
-                    arr.push_back(DFS(i, j, land));
-                }
-                else 
-                {
-                    continue;
-                }
-            }
-        }
-        sort(arr.begin(), arr.end());
-        return arr;
+        return m;
     }
 };
 </code></pre>
@@ -315,16 +287,8 @@ public:
 <ul>
 <li>
 <ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#bfs">BFS</a></li>
-<li><a href="#dfs">DFS</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
+<li><a href="#%E6%80%9D%E8%B7%AF">思路</a></li>
 </ul>
 </li>
 </ul>
@@ -334,17 +298,17 @@ public:
           
           <hr />
           <p class="next-post">下一篇：
-            <a href="https://sakuratears.cn/post/si-shu-zhi-he/">
+            <a href="https://sakuratears.cn/post/zheng-shu-fan-zhuan/">
               <span class="post-title">
-                四数之和（双指针）&rarr;
+                整数反转&rarr;
               </span>
             </a>
           </p>
           
           <div class="comment" style="text-align: center;">
             
-            <span id="/post/shui-yu-da-xiao-dfsbfs/" class="leancloud_visitors"
-              data-flag-title="水域大小（DFS）（BFS）">
+            <span id="/post/zi-fu-chuan-zhuan-huan-zheng-shu-atoi/" class="leancloud_visitors"
+              data-flag-title="字符串转换整数 (atoi)">
               <em class="post-meta-item-text">阅读量 </em>
               <i class="leancloud-visitors-count">loading...</i>
             </span>
