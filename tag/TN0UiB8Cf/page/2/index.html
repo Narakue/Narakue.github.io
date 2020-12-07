@@ -10,14 +10,14 @@
 <meta name="keywords" content="">
 <meta name="description" content="欢迎访问[SakuraTears]的个人博客">
 <meta name="author" content="kveln">
-<title>四数之和（双指针） | SakuraTears</title>
+<title>LeetCode | SakuraTears</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 <link
   href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
   rel='stylesheet' type='text/css'>
-<link rel="alternate" type="application/rss+xml" title="四数之和（双指针） | SakuraTears » Feed"
+<link rel="alternate" type="application/rss+xml" title="LeetCode | SakuraTears » Feed"
   href="https://sakuratears.cn/atom.xml">
 <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/styles/androidstudio.min.css">
@@ -30,72 +30,9 @@
 
 <script>hljs.initHighlightingOnLoad();</script>
 
-  <meta property="og:description" content="四数之和（双指针）" />
-  <meta property="og:url" content="https://sakuratears.cn/post/si-shu-zhi-he/" />
-  <meta property="og:locale" content="zh-CN" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="SakuraTears" />
-  <!-- <script src="../assets/styles/scripts/tocScript.js"></script> -->
 </head>
 
 <body>
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-  <div class="container">
-    <a class="navbar-brand" href="https://sakuratears.cn">SakuraTears</a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-      data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-      aria-label="Toggle navigation">
-      Menu
-      <i class="fas fa-bars"></i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto">
-        
-        <li class="nav-item">
-          
-          <a class="nav-link" href="/">首页</a>
-          
-        </li>
-        
-        <li class="nav-item">
-          
-          <a class="nav-link" href="/archives">归档</a>
-          
-        </li>
-        
-        <li class="nav-item">
-          
-          <a class="nav-link" href="/tags">标签</a>
-          
-        </li>
-        
-        <li class="nav-item">
-          
-          <a class="nav-link" href="https://sakuratears.cn/post/ji-lu-xue-xi-de-ri-zi">生活</a>
-          
-        </li>
-        
-        <li class="nav-item">
-          
-          <a class="nav-link" href="https://sakuratears.cn/post/about">关于</a>
-          
-        </li>
-        
-        <li class="nav-item">
-          <div class="gridea-search-container">
-            <form id="gridea-search-form" style="position: relative" data-update="1607333158989"
-              action="/search/index.html">
-              <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
-              <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
-            </form>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-  <!-- Page Header -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
   <div class="container">
     <a class="navbar-brand" href="https://sakuratears.cn">SakuraTears</a>
@@ -159,22 +96,9 @@
         
           <!-- 没Title为其他页面Header -->
           
-            <!-- 没Title并且有headerType为Post：文章Header -->
-            <div class="post-heading">
-              <span class="tags">
-                
-                <a href="https://sakuratears.cn/tag/8QK8vw4-Q/" class="tag">双指针</a>
-                
-                <a href="https://sakuratears.cn/tag/TN0UiB8Cf/" class="tag">LeetCode</a>
-                
-                <a href="https://sakuratears.cn/tag/e0ZtA0F1A/" class="tag">算法</a>
-                
-              </span>
-              <h1>四数之和（双指针）</h1>
-              <span class="meta">
-                Posted on
-                2020/11/01，2 min read
-              </span>
+            <!-- 其他页面（archives、tags、about...）Header -->
+            <div class="sub-site-heading">
+              <h1 class="tag-tl">#LeetCode</h1>
             </div>
           
         
@@ -182,149 +106,70 @@
     </div>
   </div>
 </header>
-  <!-- Post Content -->
-  <article id="post-content-article">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto post-content-container">
-          
-          <img class="post-feature-header-image" src="https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/54lqq0%20(1).jpg" alt="封面图">
-          </img>
-          
-          <h4 id="题目描述">题目描述：</h4>
-<p>给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。<br><br></p>
-<!-- more -->
-<p>注意：</p>
-<p>答案中不可以包含重复的四元组。<br><br></p>
-<p>示例：</p>
-<p>给定数组 nums = [1, 0, -1, 0, -2, 2]，和 target = 0。</p>
-<p>满足要求的四元组集合为：<br>
-[<br>
-[-1,  0, 0, 1],<br>
-[-2, -1, 1, 2],<br>
-[-2,  0, 0, 2]<br>
-]<br><br></p>
-<p>来源：力扣18题（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/4sum<br><br></p>
-<h4 id="题目分析">题目分析</h4>
-<p>此题可以用双指针法解决，先用两个for循环i, j遍历前面，两个指针left, right收缩，当nums[i] + nums[j] + nums[left] + nums[right] == target 时，入数组，然后注意一下去重。（三数之和一个for循环，四数之和用两个，五数之和用三个......）<br><br></p>
-<h4 id="代码题解">代码题解</h4>
-<pre><code class="language-c++">vector&lt;vector&lt;int&gt;&gt; fourSum(vector&lt;int&gt; &amp;nums, int target)
-{
-    vector&lt;vector&lt;int&gt;&gt; re;
-    sort(nums.begin(), nums.end());
-    for (int i = 0; i &lt; nums.size(); i++)
-    {
-        if (i &gt; 0 &amp;&amp; nums[i] == nums[i - 1])//去重
-            continue;
-        for (int j = i + 1; j &lt; nums.size(); j++)
-        {
-            if (j &gt; i + 1 &amp;&amp; nums[j] == nums[j - 1])//去重
-                continue;
-            int left = j + 1;
-            int right = nums.size() - 1;
-            while (left &lt; right)
-            {
-                if (nums[i] + nums[j] + nums[left] + nums[right] &gt; target)
-                {
-                    right--;
-                }
-                else if (nums[i] + nums[j] + nums[left] + nums[right] &lt; target)
-                {
-                    left++;
-                }
-                else
-                {
-                    re.push_back(vector&lt;int&gt;{nums[i], nums[j], nums[left], nums[right]});//下面两个循环去重
-                    while (right &gt; left &amp;&amp; nums[right] == nums[right - 1])
-                    {
-                        right--;
-                    }
-                    while (right &gt; left &amp;&amp; nums[left] == nums[left + 1])
-                    {
-                        left++;
-                    }
-                    //找到一个适合的后左右指针收缩
-                    left++;
-                    right--;
-                }
-            }
-        }
-    }
-    return re;
-}
-</code></pre>
-
-          <div class="toc-container"><ul class="markdownIt-TOC">
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0">题目描述：</a></li>
-<li><a href="#%E9%A2%98%E7%9B%AE%E5%88%86%E6%9E%90">题目分析</a></li>
-<li><a href="#%E4%BB%A3%E7%A0%81%E9%A2%98%E8%A7%A3">代码题解</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-          
-          <hr />
-          <p class="next-post">下一篇：
-            <a href="https://sakuratears.cn/post/pyqt5-zong-jie/">
-              <span class="post-title">
-                PyQt5总结&rarr;
-              </span>
+  <div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      
+      <!-- 每行的总容器 -->
+      <div class="post-row-container">
+        <!-- 第0层；标题 -->
+        <div class="title-floor">
+          <div class="post-title-container">
+            
+            <a href="https://sakuratears.cn/post/si-shu-zhi-he/">
+              <h2 class="post-title">
+                四数之和（双指针）
+              </h2>
             </a>
-          </p>
-          
-          <div class="comment" style="text-align: center;">
-            
-            <span id="/post/si-shu-zhi-he/" class="leancloud_visitors"
-              data-flag-title="四数之和（双指针）">
-              <em class="post-meta-item-text">阅读量 </em>
-              <i class="leancloud-visitors-count">loading...</i>
-            </span>
-            
-
-            
-            
-            <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
-
-<style>
-	div#vcomments{
-		width:100%;
-		max-width: 1000px;
-		padding: 2.5%
-	}
-</style>
-
-
-	<div id="vcomments"></div>
-
-<script>
-	new Valine({
-		el: '#vcomments',
-		appId: 'nfWVdgg866VIUK3XcpJYSmAP-gzGzoHsz',
-		appKey: 'XA26Jr7NmeT5eIqrAQYsk51a',
-		avatar: 'robohash',
-		pageSize: 5,
-		recordIp: true,
-		placeholder: 'Just Go Go',
-		visitor: true,
-	});
-</script>
-
-            
           </div>
         </div>
+        <!-- 第一层：包含文章描述、时间信息、封面图 -->
+        <div class="post-row-first-floor">
+          <div class="post-preview">
+            <h3 class="post-subtitle">
+              <h4 id="题目描述">题目描述：</h4>
+<p>给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。<br><br></p>
+
+            </h3>
+            <p class="post-meta">
+              <span class="time">2020/11/01</span>
+              <span>,</span>
+              <span class="post-stats">2 min read</span>
+            </p>
+          </div>
+          
+          <a href="https://sakuratears.cn/post/si-shu-zhi-he/" class="post-feature-image" style="background-image: url('https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/54lqq0%20(1).jpg')">
+          </a>
+          
+        </div>
+        <!-- 第二层：下划线、占位标签、tags -->
+        <div class="post-row-sec-floor">
+          <hr>
+          <div class="clearfix"></div>
+          
+          <a href="https://sakuratears.cn/tag/8QK8vw4-Q/" class="post-tag">
+            双指针
+          </a>
+          
+          <a href="https://sakuratears.cn/tag/TN0UiB8Cf/" class="post-tag">
+            LeetCode
+          </a>
+          
+          <a href="https://sakuratears.cn/tag/e0ZtA0F1A/" class="post-tag">
+            算法
+          </a>
+          
+        </div>
       </div>
-  </article>
+      </>
+      
+      <!-- 
+      <a class="btn btn-primary float-left" href="https://sakuratears.cn/tag/TN0UiB8Cf">&#9664; 上一页</a>
+      
+       -->
+    </div>
+  </div>
+</div>
   <!-- Footer -->
   <footer>
     <div class="container">
@@ -413,7 +258,7 @@
     }
   })(this));</script>
   
-  <div id="landlord-parent">
+    <div id="landlord-parent">
     <div id="landlord">
         <div class="message" style="opacity:0"></div>
         <canvas id="live2d" width="240" height="350" class="live2d"></canvas>
@@ -454,7 +299,6 @@
     }
 </script>
   
-  <script src="https://sakuratears.cn/media/scripts/tocScript.js"></script>
 </body>
 
 </html>

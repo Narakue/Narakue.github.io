@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-12-06T15:32:11.458Z</updated>
+    <updated>2020-12-07T09:26:02.773Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -11,7 +11,60 @@
     <icon>https://sakuratears.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, SakuraTears</rights>
     <entry>
-        <title type="html"><![CDATA[字符串转换整数 (atoi)]]></title>
+        <title type="html"><![CDATA[杨辉三角(数组)]]></title>
+        <id>https://sakuratears.cn/post/yang-hui-san-jiao/</id>
+        <link href="https://sakuratears.cn/post/yang-hui-san-jiao/">
+        </link>
+        <updated>2020-12-07T09:18:43.000Z</updated>
+        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>给定一个非负整数 numRows，生成杨辉三角的前 numRows 行。<br><br></p>
+]]></summary>
+        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>给定一个非负整数 numRows，生成杨辉三角的前 numRows 行。<br><br></p>
+<!-- more -->
+<p>在杨辉三角中，每个数是它左上方和右上方的数的和。<br><br></p>
+<p>示例:<br><br></p>
+<p>输入: 5<br>
+输出:<br>
+[<br>
+[1],<br>
+[1,1],<br>
+[1,2,1],<br>
+[1,3,3,1],<br>
+[1,4,6,4,1]<br>
+]<br><br></p>
+<p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/pascals-triangle<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br><br></p>
+<h3 id="思路">思路</h3>
+<p>简单题，直接写就行，leetcode的测试用例也没啥恶心的<s>可能是这个题没法恶心了吧</s></p>
+<pre><code class="language-C++">class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; generate(int numRows) {
+        vector&lt;vector&lt;int&gt;&gt; nums;
+        if (numRows == 0) {  //判断0的情况下
+            return nums;
+        }
+        vector&lt;int&gt; num;
+        num.push_back(1);
+        nums.push_back(num);
+        for (int i = 1; i &lt; numRows; i++) {
+            vector&lt;int&gt; num;
+            num.push_back(1);
+            for (int j = 1; j &lt; i; j++) {
+                num.push_back(nums[i - 1][j - 1] + nums[i - 1][j]); //每行数组的[j]是上一个数组的[j]位置+[j - 1]位置
+            }
+            num.push_back(1);
+            nums.push_back(num);
+        }
+        return nums;
+    }
+};
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[字符串转换整数 (atoi)(字符串)]]></title>
         <id>https://sakuratears.cn/post/zi-fu-chuan-zhuan-huan-zheng-shu-atoi/</id>
         <link href="https://sakuratears.cn/post/zi-fu-chuan-zhuan-huan-zheng-shu-atoi/">
         </link>
@@ -112,7 +165,7 @@ public:
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[整数反转]]></title>
+        <title type="html"><![CDATA[整数反转(数组)]]></title>
         <id>https://sakuratears.cn/post/zheng-shu-fan-zhuan/</id>
         <link href="https://sakuratears.cn/post/zheng-shu-fan-zhuan/">
         </link>
@@ -808,68 +861,6 @@ public:
 <p>思路借鉴作者：carlsun-2<br>
 链接：https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/solution/122-mai-mai-gu-piao-de-zui-jia-shi-ji-iitan-xin-xi/<br>
 来源：力扣（LeetCode）</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[C/C++如何传递二维数组？]]></title>
-        <id>https://sakuratears.cn/post/ccru-he-chuan-di-er-wei-shu-zu/</id>
-        <link href="https://sakuratears.cn/post/ccru-he-chuan-di-er-wei-shu-zu/">
-        </link>
-        <updated>2020-11-08T12:06:47.000Z</updated>
-        <summary type="html"><![CDATA[<p>一般传递二维数组的基本规则好像是这样的：可以用二维数组名作为实参或者形参，在被调用函数中对形参数组定义时可以可以指定所有维数的大小，也可以省略第一维的大小说明。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>一般传递二维数组的基本规则好像是这样的：可以用二维数组名作为实参或者形参，在被调用函数中对形参数组定义时可以可以指定所有维数的大小，也可以省略第一维的大小说明。</p>
-<!-- more -->
-<p>如：<br><br></p>
-<pre><code class="language-C++">void Func(int array[3][10]);
-
-void Func(int array[][10]);
-</code></pre>
-<p><br><br><br>
-​</p>
-<p>二者都是合法而且等价，但是不能把第二维或者更高维的大小省略，如下面的定义是不合法的：<br></p>
-<pre><code class="language-C++">void Func(int array[][]);
-</code></pre>
-<p><br><br><br>
-将二维数组当作参数的时候，必须指明所有维数大小或者省略第一维的，但是不能省略第二维或者更高维的大小，这是由编译器原理限制的。在学编译原理这么课程的时候知道编译器是这样处理数组的：<br><br></p>
-<p>对于数组 int p[m][n]; 如果要取p[i][j]的值(i&gt;=0 &amp;&amp; i&lt;m &amp;&amp; 0&lt;=j &amp;&amp; j &lt; n)，编译器是这样寻址的，它的地址为：<br><br></p>
-<pre><code class="language-C++">p + i*n + j;
-</code></pre>
-<br>
-<p>从以上可以看出，如果我们省略了第二维或者更高维的大小，编译器将不知道如何正确的寻址。但是我们在编写程序的时候却需要用到各个维数都不固定的二维数组作为参数，这就难办了，编译器不能识别阿，怎么办呢？不要着急，编译器虽然不能识别，但是我们完全可以不把它当作一个二维数组，而是把它当作一个普通的指针，再另外加上两个参数指明各个维数，然后我们为二维数组手工寻址，这样就达到了将二维数组作为函数的参数传递的目的，根据这个思想，我们可以把维数固定的参数变为维数随即的参数，例如：<br><br></p>
-<pre><code class="language-C++">void Func(int array[3][10]); 
-
-void Func(int array[][10]);
-</code></pre>
-<br>
-<p>变为：<br><br></p>
-<pre><code class="language-C++">void Func(int **array, int m, int n);
-</code></pre>
-<br>
-<p>在转变后的函数中，array[i][j]这样的式子是不对的(不信，大家可以试一下)，因为编译器不能正确的为它寻址，所以我们需要模仿编译器的行为把array[i][j]这样的式子手工转变为<br><br></p>
-<pre><code class="language-C++">*((int*)array + n*i + j);
-</code></pre>
-<p>​    <br></p>
-<p>在调用这样的函数的时候，需要注意一下，如下面的例子：<br><br></p>
-<pre><code class="language-C++">int a[3][3] = 
-
-    {
-{1, 1, 1},
-{2, 2, 2},
-{3, 3, 3}
-};
-
-Func(a, 3, 3);
-</code></pre>
-<p><br><br></p>
-<p>根据不同编译器不同的设置，可能出现warning 或者error,可以进行强制转换如下调用：  <br><br></p>
-<pre><code class="language-C++">Func((int**)a, 3, 3);
-</code></pre>
-<p><br><br></p>
-<p>需要(int**）的强制转换，是因为二维数组和二级指针是不同的，a实质上是一个int (<em>a)[3]，它是一个数组指针，即a[0]是第一维数组的首个元素的地址，a[1]是第二维数组的首个元素的地址，a[2]是第三维数组的首个元素的地址，与int*<em>是不同的类型；如果转为int*</em>，就失去了像数组指针那样a + i = a + i</em>3的效果了<br><br></p>
-<p>而如果又定义一个char *p[3]，它是一个一维的指针数组，此时p是指向了一个指针，而不是数组。那么这时如果定义char **q = p，就是可以的，而且可以通过q[0]，q[1]来访问字符串。<br><br></p>
-<p>数组和指针这种东西真是太繁琐复杂了，个人愚见，在C++里就尽量使用STL，并且可以用模板的非类型形参来解决这种灵活处理不固定行列数矩阵的函数，Effective C++里面应该有介绍，并且有对这种模板的优化。<br><br></p>
-<p>转载自CSDN</p>
 ]]></content>
     </entry>
 </feed>

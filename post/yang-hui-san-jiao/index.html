@@ -10,14 +10,14 @@
 <meta name="keywords" content="">
 <meta name="description" content="欢迎访问[SakuraTears]的个人博客">
 <meta name="author" content="kveln">
-<title>四数之和（双指针） | SakuraTears</title>
+<title>杨辉三角(数组) | SakuraTears</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 <link
   href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
   rel='stylesheet' type='text/css'>
-<link rel="alternate" type="application/rss+xml" title="四数之和（双指针） | SakuraTears » Feed"
+<link rel="alternate" type="application/rss+xml" title="杨辉三角(数组) | SakuraTears » Feed"
   href="https://sakuratears.cn/atom.xml">
 <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/styles/androidstudio.min.css">
@@ -30,8 +30,8 @@
 
 <script>hljs.initHighlightingOnLoad();</script>
 
-  <meta property="og:description" content="四数之和（双指针）" />
-  <meta property="og:url" content="https://sakuratears.cn/post/si-shu-zhi-he/" />
+  <meta property="og:description" content="杨辉三角(数组)" />
+  <meta property="og:url" content="https://sakuratears.cn/post/yang-hui-san-jiao/" />
   <meta property="og:locale" content="zh-CN" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="SakuraTears" />
@@ -163,17 +163,17 @@
             <div class="post-heading">
               <span class="tags">
                 
-                <a href="https://sakuratears.cn/tag/8QK8vw4-Q/" class="tag">双指针</a>
+                <a href="https://sakuratears.cn/tag/Q1bVstjY5/" class="tag">数组</a>
                 
                 <a href="https://sakuratears.cn/tag/TN0UiB8Cf/" class="tag">LeetCode</a>
                 
                 <a href="https://sakuratears.cn/tag/e0ZtA0F1A/" class="tag">算法</a>
                 
               </span>
-              <h1>四数之和（双指针）</h1>
+              <h1>杨辉三角(数组)</h1>
               <span class="meta">
                 Posted on
-                2020/11/01，2 min read
+                2020/12/07，2 min read
               </span>
             </div>
           
@@ -188,71 +188,50 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto post-content-container">
           
-          <img class="post-feature-header-image" src="https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/54lqq0%20(1).jpg" alt="封面图">
+          <img class="post-feature-header-image" src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(5).jpg.webp" alt="封面图">
           </img>
           
-          <h4 id="题目描述">题目描述：</h4>
-<p>给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。<br><br></p>
+          <h3 id="题目">题目</h3>
+<p>给定一个非负整数 numRows，生成杨辉三角的前 numRows 行。<br><br></p>
 <!-- more -->
-<p>注意：</p>
-<p>答案中不可以包含重复的四元组。<br><br></p>
-<p>示例：</p>
-<p>给定数组 nums = [1, 0, -1, 0, -2, 2]，和 target = 0。</p>
-<p>满足要求的四元组集合为：<br>
+<p>在杨辉三角中，每个数是它左上方和右上方的数的和。<br><br></p>
+<p>示例:<br><br></p>
+<p>输入: 5<br>
+输出:<br>
 [<br>
-[-1,  0, 0, 1],<br>
-[-2, -1, 1, 2],<br>
-[-2,  0, 0, 2]<br>
+[1],<br>
+[1,1],<br>
+[1,2,1],<br>
+[1,3,3,1],<br>
+[1,4,6,4,1]<br>
 ]<br><br></p>
-<p>来源：力扣18题（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/4sum<br><br></p>
-<h4 id="题目分析">题目分析</h4>
-<p>此题可以用双指针法解决，先用两个for循环i, j遍历前面，两个指针left, right收缩，当nums[i] + nums[j] + nums[left] + nums[right] == target 时，入数组，然后注意一下去重。（三数之和一个for循环，四数之和用两个，五数之和用三个......）<br><br></p>
-<h4 id="代码题解">代码题解</h4>
-<pre><code class="language-c++">vector&lt;vector&lt;int&gt;&gt; fourSum(vector&lt;int&gt; &amp;nums, int target)
-{
-    vector&lt;vector&lt;int&gt;&gt; re;
-    sort(nums.begin(), nums.end());
-    for (int i = 0; i &lt; nums.size(); i++)
-    {
-        if (i &gt; 0 &amp;&amp; nums[i] == nums[i - 1])//去重
-            continue;
-        for (int j = i + 1; j &lt; nums.size(); j++)
-        {
-            if (j &gt; i + 1 &amp;&amp; nums[j] == nums[j - 1])//去重
-                continue;
-            int left = j + 1;
-            int right = nums.size() - 1;
-            while (left &lt; right)
-            {
-                if (nums[i] + nums[j] + nums[left] + nums[right] &gt; target)
-                {
-                    right--;
-                }
-                else if (nums[i] + nums[j] + nums[left] + nums[right] &lt; target)
-                {
-                    left++;
-                }
-                else
-                {
-                    re.push_back(vector&lt;int&gt;{nums[i], nums[j], nums[left], nums[right]});//下面两个循环去重
-                    while (right &gt; left &amp;&amp; nums[right] == nums[right - 1])
-                    {
-                        right--;
-                    }
-                    while (right &gt; left &amp;&amp; nums[left] == nums[left + 1])
-                    {
-                        left++;
-                    }
-                    //找到一个适合的后左右指针收缩
-                    left++;
-                    right--;
-                }
-            }
+<p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/pascals-triangle<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br><br></p>
+<h3 id="思路">思路</h3>
+<p>简单题，直接写就行，leetcode的测试用例也没啥恶心的<s>可能是这个题没法恶心了吧</s></p>
+<pre><code class="language-C++">class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; generate(int numRows) {
+        vector&lt;vector&lt;int&gt;&gt; nums;
+        if (numRows == 0) {  //判断0的情况下
+            return nums;
         }
+        vector&lt;int&gt; num;
+        num.push_back(1);
+        nums.push_back(num);
+        for (int i = 1; i &lt; numRows; i++) {
+            vector&lt;int&gt; num;
+            num.push_back(1);
+            for (int j = 1; j &lt; i; j++) {
+                num.push_back(nums[i - 1][j - 1] + nums[i - 1][j]); //每行数组的[j]是上一个数组的[j]位置+[j - 1]位置
+            }
+            num.push_back(1);
+            nums.push_back(num);
+        }
+        return nums;
     }
-    return re;
-}
+};
 </code></pre>
 
           <div class="toc-container"><ul class="markdownIt-TOC">
@@ -260,13 +239,8 @@
 <ul>
 <li>
 <ul>
-<li>
-<ul>
-<li><a href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0">题目描述：</a></li>
-<li><a href="#%E9%A2%98%E7%9B%AE%E5%88%86%E6%9E%90">题目分析</a></li>
-<li><a href="#%E4%BB%A3%E7%A0%81%E9%A2%98%E8%A7%A3">代码题解</a></li>
-</ul>
-</li>
+<li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
+<li><a href="#%E6%80%9D%E8%B7%AF">思路</a></li>
 </ul>
 </li>
 </ul>
@@ -276,17 +250,17 @@
           
           <hr />
           <p class="next-post">下一篇：
-            <a href="https://sakuratears.cn/post/pyqt5-zong-jie/">
+            <a href="https://sakuratears.cn/post/zi-fu-chuan-zhuan-huan-zheng-shu-atoi/">
               <span class="post-title">
-                PyQt5总结&rarr;
+                字符串转换整数 (atoi)(字符串)&rarr;
               </span>
             </a>
           </p>
           
           <div class="comment" style="text-align: center;">
             
-            <span id="/post/si-shu-zhi-he/" class="leancloud_visitors"
-              data-flag-title="四数之和（双指针）">
+            <span id="/post/yang-hui-san-jiao/" class="leancloud_visitors"
+              data-flag-title="杨辉三角(数组)">
               <em class="post-meta-item-text">阅读量 </em>
               <i class="leancloud-visitors-count">loading...</i>
             </span>
