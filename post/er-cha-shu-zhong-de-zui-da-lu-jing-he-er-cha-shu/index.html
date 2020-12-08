@@ -10,14 +10,14 @@
 <meta name="keywords" content="">
 <meta name="description" content="欢迎访问[SakuraTears]的个人博客">
 <meta name="author" content="kveln">
-<title>二叉树中的最大路径和(二叉树) | SakuraTears</title>
+<title>二叉树中的最大路径和(二叉树)(DFS) | SakuraTears</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 <link
   href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
   rel='stylesheet' type='text/css'>
-<link rel="alternate" type="application/rss+xml" title="二叉树中的最大路径和(二叉树) | SakuraTears » Feed"
+<link rel="alternate" type="application/rss+xml" title="二叉树中的最大路径和(二叉树)(DFS) | SakuraTears » Feed"
   href="https://sakuratears.cn/atom.xml">
 <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/styles/androidstudio.min.css">
@@ -30,7 +30,7 @@
 
 <script>hljs.initHighlightingOnLoad();</script>
 
-  <meta property="og:description" content="二叉树中的最大路径和(二叉树)" />
+  <meta property="og:description" content="二叉树中的最大路径和(二叉树)(DFS)" />
   <meta property="og:url" content="https://sakuratears.cn/post/er-cha-shu-zhong-de-zui-da-lu-jing-he-er-cha-shu/" />
   <meta property="og:locale" content="zh-CN" />
   <meta property="og:type" content="website" />
@@ -84,7 +84,7 @@
         
         <li class="nav-item">
           <div class="gridea-search-container">
-            <form id="gridea-search-form" style="position: relative" data-update="1607433854672"
+            <form id="gridea-search-form" style="position: relative" data-update="1607433966043"
               action="/search/index.html">
               <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
               <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
@@ -140,7 +140,7 @@
         
         <li class="nav-item">
           <div class="gridea-search-container">
-            <form id="gridea-search-form" style="position: relative" data-update="1607433854672"
+            <form id="gridea-search-form" style="position: relative" data-update="1607433966043"
               action="/search/index.html">
               <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
               <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
@@ -165,12 +165,14 @@
                 
                 <a href="https://sakuratears.cn/tag/gRTjYccGN/" class="tag">二叉树</a>
                 
+                <a href="https://sakuratears.cn/tag/ssMjTlXf4/" class="tag">搜索</a>
+                
                 <a href="https://sakuratears.cn/tag/TN0UiB8Cf/" class="tag">LeetCode</a>
                 
                 <a href="https://sakuratears.cn/tag/e0ZtA0F1A/" class="tag">算法</a>
                 
               </span>
-              <h1>二叉树中的最大路径和(二叉树)</h1>
+              <h1>二叉树中的最大路径和(二叉树)(DFS)</h1>
               <span class="meta">
                 Posted on
                 2020/12/08，2 min read
@@ -216,7 +218,7 @@
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
 <h3 id="思路">思路</h3>
 <p>每一个节点的最大路径是它左右子树中最大的路径加上它自己，这样就是先遍历左子树，再遍历右子树。<br>
-这样就是树的后序遍历。</p>
+这样就是树的后序遍历+DFS的思想。</p>
 <pre><code class="language-C++">/**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -275,7 +277,7 @@ public:
           <div class="comment" style="text-align: center;">
             
             <span id="/post/er-cha-shu-zhong-de-zui-da-lu-jing-he-er-cha-shu/" class="leancloud_visitors"
-              data-flag-title="二叉树中的最大路径和(二叉树)">
+              data-flag-title="二叉树中的最大路径和(二叉树)(DFS)">
               <em class="post-meta-item-text">阅读量 </em>
               <i class="leancloud-visitors-count">loading...</i>
             </span>
