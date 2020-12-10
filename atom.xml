@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-12-10T07:09:11.932Z</updated>
+    <updated>2020-12-10T07:41:57.482Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -22,21 +22,10 @@
         <content type="html"><![CDATA[<h3 id="题目">题目</h3>
 <p>给定一个二叉树，检查它是否是镜像对称的。</p>
 <!-- more -->
-<p></p>
 <p>例如，二叉树 [1,2,2,3,4,4,3] 是对称的。</p>
-<pre><code>1
-</code></pre>
-<p>/ <br>
-2   2<br>
-/ \ / <br>
-3  4 4  3<br><br></p>
+<figure data-type="image" tabindex="1"><img src="https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/chrome_35r5gAjUVn.png" alt="" loading="lazy"></figure>
 <p>但是下面这个 [1,2,2,null,3,null,3] 则不是镜像对称的:</p>
-<pre><code>1
-</code></pre>
-<p>/ <br>
-2   2<br>
-\   <br>
-3    3<br><br></p>
+<figure data-type="image" tabindex="2"><img src="https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/chrome_BIOlXHyv1p.png" alt="" loading="lazy"></figure>
 <p>进阶：</p>
 <p>你可以运用递归和迭代两种方法解决这个问题吗？<br><br></p>
 <p>来源：力扣（LeetCode）<br>
