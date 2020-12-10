@@ -10,14 +10,14 @@
 <meta name="keywords" content="">
 <meta name="description" content="欢迎访问[SakuraTears]的个人博客">
 <meta name="author" content="kveln">
-<title>奇妙的自我描述 | SakuraTears</title>
+<title>对称二叉树 | SakuraTears</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 <link
   href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
   rel='stylesheet' type='text/css'>
-<link rel="alternate" type="application/rss+xml" title="奇妙的自我描述 | SakuraTears » Feed"
+<link rel="alternate" type="application/rss+xml" title="对称二叉树 | SakuraTears » Feed"
   href="https://sakuratears.cn/atom.xml">
 <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/styles/androidstudio.min.css">
@@ -30,8 +30,8 @@
 
 <script>hljs.initHighlightingOnLoad();</script>
 
-  <meta property="og:description" content="奇妙的自我描述" />
-  <meta property="og:url" content="https://sakuratears.cn/post/about/" />
+  <meta property="og:description" content="对称二叉树" />
+  <meta property="og:url" content="https://sakuratears.cn/post/dui-cheng-er-cha-shu/" />
   <meta property="og:locale" content="zh-CN" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="SakuraTears" />
@@ -163,11 +163,17 @@
             <div class="post-heading">
               <span class="tags">
                 
+                <a href="https://sakuratears.cn/tag/gRTjYccGN/" class="tag">二叉树</a>
+                
+                <a href="https://sakuratears.cn/tag/TN0UiB8Cf/" class="tag">LeetCode</a>
+                
+                <a href="https://sakuratears.cn/tag/e0ZtA0F1A/" class="tag">算法</a>
+                
               </span>
-              <h1>奇妙的自我描述</h1>
+              <h1>对称二叉树</h1>
               <span class="meta">
                 Posted on
-                2020/10/23，1 min read
+                2020/12/10，2 min read
               </span>
             </div>
           
@@ -182,34 +188,108 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto post-content-container">
           
-          <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<p>在使用一段时间hexo后还是放弃了hexo选择了简单方便的Gridea（其实就是不会用hexo）</p>
-<h2 id="关于博主">👨‍💻 关于博主</h2>
-<p>一枚啥也不会的菜鸡程序猿<br>
-主攻Java开发，Android开发（狗头保命！）</p>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<p>QQ：2538598846<br>
-微信：2538598846<br>
-欢迎好友交流😎</p>
+          <img class="post-feature-header-image" src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(1).jpg.webp" alt="封面图">
+          </img>
+          
+          <h3 id="题目">题目</h3>
+<p>给定一个二叉树，检查它是否是镜像对称的。</p>
+<!-- more -->
+<p></p>
+<p>例如，二叉树 [1,2,2,3,4,4,3] 是对称的。</p>
+<pre><code>1
+</code></pre>
+<p>/ <br>
+2   2<br>
+/ \ / <br>
+3  4 4  3<br><br></p>
+<p>但是下面这个 [1,2,2,null,3,null,3] 则不是镜像对称的:</p>
+<pre><code>1
+</code></pre>
+<p>/ <br>
+2   2<br>
+\   <br>
+3    3<br><br></p>
+<p>进阶：</p>
+<p>你可以运用递归和迭代两种方法解决这个问题吗？<br><br></p>
+<p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/symmetric-tree<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br><br></p>
+<h3 id="思路">思路</h3>
+<p>判断二叉树是否对称可以理解为判断一个节点的两个子树的里侧和外侧是否对称，就是后序遍历。<br>
+判断外侧是否对称，传入左节点的左孩子，右节点的右孩子。<br>
+判断里侧是否对称，传入左节点的右孩子，右节点的左孩子。<br>
+可以用递归挨个判断，所以递归函数传的值就要是left,right两个，想通这一点就好做了。<br>
+判断空的情况，<br>
+左空右空       返回true<br>
+左空右不空    返回false<br>
+左不空右空    返回false<br>
+最后是都不空，判断值</p>
+<pre><code class="language-C++">/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool cmp(TreeNode* left, TreeNode* right) {
+        if (left == NULL &amp;&amp; right == NULL) {
+            return true;
+        }
+        else if (left == NULL &amp;&amp; right != NULL) {
+            return false;
+        }
+        else if (left != NULL &amp;&amp; right == NULL) {
+            return false;
+        }
+        //都不空判断值
+        else if (left-&gt;val != right-&gt;val) {
+            return false;
+        }
+
+        bool in = cmp(left-&gt;right, right-&gt;left);
+        bool out = cmp(left-&gt;left, right-&gt;right);
+        return in &amp;&amp; out;
+    }
+    bool isSymmetric(TreeNode* root) {
+        if (root == NULL) {
+            return true;
+        }
+        return cmp(root-&gt;left, root-&gt;right);
+    }
+};
+</code></pre>
 
           <div class="toc-container"><ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%85%B3%E4%BA%8E%E5%8D%9A%E4%B8%BB">👨‍💻 关于博主</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
+<li>
+<ul>
+<li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
+<li><a href="#%E6%80%9D%E8%B7%AF">思路</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
           
+          <hr />
+          <p class="next-post">下一篇：
+            <a href="https://sakuratears.cn/post/ping-heng-er-cha-shu-er-cha-shu/">
+              <span class="post-title">
+                平衡二叉树(二叉树)&rarr;
+              </span>
+            </a>
+          </p>
+          
           <div class="comment" style="text-align: center;">
             
-            <span id="/post/about/" class="leancloud_visitors"
-              data-flag-title="奇妙的自我描述">
+            <span id="/post/dui-cheng-er-cha-shu/" class="leancloud_visitors"
+              data-flag-title="对称二叉树">
               <em class="post-meta-item-text">阅读量 </em>
               <i class="leancloud-visitors-count">loading...</i>
             </span>

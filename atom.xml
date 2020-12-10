@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-12-09T02:44:53.628Z</updated>
+    <updated>2020-12-10T06:52:24.620Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -10,6 +10,88 @@
     <logo>https://sakuratears.cn/images/avatar.png</logo>
     <icon>https://sakuratears.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, SakuraTears</rights>
+    <entry>
+        <title type="html"><![CDATA[对称二叉树]]></title>
+        <id>https://sakuratears.cn/post/dui-cheng-er-cha-shu/</id>
+        <link href="https://sakuratears.cn/post/dui-cheng-er-cha-shu/">
+        </link>
+        <updated>2020-12-10T06:44:24.000Z</updated>
+        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>给定一个二叉树，检查它是否是镜像对称的。</p>
+]]></summary>
+        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>给定一个二叉树，检查它是否是镜像对称的。</p>
+<!-- more -->
+<p></p>
+<p>例如，二叉树 [1,2,2,3,4,4,3] 是对称的。</p>
+<pre><code>1
+</code></pre>
+<p>/ <br>
+2   2<br>
+/ \ / <br>
+3  4 4  3<br><br></p>
+<p>但是下面这个 [1,2,2,null,3,null,3] 则不是镜像对称的:</p>
+<pre><code>1
+</code></pre>
+<p>/ <br>
+2   2<br>
+\   <br>
+3    3<br><br></p>
+<p>进阶：</p>
+<p>你可以运用递归和迭代两种方法解决这个问题吗？<br><br></p>
+<p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/symmetric-tree<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br><br></p>
+<h3 id="思路">思路</h3>
+<p>判断二叉树是否对称可以理解为判断一个节点的两个子树的里侧和外侧是否对称，就是后序遍历。<br>
+判断外侧是否对称，传入左节点的左孩子，右节点的右孩子。<br>
+判断里侧是否对称，传入左节点的右孩子，右节点的左孩子。<br>
+可以用递归挨个判断，所以递归函数传的值就要是left,right两个，想通这一点就好做了。<br>
+判断空的情况，<br>
+左空右空       返回true<br>
+左空右不空    返回false<br>
+左不空右空    返回false<br>
+最后是都不空，判断值</p>
+<pre><code class="language-C++">/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool cmp(TreeNode* left, TreeNode* right) {
+        if (left == NULL &amp;&amp; right == NULL) {
+            return true;
+        }
+        else if (left == NULL &amp;&amp; right != NULL) {
+            return false;
+        }
+        else if (left != NULL &amp;&amp; right == NULL) {
+            return false;
+        }
+        //都不空判断值
+        else if (left-&gt;val != right-&gt;val) {
+            return false;
+        }
+
+        bool in = cmp(left-&gt;right, right-&gt;left);
+        bool out = cmp(left-&gt;left, right-&gt;right);
+        return in &amp;&amp; out;
+    }
+    bool isSymmetric(TreeNode* root) {
+        if (root == NULL) {
+            return true;
+        }
+        return cmp(root-&gt;left, root-&gt;right);
+    }
+};
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[平衡二叉树(二叉树)]]></title>
         <id>https://sakuratears.cn/post/ping-heng-er-cha-shu-er-cha-shu/</id>
@@ -886,23 +968,6 @@ int findCircleNum(vector&lt;vector&lt;int&gt;&gt;&amp; M) {
 </code></pre>
 <p>};</p>
 <pre><code></code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Linux一些环境配置]]></title>
-        <id>https://sakuratears.cn/post/linux-yi-xie-huan-jing-pei-zhi/</id>
-        <link href="https://sakuratears.cn/post/linux-yi-xie-huan-jing-pei-zhi/">
-        </link>
-        <updated>2020-11-29T10:00:28.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="cc">C/C++</h2>
-<p>安装环境g++,gcc,gdb<br>
-终端命令</p>
-<pre><code>sudo apt-get install g++
-sudo apt-get install gcc
-sudo apt-get install gdb
-</code></pre>
-<h2 id="java">Java</h2>
-<p>jdk,jre</p>
 ]]></content>
     </entry>
 </feed>
