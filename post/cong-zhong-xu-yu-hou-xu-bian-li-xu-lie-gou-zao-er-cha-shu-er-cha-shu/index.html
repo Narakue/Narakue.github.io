@@ -10,14 +10,14 @@
 <meta name="keywords" content="">
 <meta name="description" content="欢迎访问[SakuraTears]的个人博客">
 <meta name="author" content="kveln">
-<title>Linux(deepin)日常操作 | SakuraTears</title>
+<title>从中序与后序遍历序列构造二叉树(二叉树) | SakuraTears</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 <link
   href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
   rel='stylesheet' type='text/css'>
-<link rel="alternate" type="application/rss+xml" title="Linux(deepin)日常操作 | SakuraTears » Feed"
+<link rel="alternate" type="application/rss+xml" title="从中序与后序遍历序列构造二叉树(二叉树) | SakuraTears » Feed"
   href="https://sakuratears.cn/atom.xml">
 <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/styles/androidstudio.min.css">
@@ -30,8 +30,8 @@
 
 <script>hljs.initHighlightingOnLoad();</script>
 
-  <meta property="og:description" content="Linux(deepin)日常操作" />
-  <meta property="og:url" content="https://sakuratears.cn/post/linuxdeepinri-chang-cao-zuo/" />
+  <meta property="og:description" content="从中序与后序遍历序列构造二叉树(二叉树)" />
+  <meta property="og:url" content="https://sakuratears.cn/post/cong-zhong-xu-yu-hou-xu-bian-li-xu-lie-gou-zao-er-cha-shu-er-cha-shu/" />
   <meta property="og:locale" content="zh-CN" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="SakuraTears" />
@@ -163,13 +163,17 @@
             <div class="post-heading">
               <span class="tags">
                 
-                <a href="https://sakuratears.cn/tag/7RydGrIe5s/" class="tag">Linux</a>
+                <a href="https://sakuratears.cn/tag/gRTjYccGN/" class="tag">二叉树</a>
+                
+                <a href="https://sakuratears.cn/tag/TN0UiB8Cf/" class="tag">LeetCode</a>
+                
+                <a href="https://sakuratears.cn/tag/e0ZtA0F1A/" class="tag">算法</a>
                 
               </span>
-              <h1>Linux(deepin)日常操作</h1>
+              <h1>从中序与后序遍历序列构造二叉树(二叉树)</h1>
               <span class="meta">
                 Posted on
-                2020/11/29，2 min read
+                2020/12/11，2 min read
               </span>
             </div>
           
@@ -184,52 +188,86 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto post-content-container">
           
-          <img class="post-feature-header-image" src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(5).jpg.webp" alt="封面图">
+          <img class="post-feature-header-image" src="https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/gridea-zhu-ti-fog-geng-xin-ri-zhi.jpeg" alt="封面图">
           </img>
           
-          <p>记录日常使用linux一些操作<br>
-deepin永远滴神！！！</p>
+          <h3 id="题目">题目</h3>
+<p>根据一棵树的中序遍历与后序遍历构造二叉树。</p>
 <!-- more -->
-<h3 id="安装deb文件">安装deb文件</h3>
-<p>在deb文件目录下终端输入<code>sudo apt-get xx.deb</code>(xx为文件名)</p>
-<h3 id="打开taggz文件">打开tag.gz文件</h3>
-<p>情况一(没有可执行文件)：解压缩后终端进入文件目录，然后cd进入/bin，执行./xxx.sh(xxx为程序名)<br>
-情况二(有可执行文件)：直接运行可执行文件即可运行</p>
-<h3 id="进入root身份">进入root身份</h3>
-<p>终端输入<code>su</code>然后输入密码(开机密码)<br>
-如果提示su鉴定故障可以输入<code>sudo su</code></p>
-<h3 id="双系统切换时间问题">双系统切换时间问题</h3>
-<p>终端输入<code>timedatectl set-local-rtc 1</code></p>
-<h3 id="双系统开机默认linux更改">双系统开机默认linux更改</h3>
-<p>1.ctrl+alt+T打开终端，输入<code>sudo gedit /etc/default/grub</code><br>
-2.验证密码，grub配置文件被打开<br>
-3.将弹出的文件中文本“GRUB-DEFAULT=0”中的0修改为2.（我这里是2，具体数字应该和选择系统的时候win系统的位置-1相同。注意这个-1，因为它是从上到下从0开始排序，所以我这里win系统是第三位，就改成2）<br>
-4.保存文件。←这时可能会弹出警告框，但是一般情况下好像并没有什么关系<br>
-5.在终端输入<code>sudo update-grub</code>以更新配置<br>
-6.重启即可发现已经修改完毕</p>
-<h3 id="linux显示系统信息">linux显示系统信息</h3>
-<p>终端执行<code>sudo apt-get install screenfetch</code>安装screenfetch<br>
-然后执行<code>screenfetch -s</code>显示系统信息</p>
-<h3 id="bios声音问题">BIOS声音问题</h3>
-<p>(deepin)有时候发生错误(比如在QQ输入框没有字的情况下按退格),会出现“嘟”的一声。这是主板BIOS声音没关的问题。<br>
-执行 <code>sudo dedit /etc/modprobe.d/alsa-base-blacklist.conf</code>，输入</p>
-<pre><code>blacklist pcspkr
-blacklist snd_pcsp
+<p>注意:<br>
+你可以假设树中没有重复的元素。<br><br></p>
+<p>例如，给出<br>
+中序遍历 inorder = [9,3,15,20,7]<br>
+后序遍历 postorder = [9,15,7,20,3]<br><br></p>
+<p>得到结果：[3,9,20,null,null,15,7]<br><br></p>
+<p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br><br></p>
+<h3 id="思路">思路</h3>
+<p>二叉树的后序遍历最后一个元素是二叉树的的根节点，然后中序遍历根节点左边元素是左子树的节点，右边是右子树的节点。<br>
+知道这个这道题就很简单了，用递归调用求左子树右子树。</p>
+<pre><code class="language-C++">/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* build(vector&lt;int&gt;&amp; inorder, vector&lt;int&gt;&amp; postorder) {
+        TreeNode* tree = new TreeNode(postorder[postorder.size() - 1]);
+        if (inorder.size() &lt;= 1) {
+            return tree;
+        }
+        int i, m; //找到根节点m
+        for (i = 0; i &lt; inorder.size(); i++) {
+            if (inorder[i] == postorder[postorder.size() - 1]) {
+                break;
+            }
+        }
+        m = i;
+        vector&lt;int&gt; arr0, arr1, brr0, brr1;
+        if (m == 0) { //考虑左边已经空了的情况
+            tree-&gt;left = NULL;
+        }
+        else {
+            for (int i = 0; i &lt; m; i++) {
+                arr0.push_back(inorder[i]);
+                brr0.push_back(postorder[i]);
+            }
+            tree-&gt;left = build(arr0, brr0);
+        }
+        if (m &gt;= inorder.size() - 1) {  //考虑右边已经空了的情况
+            tree-&gt;right = NULL;
+        }
+        else {
+            for (int i = m + 1, j = m; i &lt; inorder.size(); i++, j++) {
+                arr1.push_back(inorder[i]);
+                brr1.push_back(postorder[j]);
+            }
+            tree-&gt;right = build(arr1, brr1);
+        }
+        return tree;
+    }
+    TreeNode* buildTree(vector&lt;int&gt;&amp; inorder, vector&lt;int&gt;&amp; postorder) {
+        if (inorder.size() == 0 || postorder.size() == 0) {
+            return NULL;
+        }
+        return build(inorder, postorder);
+    }
+};
 </code></pre>
-<p>保存后执行 <code>sudo update-initramfs -u</code>后重启即可。</p>
 
           <div class="toc-container"><ul class="markdownIt-TOC">
 <li>
 <ul>
 <li>
 <ul>
-<li><a href="#%E5%AE%89%E8%A3%85deb%E6%96%87%E4%BB%B6">安装deb文件</a></li>
-<li><a href="#%E6%89%93%E5%BC%80taggz%E6%96%87%E4%BB%B6">打开tag.gz文件</a></li>
-<li><a href="#%E8%BF%9B%E5%85%A5root%E8%BA%AB%E4%BB%BD">进入root身份</a></li>
-<li><a href="#%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%88%87%E6%8D%A2%E6%97%B6%E9%97%B4%E9%97%AE%E9%A2%98">双系统切换时间问题</a></li>
-<li><a href="#%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%BC%80%E6%9C%BA%E9%BB%98%E8%AE%A4linux%E6%9B%B4%E6%94%B9">双系统开机默认linux更改</a></li>
-<li><a href="#linux%E6%98%BE%E7%A4%BA%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF">linux显示系统信息</a></li>
-<li><a href="#bios%E5%A3%B0%E9%9F%B3%E9%97%AE%E9%A2%98">BIOS声音问题</a></li>
+<li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
+<li><a href="#%E6%80%9D%E8%B7%AF">思路</a></li>
 </ul>
 </li>
 </ul>
@@ -239,17 +277,17 @@ blacklist snd_pcsp
           
           <hr />
           <p class="next-post">下一篇：
-            <a href="https://sakuratears.cn/post/mai-mai-gu-piao-de-zui-jia-shi-ji-iitan-xin/">
+            <a href="https://sakuratears.cn/post/er-cha-shu-de-zhong-xu-bian-li/">
               <span class="post-title">
-                买卖股票的最佳时机 II(贪心)&rarr;
+                二叉树的中序遍历&rarr;
               </span>
             </a>
           </p>
           
           <div class="comment" style="text-align: center;">
             
-            <span id="/post/linuxdeepinri-chang-cao-zuo/" class="leancloud_visitors"
-              data-flag-title="Linux(deepin)日常操作">
+            <span id="/post/cong-zhong-xu-yu-hou-xu-bian-li-xu-lie-gou-zao-er-cha-shu-er-cha-shu/" class="leancloud_visitors"
+              data-flag-title="从中序与后序遍历序列构造二叉树(二叉树)">
               <em class="post-meta-item-text">阅读量 </em>
               <i class="leancloud-visitors-count">loading...</i>
             </span>

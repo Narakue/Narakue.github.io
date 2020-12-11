@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-12-10T09:29:00.944Z</updated>
+    <updated>2020-12-11T12:56:52.234Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -10,6 +10,86 @@
     <logo>https://sakuratears.cn/images/avatar.png</logo>
     <icon>https://sakuratears.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, SakuraTears</rights>
+    <entry>
+        <title type="html"><![CDATA[从中序与后序遍历序列构造二叉树(二叉树)]]></title>
+        <id>https://sakuratears.cn/post/cong-zhong-xu-yu-hou-xu-bian-li-xu-lie-gou-zao-er-cha-shu-er-cha-shu/</id>
+        <link href="https://sakuratears.cn/post/cong-zhong-xu-yu-hou-xu-bian-li-xu-lie-gou-zao-er-cha-shu-er-cha-shu/">
+        </link>
+        <updated>2020-12-11T12:51:54.000Z</updated>
+        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>根据一棵树的中序遍历与后序遍历构造二叉树。</p>
+]]></summary>
+        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>根据一棵树的中序遍历与后序遍历构造二叉树。</p>
+<!-- more -->
+<p>注意:<br>
+你可以假设树中没有重复的元素。<br><br></p>
+<p>例如，给出<br>
+中序遍历 inorder = [9,3,15,20,7]<br>
+后序遍历 postorder = [9,15,7,20,3]<br><br></p>
+<p>得到结果：[3,9,20,null,null,15,7]<br><br></p>
+<p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br><br></p>
+<h3 id="思路">思路</h3>
+<p>二叉树的后序遍历最后一个元素是二叉树的的根节点，然后中序遍历根节点左边元素是左子树的节点，右边是右子树的节点。<br>
+知道这个这道题就很简单了，用递归调用求左子树右子树。</p>
+<pre><code class="language-C++">/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* build(vector&lt;int&gt;&amp; inorder, vector&lt;int&gt;&amp; postorder) {
+        TreeNode* tree = new TreeNode(postorder[postorder.size() - 1]);
+        if (inorder.size() &lt;= 1) {
+            return tree;
+        }
+        int i, m; //找到根节点m
+        for (i = 0; i &lt; inorder.size(); i++) {
+            if (inorder[i] == postorder[postorder.size() - 1]) {
+                break;
+            }
+        }
+        m = i;
+        vector&lt;int&gt; arr0, arr1, brr0, brr1;
+        if (m == 0) { //考虑左边已经空了的情况
+            tree-&gt;left = NULL;
+        }
+        else {
+            for (int i = 0; i &lt; m; i++) {
+                arr0.push_back(inorder[i]);
+                brr0.push_back(postorder[i]);
+            }
+            tree-&gt;left = build(arr0, brr0);
+        }
+        if (m &gt;= inorder.size() - 1) {  //考虑右边已经空了的情况
+            tree-&gt;right = NULL;
+        }
+        else {
+            for (int i = m + 1, j = m; i &lt; inorder.size(); i++, j++) {
+                arr1.push_back(inorder[i]);
+                brr1.push_back(postorder[j]);
+            }
+            tree-&gt;right = build(arr1, brr1);
+        }
+        return tree;
+    }
+    TreeNode* buildTree(vector&lt;int&gt;&amp; inorder, vector&lt;int&gt;&amp; postorder) {
+        if (inorder.size() == 0 || postorder.size() == 0) {
+            return NULL;
+        }
+        return build(inorder, postorder);
+    }
+};
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[二叉树的中序遍历]]></title>
         <id>https://sakuratears.cn/post/er-cha-shu-de-zhong-xu-bian-li/</id>
@@ -773,84 +853,6 @@ public:
 };
 </code></pre>
 <p>思路参考：liweiwei1419</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[寻找两个正序数组的中位数(分治)]]></title>
-        <id>https://sakuratears.cn/post/xun-zhao-liang-ge-zheng-xu-shu-zu-de-zhong-wei-shu-fen-zhi/</id>
-        <link href="https://sakuratears.cn/post/xun-zhao-liang-ge-zheng-xu-shu-zu-de-zhong-wei-shu-fen-zhi/">
-        </link>
-        <updated>2020-12-04T06:42:22.000Z</updated>
-        <summary type="html"><![CDATA[<p>力扣的困难题<s>极其简单！！！</s></p>
-]]></summary>
-        <content type="html"><![CDATA[<p>力扣的困难题<s>极其简单！！！</s></p>
-<!-- more -->
-<h3 id="题目">题目</h3>
-<p>给定两个大小为 m 和 n 的正序（从小到大）数组 nums1 和 nums2。请你找出并返回这两个正序数组的中位数。<br><br></p>
-<p>进阶：你能设计一个时间复杂度为 O(log (m+n)) 的算法解决此问题吗？<br><br></p>
-<p>示例 1：<br>
-输入：nums1 = [1,3], nums2 = [2]<br>
-输出：2.00000<br>
-解释：合并数组 = [1,2,3] ，中位数 2<br><br></p>
-<p>示例 2：<br>
-输入：nums1 = [1,2], nums2 = [3,4]<br>
-输出：2.50000<br>
-解释：合并数组 = [1,2,3,4] ，中位数 (2 + 3) / 2 = 2.5<br><br></p>
-<p>示例 3：<br>
-输入：nums1 = [0,0], nums2 = [0,0]<br>
-输出：0.00000<br><br></p>
-<p>示例 4：<br>
-输入：nums1 = [], nums2 = [1]<br>
-输出：1.00000<br><br></p>
-<p>示例 5：<br>
-输入：nums1 = [2], nums2 = []<br>
-输出：2.00000<br><br></p>
-<p>提示：<br><br></p>
-<p>nums1.length == m<br>
-nums2.length == n<br>
-0 &lt;= m &lt;= 1000<br>
-0 &lt;= n &lt;= 1000<br>
-1 &lt;= m + n &lt;= 2000<br>
--106 &lt;= nums1[i], nums2[i] &lt;= 106<br><br></p>
-<p>来源：力扣（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/median-of-two-sorted-arrays<br>
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br><br></p>
-<h3 id="思路">思路</h3>
-<p>题目过于简单，把小的数组加到大的数组题然后sort，再找中位数。0.0<br><br></p>
-<h3 id="代码">代码</h3>
-<pre><code class="language-C++">class Solution {
-public:
-    double median(vector&lt;int&gt; nums) {
-        if (nums.size() % 2 == 0) {
-            double dou0 = nums[nums.size() / 2];
-            double dou1 = nums[nums.size() / 2 - 1];
-            return (dou0 + dou1) / 2;
-        }
-        else {
-            double dou0 = nums[nums.size() / 2];
-            return dou0;
-        }
-    } 
-    double findMedianSortedArrays(vector&lt;int&gt;&amp; nums1, vector&lt;int&gt;&amp; nums2) {
-        if (nums1.size() == 0 &amp;&amp; nums2.size() == 0)
-            return 0;
-        if (nums1.size() &gt;= nums2.size()) {
-            for (int i = 0; i &lt; nums2.size(); i++) {
-                nums1.push_back(nums2[i]);
-            }
-            sort(nums1.begin(), nums1.end());
-            return median(nums1);
-        }
-        else {
-            for (int i = 0; i &lt; nums1.size(); i++) {
-                nums2.push_back(nums1[i]);
-            }
-            sort(nums2.begin(), nums2.end());
-            return median(nums2);
-        }
-    }
-};
-</code></pre>
 ]]></content>
     </entry>
 </feed>
