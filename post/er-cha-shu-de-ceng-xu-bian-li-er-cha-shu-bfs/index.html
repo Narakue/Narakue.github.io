@@ -10,14 +10,14 @@
 <meta name="keywords" content="">
 <meta name="description" content="欢迎访问[SakuraTears]的个人博客">
 <meta name="author" content="kveln">
-<title>回溯 | SakuraTears</title>
+<title>二叉树的层序遍历(二叉树)(BFS) | SakuraTears</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 <link
   href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
   rel='stylesheet' type='text/css'>
-<link rel="alternate" type="application/rss+xml" title="回溯 | SakuraTears » Feed"
+<link rel="alternate" type="application/rss+xml" title="二叉树的层序遍历(二叉树)(BFS) | SakuraTears » Feed"
   href="https://sakuratears.cn/atom.xml">
 <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/styles/androidstudio.min.css">
@@ -30,9 +30,72 @@
 
 <script>hljs.initHighlightingOnLoad();</script>
 
+  <meta property="og:description" content="二叉树的层序遍历(二叉树)(BFS)" />
+  <meta property="og:url" content="https://sakuratears.cn/post/er-cha-shu-de-ceng-xu-bian-li-er-cha-shu-bfs/" />
+  <meta property="og:locale" content="zh-CN" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="SakuraTears" />
+  <!-- <script src="../assets/styles/scripts/tocScript.js"></script> -->
 </head>
 
 <body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="https://sakuratears.cn">SakuraTears</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+      data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+      aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        
+        <li class="nav-item">
+          
+          <a class="nav-link" href="/">首页</a>
+          
+        </li>
+        
+        <li class="nav-item">
+          
+          <a class="nav-link" href="/archives">归档</a>
+          
+        </li>
+        
+        <li class="nav-item">
+          
+          <a class="nav-link" href="/tags">标签</a>
+          
+        </li>
+        
+        <li class="nav-item">
+          
+          <a class="nav-link" href="https://sakuratears.cn/post/ji-lu-xue-xi-de-ri-zi">生活</a>
+          
+        </li>
+        
+        <li class="nav-item">
+          
+          <a class="nav-link" href="https://sakuratears.cn/post/about">关于</a>
+          
+        </li>
+        
+        <li class="nav-item">
+          <div class="gridea-search-container">
+            <form id="gridea-search-form" style="position: relative" data-update="1607763992575"
+              action="/search/index.html">
+              <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+              <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  <!-- Page Header -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
   <div class="container">
     <a class="navbar-brand" href="https://sakuratears.cn">SakuraTears</a>
@@ -96,9 +159,22 @@
         
           <!-- 没Title为其他页面Header -->
           
-            <!-- 其他页面（archives、tags、about...）Header -->
-            <div class="sub-site-heading">
-              <h1 class="tag-tl">#回溯</h1>
+            <!-- 没Title并且有headerType为Post：文章Header -->
+            <div class="post-heading">
+              <span class="tags">
+                
+                <a href="https://sakuratears.cn/tag/gRTjYccGN/" class="tag">二叉树</a>
+                
+                <a href="https://sakuratears.cn/tag/TN0UiB8Cf/" class="tag">LeetCode</a>
+                
+                <a href="https://sakuratears.cn/tag/e0ZtA0F1A/" class="tag">算法</a>
+                
+              </span>
+              <h1>二叉树的层序遍历(二叉树)(BFS)</h1>
+              <span class="meta">
+                Posted on
+                2020/12/12，2 min read
+              </span>
             </div>
           
         
@@ -106,67 +182,147 @@
     </div>
   </div>
 </header>
-  <div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-md-10 mx-auto">
-      
-      <!-- 每行的总容器 -->
-      <div class="post-row-container">
-        <!-- 第0层；标题 -->
-        <div class="title-floor">
-          <div class="post-title-container">
-            
-            <a href="https://sakuratears.cn/post/n-huang-hou/">
-              <h2 class="post-title">
-                N皇后(回溯)
-              </h2>
-            </a>
-          </div>
-        </div>
-        <!-- 第一层：包含文章描述、时间信息、封面图 -->
-        <div class="post-row-first-floor">
-          <div class="post-preview">
-            <h3 class="post-subtitle">
-              <p>n 皇后问题研究的是如何将 n 个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。</p>
+  <!-- Post Content -->
+  <article id="post-content-article">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto post-content-container">
+          
+          <img class="post-feature-header-image" src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(5).jpg.webp" alt="封面图">
+          </img>
+          
+          <h3 id="题目">题目</h3>
+<p>给你一个二叉树，请你返回其按 层序遍历 得到的节点值。 （即逐层地，从左到右访问所有节点）。</p>
+<!-- more -->
+<p></p>
+<p>示例：<br>
+二叉树：[3,9,20,null,null,15,7],<br>
+<img src="https://sakuratears.cn/post-images/1607763983990.png" alt="" loading="lazy"></p>
+<p>返回其层次遍历结果：</p>
+<p>[<br>
+[3],<br>
+[9,20],<br>
+[15,7]<br>
+]<br><br></p>
+<p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/binary-tree-level-order-traversal<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h3 id="解题思路">解题思路</h3>
+<p>在用BFS循环遍历时。先记录现在队列里面的元素个数n，n就是此二叉树这一深度拥有的节点数，然后循环n次，把n个节点的左右孩子都添加到队列里面，每次循环完把队列前面的元素pop到一个动态数组里，这样就能实现一个深度的节点为一个数组了</p>
+<h3 id="代码">代码</h3>
+<pre><code class="language-C++">/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; arr;
 
-            </h3>
-            <p class="post-meta">
-              <span class="time">2020/11/06</span>
-              <span>,</span>
-              <span class="post-stats">3 min read</span>
-            </p>
+    void BFS(TreeNode* root) {
+        queue&lt;TreeNode*&gt; brr;
+        vector&lt;int&gt; crr;
+        brr.push(root);
+        int n = 0;
+        while (!brr.empty()) {
+            TreeNode* node = brr.front();
+            n = brr.size(); //n记录当前队列元素个数
+            for (int i = 0; i &lt; n; i++) { //循环n次
+                if (node-&gt;left != NULL) { //左孩子不为空则添加左孩子
+                    brr.push(node-&gt;left);
+                }
+                if (node-&gt;right != NULL) { //右孩子不为空则添加右孩子
+                    brr.push(node-&gt;right);
+                }
+                crr.push_back(brr.front()-&gt;val); //每次循环把队列的头元素的值添加到一个数组里
+                brr.pop();
+                node = brr.front(); //节点移动到下一个
+            }
+            arr.push_back(crr); //把当前数组元素添加到二维数组中
+            crr.clear(); //当前数组清空
+        }
+    }
+
+    vector&lt;vector&lt;int&gt;&gt; levelOrder(TreeNode* root) {
+        if (root == NULL) {
+            return arr;
+        }
+        BFS(root);
+        return arr;
+    }
+};
+</code></pre>
+
+          <div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
+<li><a href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF">解题思路</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81">代码</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+          
+          <hr />
+          <p class="next-post">下一篇：
+            <a href="https://sakuratears.cn/post/cong-qian-xu-yu-zhong-xu-bian-li-xu-lie-gou-zao-er-cha-shu-er-cha-shu/">
+              <span class="post-title">
+                从前序与中序遍历序列构造二叉树(二叉树)&rarr;
+              </span>
+            </a>
+          </p>
+          
+          <div class="comment" style="text-align: center;">
+            
+            <span id="/post/er-cha-shu-de-ceng-xu-bian-li-er-cha-shu-bfs/" class="leancloud_visitors"
+              data-flag-title="二叉树的层序遍历(二叉树)(BFS)">
+              <em class="post-meta-item-text">阅读量 </em>
+              <i class="leancloud-visitors-count">loading...</i>
+            </span>
+            
+
+            
+            
+            <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:100%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
+
+
+	<div id="vcomments"></div>
+
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: 'nfWVdgg866VIUK3XcpJYSmAP-gzGzoHsz',
+		appKey: 'XA26Jr7NmeT5eIqrAQYsk51a',
+		avatar: 'robohash',
+		pageSize: 5,
+		recordIp: true,
+		placeholder: 'Just Go Go',
+		visitor: true,
+	});
+</script>
+
+            
           </div>
-          
-          <a href="https://sakuratears.cn/post/n-huang-hou/" class="post-feature-image" style="background-image: url('https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(9).jpg.webp')">
-          </a>
-          
-        </div>
-        <!-- 第二层：下划线、占位标签、tags -->
-        <div class="post-row-sec-floor">
-          <hr>
-          <div class="clearfix"></div>
-          
-          <a href="https://sakuratears.cn/tag/Deq-x4lY4/" class="post-tag">
-            回溯
-          </a>
-          
-          <a href="https://sakuratears.cn/tag/TN0UiB8Cf/" class="post-tag">
-            LeetCode
-          </a>
-          
-          <a href="https://sakuratears.cn/tag/e0ZtA0F1A/" class="post-tag">
-            算法
-          </a>
-          
         </div>
       </div>
-      </>
-      
-      <!-- 
-       -->
-    </div>
-  </div>
-</div>
+  </article>
   <!-- Footer -->
   <footer>
     <div class="container">
@@ -255,7 +411,7 @@
     }
   })(this));</script>
   
-    <div id="landlord-parent">
+  <div id="landlord-parent">
     <div id="landlord">
         <div class="message" style="opacity:0"></div>
         <canvas id="live2d" width="240" height="350" class="live2d"></canvas>
@@ -296,6 +452,7 @@
     }
 </script>
   
+  <script src="https://sakuratears.cn/media/scripts/tocScript.js"></script>
 </body>
 
 </html>
