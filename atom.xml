@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-12-12T09:06:53.021Z</updated>
+    <updated>2020-12-13T05:58:10.329Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -10,6 +10,67 @@
     <logo>https://sakuratears.cn/images/avatar.png</logo>
     <icon>https://sakuratears.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, SakuraTears</rights>
+    <entry>
+        <title type="html"><![CDATA[二叉树的最小(最大)路径(二叉树)]]></title>
+        <id>https://sakuratears.cn/post/er-cha-shu-de-zui-xiao-zui-da-lu-jing-er-cha-shu/</id>
+        <link href="https://sakuratears.cn/post/er-cha-shu-de-zui-xiao-zui-da-lu-jing-er-cha-shu/">
+        </link>
+        <updated>2020-12-13T05:54:14.000Z</updated>
+        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>给定一个二叉树，找出其最小深度。<br>
+最小深度是从根节点到最近叶子节点的最短路径上的节点数量。<br>
+说明：叶子节点是指没有子节点的节点。</p>
+]]></summary>
+        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>给定一个二叉树，找出其最小深度。<br>
+最小深度是从根节点到最近叶子节点的最短路径上的节点数量。<br>
+说明：叶子节点是指没有子节点的节点。</p>
+<!-- more -->
+<p>示例 1：<br>
+输入：root = [3,9,20,null,null,15,7]<br>
+输出：2<br><br></p>
+<p>示例 2：<br>
+输入：root = [2,null,3,null,4,null,5,null,6]<br>
+输出：5<br><br></p>
+<p>提示：<br>
+树中节点数的范围在 [0, 105] 内<br>
+-1000 &lt;= Node.val &lt;= 1000<br><br></p>
+<p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/minimum-depth-of-binary-tree<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h3 id="思路">思路</h3>
+<p>二叉树每个节点的路径最小(最大)为左子树和右子树中最小(最大)路径加上它自己</p>
+<pre><code class="language-C++">/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    int minDepth(TreeNode* root) {
+        if (root == nullptr) {
+            return 0;
+        }
+        int left = minDepth(root-&gt;left);
+        int right = minDepth(root-&gt;right);
+        if (left == 0) {
+            return right + 1;
+        }
+        if (right == 0) {
+            return left + 1;
+        }
+        return min(left, right) + 1;
+    }
+};
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[二叉树的层序遍历(二叉树)(BFS)]]></title>
         <id>https://sakuratears.cn/post/er-cha-shu-de-ceng-xu-bian-li-er-cha-shu-bfs/</id>
@@ -669,83 +730,6 @@ public:
             m = -m;
         }
         return m;
-    }
-};
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[整数反转(数组)]]></title>
-        <id>https://sakuratears.cn/post/zheng-shu-fan-zhuan/</id>
-        <link href="https://sakuratears.cn/post/zheng-shu-fan-zhuan/">
-        </link>
-        <updated>2020-12-06T09:16:41.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。<br><br></p>
-]]></summary>
-        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。<br><br></p>
-<!-- more -->
-<p>示例 1:</p>
-<p>输入: 123<br>
-输出: 321<br><br></p>
-<p>示例 2:</p>
-<p>输入: -123<br>
-输出: -321<br><br></p>
-<p>示例 3:</p>
-<p>输入: 120<br>
-输出: 21<br><br></p>
-<p>注意:<br><br></p>
-<p>假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 [−231,  231 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。<br><br></p>
-<p>来源：力扣（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/reverse-integer<br>
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br><br></p>
-<h3 id="题解">题解</h3>
-<p>多注意爆int的地方，多wa几发就过了<s>手动狗头</s></p>
-<pre><code class="language-C++">class Solution {
-public:
-    int reverse(int x) {
-        int j = 0, m = 0, num = 0, jud = 0;
-        char str[1000];
-        int i = 0;
-        if (x &lt; 0)
-        {
-            if (x &lt;= -pow(2, 31)) // 负数正好没爆int，转正可能就会正好爆
-                return 0;
-            x = -x;
-            jud = 1;
-        }
-        while (x &gt; 0)
-        {
-            str[i++] = x % 10 + 48;
-            x /= 10;
-        }
-        str[i] = '\0';
-        if (str[0] == '0')
-        {
-            m = 1;
-        }
-        for (int i = m; str[i] != '\0'; i++)
-        {
-            j++;
-        }
-        j--;
-        for (int i = m; str[i] != '\0'; i++)
-        {
-            if ((str[i] - 48) * pow(10, j) &gt; pow(2, 31) - 1 || (str[i] - 48) * pow(10, j) &lt; -pow(2, 31)) { //可能爆int的地方
-                return 0;
-            }
-            if (num + (str[i] - 48) * pow(10, j) &gt; pow(2, 31) - 1 || num + (str[i] - 48) * pow(10, j) &lt; -pow(2, 31)) {  //可能爆int的地方
-                return 0;
-            }
-            num += (str[i] - 48) * pow(10, j);
-            j--;
-        }
-        if (jud != 0)
-        {
-            num = -num;
-        }
-        return num;
     }
 };
 </code></pre>
