@@ -10,14 +10,14 @@
 <meta name="keywords" content="">
 <meta name="description" content="欢迎访问[SakuraTears]的个人博客">
 <meta name="author" content="kveln">
-<title>搜索 | SakuraTears</title>
+<title>路径总和(二叉树)(DFS) | SakuraTears</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 <link
   href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
   rel='stylesheet' type='text/css'>
-<link rel="alternate" type="application/rss+xml" title="搜索 | SakuraTears » Feed"
+<link rel="alternate" type="application/rss+xml" title="路径总和(二叉树)(DFS) | SakuraTears » Feed"
   href="https://sakuratears.cn/atom.xml">
 <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/styles/androidstudio.min.css">
@@ -30,9 +30,72 @@
 
 <script>hljs.initHighlightingOnLoad();</script>
 
+  <meta property="og:description" content="路径总和(二叉树)(DFS)" />
+  <meta property="og:url" content="https://sakuratears.cn/post/lu-jing-zong-he-er-cha-shu-dfs/" />
+  <meta property="og:locale" content="zh-CN" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="SakuraTears" />
+  <!-- <script src="../assets/styles/scripts/tocScript.js"></script> -->
 </head>
 
 <body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="https://sakuratears.cn">SakuraTears</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+      data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+      aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        
+        <li class="nav-item">
+          
+          <a class="nav-link" href="/">首页</a>
+          
+        </li>
+        
+        <li class="nav-item">
+          
+          <a class="nav-link" href="/archives">归档</a>
+          
+        </li>
+        
+        <li class="nav-item">
+          
+          <a class="nav-link" href="/tags">标签</a>
+          
+        </li>
+        
+        <li class="nav-item">
+          
+          <a class="nav-link" href="https://sakuratears.cn/post/ji-lu-xue-xi-de-ri-zi">生活</a>
+          
+        </li>
+        
+        <li class="nav-item">
+          
+          <a class="nav-link" href="https://sakuratears.cn/post/about">关于</a>
+          
+        </li>
+        
+        <li class="nav-item">
+          <div class="gridea-search-container">
+            <form id="gridea-search-form" style="position: relative" data-update="1607851690208"
+              action="/search/index.html">
+              <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+              <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  <!-- Page Header -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
   <div class="container">
     <a class="navbar-brand" href="https://sakuratears.cn">SakuraTears</a>
@@ -96,9 +159,22 @@
         
           <!-- 没Title为其他页面Header -->
           
-            <!-- 其他页面（archives、tags、about...）Header -->
-            <div class="sub-site-heading">
-              <h1 class="tag-tl">#搜索</h1>
+            <!-- 没Title并且有headerType为Post：文章Header -->
+            <div class="post-heading">
+              <span class="tags">
+                
+                <a href="https://sakuratears.cn/tag/gRTjYccGN/" class="tag">二叉树</a>
+                
+                <a href="https://sakuratears.cn/tag/TN0UiB8Cf/" class="tag">LeetCode</a>
+                
+                <a href="https://sakuratears.cn/tag/e0ZtA0F1A/" class="tag">算法</a>
+                
+              </span>
+              <h1>路径总和(二叉树)(DFS)</h1>
+              <span class="meta">
+                Posted on
+                2020/12/13，2 min read
+              </span>
             </div>
           
         
@@ -106,124 +182,133 @@
     </div>
   </div>
 </header>
-  <div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-md-10 mx-auto">
-      
-      <!-- 每行的总容器 -->
-      <div class="post-row-container">
-        <!-- 第0层；标题 -->
-        <div class="title-floor">
-          <div class="post-title-container">
-            
-            <a href="https://sakuratears.cn/post/er-cha-shu-zhong-de-zui-da-lu-jing-he-er-cha-shu/">
-              <h2 class="post-title">
-                二叉树中的最大路径和(二叉树)(DFS)
-              </h2>
-            </a>
-          </div>
-        </div>
-        <!-- 第一层：包含文章描述、时间信息、封面图 -->
-        <div class="post-row-first-floor">
-          <div class="post-preview">
-            <h3 class="post-subtitle">
-              <h3 id="题目">题目</h3>
-<p>给定一个非空二叉树，返回其最大路径和。<br><br></p>
+  <!-- Post Content -->
+  <article id="post-content-article">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto post-content-container">
+          
+          <img class="post-feature-header-image" src="https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(3).jpg.webp" alt="封面图">
+          </img>
+          
+          <h3 id="题目">题目</h3>
+<p>给定一个二叉树和一个目标和，判断该树中是否存在根节点到叶子节点的路径，这条路径上所有节点值相加等于目标和。</p>
+<!-- more -->
+<p>说明: 叶子节点是指没有子节点的节点。<br><br></p>
+<p>示例: <br>
+给定如下二叉树，以及目标和 sum = 22，<br>
+返回 true, 因为存在目标和为 22 的根节点到叶子节点的路径 5-&gt;4-&gt;11-&gt;2<br><br></p>
+<p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/path-sum<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br><br></p>
+<h3 id="思路">思路</h3>
+<p>从根节点开始遍历每个节点，每次递归将此根节点和前面路径的节点传入，然后当时叶子结点时判断总路径是否相等。</p>
+<pre><code class="language-C++">/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool jud = false; //判断因子
+    int num;
+    void path(TreeNode* root, int n) {
+        if (root == NULL) { //根为空的情况
+            return;
+        }
+        //判断路径和是否相等，并且判断是否为叶子结点
+        if (root-&gt;val + n == num &amp;&amp; root-&gt;left == NULL &amp;&amp; root-&gt;right == NULL) { 
+            jud = true;
+            return;
+        }
+        //递归遍历每个节点
+        path(root-&gt;left, root-&gt;val + n);
+        path(root-&gt;right, root-&gt;val + n);
+    }
+    bool hasPathSum(TreeNode* root, int sum) {
+        //判断两者中特殊情况
+        if (root == NULL &amp;&amp; sum == 0) {
+            return false;
+        }
+        if (root == NULL &amp;&amp; sum != 0) {
+            return false;
+        }
+        num = sum;
+        path(root, 0);
+        return jud;
+    }
+};
+</code></pre>
 
-            </h3>
-            <p class="post-meta">
-              <span class="time">2020/12/08</span>
-              <span>,</span>
-              <span class="post-stats">2 min read</span>
-            </p>
-          </div>
-          
-          <a href="https://sakuratears.cn/post/er-cha-shu-zhong-de-zui-da-lu-jing-he-er-cha-shu/" class="post-feature-image" style="background-image: url('https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(4).jpg.webp')">
-          </a>
-          
-        </div>
-        <!-- 第二层：下划线、占位标签、tags -->
-        <div class="post-row-sec-floor">
-          <hr>
-          <div class="clearfix"></div>
-          
-          <a href="https://sakuratears.cn/tag/gRTjYccGN/" class="post-tag">
-            二叉树
-          </a>
-          
-          <a href="https://sakuratears.cn/tag/ssMjTlXf4/" class="post-tag">
-            搜索
-          </a>
-          
-          <a href="https://sakuratears.cn/tag/TN0UiB8Cf/" class="post-tag">
-            LeetCode
-          </a>
-          
-          <a href="https://sakuratears.cn/tag/e0ZtA0F1A/" class="post-tag">
-            算法
-          </a>
-          
-        </div>
-      </div>
-      </>
-      
-      <!-- 每行的总容器 -->
-      <div class="post-row-container">
-        <!-- 第0层；标题 -->
-        <div class="title-floor">
-          <div class="post-title-container">
-            
-            <a href="https://sakuratears.cn/post/shui-yu-da-xiao-dfsbfs/">
-              <h2 class="post-title">
-                水域大小（DFS）（BFS）
-              </h2>
-            </a>
-          </div>
-        </div>
-        <!-- 第一层：包含文章描述、时间信息、封面图 -->
-        <div class="post-row-first-floor">
-          <div class="post-preview">
-            <h3 class="post-subtitle">
-              <p>DFS BFS例题</p>
-
-            </h3>
-            <p class="post-meta">
-              <span class="time">2020/11/04</span>
-              <span>,</span>
-              <span class="post-stats">4 min read</span>
-            </p>
-          </div>
-          
-          <a href="https://sakuratears.cn/post/shui-yu-da-xiao-dfsbfs/" class="post-feature-image" style="background-image: url('https://cdn.jsdelivr.net/gh/Zhao-Master/cdn/img/(8).jpg.webp')">
-          </a>
-          
-        </div>
-        <!-- 第二层：下划线、占位标签、tags -->
-        <div class="post-row-sec-floor">
-          <hr>
-          <div class="clearfix"></div>
-          
-          <a href="https://sakuratears.cn/tag/ssMjTlXf4/" class="post-tag">
-            搜索
-          </a>
-          
-          <a href="https://sakuratears.cn/tag/TN0UiB8Cf/" class="post-tag">
-            LeetCode
-          </a>
-          
-          <a href="https://sakuratears.cn/tag/e0ZtA0F1A/" class="post-tag">
-            算法
-          </a>
-          
-        </div>
-      </div>
-      </>
-      
-      <!-- 
-       -->
-    </div>
-  </div>
+          <div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
+<li><a href="#%E6%80%9D%E8%B7%AF">思路</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 </div>
+          
+          <hr />
+          <p class="next-post">下一篇：
+            <a href="https://sakuratears.cn/post/er-cha-shu-de-zui-xiao-zui-da-lu-jing-er-cha-shu/">
+              <span class="post-title">
+                二叉树的最小(最大)路径(二叉树)&rarr;
+              </span>
+            </a>
+          </p>
+          
+          <div class="comment" style="text-align: center;">
+            
+            <span id="/post/lu-jing-zong-he-er-cha-shu-dfs/" class="leancloud_visitors"
+              data-flag-title="路径总和(二叉树)(DFS)">
+              <em class="post-meta-item-text">阅读量 </em>
+              <i class="leancloud-visitors-count">loading...</i>
+            </span>
+            
+
+            
+            
+            <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:100%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
+
+
+	<div id="vcomments"></div>
+
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: 'nfWVdgg866VIUK3XcpJYSmAP-gzGzoHsz',
+		appKey: 'XA26Jr7NmeT5eIqrAQYsk51a',
+		avatar: 'robohash',
+		pageSize: 5,
+		recordIp: true,
+		placeholder: 'Just Go Go',
+		visitor: true,
+	});
+</script>
+
+            
+          </div>
+        </div>
+      </div>
+  </article>
   <!-- Footer -->
   <footer>
     <div class="container">
@@ -312,7 +397,7 @@
     }
   })(this));</script>
   
-    <div id="landlord-parent">
+  <div id="landlord-parent">
     <div id="landlord">
         <div class="message" style="opacity:0"></div>
         <canvas id="live2d" width="240" height="350" class="live2d"></canvas>
@@ -353,6 +438,7 @@
     }
 </script>
   
+  <script src="https://sakuratears.cn/media/scripts/tocScript.js"></script>
 </body>
 
 </html>

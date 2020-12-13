@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-12-13T05:58:10.329Z</updated>
+    <updated>2020-12-13T09:28:15.196Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -10,6 +10,248 @@
     <logo>https://sakuratears.cn/images/avatar.png</logo>
     <icon>https://sakuratears.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, SakuraTears</rights>
+    <entry>
+        <title type="html"><![CDATA[无重复字符的最长子串(滑动窗口)]]></title>
+        <id>https://sakuratears.cn/post/wu-chong-fu-zi-fu-de-zui-chang-zi-chuan-hua-dong-chuang-kou/</id>
+        <link href="https://sakuratears.cn/post/wu-chong-fu-zi-fu-de-zui-chang-zi-chuan-hua-dong-chuang-kou/">
+        </link>
+        <updated>2020-12-13T09:21:43.000Z</updated>
+        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。</p>
+]]></summary>
+        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。</p>
+<!-- more -->
+<p></p>
+<p>示例 1:</p>
+<p>输入: s = &quot;abcabcbb&quot;<br>
+输出: 3<br>
+解释: 因为无重复字符的最长子串是 &quot;abc&quot;，所以其长度为 3。<br><br><br>
+示例 2:</p>
+<p>输入: s = &quot;bbbbb&quot;<br>
+输出: 1<br>
+解释: 因为无重复字符的最长子串是 &quot;b&quot;，所以其长度为 1。<br><br><br>
+示例 3:</p>
+<p>输入: s = &quot;pwwkew&quot;<br>
+输出: 3<br>
+解释: 因为无重复字符的最长子串是 &quot;wke&quot;，所以其长度为 3。<br>
+     请注意，你的答案必须是 子串 的长度，&quot;pwke&quot; 是一个子序列，不是子串。<br><br><br>
+示例 4:</p>
+<p>输入: s = &quot;&quot;<br>
+输出: 0<br><br></p>
+<p>提示：</p>
+<p>0 &lt;= s.length &lt;= 5 * 104<br>
+s 由英文字母、数字、符号和空格组成<br><br></p>
+<p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/longest-substring-without-repeating-characters<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br><br></p>
+<h3 id="思路">思路</h3>
+<p>定义p为子串的头，j为尾部，p到j为一个窗口，如果新的元素i和窗口里的元素相同，则把p移动到i的后面。记录每一个窗口的长度，最后取最大</p>
+<pre><code class="language-C++">class Solution {
+public:
+    int lengthOfLongestSubstring(string s)
+    {
+        if (s.size() == 0)
+        {
+            return 0;
+        }
+        int i, j, max, n, p, jud = 0;
+        i = 0;
+        p = i;
+        j = i + 1;
+        max = 1;
+        n = 1;
+        for (; j &lt; s.size(); j++)
+        {
+            jud = 0;
+            for (p = i; p &lt; j; p++)
+            {
+                if (s[p] == s[j])
+                {
+                    i = p + 1;
+                    if (i == j)
+                    {
+                        n = 1;
+                    }
+                    else if (s[i] == s[j])
+                    {
+                        n = j - i;
+                    }
+                    else
+                    {
+                        n = j - i + 1;
+                    }
+                    jud = 1;
+                    break;
+                }
+            }
+            if (jud == 1)
+            {
+                continue;
+            }
+            n++;
+            if (n &gt; max)
+                max = n;
+        }
+        return max;
+    }
+};
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[填充每个节点的下一个右侧节点指针(二叉树)(BFS)]]></title>
+        <id>https://sakuratears.cn/post/tian-chong-mei-ge-jie-dian-de-xia-yi-ge-you-ce-jie-dian-zhi-zhen-er-cha-shu-bfs/</id>
+        <link href="https://sakuratears.cn/post/tian-chong-mei-ge-jie-dian-de-xia-yi-ge-you-ce-jie-dian-zhi-zhen-er-cha-shu-bfs/">
+        </link>
+        <updated>2020-12-13T09:10:23.000Z</updated>
+        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>给定一个 完美二叉树 ，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：</p>
+]]></summary>
+        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>给定一个 完美二叉树 ，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：</p>
+<!-- more -->
+<p>struct Node {<br>
+int val;<br>
+Node *left;<br>
+Node *right;<br>
+Node *next;<br>
+}<br>
+填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 NULL。</p>
+<p>初始状态下，所有 next 指针都被设置为 NULL。<br><br></p>
+<p></p>
+<p>进阶：</p>
+<p>你只能使用常量级额外空间。<br>
+使用递归解题也符合要求，本题中递归程序占用的栈空间不算做额外的空间复杂度。<br><br></p>
+<p>输入：root = [1,2,3,4,5,6,7]<br>
+输出：[1,#,2,3,#,4,5,6,7,#]<br>
+解释：给定二叉树如图 A 所示，你的函数应该填充它的每个 next 指针，以指向其下一个右侧节点，如图 B 所示。序列化的输出按层序遍历排列，同一层节点由 next 指针连接，'#' 标志着每一层的结束。<br><br></p>
+<p>提示：</p>
+<p>树中节点的数量少于 4096<br>
+-1000 &lt;= node.val &lt;= 1000<br><br></p>
+<p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br><br></p>
+<h3 id="思路">思路</h3>
+<p>每次循环用队列存储每一行的节点，每存储一个节点让前一个节点指向现在的节点。<br>
+每次循环队列弹一个，进两个。这样每次循环完队列把上一层的节点全部弹出，把新一层的节点全部加入。</p>
+<pre><code class="language-C++">/*
+// Definition for a Node.
+class Node {
+public:
+    int val;
+    Node* left;
+    Node* right;
+    Node* next;
+
+    Node() : val(0), left(NULL), right(NULL), next(NULL) {}
+
+    Node(int _val) : val(_val), left(NULL), right(NULL), next(NULL) {}
+
+    Node(int _val, Node* _left, Node* _right, Node* _next)
+        : val(_val), left(_left), right(_right), next(_next) {}
+};
+*/
+
+class Solution {
+public:
+    Node* connect(Node* root) {
+        if (root == NULL) {
+            return NULL;
+        }
+        int num = 0;
+        queue&lt;Node*&gt; q;
+        q.push(root);
+        while (!q.empty()) {
+            Node* node;
+            Node* front;
+            front = NULL;
+            num = q.size();
+            for (int j = 0; j &lt; num; j++) {
+                node = q.front();
+                q.pop();
+                if (node-&gt;left != NULL)
+                    q.push(node-&gt;left);
+                if (node-&gt;right != NULL) 
+                    q.push(node-&gt;right);
+                if (front == NULL) {
+                    front = node;
+                }
+                else {
+                    front-&gt;next = node;
+                    front = front-&gt;next;
+                }
+            };
+        }
+        return root;
+    }
+};
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[路径总和(二叉树)(DFS)]]></title>
+        <id>https://sakuratears.cn/post/lu-jing-zong-he-er-cha-shu-dfs/</id>
+        <link href="https://sakuratears.cn/post/lu-jing-zong-he-er-cha-shu-dfs/">
+        </link>
+        <updated>2020-12-13T07:52:49.000Z</updated>
+        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>给定一个二叉树和一个目标和，判断该树中是否存在根节点到叶子节点的路径，这条路径上所有节点值相加等于目标和。</p>
+]]></summary>
+        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>给定一个二叉树和一个目标和，判断该树中是否存在根节点到叶子节点的路径，这条路径上所有节点值相加等于目标和。</p>
+<!-- more -->
+<p>说明: 叶子节点是指没有子节点的节点。<br><br></p>
+<p>示例: <br>
+给定如下二叉树，以及目标和 sum = 22，<br>
+返回 true, 因为存在目标和为 22 的根节点到叶子节点的路径 5-&gt;4-&gt;11-&gt;2<br><br></p>
+<p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/path-sum<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br><br></p>
+<h3 id="思路">思路</h3>
+<p>从根节点开始遍历每个节点，每次递归将此根节点和前面路径的节点传入，然后当时叶子结点时判断总路径是否相等。</p>
+<pre><code class="language-C++">/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool jud = false; //判断因子
+    int num;
+    void path(TreeNode* root, int n) {
+        if (root == NULL) { //根为空的情况
+            return;
+        }
+        //判断路径和是否相等，并且判断是否为叶子结点
+        if (root-&gt;val + n == num &amp;&amp; root-&gt;left == NULL &amp;&amp; root-&gt;right == NULL) { 
+            jud = true;
+            return;
+        }
+        //递归遍历每个节点
+        path(root-&gt;left, root-&gt;val + n);
+        path(root-&gt;right, root-&gt;val + n);
+    }
+    bool hasPathSum(TreeNode* root, int sum) {
+        //判断两者中特殊情况
+        if (root == NULL &amp;&amp; sum == 0) {
+            return false;
+        }
+        if (root == NULL &amp;&amp; sum != 0) {
+            return false;
+        }
+        num = sum;
+        path(root, 0);
+        return jud;
+    }
+};
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[二叉树的最小(最大)路径(二叉树)]]></title>
         <id>https://sakuratears.cn/post/er-cha-shu-de-zui-xiao-zui-da-lu-jing-er-cha-shu/</id>
@@ -508,228 +750,6 @@ public:
         }
         deep(root);
         return jud;
-    }
-};
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[二叉树中的最大路径和(二叉树)(DFS)]]></title>
-        <id>https://sakuratears.cn/post/er-cha-shu-zhong-de-zui-da-lu-jing-he-er-cha-shu/</id>
-        <link href="https://sakuratears.cn/post/er-cha-shu-zhong-de-zui-da-lu-jing-he-er-cha-shu/">
-        </link>
-        <updated>2020-12-08T13:18:54.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>给定一个非空二叉树，返回其最大路径和。<br><br></p>
-]]></summary>
-        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>给定一个非空二叉树，返回其最大路径和。<br><br></p>
-<!-- more -->
-<p>本题中，路径被定义为一条从树中任意节点出发，沿父节点-子节点连接，达到任意节点的序列。该路径至少包含一个节点，且不一定经过根节点。<br><br></p>
-<p></p>
-<p>示例 1：</p>
-<p>输入：[1,2,3]</p>
-<pre><code>   1
-  / \
- 2   3
-</code></pre>
-<p>输出：6<br><br><br>
-示例 2：</p>
-<p>输入：[-10,9,20,null,null,15,7]</p>
-<p>-10<br>
-   / <br>
-  9  20<br>
-    /  <br>
-   15   7</p>
-<p>输出：42<br><br></p>
-<p>来源：力扣（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/binary-tree-maximum-path-sum<br>
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<h3 id="思路">思路</h3>
-<p>每一个节点的最大路径是它左右子树中最大的路径加上它自己，这样就是先遍历左子树，再遍历右子树。<br>
-这样就是树的后序遍历+DFS的思想。</p>
-<pre><code class="language-C++">/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
-class Solution {
-public:
-    int imax = INT_MIN;
-    int maxpath(TreeNode* root) {
-        if (root == nullptr) {
-            return 0;
-        }
-
-        int left = max(0, maxpath(root-&gt;left));
-        int right = max(0, maxpath(root-&gt;right));
-        /*二叉树的后序遍历*/
-        imax = max(imax, left + right + root-&gt;val);
-        return max(left, right) + root-&gt;val;
-    }
-    int maxPathSum(TreeNode* root) {
-        maxpath(root);
-        return imax;
-    }
-};
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[杨辉三角(数组)]]></title>
-        <id>https://sakuratears.cn/post/yang-hui-san-jiao/</id>
-        <link href="https://sakuratears.cn/post/yang-hui-san-jiao/">
-        </link>
-        <updated>2020-12-07T09:18:43.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>给定一个非负整数 numRows，生成杨辉三角的前 numRows 行。<br><br></p>
-]]></summary>
-        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>给定一个非负整数 numRows，生成杨辉三角的前 numRows 行。<br><br></p>
-<!-- more -->
-<p>在杨辉三角中，每个数是它左上方和右上方的数的和。<br><br></p>
-<p>示例:<br><br></p>
-<p>输入: 5<br>
-输出:<br>
-[<br>
-[1],<br>
-[1,1],<br>
-[1,2,1],<br>
-[1,3,3,1],<br>
-[1,4,6,4,1]<br>
-]<br><br></p>
-<p>来源：力扣（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/pascals-triangle<br>
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br><br></p>
-<h3 id="思路">思路</h3>
-<p>简单题，直接写就行，leetcode的测试用例也没啥恶心的<s>可能是这个题没法恶心了吧</s></p>
-<pre><code class="language-C++">class Solution {
-public:
-    vector&lt;vector&lt;int&gt;&gt; generate(int numRows) {
-        vector&lt;vector&lt;int&gt;&gt; nums;
-        if (numRows == 0) {  //判断0的情况下
-            return nums;
-        }
-        vector&lt;int&gt; num;
-        num.push_back(1);
-        nums.push_back(num);
-        for (int i = 1; i &lt; numRows; i++) {
-            vector&lt;int&gt; num;
-            num.push_back(1);
-            for (int j = 1; j &lt; i; j++) {
-                num.push_back(nums[i - 1][j - 1] + nums[i - 1][j]); //每行数组的[j]是上一个数组的[j]位置+[j - 1]位置
-            }
-            num.push_back(1);
-            nums.push_back(num);
-        }
-        return nums;
-    }
-};
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[字符串转换整数 (atoi)(字符串)]]></title>
-        <id>https://sakuratears.cn/post/zi-fu-chuan-zhuan-huan-zheng-shu-atoi/</id>
-        <link href="https://sakuratears.cn/post/zi-fu-chuan-zhuan-huan-zheng-shu-atoi/">
-        </link>
-        <updated>2020-12-06T15:19:12.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>请你来实现一个 atoi 函数，使其能将字符串转换成整数。<br><br></p>
-]]></summary>
-        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>请你来实现一个 atoi 函数，使其能将字符串转换成整数。<br><br></p>
-<!-- more -->
-<p>首先，该函数会根据需要丢弃无用的开头空格字符，直到寻找到第一个非空格的字符为止。接下来的转化规则如下：<br><br></p>
-<p>如果第一个非空字符为正或者负号时，则将该符号与之后面尽可能多的连续数字字符组合起来，形成一个有符号整数。<br>
-假如第一个非空字符是数字，则直接将其与之后连续的数字字符组合起来，形成一个整数。<br>
-该字符串在有效的整数部分之后也可能会存在多余的字符，那么这些字符可以被忽略，它们对函数不应该造成影响。<br>
-注意：假如该字符串中的第一个非空格字符不是一个有效整数字符、字符串为空或字符串仅包含空白字符时，则你的函数不需要进行转换，即无法进行有效转换。<br><br></p>
-<p>在任何情况下，若函数不能进行有效的转换时，请返回 0 。<br><br></p>
-<p>提示：<br><br></p>
-<p>本题中的空白字符只包括空格字符 ' ' 。<br>
-假设我们的环境只能存储 32 位大小的有符号整数，那么其数值范围为 [−231,  231 − 1]。如果数值超过这个范围，请返回  INT_MAX (231 − 1) 或 INT_MIN (−231) 。<br><br></p>
-<p>示例 1:</p>
-<p>输入: &quot;42&quot;<br>
-输出: 42<br><br><br>
-示例 2:</p>
-<p>输入: &quot;   -42&quot;<br>
-输出: -42<br>
-解释: 第一个非空白字符为 '-', 它是一个负号。<br>
-     我们尽可能将负号与后面所有连续出现的数字组合起来，最后得到 -42 。<br><br><br>
-示例 3:</p>
-<p>输入: &quot;4193 with words&quot;<br>
-输出: 4193<br>
-解释: 转换截止于数字 '3' ，因为它的下一个字符不为数字。<br><br><br>
-示例 4:</p>
-<p>输入: &quot;words and 987&quot;<br>
-输出: 0<br>
-解释: 第一个非空字符是 'w', 但它不是数字或正、负号。<br>
-因此无法执行有效的转换。<br><br><br>
-示例 5:</p>
-<p>输入: &quot;-91283472332&quot;<br>
-输出: -2147483648<br>
-解释: 数字 &quot;-91283472332&quot; 超过 32 位有符号整数范围。<br>
-     因此返回 INT_MIN (−231) 。<br><br></p>
-<p>来源：力扣（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/string-to-integer-atoi<br>
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<h3 id="思路">思路</h3>
-<pre><code class="language-C++">class Solution {
-public:
-    int myAtoi(string s) {
-        int i = 0, m = 0, jud = 0, n = 0, p, j = 0;
-        while (s[i] == ' ') {
-            i++;
-        }
-        if (s[i] != '-' &amp;&amp; s[i] != '+' &amp;&amp; (s[i] &gt; 57 || s[i] &lt; 48))
-            return 0;
-        if ((s[i] == '-' || s[i] == '+') &amp;&amp; (s[i + 1] &gt; 57 || s[i + 1] &lt; 48))
-            return 0;
-        while (s[i] &gt; 57 || s[i] &lt; 48) {
-            i++;
-        }
-        if (i &gt; 0 &amp;&amp; s[i - 1] == '-') {
-            jud = 1;
-        }
-        while (s[i] == '0') {
-            i++;
-        }
-        if (s[i] &gt; 57 || s[i] &lt; 48) {
-            return 0;
-        }
-        j = i;
-        while (s[i] &lt;= 57 &amp;&amp; s[i] &gt;= 48) {
-            i++;
-            n++;//位数
-        }
-        if (n &gt; 10) {
-            if (jud == 0)
-                return pow(2, 31) - 1;
-            else
-                return -pow(2, 31);
-        }
-        p = n - 1;
-        for (; j &lt; i; j++) {
-            if ((m + (s[j] - 48) * pow(10, p) &gt; pow(2, 31) - 1) &amp;&amp; jud == 0) {
-                return pow(2, 31) - 1;
-            }
-            if ((m + (s[j] - 48) * pow(10, p) &gt;= pow(2, 31)) &amp;&amp; jud == 1) {
-                return -pow(2, 31);
-            }
-            m += (s[j] - 48) * pow(10, p);
-            p--;
-        }
-        if (jud == 1) {
-            m = -m;
-        }
-        return m;
     }
 };
 </code></pre>
