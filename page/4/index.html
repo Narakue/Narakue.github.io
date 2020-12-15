@@ -72,6 +72,11 @@
     <div id="side-posttitle" style="display: none;">
         
     
+    二叉树的锯齿形层次遍历(二叉树)(BFS)
+    <script>postsnum += 1</script>
+    
+    
+    
     二叉树的序列化与反序列化(二叉树)
     <script>postsnum += 1</script>
     
@@ -290,7 +295,7 @@
         <a onclick="showAaplayer()"><i style="font-size: 20px;"><img
                     src='https://sakuratears.cn/media/images/music.png' alt="音乐播放器" class="musicbtn"></i></a>
         <div class="avatar-border">
-            <img src="https://sakuratears.cn/images/avatar.png?v=1608020577427" class="avatar">
+            <img src="https://sakuratears.cn/images/avatar.png?v=1608023174890" class="avatar">
         </div>
         <div class="sitename">SakuraTears</div>
         <span class="describtion" data-text='["努力不一定成功，但不努力一定很轻松"]'>&nbsp;</span>
@@ -664,7 +669,7 @@
                 <img src="' + talks[i].img + '" class="talkimg"> \
                 <div class="ainfo">\
                     <div class="ainfo-intro">\
-                        <img class="intro1" src="https://sakuratears.cn/images/avatar.png?v=1608020577427">\
+                        <img class="intro1" src="https://sakuratears.cn/images/avatar.png?v=1608023174890">\
                         <div class="author">' + talks[i].author + '</div>·\
                         <div class="time">' + talks[i].time + '</div>\
                     </div>\
@@ -677,7 +682,7 @@
             <div class="talk" v-for="t in talks"> \
                 <div class="ainfo">\
                     <div class="ainfo-intro">\
-                        <img class="intro1" src="https://sakuratears.cn/images/avatar.png?v=1608020577427">\
+                        <img class="intro1" src="https://sakuratears.cn/images/avatar.png?v=1608023174890">\
                         <div class="author">' + talks[i].author + '</div>·\
                         <div class="time">' + talks[i].time + '</div>\
                     </div>\
@@ -1188,7 +1193,7 @@
                         <!-- 移动端欢迎页 -->
 <div class="welcome">
     <div class="avatar-border">
-        <img src="https://sakuratears.cn/images/avatar.png?v=1608020577427" class="avatar">
+        <img src="https://sakuratears.cn/images/avatar.png?v=1608023174890" class="avatar">
     </div>
     <span class="mobiledescribtion"></span>
 </div>
@@ -1311,6 +1316,32 @@
                     <link rel="stylesheet" href="https://sakuratears.cn/media/css/font-awesome.css">
 <div id="post-container">
     
+    <div class="postshow postlist">
+        
+        <a data-pjax href="https://sakuratears.cn/post/python-jie-jue-yong-pip-zhuang-di-san-fang-ku-man-de-fang-fa/" class="apost">
+            <div id="post" style="width:100%">
+                <img src="https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/gridea-zhu-ti-fog-geng-xin-ri-zhi.jpeg" class="postimage">
+                <div class="posttitlebox">
+                    <div class="posttitle">
+                        Python解决用pip装第三方库慢的方法
+                    </div>
+                </div>
+            </div>
+        </a>
+        <div class="postinfo">
+            <div class="postdate"><i class="fa fa-calendar"></i>2020/10/24</div>
+            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 1 min read</div>
+            <div class="posttag">
+                
+                <a data-pjax href="https://sakuratears.cn/tag/PzPwXvrBB/" class="postlink">
+                    <i class="fa fa-tag"></i> Python
+                </a>
+                
+            </div>
+        </div>
+        
+</div>
+
     <div class="postshow postlist">
         
         <a data-pjax href="https://sakuratears.cn/post/kmp-suan-fa/" class="apost">
@@ -1573,32 +1604,6 @@
         
 </div>
 
-    <div class="postshow postlist">
-        
-        <a data-pjax href="https://sakuratears.cn/post/hello-gridea/" class="apost">
-            <div id="post" style="width:100%">
-                <img src="https://sakuratears.cn/post-images/hello-gridea.png" class="postimage">
-                <div class="posttitlebox">
-                    <div class="posttitle">
-                        Hello Gridea
-                    </div>
-                </div>
-            </div>
-        </a>
-        <div class="postinfo">
-            <div class="postdate"><i class="fa fa-calendar"></i>2018/12/12</div>
-            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 2 min read</div>
-            <div class="posttag">
-                
-                <a data-pjax href="https://sakuratears.cn/tag/-VkNDzNrn/" class="postlink">
-                    <i class="fa fa-tag"></i> Gridea
-                </a>
-                
-            </div>
-        </div>
-        
-</div>
-
 </div>
                     <div>
                         <div class="pcpagi">
@@ -1611,7 +1616,7 @@
                     <li><a id="page2" class="active">2</a></li>
                     <li><a id="page3">3</a></li>
                     
-            <li><a style="width:100px">&nbsp;</a></li>
+            <li><a data-pjax href="https://sakuratears.cn/page/5/" style="width:100px" id="next">下一页</a></li>
             
                 </ul>
     </div>
@@ -1619,12 +1624,14 @@
 
 <div id="pagination-prev" style="display:none"> https://sakuratears.cn/page/3/
 </div>
-<div id="pagination-next" style="display:none"> </div>
+<div id="pagination-next" style="display:none"> https://sakuratears.cn/page/5/</div>
 
 <div class="pagination-container">
     
     <a data-pjax href="https://sakuratears.cn/page/3/" class="mobile-prevpage">上一页</a>
       
+    
+    <a data-pjax href="https://sakuratears.cn/page/5/" class="mobile-nextpage">下一页</a>
     
 </div>
 
