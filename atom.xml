@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-12-15T00:24:56.367Z</updated>
+    <updated>2020-12-15T00:50:17.765Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -11,7 +11,7 @@
     <icon>https://sakuratears.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, SakuraTears</rights>
     <entry>
-        <title type="html"><![CDATA[二叉树的序列化与反序列化]]></title>
+        <title type="html"><![CDATA[二叉树的序列化与反序列化(二叉树)]]></title>
         <id>https://sakuratears.cn/post/er-cha-shu-de-xu-lie-hua-yu-fan-xu-lie-hua/</id>
         <link href="https://sakuratears.cn/post/er-cha-shu-de-xu-lie-hua-yu-fan-xu-lie-hua/">
         </link>
@@ -25,12 +25,12 @@
 <p>请设计一个算法来实现二叉树的序列化与反序列化。这里不限定你的序列 / 反序列化算法执行逻辑，你只需要保证一个二叉树可以被序列化为一个字符串并且将这个字符串反序列化为原始的树结构。</p>
 <p>示例:</p>
 <p>你可以将以下二叉树：</p>
-<pre><code>1
+<pre><code>      1
+     / \
+    2   3
+       / \
+      4   5
 </code></pre>
-<p>/ <br>
-2   3<br>
-/ <br>
-4   5</p>
 <p>序列化为 &quot;[1,2,3,null,null,4,5]&quot;<br>
 提示: 这与 LeetCode 目前使用的方式一致，详情请参阅 LeetCode 序列化二叉树的格式。你并非必须采取这种方式，你也可以采用其他的方法解决这个问题。</p>
 <p>说明: 不要使用类的成员 / 全局 / 静态变量来存储状态，你的序列化和反序列化算法应该是无状态的。</p>
