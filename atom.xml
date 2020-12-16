@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-12-15T14:24:15.026Z</updated>
+    <updated>2020-12-16T11:51:00.825Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -10,6 +10,73 @@
     <logo>https://sakuratears.cn/images/avatar.png</logo>
     <icon>https://sakuratears.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, SakuraTears</rights>
+    <entry>
+        <title type="html"><![CDATA[恢复二叉搜索树(二叉树)]]></title>
+        <id>https://sakuratears.cn/post/hui-fu-er-cha-sou-suo-shu-er-cha-shu/</id>
+        <link href="https://sakuratears.cn/post/hui-fu-er-cha-sou-suo-shu-er-cha-shu/">
+        </link>
+        <updated>2020-12-16T11:44:46.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>给你二叉搜索树的根节点 root ，该树中的两个节点被错误地交换。请在不改变其结构的情况下，恢复这棵树。</p>
+<p>进阶：使用 O(n) 空间复杂度的解法很容易实现。你能想出一个只使用常数空间的解决方案吗？<br><br></p>
+<p></p>
+<p>示例 1：</p>
+<p>输入：root = [1,3,null,null,2]<br>
+输出：[3,1,null,null,2]<br>
+解释：3 不能是 1 左孩子，因为 3 &gt; 1 。交换 1 和 3 使二叉搜索树有效。<br><br><br>
+示例 2：</p>
+<p>输入：root = [3,1,4,null,null,2]<br>
+输出：[2,1,4,null,null,3]<br>
+解释：2 不能在 3 的右子树中，因为 2 &lt; 3 。交换 2 和 3 使二叉搜索树有效。<br><br></p>
+<p>提示：</p>
+<p>树上节点的数目在范围 [2, 1000] 内<br>
+-231 &lt;= Node.val &lt;= 231 - 1<br><br></p>
+<p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/recover-binary-search-tree<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h3 id="思路">思路</h3>
+<p>二叉树搜索树中序遍历就是二叉搜索树元素从小到大排列，知道这个就好做了。<br>
+采用中序遍历：每个节点和前一个相比，小的话就把前一个节点记录下来(只有第一次记录前一个节点，因为题目说明只有两个元素错位)，然后下一次遇到前一个元素比后面的元素大的情况把后一个元素记录下来。<br>
+最后把两个记录点的val交换。</p>
+<pre><code class="language-C++">/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* pre = new TreeNode(-2147483648);
+    TreeNode* s = NULL;
+    TreeNode* t = new TreeNode();
+
+    void recover(TreeNode* root) {
+        if (root == NULL) {
+            return;
+        }
+        recover(root-&gt;left);
+        if (root-&gt;val &lt; pre-&gt;val) {
+            s = (s == NULL) ? pre:s;
+            t = root; 
+        }
+        pre = root;
+        recover(root-&gt;right);
+    }
+    void recoverTree(TreeNode* root) {
+        recover(root);
+        int n = s-&gt;val;
+        s-&gt;val = t-&gt;val;
+        t-&gt;val = n;
+    }
+};
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[二叉树的锯齿形层次遍历(二叉树)(BFS)]]></title>
         <id>https://sakuratears.cn/post/er-cha-shu-de-ju-chi-xing-ceng-ci-bian-li-er-cha-shu-bfs/</id>
@@ -737,86 +804,6 @@ public:
             return NULL;
         }
         return build(preorder, inorder);
-    }
-};
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[从中序与后序遍历序列构造二叉树(二叉树)]]></title>
-        <id>https://sakuratears.cn/post/cong-zhong-xu-yu-hou-xu-bian-li-xu-lie-gou-zao-er-cha-shu-er-cha-shu/</id>
-        <link href="https://sakuratears.cn/post/cong-zhong-xu-yu-hou-xu-bian-li-xu-lie-gou-zao-er-cha-shu-er-cha-shu/">
-        </link>
-        <updated>2020-12-11T12:51:54.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>根据一棵树的中序遍历与后序遍历构造二叉树。</p>
-]]></summary>
-        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>根据一棵树的中序遍历与后序遍历构造二叉树。</p>
-<!-- more -->
-<p>注意:<br>
-你可以假设树中没有重复的元素。<br><br></p>
-<p>例如，给出<br>
-中序遍历 inorder = [9,3,15,20,7]<br>
-后序遍历 postorder = [9,15,7,20,3]<br><br></p>
-<p>得到结果：[3,9,20,null,null,15,7]<br><br></p>
-<p>来源：力扣（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal<br>
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br><br></p>
-<h3 id="思路">思路</h3>
-<p>二叉树的后序遍历最后一个元素是二叉树的的根节点，然后中序遍历根节点左边元素是左子树的节点，右边是右子树的节点。<br>
-知道这个这道题就很简单了，用递归调用求左子树右子树。</p>
-<pre><code class="language-C++">/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
-class Solution {
-public:
-    TreeNode* build(vector&lt;int&gt;&amp; inorder, vector&lt;int&gt;&amp; postorder) {
-        TreeNode* tree = new TreeNode(postorder[postorder.size() - 1]);
-        if (inorder.size() &lt;= 1) {
-            return tree;
-        }
-        int i, m; //找到根节点m
-        for (i = 0; i &lt; inorder.size(); i++) {
-            if (inorder[i] == postorder[postorder.size() - 1]) {
-                break;
-            }
-        }
-        m = i;
-        vector&lt;int&gt; arr0, arr1, brr0, brr1;
-        if (m == 0) { //考虑左边已经空了的情况
-            tree-&gt;left = NULL;
-        }
-        else {
-            for (int i = 0; i &lt; m; i++) {
-                arr0.push_back(inorder[i]);
-                brr0.push_back(postorder[i]);
-            }
-            tree-&gt;left = build(arr0, brr0);
-        }
-        if (m &gt;= inorder.size() - 1) {  //考虑右边已经空了的情况
-            tree-&gt;right = NULL;
-        }
-        else {
-            for (int i = m + 1, j = m; i &lt; inorder.size(); i++, j++) {
-                arr1.push_back(inorder[i]);
-                brr1.push_back(postorder[j]);
-            }
-            tree-&gt;right = build(arr1, brr1);
-        }
-        return tree;
-    }
-    TreeNode* buildTree(vector&lt;int&gt;&amp; inorder, vector&lt;int&gt;&amp; postorder) {
-        if (inorder.size() == 0 || postorder.size() == 0) {
-            return NULL;
-        }
-        return build(inorder, postorder);
     }
 };
 </code></pre>
