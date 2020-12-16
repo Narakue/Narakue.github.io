@@ -9,7 +9,7 @@
 <meta name="description" content="努力不一定成功，但不努力一定很轻松">
 <meta name="theme-color" content="#000">
 <title>最长回文子串(动态规划) | SakuraTears</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1608124863196">
+<link rel="shortcut icon" href="/favicon.ico?v=1608126117809">
 <link rel="stylesheet" href="/media/css/mist.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -1367,44 +1367,8 @@ public:
   
   
   
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
-  <div class="aplayer" id="aplayer"></div>
-  <script>
-  let musics = JSON.parse('[{"author":"逃跑计划","cover":"https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/gridea-zhu-ti-fog-geng-xin-ri-zhi.jpeg","lrc":"","musicLink":"https://music.163.com/#/song?id=25706282","musicName":"夜空中最亮的星"}]');
-  let mediaMusic = [];
-  for (let i = 0; i < musics.length; i++) {
-    let item = musics[i];
-    mediaMusic.push({
-      name: item.musicName,
-      artist: item.author,
-      url: item.musicLink,
-      lrc: item.lrc,
-      cover: item.cover
-    });
-  }
-
-  const ap = new APlayer({
-      container: document.getElementById('aplayer'),
-      fixed: true,
-      lrcType: 3,
-      listFolded: false,
-      listMaxHeight: 90,
-      audio: mediaMusic
-  });
-  window.addEventListener('load', function() {
-    let postBody = document.querySelector('#post_body');
-    let hs = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
-    postBody && hs.forEach(h => {
-      let helems = postBody.querySelectorAll(h);
-      if (helems.length > 0) {
-        helems.forEach(elem => {
-          elem.id = encodeURI(elem.id);
-        })
-      }
-    })
-  })
-  </script>
+  <script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://player.lmih.cn/player/js/player.js" id="myhk" key="demo" m="1"></script>
 
 
   
@@ -5781,6 +5745,13 @@ knn(c)#调用函数knn
 </script>
 <script src="/media/js/motion.js"></script>
 
+
+<script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script>
+  var scroll = new SmoothScroll('a[href*="#"]', {
+    speed: 200
+  });
+</script>
 
 
 <script src="/media/js/mouse/love.js"></script>
