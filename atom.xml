@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-12-16T13:00:29.689Z</updated>
+    <updated>2020-12-16T13:09:48.937Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -16,8 +16,12 @@
         <link href="https://sakuratears.cn/post/hui-fu-er-cha-sou-suo-shu-er-cha-shu/">
         </link>
         <updated>2020-12-16T11:44:46.000Z</updated>
+        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>给你二叉搜索树的根节点 root ，该树中的两个节点被错误地交换。请在不改变其结构的情况下，恢复这棵树。</p>
+]]></summary>
         <content type="html"><![CDATA[<h3 id="题目">题目</h3>
 <p>给你二叉搜索树的根节点 root ，该树中的两个节点被错误地交换。请在不改变其结构的情况下，恢复这棵树。</p>
+<!-- more -->
 <p>进阶：使用 O(n) 空间复杂度的解法很容易实现。你能想出一个只使用常数空间的解决方案吗？<br><br></p>
 <p></p>
 <p>示例 1：</p>
