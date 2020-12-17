@@ -2182,15 +2182,15 @@ p > code {
     }.box-shadow-wrapper {
       box-shadow: none !important;
     }body {
-      cursor: default;
+      cursor: url('/media/curs/default_normal.cur'), default;
     }a {
-      cursor: pointer;
+      cursor: url('/media/curs/default_link.cur'), pointer !important;
     }input, textarea, code {
-      cursor: text;
+      cursor: url('/media/curs/default_texto.cur'), text !important;
     }code > span.copy-code {
-      cursor: pointer;
+      cursor: url('/media/curs/default_texto.cur'), text !important;
     }.post img {
-      cursor: zoom-in;
+      cursor: url('/media/curs/default_zoomout.cur'), zoom-in !important;
     }.post img {
-      cursor: zoom-out;
+      cursor: url('/media/curs/default_vertical.cur'), zoom-out !important;
     }
