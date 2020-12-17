@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-12-17T08:50:52.340Z</updated>
+    <updated>2020-12-17T09:32:02.099Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -10,6 +10,104 @@
     <logo>https://sakuratears.cn/images/avatar.png</logo>
     <icon>https://sakuratears.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, SakuraTears</rights>
+    <entry>
+        <title type="html"><![CDATA[斐波那契数列(递归)]]></title>
+        <id>https://sakuratears.cn/post/fei-bo-na-qi-shu-lie-di-gui/</id>
+        <link href="https://sakuratears.cn/post/fei-bo-na-qi-shu-lie-di-gui/">
+        </link>
+        <updated>2020-12-17T09:13:05.000Z</updated>
+        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>写一个函数，输入 n ，求斐波那契（Fibonacci）数列的第 n 项。斐波那契数列的定义如下：<br>
+F(0) = 0,   F(1) = 1<br>
+F(N) = F(N - 1) + F(N - 2), 其中 N &gt; 1.<br>
+斐波那契数列由 0 和 1 开始，之后的斐波那契数就是由之前的两数相加而得出。</p>
+]]></summary>
+        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>写一个函数，输入 n ，求斐波那契（Fibonacci）数列的第 n 项。斐波那契数列的定义如下：<br>
+F(0) = 0,   F(1) = 1<br>
+F(N) = F(N - 1) + F(N - 2), 其中 N &gt; 1.<br>
+斐波那契数列由 0 和 1 开始，之后的斐波那契数就是由之前的两数相加而得出。</p>
+<!-- more -->
+<p>答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。<br><br></p>
+<p></p>
+<p>示例 1：</p>
+<p>输入：n = 2<br>
+输出：1<br><br><br>
+示例 2：</p>
+<p>输入：n = 5<br>
+输出：5<br><br></p>
+<p>提示：</p>
+<p>0 &lt;= n &lt;= 100<br><br></p>
+<p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h3 id="思路">思路</h3>
+<h4 id="方法1递归">方法1：递归</h4>
+<p>常规递归方法，然后愉快的超时</p>
+<pre><code class="language-C++">class Solution {
+public:
+    int fib(int n) {
+        if (n == 0) return 0;
+        if (n == 1 || n == 2) {
+            return 1;
+        }
+        return fib(n - 1) + fib(n - 2);
+    }
+};
+</code></pre>
+<h4 id="方法2带备忘录的递归自顶向下">方法2：带备忘录的递归（自顶向下）</h4>
+<p>可以把递归看成一颗树，自顶向下<br>
+在递归的过程中很多元素其实已经被访问过了，比如n = 20，求n = 19 + n = 18，求19的时候求n = 18 + n = 17，这里可以看到n = 18被求了两次，下面的元素还有更多次重复的所以一般的递归时间复杂度非常高。如果可以把每个元素的值记录下来，下次求的时候直接用时间可以减少很多。</p>
+<pre><code class="language-C++">class Solution {
+public:
+    vector&lt;int&gt; arr;
+
+    int help(int n) {
+        if (n == 0) return 0;
+        if (n == 1 || n == 2) {
+            return 1;
+        }
+        if (arr[n] != 0) { //如果已经记录则直接用
+            return arr[n];
+        }
+        //未记录则记录下来
+        arr[n - 1] = help(n - 1) % 1000000007;
+        arr[n - 2] = help(n - 2) % 1000000007;
+        return arr[n - 1] + arr[n - 2];
+    }
+
+    int fib(int n) {
+        for (int i = 1; i &lt;= 101; i++) {
+            arr.push_back(0);
+        }
+        return help(n) % 1000000007;
+    }
+};
+</code></pre>
+<h4 id="方法3dp自底向上">方法3：DP（自底向上）</h4>
+<p>方法2是从树的顶端到下面依次递归求值，也可以从树的底端到顶端求。<br>
+还是利用一个数组，把每个值记录下来，从底到顶。</p>
+<pre><code class="language-C++">class Solution {
+public:
+    int fib(int n) {
+        int dp[101];
+        dp[1] = 1;
+        dp[2] = 1;
+        if (n == 0) {
+            return 0;
+        }
+        if (n == 1 || n == 2) {
+            return 1;
+        }
+        for (int i = 3; i &lt;= n; i++) {
+            dp[i] = (dp[i - 1] + dp[i - 2]) % 1000000007;
+        }
+        return dp[n];
+    }
+};
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[恢复二叉搜索树(二叉树)]]></title>
         <id>https://sakuratears.cn/post/hui-fu-er-cha-sou-suo-shu-er-cha-shu/</id>
@@ -729,85 +827,6 @@ public:
         }
         BFS(root);
         return arr;
-    }
-};
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[从前序与中序遍历序列构造二叉树(二叉树)]]></title>
-        <id>https://sakuratears.cn/post/cong-qian-xu-yu-zhong-xu-bian-li-xu-lie-gou-zao-er-cha-shu-er-cha-shu/</id>
-        <link href="https://sakuratears.cn/post/cong-qian-xu-yu-zhong-xu-bian-li-xu-lie-gou-zao-er-cha-shu-er-cha-shu/">
-        </link>
-        <updated>2020-12-12T04:26:26.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>根据一棵树的前序遍历与中序遍历构造二叉树。</p>
-]]></summary>
-        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>根据一棵树的前序遍历与中序遍历构造二叉树。</p>
-<!-- more -->
-<p>注意:<br>
-你可以假设树中没有重复的元素。</p>
-<p>例如，给出</p>
-<p>前序遍历 preorder = [3,9,20,15,7]<br>
-中序遍历 inorder = [9,3,15,20,7]</p>
-<p>来源：力扣（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal<br>
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<h3 id="思路">思路</h3>
-<p>和上一题基本一样0.0</p>
-<pre><code class="language-C++">/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
-class Solution {
-public:
-    TreeNode* build(vector&lt;int&gt;&amp; preorder, vector&lt;int&gt;&amp; inorder) {
-        TreeNode* tree = new TreeNode(preorder[0]);
-        if (inorder.size() &lt;= 1) {
-            return tree;
-        }
-        int i, m;
-        for (i = 0; i &lt; inorder.size(); i++) {
-            if (inorder[i] == preorder[0]) {
-                break;
-            }
-        }
-        m = i;
-        vector&lt;int&gt; arr0, arr1, brr0, brr1;
-        if (m == 0) {
-            tree-&gt;left = NULL;
-        }
-        else {
-            for (int j = 0, i = 1; j &lt; m; j++, i++) {
-                arr0.push_back(preorder[i]);
-                brr0.push_back(inorder[j]);
-            }
-            tree-&gt;left = build(arr0, brr0);
-        }
-        if (m &gt;= inorder.size() - 1) {
-            tree-&gt;right = NULL;
-        }
-        else {
-            for (int j = m + 1; j &lt; inorder.size(); j++) {
-                arr1.push_back(preorder[j]);
-                brr1.push_back(inorder[j]);
-            }
-            tree-&gt;right = build(arr1, brr1);
-        }
-        return tree;
-    }
-
-    TreeNode* buildTree(vector&lt;int&gt;&amp; preorder, vector&lt;int&gt;&amp; inorder) {
-        if (inorder.size() == 0 || preorder.size() == 0) {
-            return NULL;
-        }
-        return build(preorder, inorder);
     }
 };
 </code></pre>
