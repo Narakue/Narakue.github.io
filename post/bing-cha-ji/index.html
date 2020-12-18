@@ -9,7 +9,7 @@
 <meta name="description" content="努力不一定成功，但不努力一定很轻松">
 <meta name="theme-color" content="#000">
 <title>朋友圈(并查集) | SakuraTears</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1608282327095">
+<link rel="shortcut icon" href="/favicon.ico?v=1608285716992">
 <link rel="stylesheet" href="/media/css/mist.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -226,19 +226,19 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">44</span>
+        <span class="site-item-stat-count">45</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
     <div class="sidebar-item-box">
       <a href="">
-        <span class="site-item-stat-count">21</span>
+        <span class="site-item-stat-count">23</span>
         <span class="site-item-stat-name language" data-lan="category">分类</span>
       </a>
     </div>
     <div class="sidebar-item-box">
       <a href="/tags/">
-        <span class="site-item-stat-count">21</span>
+        <span class="site-item-stat-count">23</span>
         <span class="site-item-stat-name language" data-lan="tag">标签</span>
       </a>
     </div>
@@ -1872,6 +1872,76 @@ int findCircleNum(vector&lt;vector&lt;int&gt;&gt;&amp; M) {
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://sakuratears.cn/post/zhao-bu-tong-wei-yun-suan-ha-xi-biao/"" data-c="
+          &lt;h3 id=&#34;题目&#34;&gt;题目&lt;/h3&gt;
+&lt;p&gt;给定两个字符串 s 和 t，它们只包含小写字母。&lt;br&gt;
+字符串 t 由字符串 s 随机重排，然后在随机位置添加一个字母。&lt;br&gt;
+请找出在 t 中被添加的字母。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;示例 1：&lt;br&gt;
+输入：s = &amp;quot;abcd&amp;quot;, t = &amp;quot;abcde&amp;quot;&lt;br&gt;
+输出：&amp;quot;e&amp;quot;&lt;br&gt;
+解释：&#39;e&#39; 是那个被添加的字母。&lt;/p&gt;
+&lt;p&gt;示例 2：&lt;br&gt;
+输入：s = &amp;quot;&amp;quot;, t = &amp;quot;y&amp;quot;&lt;br&gt;
+输出：&amp;quot;y&amp;quot;&lt;/p&gt;
+&lt;p&gt;示例 3：&lt;br&gt;
+输入：s = &amp;quot;a&amp;quot;, t = &amp;quot;aa&amp;quot;&lt;br&gt;
+输出：&amp;quot;a&amp;quot;&lt;/p&gt;
+&lt;p&gt;示例 4：&lt;br&gt;
+输入：s = &amp;quot;ae&amp;quot;, t = &amp;quot;aea&amp;quot;&lt;br&gt;
+输出：&amp;quot;a&amp;quot;&lt;br&gt;
+ &lt;br&gt;
+提示：&lt;/p&gt;
+&lt;p&gt;0 &amp;lt;= s.length &amp;lt;= 1000&lt;br&gt;
+t.length == s.length + 1&lt;br&gt;
+s 和 t 只包含小写字母&lt;/p&gt;
+&lt;p&gt;来源：力扣（LeetCode）&lt;br&gt;
+链接：https://leetcode-cn.com/problems/find-the-difference&lt;br&gt;
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。&lt;/p&gt;
+&lt;h3 id=&#34;思路&#34;&gt;思路&lt;/h3&gt;
+&lt;h4 id=&#34;方法1位运算&#34;&gt;方法1：位运算&lt;/h4&gt;
+&lt;p&gt;&lt;sup&gt;运算符：0与任何数ch做&lt;/sup&gt;运算都是ch&lt;br&gt;
+相同字符异或为0&lt;/p&gt;
+&lt;p&gt;因为t中的字符是s + ch，所以s与t做异或剩下的就是ch&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;class Solution {
+public:
+    char findTheDifference(string s, string t) {
+        char res = 0;
+        for(char c : s + t) {
+            res ^= c;
+        }
+        return res;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;方法2哈希表&#34;&gt;方法2：哈希表&lt;/h4&gt;
+&lt;p&gt;把s中所有元素存到一个哈希表mpS里，t中所有元素存到一个哈希表mpT里&lt;br&gt;
+然后比较两个哈希表每个元素个数，不一样的就是题目所求&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;char findTheDifference(string s, string t) {
+        unordered_map&amp;lt;char, int&amp;gt; mpS;
+        unordered_map&amp;lt;char, int&amp;gt; mpT;
+        char ch;
+        for (auto ch : s) {
+            mpS[ch]++;
+        }
+        for (auto ch : t) {
+            mpT[ch]++;
+        }
+
+        for (ch = &#39;a&#39;; ch &amp;lt;= &#39;z&#39;; ch++) {
+            if (mpS[ch] != mpT[ch]) {
+                return ch;
+            }
+        }
+        return ch;
+    }
+    ```&lt;/code&gt;&lt;/pre&gt;
+">找不同(位运算)(哈希表)</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://sakuratears.cn/post/zui-chang-gong-gong-qian-zhui-zi-fu-chuan/"" data-c="
@@ -3835,6 +3905,8 @@ blacklist snd_pcsp
 &lt;p&gt;大早上醒来一看epic，好家伙城市天际线外加10刀券，我直接好家伙，E宝永远滴神！！！&lt;br&gt;
 今日水题：. 最长公共前缀&lt;br&gt;
 &lt;img src=&#34;https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/chrome_MxdrMrNJra.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+水题2：找不同&lt;br&gt;
+本来想用哈希表做，但是不会用C++的map，想在题解里找找map的操作，然后找到了位运算的题解，位运算不咋会用但着实好用&lt;br&gt;
 写了几个小时把可恶的Web大作业终于弄完了，引用js捣鼓半天，百度了半天都是错的，可恶啊&lt;/p&gt;
 &lt;h3 id=&#34;1217&#34;&gt;12/17&lt;/h3&gt;
 &lt;p&gt;今日水题：斐波那契数列&lt;br&gt;
