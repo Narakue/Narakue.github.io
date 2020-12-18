@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-12-17T11:55:27.130Z</updated>
+    <updated>2020-12-18T09:04:32.060Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -10,6 +10,63 @@
     <logo>https://sakuratears.cn/images/avatar.png</logo>
     <icon>https://sakuratears.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, SakuraTears</rights>
+    <entry>
+        <title type="html"><![CDATA[最长公共前缀(字符串)]]></title>
+        <id>https://sakuratears.cn/post/zui-chang-gong-gong-qian-zhui-zi-fu-chuan/</id>
+        <link href="https://sakuratears.cn/post/zui-chang-gong-gong-qian-zhui-zi-fu-chuan/">
+        </link>
+        <updated>2020-12-18T09:02:23.000Z</updated>
+        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>编写一个函数来查找字符串数组中的最长公共前缀。</p>
+<p>如果不存在公共前缀，返回空字符串 &quot;&quot;。</p>
+]]></summary>
+        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>编写一个函数来查找字符串数组中的最长公共前缀。</p>
+<p>如果不存在公共前缀，返回空字符串 &quot;&quot;。</p>
+<!-- more -->
+<p>示例 1:</p>
+<p>输入: [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]<br>
+输出: &quot;fl&quot;<br>
+示例 2:</p>
+<p>输入: [&quot;dog&quot;,&quot;racecar&quot;,&quot;car&quot;]<br>
+输出: &quot;&quot;<br>
+解释: 输入不存在公共前缀。<br>
+说明:</p>
+<p>所有输入只包含小写字母 a-z 。</p>
+<p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/longest-common-prefix<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h3 id="思路">思路</h3>
+<p>直接每个字符串从头开始元素比较，不一样直接return即可A</p>
+<pre><code class="language-C++">class Solution {
+public:
+    string longestCommonPrefix(vector&lt;string&gt;&amp; strs) {
+        string str = &quot;&quot;;
+        if (strs.size() == 0) {
+            return str;
+        }
+        char ch;
+        int i, j, min = INT_MAX;
+        for (int m = 0; m &lt; strs.size(); m++) {
+            if (strs[m].size() &lt; min) {
+                min = strs[m].size();
+            }
+        }
+        for (i = 0; i &lt; min; i++) {
+            ch = strs[0][i];
+            for (j = 0; j &lt; strs.size(); j++) {
+                if (strs[j][i] != ch) {
+                    return str;
+                }
+            }
+            str += ch;
+        }
+        return str;
+    }
+};
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[斐波那契数列(递归)]]></title>
         <id>https://sakuratears.cn/post/fei-bo-na-qi-shu-lie-di-gui/</id>
@@ -751,82 +808,6 @@ public:
             return left + 1;
         }
         return min(left, right) + 1;
-    }
-};
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[二叉树的层序遍历(二叉树)(BFS)]]></title>
-        <id>https://sakuratears.cn/post/er-cha-shu-de-ceng-xu-bian-li-er-cha-shu-bfs/</id>
-        <link href="https://sakuratears.cn/post/er-cha-shu-de-ceng-xu-bian-li-er-cha-shu-bfs/">
-        </link>
-        <updated>2020-12-12T08:51:11.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>给你一个二叉树，请你返回其按 层序遍历 得到的节点值。 （即逐层地，从左到右访问所有节点）。</p>
-]]></summary>
-        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>给你一个二叉树，请你返回其按 层序遍历 得到的节点值。 （即逐层地，从左到右访问所有节点）。</p>
-<!-- more -->
-<p></p>
-<p>示例：<br>
-二叉树：[3,9,20,null,null,15,7],<br>
-<img src="https://sakuratears.cn/post-images/1607763983990.png" alt="" loading="lazy"></p>
-<p>返回其层次遍历结果：</p>
-<p>[<br>
-[3],<br>
-[9,20],<br>
-[15,7]<br>
-]<br><br></p>
-<p>来源：力扣（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/binary-tree-level-order-traversal<br>
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<h3 id="解题思路">解题思路</h3>
-<p>在用BFS循环遍历时。先记录现在队列里面的元素个数n，n就是此二叉树这一深度拥有的节点数，然后循环n次，把n个节点的左右孩子都添加到队列里面，每次循环完把队列前面的元素pop到一个动态数组里，这样就能实现一个深度的节点为一个数组了</p>
-<h3 id="代码">代码</h3>
-<pre><code class="language-C++">/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
-class Solution {
-public:
-    vector&lt;vector&lt;int&gt;&gt; arr;
-
-    void BFS(TreeNode* root) {
-        queue&lt;TreeNode*&gt; brr;
-        vector&lt;int&gt; crr;
-        brr.push(root);
-        int n = 0;
-        while (!brr.empty()) {
-            TreeNode* node = brr.front();
-            n = brr.size(); //n记录当前队列元素个数
-            for (int i = 0; i &lt; n; i++) { //循环n次
-                if (node-&gt;left != NULL) { //左孩子不为空则添加左孩子
-                    brr.push(node-&gt;left);
-                }
-                if (node-&gt;right != NULL) { //右孩子不为空则添加右孩子
-                    brr.push(node-&gt;right);
-                }
-                crr.push_back(brr.front()-&gt;val); //每次循环把队列的头元素的值添加到一个数组里
-                brr.pop();
-                node = brr.front(); //节点移动到下一个
-            }
-            arr.push_back(crr); //把当前数组元素添加到二维数组中
-            crr.clear(); //当前数组清空
-        }
-    }
-
-    vector&lt;vector&lt;int&gt;&gt; levelOrder(TreeNode* root) {
-        if (root == NULL) {
-            return arr;
-        }
-        BFS(root);
-        return arr;
     }
 };
 </code></pre>
