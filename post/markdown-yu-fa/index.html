@@ -8,7 +8,7 @@
 <meta name="keywords" content="name=&#34;baidu-site-verification&#34; content=&#34;code-A1cWhYOwgT&#34; ">
 <meta name="description" content="努力不一定成功，但不努力一定很轻松">
 <meta name="theme-color" content="#000">
-<title>C语言链表基本操作（头插法及其逆置） | SakuraTears</title>
+<title>Markdown语法 | SakuraTears</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1608298077336">
 <link rel="stylesheet" href="/media/css/mist.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -39,8 +39,8 @@
 
 
 
-  <meta name="description" content="C语言链表基本操作（头插法及其逆置）" />
-  <meta name="keywords" content="数据结构,C/C++" />
+  <meta name="description" content="Markdown语法" />
+  <meta name="keywords" content="日常使用" />
 </head>
 
 <body>
@@ -208,7 +208,8 @@
       <div class="sidebar-body mist" id="sidebar_body">
         
           
-            
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper ">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -269,6 +270,239 @@
 
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper  auto"
+    id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li><a href="#%E7%94%9F%E6%88%90%E7%9B%AE%E5%BD%95">生成目录</a></li>
+<li><a href="#markdown%E6%A0%87%E9%A2%98">Markdown标题</a>
+<ul>
+<li><a href="#%E7%AC%AC%E4%B8%80%E7%A7%8D%E6%A0%87%E9%A2%98">第一种标题</a></li>
+<li><a href="#%E7%AC%AC%E4%BA%8C%E7%A7%8D%E6%A0%87%E9%A2%98">第二种标题</a></li>
+</ul>
+</li>
+<li><a href="#markdown-%E6%AE%B5%E8%90%BD%E6%A0%BC%E5%BC%8F">Markdown 段落格式</a>
+<ul>
+<li><a href="#markdown-%E6%AE%B5%E8%90%BD">Markdown 段落</a></li>
+<li><a href="#%E5%AD%97%E4%BD%93">字体</a></li>
+<li><a href="#%E5%88%86%E9%9A%94%E7%BA%BF">分隔线</a></li>
+<li><a href="#%E5%88%A0%E9%99%A4%E7%BA%BF">删除线</a></li>
+<li><a href="#%E4%B8%8B%E5%88%92%E7%BA%BF">下划线</a></li>
+<li><a href="#%E8%84%9A%E6%B3%A8">脚注</a></li>
+</ul>
+</li>
+<li><a href="#markdown-%E5%88%97%E8%A1%A8">Markdown 列表</a>
+<ul>
+<li><a href="#%E6%97%A0%E5%BA%8F%E5%88%97%E8%A1%A8">无序列表</a></li>
+<li><a href="#%E6%9C%89%E5%BA%8F%E5%88%97%E8%A1%A8">有序列表</a></li>
+<li><a href="#%E5%88%97%E8%A1%A8%E5%B5%8C%E5%A5%97">列表嵌套</a></li>
+</ul>
+</li>
+<li><a href="#markdown-%E5%8C%BA%E5%9D%97">Markdown 区块</a>
+<ul>
+<li><a href="#%E5%8C%BA%E5%9D%97%E4%B8%AD%E4%BD%BF%E7%94%A8%E5%88%97%E8%A1%A8">区块中使用列表</a></li>
+<li><a href="#%E5%88%97%E8%A1%A8%E4%B8%AD%E4%BD%BF%E7%94%A8%E5%8C%BA%E5%9D%97">列表中使用区块</a></li>
+</ul>
+</li>
+<li><a href="#markdown-%E4%BB%A3%E7%A0%81">Markdown 代码</a>
+<ul>
+<li><a href="#%E4%BB%A3%E7%A0%81%E5%8C%BA%E5%9D%97">代码区块</a></li>
+</ul>
+</li>
+<li><a href="#markdown-%E9%93%BE%E6%8E%A5">Markdown 链接</a>
+<ul>
+<li><a href="#%E9%AB%98%E7%BA%A7%E9%93%BE%E6%8E%A5">高级链接</a></li>
+</ul>
+</li>
+<li><a href="#markdown-%E5%9B%BE%E7%89%87">Markdown 图片</a></li>
+<li><a href="#markdown-%E8%A1%A8%E6%A0%BC">Markdown 表格</a></li>
+<li><a href="#markdown-%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B7%A7">Markdown 高级技巧</a>
+<ul>
+<li><a href="#%E6%94%AF%E6%8C%81%E7%9A%84-html-%E5%85%83%E7%B4%A0">支持的 HTML 元素</a></li>
+<li><a href="#%E8%BD%AC%E4%B9%89">转义</a></li>
+<li><a href="#%E5%85%AC%E5%BC%8F">公式</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
+  let active = 'active-show', activeClass = 'active-current';
+  let tocWrapper = document.querySelector('#toc_wrapper');
+  let tocContent = tocWrapper.children[0];
+  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
+
+  function addTocNumber(elem, deep) {
+    if (!elem) {
+      return;
+    }
+    let prop = elem.__proto__;
+
+    if (prop === HTMLUListElement.prototype) {
+      for (let i = 0; i < elem.children.length; i++) {
+        addTocNumber(elem.children[i], deep + (i + 1) + '.');
+      }
+    } else if (prop === HTMLLIElement.prototype) {
+      // 保存li元素
+      if (elem.children[0] && elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+        lList.push(elem);
+      }
+      for (let i = 0; i < elem.children.length; i++) {
+        let cur = elem.children[i];
+        if (cur.__proto__ === HTMLAnchorElement.prototype) {
+          if (autoNumber) {
+            cur.text = deep + ' ' + cur.text;
+          }
+        } else if (cur.__proto__ === HTMLUListElement.prototype) {
+          addTocNumber(cur, deep);
+        }
+      }
+    }
+  }
+
+  function removeParentActiveClass() {
+    let parents = tocContent.querySelectorAll('.' + active)
+    parents.forEach(function (elem) {
+      elem.classList.remove(active);
+    });
+  }
+
+  function addActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.add(activeClass);
+    }
+  }
+
+  function removeActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.remove(activeClass);
+    }
+  }
+
+  function addActiveLiElemment(elem, parent) {
+    if (!elem || elem === parent) {
+      return;
+    } else {
+      if (elem.__proto__ === HTMLLIElement.prototype) {
+        elem.classList.add(active);
+      }
+      addActiveLiElemment(elem.parentElement, parent);
+    }
+  }
+
+  function showToc() {
+    if (tocWrapper) {
+      postBody = document.querySelector('#post_body');
+      for (let i = 0; i < postBody.children.length; i++) {
+        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+          hList.push(postBody.children[i]);
+        }
+      }
+      if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+      } else if (tocWrapper.classList.contains('no_compress')) {
+        tocContent.classList.add('expanded');
+      } else {
+        if (hList.length > 10) {
+          active = 'active-hidden'
+          tocContent.classList.add('closed');
+        } else {
+          tocContent.classList.add('expanded');
+        }
+      }
+    }
+  }
+
+  (function () {
+    // 处理不是从#一级标题开始目录
+    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+      let con = tocContent.children[0].children[0];
+      tocContent.innerHTML = con.innerHTML;
+    }
+    let markdownItTOC = document.querySelector('.markdownIt-TOC');
+    let innerHeight = window.innerHeight;
+    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
+    addTocNumber(tocContent, '');
+  })();
+
+  document.addEventListener('scroll', function (e) {
+    if (lList.length <= 0) {
+      return;
+    }
+    let scrollTop = document.scrollingElement.scrollTop + 10;
+    let dir;
+
+    if (lastTop - scrollTop > 0) {
+      dir = 'up';
+    } else {
+      dir = 'down';
+    }
+
+    lastTop = scrollTop;
+    if (scrollTop <= 0) {
+      if (lastIndex >= 0 && lastIndex < hList.length) {
+        lList[lastIndex].classList.remove(activeClass);
+      }
+      return;
+    }
+
+    let current = 0, hasFind = false;
+    for (let i = 0; i < hList.length; i++) {
+      if (hList[i].offsetTop > scrollTop) {
+        current = i;
+        hasFind = true;
+        break;
+      }
+    }
+    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+      current = hList.length - 1;
+    } else {
+      current--;
+    }
+    if (dir === 'down') {
+      if (current > lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex)
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    } else {
+      if (current < lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex);
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    }
+  });
+
+
+  window.addEventListener('load', function () {
+    showToc();
+    document.querySelector('#sidebar').style = 'display: block;';
+    tocWrapper.classList.add('toc-active');
+    setTimeout(function () {
+      if ("createEvent" in document) {
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("scroll", false, true);
+        document.dispatchEvent(evt);
+      }
+      else {
+        document.fireEvent("scroll");
+      }
+    }, 500)
+  })
+
+</script>
+            </div>
           
         
       </div>
@@ -356,16 +590,22 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://sakuratears.cn/post/c-yu-yan-lian-biao-ji-ben-cao-zuo-tou-cha-fa-ji-qi-ni-zhi/">
-      C语言链表基本操作（头插法及其逆置）
+    <a class="post-title-link" href="https://sakuratears.cn/post/markdown-yu-fa/">
+      Markdown语法
     </a>
   </h1>
   <div class="post-meta">
     
+    <span class="meta-item">
+      <i class="fa fa-thumb-tack"></i>
+      <span class="language" data-lan="top">置顶</span>
+      <span class="post-meta-divider">|</span>
+    </span>
+    
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-10-23 14:32:17">2020/10/23</span>
+      <span class="publish-time" data-t="2020-12-18 21:26:30">2020/12/18</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -374,14 +614,8 @@
       <span class="pc-show language" data-lan="category-in">分类于</span>
       
       
-      <a href="https://sakuratears.cn/tag/paeI_AUuZ/">
-        <span>数据结构</span>
-      </a>、
-      
-      
-      
-      <a href="https://sakuratears.cn/tag/C0PkJhDwp/">
-        <span>C/C++</span>
+      <a href="https://sakuratears.cn/tag/nzpdAnswh/">
+        <span>日常使用</span>
       </a>
       
       
@@ -390,17 +624,17 @@
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>2<span class="language" data-lan="minute">分钟</span></span>
+      <span>8<span class="language" data-lan="minute">分钟</span></span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>210<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>2010<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
     
     
-    <span id="/post/c-yu-yan-lian-biao-ji-ben-cao-zuo-tou-cha-fa-ji-qi-ni-zhi/" data-flag-title="C语言链表基本操作（头插法及其逆置）" class="meta-item pc-show leancloud_visitors">
+    <span id="/post/markdown-yu-fa/" data-flag-title="Markdown语法" class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-eye"></i>
       <span><span class="language" data-lan="view">浏览量</span>：<span class="leancloud-visitors-count"></span></span>
@@ -409,86 +643,367 @@
   </div>
 </section>
             <div class="post-body next-md-body" id="post_body">
-              <pre><code class="language-C/C++">#include &lt;stdio.h&gt;
-#include &lt;malloc.h&gt;
+              <h1 id="生成目录">生成目录</h1>
+<p>在markdown顶部输入<code>[TOC]</code>即可生成目录</p>
+<h1 id="markdown标题">Markdown标题</h1>
+<p>Markdown标题有两种</p>
+<h2 id="第一种标题">第一种标题</h2>
+<p>使用=和-标记</p>
+<pre><code class="language-markdown">我展示的是一级标题
+=================
 
-typedef struct Node
-{
-    char data;
-	struct Node *next;
-}SN;
-
-SN * create(int n)
-{
-	int i;
-	SN *h,*p;
-    h = NULL;
-    for(i = 0; i&lt;n; i++)
-	{
-		p=(SN*)malloc(sizeof(SN));
-		printf(&quot;请输入第%d个字符：&quot;,i+1);
-		p-&gt;data = getchar();
-		fflush(stdin);
-		p-&gt;next = h;
-		h=p;
-	}
-	return h;
-}
-
-SN * def(SN * h)
-{ 
-    SN * n1, *n2;
-	n1 = h;
-	n2 = NULL;
-	while(n1 != NULL)
-	{
-		SN *temp;
-		temp = n1;
-		n1 = n1-&gt;next;
-		temp-&gt;next = n2;
-		n2 = temp;
-	}
-	h = n2;
-	return h;
-}
-void visit(SN * h)
-{ 
-	while(h != NULL)
-	{
-		printf(&quot;%c&quot;, h-&gt;data);
-		h = h-&gt;next;
-	}
-	printf(&quot;\n&quot;);
-}
-
-void freelist(SN *h)
-{
-    SN *temp = h;
-	SN *del;
-	while (temp != NULL) {
-        del = temp;
-        temp = temp-&gt;next;
-        free(del);
-    }
-}
-
-int main() 
-{
-	int n;
-	SN *h;
-	printf(&quot;请输入字符个数：\n&quot;);
-	scanf(&quot;%d&quot;, &amp;n);
-	fflush(stdin);
-	h = create(n);
-	printf(&quot;链表创建成功，对其遍历\n&quot;);
-    visit(h);
-	printf(&quot;链表逆置成功，对其遍历\n&quot;);
-	h = def(h);
-	visit(h);
-	freelist(h);
-	return 0;
-}
+我展示的是二级标题
+-----------------
 </code></pre>
+<h2 id="第二种标题">第二种标题</h2>
+<p>使用#标记</p>
+<pre><code class="language-markdown"># 一级标题
+## 二级标题
+### 三级标题
+#### 四级标题
+##### 五级标题
+###### 六级标题
+</code></pre>
+<h1 id="markdown-段落格式">Markdown 段落格式</h1>
+<h2 id="markdown-段落">Markdown 段落</h2>
+<p>Markdown 段落没有特殊的格式，直接编写文字就好，段落的换行是使用两个以上空格加上回车。或者</p>
+<pre><code class="language-markdown">&lt;br&gt;&lt;br&gt;
+</code></pre>
+<h2 id="字体">字体</h2>
+<pre><code class="language-markdown">*斜体文本*
+_斜体文本_
+**粗体文本**
+__粗体文本__
+***粗斜体文本***
+___粗斜体文本___
+</code></pre>
+<p><em>斜体文本</em><br>
+<em>斜体文本</em><br>
+<strong>粗体文本</strong><br>
+<strong>粗体文本</strong><br>
+<em><strong>粗斜体文本</strong></em><br>
+<em><strong>粗斜体文本</strong></em></p>
+<h2 id="分隔线">分隔线</h2>
+<p>你可以在一行中用三个以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。你也可以在星号或是减号中间插入空格。下面每种写法都可以建立分隔线：</p>
+<pre><code class="language-markdown">***
+
+* * *
+
+*****
+
+- - -
+
+----------
+</code></pre>
+<h2 id="删除线">删除线</h2>
+<p>如果段落上的文字要添加删除线，只需要在文字的两端加上两个波浪线 <code>~~</code> 即可，实例如下：</p>
+<pre><code class="language-markdown">RUNOOB.COM
+GOOGLE.COM
+~~BAIDU.COM~~
+</code></pre>
+<p>RUNOOB.COM<br>
+GOOGLE.COM<br>
+<s>BAIDU.COM</s></p>
+<h2 id="下划线">下划线</h2>
+<p>下划线可以通过 HTML 的<code>&lt;u&gt;</code> 标签来实现：</p>
+<pre><code class="language-markdown">&lt;u&gt;带下划线文本&lt;/u&gt;
+</code></pre>
+<p><u>带下划线文本</u></p>
+<h2 id="脚注">脚注</h2>
+<p>脚注是对文本的补充说明。</p>
+<p>Markdown 脚注的格式如下:</p>
+<pre><code class="language-markdown">[^要注明的文本]
+</code></pre>
+<p>以下实例演示了脚注的用法：</p>
+<pre><code class="language-markdown">创建脚注格式类似这样 [^RUNOOB]。
+
+[^RUNOOB]: 菜鸟教程 -- 学的不仅是技术，更是梦想！！！
+</code></pre>
+<p>创建脚注格式类似这样 <sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>。</p>
+<h1 id="markdown-列表">Markdown 列表</h1>
+<h2 id="无序列表">无序列表</h2>
+<p>Markdown 支持有序列表和无序列表。<br>
+无序列表使用星号(*)、加号(+)或是减号(-)作为列表标记，这些标记后面要添加一个空格，然后再填写内容：</p>
+<pre><code class="language-markdown">* 第一项
+* 第二项
+* 第三项
+
++ 第一项
++ 第二项
++ 第三项
+
+- 第一项
+- 第二项
+- 第三项
+</code></pre>
+<ul>
+<li>第一项</li>
+<li>第二项</li>
+<li>第三项</li>
+</ul>
+<ul>
+<li>第一项</li>
+<li>第二项</li>
+<li>第三项</li>
+</ul>
+<ul>
+<li>第一项</li>
+<li>第二项</li>
+<li>第三项</li>
+</ul>
+<h2 id="有序列表">有序列表</h2>
+<p>有序列表使用数字并加上 . 号来表示，如：</p>
+<pre><code class="language-markdown">1. 第一项
+2. 第二项
+3. 第三项
+</code></pre>
+<ol>
+<li>第一项</li>
+<li>第二项</li>
+<li>第三项</li>
+</ol>
+<h2 id="列表嵌套">列表嵌套</h2>
+<p>列表嵌套只需在子列表中的选项前面添加四个空格即可：</p>
+<pre><code class="language-markdown">1. 第一项：
+    - 第一项嵌套的第一个元素
+    - 第一项嵌套的第二个元素
+2. 第二项：
+    - 第二项嵌套的第一个元素
+    - 第二项嵌套的第二个元素
+   
+</code></pre>
+<ol>
+<li>第一项：
+<ul>
+<li>第一项嵌套的第一个元素</li>
+<li>第一项嵌套的第二个元素</li>
+</ul>
+</li>
+<li>第二项：
+<ul>
+<li>第二项嵌套的第一个元素</li>
+<li>第二项嵌套的第二个元素</li>
+</ul>
+</li>
+</ol>
+<h1 id="markdown-区块">Markdown 区块</h1>
+<p>Markdown 区块引用是在段落开头使用 &gt; 符号 ，然后后面紧跟一个空格符号：</p>
+<pre><code class="language-markdown">&gt; 区块引用
+&gt; 菜鸟教程
+&gt; 学的不仅是技术更是梦想
+</code></pre>
+<blockquote>
+<p>区块引用<br>
+菜鸟教程<br>
+学的不仅是技术更是梦想</p>
+</blockquote>
+<p>另外区块是可以嵌套的，一个 &gt; 符号是最外层，两个 &gt; 符号是第一层嵌套，以此类推：</p>
+<pre><code class="language-markdown">&gt; 最外层
+&gt; &gt; 第一层嵌套
+&gt; &gt; &gt; 第二层嵌套
+</code></pre>
+<blockquote>
+<p>最外层</p>
+<blockquote>
+<p>第一层嵌套</p>
+<blockquote>
+<p>第二层嵌套</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h2 id="区块中使用列表">区块中使用列表</h2>
+<p>区块中使用列表实例如下:</p>
+<pre><code class="language-markdown">&gt; 区块中使用列表
+&gt; 1. 第一项
+&gt; 2. 第二项
+&gt; + 第一项
+&gt; + 第二项
+&gt; + 第三项
+</code></pre>
+<blockquote>
+<p>区块中使用列表</p>
+<ol>
+<li>第一项</li>
+<li>第二项</li>
+</ol>
+<ul>
+<li>第一项</li>
+<li>第二项</li>
+<li>第三项</li>
+</ul>
+</blockquote>
+<h2 id="列表中使用区块">列表中使用区块</h2>
+<p>如果要在列表项目内放进区块，那么就需要在 &gt; 前添加四个空格的缩进。<br>
+区块中使用列表实例如下：</p>
+<pre><code class="language-markdown">* 第一项
+    &gt; 菜鸟教程
+    &gt; 学的不仅是技术更是梦想
+* 第二项
+</code></pre>
+<ul>
+<li>第一项
+<blockquote>
+<p>菜鸟教程<br>
+学的不仅是技术更是梦想</p>
+</blockquote>
+</li>
+<li>第二项</li>
+</ul>
+<h1 id="markdown-代码">Markdown 代码</h1>
+<p>如果是段落上的一个函数或片段的代码可以用反引号把它包起来<code>（`）</code>，例如：</p>
+<pre><code class="language-markdown">`printf()` 函数
+</code></pre>
+<p><code>printf()</code> 函数</p>
+<h2 id="代码区块">代码区块</h2>
+<p>代码区块使用 4 个空格或者一个制表符（Tab 键）。</p>
+<p>实例如下：<br>
+printf(&quot;hello&quot;)</p>
+<p>你也可以用 ``` 包裹一段代码，并指定一种语言（也可以不指定）：</p>
+<pre><code class="language-markdown">​```javascript
+$(document).ready(function () {
+    alert('hello word!');
+});
+​```
+</code></pre>
+<pre><code class="language-javascript">$(document).ready(function () {
+    alert('hello word!');
+});
+</code></pre>
+<h1 id="markdown-链接">Markdown 链接</h1>
+<p>链接使用方法如下：</p>
+<pre><code class="language-markdown">[链接名称](链接地址)
+
+或者
+
+&lt;链接地址&gt;
+</code></pre>
+<p><a href="https://sakuratears.cn">blog</a></p>
+<p>或者</p>
+<p><a href="https://sakuratears.cn">https://sakuratears.cn</a></p>
+<h2 id="高级链接">高级链接</h2>
+<p>我们可以通过变量来设置一个链接，变量赋值在文档末尾进行：</p>
+<pre><code class="language-markdown">这个链接用 1 作为网址变量 [Google][1]
+这个链接用 sakura 作为网址变量 [sakura][sakura]
+然后在文档的结尾为变量赋值（网址）
+
+  [1]: http://www.google.com/
+  [sakura]: https://sakuratears.cn/
+</code></pre>
+<p>这个链接用 1 作为网址变量 <a href="http://www.google.com/">Google</a><br>
+这个链接用 sakura 作为网址变量 <a href="https://sakuratears.cn/">sakura</a><br>
+然后在文档的结尾为变量赋值（网址）</p>
+<h1 id="markdown-图片">Markdown 图片</h1>
+<p>Markdown 图片语法格式如下：</p>
+<pre><code class="language-markdown">![alt 属性文本](图片地址)
+
+![alt 属性文本](图片地址 &quot;可选标题&quot;)
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="http://static.runoob.com/images/runoob-logo.png" alt="RUNOOB 图标" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="http://static.runoob.com/images/runoob-logo.png" alt="RUNOOB 图标" title="RUNOOB" loading="lazy"></figure>
+<p>当然，你也可以像网址那样对图片网址使用变量:</p>
+<pre><code class="language-markdown">这个链接用 1 作为网址变量 [RUNOOB][1].
+然后在文档的结尾为变量赋值（网址）
+
+[1]: http://static.runoob.com/images/runoob-logo.png
+</code></pre>
+<p>这个链接用 1 作为网址变量 <a href="http://www.google.com/">RUNOOB</a>.<br>
+然后在文档的结尾为变量赋值（网址）</p>
+<p>Markdown 还没有办法指定图片的高度与宽度，如果你需要的话，你可以使用普通的 <img> 标签。</p>
+<pre><code class="language-markdown">&lt;img src=&quot;http://static.runoob.com/images/runoob-logo.png&quot; width=&quot;50%&quot;&gt;
+</code></pre>
+<img src="http://static.runoob.com/images/runoob-logo.png" width="50%">
+<h1 id="markdown-表格">Markdown 表格</h1>
+<p>Markdown 制作表格使用 <code>|</code>来分隔不同的单元格，使用<code>-</code> 来分隔表头和其他行。<br>
+语法格式如下：</p>
+<pre><code class="language-markdown">|  表头   | 表头  |
+|  ----  | ----  |
+| 单元格  | 单元格 |
+| 单元格  | 单元格 |
+</code></pre>
+<p>对齐方式</p>
+<p>我们可以设置表格的对齐方式：</p>
+<p><code>-:</code> 设置内容和标题栏居右对齐。<br>
+<code>:-</code>设置内容和标题栏居左对齐。<br>
+<code>:-:</code>设置内容和标题栏居中对齐。</p>
+<pre><code class="language-markdown">| 左对齐 | 右对齐 | 居中对齐 |
+| :-----| ----: | :----: |
+| 单元格 | 单元格 | 单元格 |
+| 单元格 | 单元格 | 单元格 |
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">左对齐</th>
+<th style="text-align:right">右对齐</th>
+<th style="text-align:center">居中对齐</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">单元格</td>
+<td style="text-align:right">单元格</td>
+<td style="text-align:center">单元格</td>
+</tr>
+<tr>
+<td style="text-align:left">单元格</td>
+<td style="text-align:right">单元格</td>
+<td style="text-align:center">单元格</td>
+</tr>
+</tbody>
+</table>
+<h1 id="markdown-高级技巧">Markdown 高级技巧</h1>
+<h2 id="支持的-html-元素">支持的 HTML 元素</h2>
+<p>不在 Markdown 涵盖范围之内的标签，都可以直接在文档里面用 HTML 撰写。</p>
+<p>目前支持的 HTML 元素有：<kbd> <b> <i> <em> <sup> <sub> <br>等 ，如：</p>
+<pre><code class="language-markdown">使用 &lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;Alt&lt;/kbd&gt;+&lt;kbd&gt;Del&lt;/kbd&gt; 重启电脑
+</code></pre>
+<p>使用 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd> 重启电脑</p>
+<h2 id="转义">转义</h2>
+<p>Markdown 使用了很多特殊符号来表示特定的意义，如果需要显示特定的符号则需要使用转义字符，Markdown 使用反斜杠转义特殊字符：</p>
+<pre><code class="language-markdown">**文本加粗** 
+\*\* 正常显示星号 \*\*
+</code></pre>
+<p>Markdown 支持以下这些符号前面加上反斜杠来帮助插入普通的符号：</p>
+<pre><code class="language-markdown">\   反斜线
+`   反引号
+*   星号
+_   下划线
+{}  花括号
+[]  方括号
+()  小括号
+#   井字号
++   加号
+-   减号
+.   英文句点
+!   感叹号
+</code></pre>
+<h2 id="公式">公式</h2>
+<p>当你需要在编辑器中插入数学公式时，可以使用两个美元符 $$ 包裹 TeX 或 LaTeX 格式的数学公式来实现。提交后，问答和文章页会根据需要加载 Mathjax 对数学公式进行渲染。如：</p>
+<pre><code class="language-markdown">$$
+\mathbf{V}_1 \times \mathbf{V}_2 =  \begin{vmatrix} 
+\mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \\
+\frac{\partial X}{\partial u} &amp;  \frac{\partial Y}{\partial u} &amp; 0 \\
+\frac{\partial X}{\partial v} &amp;  \frac{\partial Y}{\partial v} &amp; 0 \\
+\end{vmatrix}
+${$tep1}{\style{visibility:hidden}{(x+1)(x+1)}}
+$$
+</code></pre>
+<p class='katex-block katex-error' title='ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 248: …
+\end{vmatrix}
+$̲{$tep1}{\style{…'>\mathbf{V}_1 \times \mathbf{V}_2 =  \begin{vmatrix} 
+\mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \\
+\frac{\partial X}{\partial u} &amp;  \frac{\partial Y}{\partial u} &amp; 0 \\
+\frac{\partial X}{\partial v} &amp;  \frac{\partial Y}{\partial v} &amp; 0 \\
+\end{vmatrix}
+${$tep1}{\style{visibility:hidden}{(x+1)(x+1)}}
+</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>菜鸟教程 -- 学的不仅是技术，更是梦想！！！ <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
 
             </div>
             
@@ -501,7 +1016,7 @@ int main()
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://sakuratears.cn/post/c-yu-yan-lian-biao-ji-ben-cao-zuo-tou-cha-fa-ji-qi-ni-zhi/" title="C语言链表基本操作（头插法及其逆置）">https://sakuratears.cn/post/c-yu-yan-lian-biao-ji-ben-cao-zuo-tou-cha-fa-ji-qi-ni-zhi/</a>
+      <a href="https://sakuratears.cn/post/markdown-yu-fa/" title="Markdown语法">https://sakuratears.cn/post/markdown-yu-fa/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -510,23 +1025,17 @@ int main()
   </ul>
   <div class="tags">
     
-      <a href="https://sakuratears.cn/tag/paeI_AUuZ/"># 数据结构</a>
-    
-      <a href="https://sakuratears.cn/tag/C0PkJhDwp/"># C/C++</a>
+      <a href="https://sakuratears.cn/tag/nzpdAnswh/"># 日常使用</a>
     
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="C语言实现链表基本操作（交换第i个和第j个节点）" href="https://sakuratears.cn/post/c-yu-yan-shi-xian-lian-biao-ji-ben-cao-zuo-jiao-huan-di-i-ge-he-di-j-ge-jie-dian/">C语言实现链表基本操作（交换第i个和第j个节点）</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="C语言实现链表基本操作（交换第i个和第j个节点）" href="https://sakuratears.cn/post/c-yu-yan-shi-xian-lian-biao-ji-ben-cao-zuo-jiao-huan-di-i-ge-he-di-j-ge-jie-dian/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="Hello Gridea" href="https://sakuratears.cn/post/hello-gridea/">Hello Gridea</a>
-        <a class="nav-mobile-next" title="Hello Gridea" href="https://sakuratears.cn/post/hello-gridea/">下一篇</a>
+        <a class="nav-pc-next" title="找不同(位运算)(哈希表)" href="https://sakuratears.cn/post/zhao-bu-tong-wei-yun-suan-ha-xi-biao/">找不同(位运算)(哈希表)</a>
+        <a class="nav-mobile-next" title="找不同(位运算)(哈希表)" href="https://sakuratears.cn/post/zhao-bu-tong-wei-yun-suan-ha-xi-biao/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
