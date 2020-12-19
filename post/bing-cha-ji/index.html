@@ -9,7 +9,7 @@
 <meta name="description" content="努力不一定成功，但不努力一定很轻松">
 <meta name="theme-color" content="#000">
 <title>朋友圈(并查集) | SakuraTears</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1608298077336">
+<link rel="shortcut icon" href="/favicon.ico?v=1608375164733">
 <link rel="stylesheet" href="/media/css/mist.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -226,7 +226,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">46</span>
+        <span class="site-item-stat-count">47</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -1872,6 +1872,64 @@ int findCircleNum(vector&lt;vector&lt;int&gt;&gt;&amp; M) {
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://sakuratears.cn/post/xuan-zhuan-tu-xiang-shu-zu/"" data-c="
+          &lt;h3 id=&#34;题目&#34;&gt;题目&lt;/h3&gt;
+&lt;p&gt;给定一个 n × n 的二维矩阵表示一个图像。&lt;br&gt;
+将图像顺时针旋转 90 度。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;说明：&lt;/p&gt;
+&lt;p&gt;你必须在原地旋转图像，这意味着你需要直接修改输入的二维矩阵。请不要使用另一个矩阵来旋转图像。&lt;/p&gt;
+&lt;p&gt;示例 1:&lt;/p&gt;
+&lt;p&gt;给定 matrix =&lt;br&gt;
+[&lt;br&gt;
+[1,2,3],&lt;br&gt;
+[4,5,6],&lt;br&gt;
+[7,8,9]&lt;br&gt;
+],&lt;/p&gt;
+&lt;p&gt;原地旋转输入矩阵，使其变为:&lt;br&gt;
+[&lt;br&gt;
+[7,4,1],&lt;br&gt;
+[8,5,2],&lt;br&gt;
+[9,6,3]&lt;br&gt;
+]&lt;br&gt;
+示例 2:&lt;/p&gt;
+&lt;p&gt;给定 matrix =&lt;br&gt;
+[&lt;br&gt;
+[ 5, 1, 9,11],&lt;br&gt;
+[ 2, 4, 8,10],&lt;br&gt;
+[13, 3, 6, 7],&lt;br&gt;
+[15,14,12,16]&lt;br&gt;
+],&lt;/p&gt;
+&lt;p&gt;原地旋转输入矩阵，使其变为:&lt;br&gt;
+[&lt;br&gt;
+[15,13, 2, 5],&lt;br&gt;
+[14, 3, 4, 1],&lt;br&gt;
+[12, 6, 8, 9],&lt;br&gt;
+[16, 7,10,11]&lt;br&gt;
+]&lt;/p&gt;
+&lt;p&gt;来源：力扣（LeetCode）&lt;br&gt;
+链接：https://leetcode-cn.com/problems/rotate-image&lt;br&gt;
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。&lt;/p&gt;
+&lt;h3 id=&#34;思路&#34;&gt;思路&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;题目要求不要用辅助数组，此题解用了辅助数组&lt;/strong&gt;&lt;br&gt;
+直接用一个辅助数组arr，arr的列是matrix的行，用两个循环即可&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;class Solution {
+public:
+    void rotate(vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt;&amp;amp; matrix) {
+        vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; arr = matrix;
+        for (int i = 0, j = matrix.size() - 1; i &amp;lt; matrix.size(); i++, j--) {
+            for (int m = 0; m &amp;lt; matrix[i].size(); m++) {
+                arr[m][j] = matrix[i][m];
+            }
+        }
+        matrix = arr;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+">旋转图像(数组)</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://sakuratears.cn/post/markdown-yu-fa/"" data-c="
@@ -4267,6 +4325,11 @@ blacklist snd_pcsp
         <a class="result-title" style="opacity: 0;" href="https://sakuratears.cn/post/ji-lu-xue-xi-de-ri-zi/"" data-c="
           &lt;!-- # 2020 --&gt;
 &lt;h2 id=&#34;12&#34;&gt;12&lt;/h2&gt;
+&lt;h3 id=&#34;1219&#34;&gt;12/19&lt;/h3&gt;
+&lt;p&gt;今日水题：旋转图像&lt;br&gt;
+不让我用辅助数组，我就用😏，反正能过&lt;br&gt;
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/chrome_SlewcqsOkT.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+做完恶心的测试，中途还不能登录了&lt;s&gt;不知道这算不算bug&lt;/s&gt;，我真是被恶心到了&lt;/p&gt;
 &lt;h3 id=&#34;1218&#34;&gt;12/18&lt;/h3&gt;
 &lt;p&gt;大早上醒来一看epic，好家伙城市天际线外加10刀券，我直接好家伙，E宝永远滴神！！！&lt;br&gt;
 今日水题：. 最长公共前缀&lt;br&gt;

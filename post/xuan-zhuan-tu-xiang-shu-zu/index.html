@@ -8,7 +8,7 @@
 <meta name="keywords" content="name=&#34;baidu-site-verification&#34; content=&#34;code-A1cWhYOwgT&#34; ">
 <meta name="description" content="努力不一定成功，但不努力一定很轻松">
 <meta name="theme-color" content="#000">
-<title>买卖股票的最佳时机 II(贪心) | SakuraTears</title>
+<title>旋转图像(数组) | SakuraTears</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1608375164733">
 <link rel="stylesheet" href="/media/css/mist.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -39,8 +39,8 @@
 
 
 
-  <meta name="description" content="买卖股票的最佳时机 II(贪心)" />
-  <meta name="keywords" content="贪心,LeetCode,算法" />
+  <meta name="description" content="旋转图像(数组)" />
+  <meta name="keywords" content="" />
 </head>
 
 <body>
@@ -280,13 +280,8 @@
 <ul>
 <li>
 <ul>
-<li>
-<ul>
 <li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
 <li><a href="#%E6%80%9D%E8%B7%AF">思路</a></li>
-<li><a href="#%E4%BB%A3%E7%A0%81">代码</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -556,8 +551,8 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://sakuratears.cn/post/mai-mai-gu-piao-de-zui-jia-shi-ji-iitan-xin/">
-      买卖股票的最佳时机 II(贪心)
+    <a class="post-title-link" href="https://sakuratears.cn/post/xuan-zhuan-tu-xiang-shu-zu/">
+      旋转图像(数组)
     </a>
   </h1>
   <div class="post-meta">
@@ -565,48 +560,23 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-11-12 20:22:38">2020/11/12</span>
+      <span class="publish-time" data-t="2020-12-19 18:45:03">2020/12/19</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
     <span class="meta-item">
-      <i class="fa fa-folder-o"></i>
-      <span class="pc-show language" data-lan="category-in">分类于</span>
-      
-      
-      <a href="https://sakuratears.cn/tag/-YQxfJklo/">
-        <span>贪心</span>
-      </a>、
-      
-      
-      
-      <a href="https://sakuratears.cn/tag/TN0UiB8Cf/">
-        <span>LeetCode</span>
-      </a>、
-      
-      
-      
-      <a href="https://sakuratears.cn/tag/e0ZtA0F1A/">
-        <span>算法</span>
-      </a>
-      
-      
-    </span>
-    <span class="post-meta-divider">|</span>
-    
-    <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>3<span class="language" data-lan="minute">分钟</span></span>
+      <span>2<span class="language" data-lan="minute">分钟</span></span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>569<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>305<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
     
     
-    <span id="/post/mai-mai-gu-piao-de-zui-jia-shi-ji-iitan-xin/" data-flag-title="买卖股票的最佳时机 II(贪心)" class="meta-item pc-show leancloud_visitors">
+    <span id="/post/xuan-zhuan-tu-xiang-shu-zu/" data-flag-title="旋转图像(数组)" class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-eye"></i>
       <span><span class="language" data-lan="view">浏览量</span>：<span class="leancloud-visitors-count"></span></span>
@@ -615,49 +585,59 @@
   </div>
 </section>
             <div class="post-body next-md-body" id="post_body">
-              <h4 id="题目">题目</h4>
-<p>给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。<br>
-设计一个算法来计算你所能获取的最大利润。你可以尽可能地完成更多的交易（多次买卖一支股票）。</p>
+              <h3 id="题目">题目</h3>
+<p>给定一个 n × n 的二维矩阵表示一个图像。<br>
+将图像顺时针旋转 90 度。</p>
 <!-- more -->
-<p>注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。<br><br></p>
-<p>示例 1:<br>
-输入: [7,1,5,3,6,4]<br>
-输出: 7<br>
-解释: 在第 2 天（股票价格 = 1）的时候买入，在第 3 天（股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 = 4 。随后，在第 4 天（股票价格 = 3）的时候买入，在第 5 天（股票价格 = 6）的时候卖出, 这笔交易所能获得利润 = 6-3 = 3 。<br><br></p>
-<p>示例 2:<br>
-输入: [1,2,3,4,5]<br>
-输出: 4<br>
-解释: 在第 1 天（股票价格 = 1）的时候买入，在第 5 天 （股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 = 4 。注意你不能在第 1 天和第 2 天接连购买股票，之后再将它们卖出。因为这样属于同时参与了多笔交易，你必须在再次购买前出售掉之前的股票。<br><br></p>
-<p>示例 3:<br>
-输入: [7,6,4,3,1]<br>
-输出: 0<br>
-解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。<br><br></p>
-<p>提示：<br><br></p>
-<p>1 &lt;= prices.length &lt;= 3 * 10 ^ 4<br>
-0 &lt;= prices[i] &lt;= 10 ^ 4<br><br></p>
+<p>说明：</p>
+<p>你必须在原地旋转图像，这意味着你需要直接修改输入的二维矩阵。请不要使用另一个矩阵来旋转图像。</p>
+<p>示例 1:</p>
+<p>给定 matrix =<br>
+[<br>
+[1,2,3],<br>
+[4,5,6],<br>
+[7,8,9]<br>
+],</p>
+<p>原地旋转输入矩阵，使其变为:<br>
+[<br>
+[7,4,1],<br>
+[8,5,2],<br>
+[9,6,3]<br>
+]<br>
+示例 2:</p>
+<p>给定 matrix =<br>
+[<br>
+[ 5, 1, 9,11],<br>
+[ 2, 4, 8,10],<br>
+[13, 3, 6, 7],<br>
+[15,14,12,16]<br>
+],</p>
+<p>原地旋转输入矩阵，使其变为:<br>
+[<br>
+[15,13, 2, 5],<br>
+[14, 3, 4, 1],<br>
+[12, 6, 8, 9],<br>
+[16, 7,10,11]<br>
+]</p>
 <p>来源：力扣（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii<br><br></p>
-<h4 id="思路">思路</h4>
-<p>第一天买入，第三天卖出的利润是prices[3] - prices[1],也就是(prices[3] - prices[2]) + (prices[2] - porces[1])<br>
-可以发现，我们需要收集每天的正利润就可以，收集正利润的区间，就是股票买卖的区间，而我们只需要关注最终利润就可以了，不需要记录区间。<br><br></p>
-<p><strong>这就是贪心所贪的地方，只收集正利润。</strong><br><br></p>
-<figure data-type="image" tabindex="1"><img src="https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/1604803105-SzWZhG-122.%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BAII.png" alt="图" loading="lazy"></figure>
-<h4 id="代码">代码</h4>
+链接：https://leetcode-cn.com/problems/rotate-image<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h3 id="思路">思路</h3>
+<p><strong>题目要求不要用辅助数组，此题解用了辅助数组</strong><br>
+直接用一个辅助数组arr，arr的列是matrix的行，用两个循环即可</p>
 <pre><code class="language-C++">class Solution {
 public:
-    int maxProfit(vector&lt;int&gt;&amp; prices) {
-        int result = 0;
-        for (int i = 1; i &lt; prices.size(); i++) {
-            result += max(prices[i] - prices[i - 1], 0);
+    void rotate(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) {
+        vector&lt;vector&lt;int&gt;&gt; arr = matrix;
+        for (int i = 0, j = matrix.size() - 1; i &lt; matrix.size(); i++, j--) {
+            for (int m = 0; m &lt; matrix[i].size(); m++) {
+                arr[m][j] = matrix[i][m];
+            }
         }
-        return result;
+        matrix = arr;
     }
 };
 </code></pre>
-<p><br><br><br></p>
-<p>思路借鉴作者：carlsun-2<br>
-链接：https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/solution/122-mai-mai-gu-piao-de-zui-jia-shi-ji-iitan-xin-xi/<br>
-来源：力扣（LeetCode）</p>
 
             </div>
             
@@ -670,7 +650,7 @@ public:
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://sakuratears.cn/post/mai-mai-gu-piao-de-zui-jia-shi-ji-iitan-xin/" title="买卖股票的最佳时机 II(贪心)">https://sakuratears.cn/post/mai-mai-gu-piao-de-zui-jia-shi-ji-iitan-xin/</a>
+      <a href="https://sakuratears.cn/post/xuan-zhuan-tu-xiang-shu-zu/" title="旋转图像(数组)">https://sakuratears.cn/post/xuan-zhuan-tu-xiang-shu-zu/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -679,25 +659,15 @@ public:
   </ul>
   <div class="tags">
     
-      <a href="https://sakuratears.cn/tag/-YQxfJklo/"># 贪心</a>
-    
-      <a href="https://sakuratears.cn/tag/TN0UiB8Cf/"># LeetCode</a>
-    
-      <a href="https://sakuratears.cn/tag/e0ZtA0F1A/"># 算法</a>
-    
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="Linux(deepin)日常操作" href="https://sakuratears.cn/post/linuxdeepinri-chang-cao-zuo/">Linux(deepin)日常操作</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="Linux(deepin)日常操作" href="https://sakuratears.cn/post/linuxdeepinri-chang-cao-zuo/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="C/C++如何传递二维数组？" href="https://sakuratears.cn/post/ccru-he-chuan-di-er-wei-shu-zu/">C/C++如何传递二维数组？</a>
-        <a class="nav-mobile-next" title="C/C++如何传递二维数组？" href="https://sakuratears.cn/post/ccru-he-chuan-di-er-wei-shu-zu/">下一篇</a>
+        <a class="nav-pc-next" title="Markdown语法" href="https://sakuratears.cn/post/markdown-yu-fa/">Markdown语法</a>
+        <a class="nav-mobile-next" title="Markdown语法" href="https://sakuratears.cn/post/markdown-yu-fa/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>

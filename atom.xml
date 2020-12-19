@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-12-18T13:28:02.766Z</updated>
+    <updated>2020-12-19T10:52:51.867Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -10,6 +10,71 @@
     <logo>https://sakuratears.cn/images/avatar.png</logo>
     <icon>https://sakuratears.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, SakuraTears</rights>
+    <entry>
+        <title type="html"><![CDATA[旋转图像(数组)]]></title>
+        <id>https://sakuratears.cn/post/xuan-zhuan-tu-xiang-shu-zu/</id>
+        <link href="https://sakuratears.cn/post/xuan-zhuan-tu-xiang-shu-zu/">
+        </link>
+        <updated>2020-12-19T10:45:03.000Z</updated>
+        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>给定一个 n × n 的二维矩阵表示一个图像。<br>
+将图像顺时针旋转 90 度。</p>
+]]></summary>
+        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>给定一个 n × n 的二维矩阵表示一个图像。<br>
+将图像顺时针旋转 90 度。</p>
+<!-- more -->
+<p>说明：</p>
+<p>你必须在原地旋转图像，这意味着你需要直接修改输入的二维矩阵。请不要使用另一个矩阵来旋转图像。</p>
+<p>示例 1:</p>
+<p>给定 matrix =<br>
+[<br>
+[1,2,3],<br>
+[4,5,6],<br>
+[7,8,9]<br>
+],</p>
+<p>原地旋转输入矩阵，使其变为:<br>
+[<br>
+[7,4,1],<br>
+[8,5,2],<br>
+[9,6,3]<br>
+]<br>
+示例 2:</p>
+<p>给定 matrix =<br>
+[<br>
+[ 5, 1, 9,11],<br>
+[ 2, 4, 8,10],<br>
+[13, 3, 6, 7],<br>
+[15,14,12,16]<br>
+],</p>
+<p>原地旋转输入矩阵，使其变为:<br>
+[<br>
+[15,13, 2, 5],<br>
+[14, 3, 4, 1],<br>
+[12, 6, 8, 9],<br>
+[16, 7,10,11]<br>
+]</p>
+<p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/rotate-image<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h3 id="思路">思路</h3>
+<p><strong>题目要求不要用辅助数组，此题解用了辅助数组</strong><br>
+直接用一个辅助数组arr，arr的列是matrix的行，用两个循环即可</p>
+<pre><code class="language-C++">class Solution {
+public:
+    void rotate(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) {
+        vector&lt;vector&lt;int&gt;&gt; arr = matrix;
+        for (int i = 0, j = matrix.size() - 1; i &lt; matrix.size(); i++, j--) {
+            for (int m = 0; m &lt; matrix[i].size(); m++) {
+                arr[m][j] = matrix[i][m];
+            }
+        }
+        matrix = arr;
+    }
+};
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Markdown语法]]></title>
         <id>https://sakuratears.cn/post/markdown-yu-fa/</id>
@@ -1041,96 +1106,6 @@ public:
                 max = n;
         }
         return max;
-    }
-};
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[填充每个节点的下一个右侧节点指针(二叉树)(BFS)]]></title>
-        <id>https://sakuratears.cn/post/tian-chong-mei-ge-jie-dian-de-xia-yi-ge-you-ce-jie-dian-zhi-zhen-er-cha-shu-bfs/</id>
-        <link href="https://sakuratears.cn/post/tian-chong-mei-ge-jie-dian-de-xia-yi-ge-you-ce-jie-dian-zhi-zhen-er-cha-shu-bfs/">
-        </link>
-        <updated>2020-12-13T09:10:23.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>给定一个 完美二叉树 ，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：</p>
-]]></summary>
-        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>给定一个 完美二叉树 ，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：</p>
-<!-- more -->
-<p>struct Node {<br>
-int val;<br>
-Node *left;<br>
-Node *right;<br>
-Node *next;<br>
-}<br>
-填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 NULL。</p>
-<p>初始状态下，所有 next 指针都被设置为 NULL。<br><br></p>
-<p></p>
-<p>进阶：</p>
-<p>你只能使用常量级额外空间。<br>
-使用递归解题也符合要求，本题中递归程序占用的栈空间不算做额外的空间复杂度。<br><br></p>
-<p>输入：root = [1,2,3,4,5,6,7]<br>
-输出：[1,#,2,3,#,4,5,6,7,#]<br>
-解释：给定二叉树如图 A 所示，你的函数应该填充它的每个 next 指针，以指向其下一个右侧节点，如图 B 所示。序列化的输出按层序遍历排列，同一层节点由 next 指针连接，'#' 标志着每一层的结束。<br><br></p>
-<p>提示：</p>
-<p>树中节点的数量少于 4096<br>
--1000 &lt;= node.val &lt;= 1000<br><br></p>
-<p>来源：力扣（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node<br>
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br><br></p>
-<h3 id="思路">思路</h3>
-<p>每次循环用队列存储每一行的节点，每存储一个节点让前一个节点指向现在的节点。<br>
-每次循环队列弹一个，进两个。这样每次循环完队列把上一层的节点全部弹出，把新一层的节点全部加入。</p>
-<pre><code class="language-C++">/*
-// Definition for a Node.
-class Node {
-public:
-    int val;
-    Node* left;
-    Node* right;
-    Node* next;
-
-    Node() : val(0), left(NULL), right(NULL), next(NULL) {}
-
-    Node(int _val) : val(_val), left(NULL), right(NULL), next(NULL) {}
-
-    Node(int _val, Node* _left, Node* _right, Node* _next)
-        : val(_val), left(_left), right(_right), next(_next) {}
-};
-*/
-
-class Solution {
-public:
-    Node* connect(Node* root) {
-        if (root == NULL) {
-            return NULL;
-        }
-        int num = 0;
-        queue&lt;Node*&gt; q;
-        q.push(root);
-        while (!q.empty()) {
-            Node* node;
-            Node* front;
-            front = NULL;
-            num = q.size();
-            for (int j = 0; j &lt; num; j++) {
-                node = q.front();
-                q.pop();
-                if (node-&gt;left != NULL)
-                    q.push(node-&gt;left);
-                if (node-&gt;right != NULL) 
-                    q.push(node-&gt;right);
-                if (front == NULL) {
-                    front = node;
-                }
-                else {
-                    front-&gt;next = node;
-                    front = front-&gt;next;
-                }
-            };
-        }
-        return root;
     }
 };
 </code></pre>
