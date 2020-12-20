@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-12-19T10:55:59.128Z</updated>
+    <updated>2020-12-20T11:56:58.829Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -10,6 +10,260 @@
     <logo>https://sakuratears.cn/images/avatar.png</logo>
     <icon>https://sakuratears.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, SakuraTears</rights>
+    <entry>
+        <title type="html"><![CDATA[C语言实现各种进制之间转换]]></title>
+        <id>https://sakuratears.cn/post/c-yu-yan-shi-xian-ge-chong-jin-zhi-zhi-jian-zhuan-huan/</id>
+        <link href="https://sakuratears.cn/post/c-yu-yan-shi-xian-ge-chong-jin-zhi-zhi-jian-zhuan-huan/">
+        </link>
+        <updated>2020-12-20T11:55:47.000Z</updated>
+        <content type="html"><![CDATA[<pre><code class="language-C">#include &lt;Windows.h&gt;
+#include &lt;math.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+#define N 50
+
+//进制转换
+
+char *Ten_MoreThanTen(int, int); //10进制数转换成10以上进制数的函数
+
+int MoreThanTen_Ten(int, char[]); //10以上进制数转换成10进制数的函数
+
+int Ten_LessThanTen(int, int); //10进制数转换成10以内进制数的函数
+
+int LessThanTen_Ten(int, int); //10以内进制数转换成10进制数的函数
+
+char array[N] = &quot;\0&quot;; //全局变量，用于存储转换后并且倒置了的数据
+
+int LessThanTen_Ten(int before, int num) //10以内转换10，参数brfore为初始进制,num为初始数值
+
+{
+
+    double result = 0.0; //转换成10进制后的结果
+
+    int i = 0;
+
+    for (i = 0; num != 0; i++) //利用for循环实现按权展开相加
+
+    {
+
+        result += pow(before, i) * (num % 10);
+
+        num /= 10;
+    }
+
+    return (int)result; //返回值为转换后的结果
+}
+
+int Ten_LessThanTen(int after, int num) //10转换10以内，参数after为转换后的进制，num为10进制数值
+
+{
+
+    double result = 0.0; //double类型因为pow函数的返回值为double类型
+
+    int i = 0;
+
+    for (i = 0; num != 0; i++) //利用for循环实现连续取余
+
+    {
+
+        result += (num % after) * pow(10, i);
+
+        num /= after;
+    }
+
+    return (int)result;
+}
+
+int MoreThanTen_Ten(int before, char num[]) //10以上转换10
+
+{
+
+    int i = 0;
+
+    double result = 0.0;
+
+    int length = strlen(num);
+
+    for (i = length - 1; i &gt;= 0; i--)
+
+    {
+
+        //利用ASCALL码将所有元素转换成对应的整型
+
+        if ('A' &lt;= num[i] &amp;&amp; num[i] &lt;= 'Z')
+
+            result += pow(before, length - i - 1) * (num[i] - 55);
+
+        else if ('a' &lt;= num[i] &amp;&amp; num[i] &lt;= 'z')
+
+            result += pow(before, length - i - 1) * (num[i] - 87);
+
+        else if ('0' &lt;= num[i] &amp;&amp; num[i] &lt;= '9')
+
+            result += pow(before, length - i - 1) * (num[i] - 48);
+    }
+
+    return (int)result;
+}
+
+char *Ten_MoreThanTen(int after, int num) //10转换10以上
+
+{
+
+    int i = 0;
+
+    int j = 0;
+
+    int tmp = 0; //存储每次余数的中间变量
+
+    char tmp_array[N] = &quot;\0&quot;; //转换后未倒置的数组
+
+    for (i = 0; num &gt; 0; i++)
+
+    {
+
+        tmp = num % after;
+
+        if (tmp &lt; 10) //对大于等于10的余数进行字母转换
+
+            tmp_array[i] = tmp + '0';
+
+        else
+
+            tmp_array[i] = tmp + 'A' - 10;
+
+        num /= after;
+    }
+
+    for (j = 0; i &gt; 0; i--, j++) //倒置
+
+    {
+
+        array[j] = tmp_array[i - 1];
+
+        array[j + 1] = '\0';
+    }
+
+    return array; //输出转换后存储数据的字符串地址
+}
+
+int main()
+
+{
+
+    int before = 0; //转换前的进制数
+
+    int after = 0; //转换后的进制数
+
+    int num1 = 0; //要转换的十进制以内的数
+
+    char array_num1[N] = &quot;\0&quot;; //要转换的十进制以上的数
+
+    int num2 = 0; //转换之后的数
+
+    char *str_num2; //转换之后的数的地址
+
+    int tmp_num1 = 0; //判断输入是否合法时代替num1的中间变量
+
+    int i = 0;
+
+    int m = 0; //计数器
+
+    while (1) //整个while语句用于录入以及判断输入是否合法
+
+    {
+
+        printf(&quot;初始进制：&quot;);
+
+        scanf(&quot;%d&quot;, &amp;before);
+
+        printf(&quot;目标进制：&quot;);
+
+        scanf(&quot;%d&quot;, &amp;after);
+
+        printf(&quot;初始数值：&quot;);
+
+        if (before &gt; 10) //通过对初始进制判断，决定
+
+            scanf(&quot;%s&quot;, array_num1);
+
+        else
+
+            scanf(&quot;%d&quot;, &amp;num1);
+
+        for (i = 0, tmp_num1 = num1; tmp_num1 != 0; i++)
+
+        {
+
+            if ((tmp_num1 % 10) &lt;= before &amp;&amp; tmp_num1 % 10 &gt;= 0 &amp;&amp; tmp_num1 % 10 &lt;= 9)
+
+                m++;
+
+            tmp_num1 /= 10;
+        }
+
+        if (m == i) //判断输入的数据每一位是否都小于等于进制数
+
+            break;
+
+        else
+
+        {
+
+            m = 0; //对计数器m重新初始化
+
+            fflush(stdin); //清空缓存区
+
+            printf(&quot;输入有误！请重新输入：\n&quot;);
+        }
+    }
+
+    //将进制转换的四种情况分别表示
+
+    if (before &lt;= 10 &amp;&amp; after &lt;= 10)
+
+    {
+
+        num2 = Ten_LessThanTen(after, LessThanTen_Ten(before, num1));
+
+        printf(&quot;\n%d进制的%d对应的%d进制数为：%d\n&quot;, before, num1, after, num2);
+    }
+
+    else if (before &gt; 10 &amp;&amp; after &lt;= 10)
+
+    {
+
+        num2 = Ten_LessThanTen(after, MoreThanTen_Ten(before, array_num1));
+
+        printf(&quot;\n%d进制的%s对应的%d进制数为：%d\n&quot;, before, array_num1, after, num2);
+    }
+
+    else if (before &lt;= 10 &amp;&amp; after &gt; 10)
+
+    {
+
+        str_num2 = Ten_MoreThanTen(after, LessThanTen_Ten(before, num1));
+
+        printf(&quot;\n%d进制的%d对应的%d进制数为：%s\n&quot;, before, num1, after, str_num2);
+    }
+
+    else if (before &gt; 10 &amp;&amp; after &gt; 10)
+
+    {
+
+        str_num2 = Ten_MoreThanTen(after, MoreThanTen_Ten(before, array_num1));
+
+        printf(&quot;\n%d进制的%s对应的%d进制数为：%s\n&quot;, before, array_num1, after, str_num2);
+    }
+
+    system(&quot;pause&quot;);
+
+    return 0;
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[旋转图像(数组)]]></title>
         <id>https://sakuratears.cn/post/xuan-zhuan-tu-xiang-shu-zu/</id>
@@ -1017,95 +1271,6 @@ public:
             return root;
         }
         return left ? left : right;
-    }
-};
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[无重复字符的最长子串(滑动窗口)]]></title>
-        <id>https://sakuratears.cn/post/wu-chong-fu-zi-fu-de-zui-chang-zi-chuan-hua-dong-chuang-kou/</id>
-        <link href="https://sakuratears.cn/post/wu-chong-fu-zi-fu-de-zui-chang-zi-chuan-hua-dong-chuang-kou/">
-        </link>
-        <updated>2020-12-13T09:21:43.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。</p>
-]]></summary>
-        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。</p>
-<!-- more -->
-<p></p>
-<p>示例 1:</p>
-<p>输入: s = &quot;abcabcbb&quot;<br>
-输出: 3<br>
-解释: 因为无重复字符的最长子串是 &quot;abc&quot;，所以其长度为 3。<br><br><br>
-示例 2:</p>
-<p>输入: s = &quot;bbbbb&quot;<br>
-输出: 1<br>
-解释: 因为无重复字符的最长子串是 &quot;b&quot;，所以其长度为 1。<br><br><br>
-示例 3:</p>
-<p>输入: s = &quot;pwwkew&quot;<br>
-输出: 3<br>
-解释: 因为无重复字符的最长子串是 &quot;wke&quot;，所以其长度为 3。<br>
-     请注意，你的答案必须是 子串 的长度，&quot;pwke&quot; 是一个子序列，不是子串。<br><br><br>
-示例 4:</p>
-<p>输入: s = &quot;&quot;<br>
-输出: 0<br><br></p>
-<p>提示：</p>
-<p>0 &lt;= s.length &lt;= 5 * 104<br>
-s 由英文字母、数字、符号和空格组成<br><br></p>
-<p>来源：力扣（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/longest-substring-without-repeating-characters<br>
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br><br></p>
-<h3 id="思路">思路</h3>
-<p>定义p为子串的头，j为尾部，p到j为一个窗口，如果新的元素i和窗口里的元素相同，则把p移动到i的后面。记录每一个窗口的长度，最后取最大</p>
-<pre><code class="language-C++">class Solution {
-public:
-    int lengthOfLongestSubstring(string s)
-    {
-        if (s.size() == 0)
-        {
-            return 0;
-        }
-        int i, j, max, n, p, jud = 0;
-        i = 0;
-        p = i;
-        j = i + 1;
-        max = 1;
-        n = 1;
-        for (; j &lt; s.size(); j++)
-        {
-            jud = 0;
-            for (p = i; p &lt; j; p++)
-            {
-                if (s[p] == s[j])
-                {
-                    i = p + 1;
-                    if (i == j)
-                    {
-                        n = 1;
-                    }
-                    else if (s[i] == s[j])
-                    {
-                        n = j - i;
-                    }
-                    else
-                    {
-                        n = j - i + 1;
-                    }
-                    jud = 1;
-                    break;
-                }
-            }
-            if (jud == 1)
-            {
-                continue;
-            }
-            n++;
-            if (n &gt; max)
-                max = n;
-        }
-        return max;
     }
 };
 </code></pre>
