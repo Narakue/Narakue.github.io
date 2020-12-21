@@ -9,7 +9,7 @@
 <meta name="description" content="努力不一定成功，但不努力一定很轻松">
 <meta name="theme-color" content="#000">
 <title>Markdown语法 | SakuraTears</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1608465410376">
+<link rel="shortcut icon" href="/favicon.ico?v=1608543288567">
 <link rel="stylesheet" href="/media/css/mist.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -226,19 +226,19 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">48</span>
+        <span class="site-item-stat-count">49</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
     <div class="sidebar-item-box">
       <a href="">
-        <span class="site-item-stat-count">24</span>
+        <span class="site-item-stat-count">25</span>
         <span class="site-item-stat-name language" data-lan="category">分类</span>
       </a>
     </div>
     <div class="sidebar-item-box">
       <a href="/tags/">
-        <span class="site-item-stat-count">24</span>
+        <span class="site-item-stat-count">25</span>
         <span class="site-item-stat-name language" data-lan="tag">标签</span>
       </a>
     </div>
@@ -2091,6 +2091,72 @@ ${$tep1}{\style{visibility:hidden}{(x+1)(x+1)}}
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://sakuratears.cn/post/leetcode-69-x-de-ping-fang-gen-er-fen/"" data-c="
+          &lt;h3 id=&#34;题目&#34;&gt;题目&lt;/h3&gt;
+&lt;p&gt;实现 int sqrt(int x) 函数。&lt;br&gt;
+计算并返回 x 的平方根，其中 x 是非负整数。&lt;br&gt;
+由于返回类型是整数，结果只保留整数的部分，小数部分将被舍去。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;示例 1:&lt;/p&gt;
+&lt;p&gt;输入: 4&lt;br&gt;
+输出: 2&lt;br&gt;
+示例 2:&lt;/p&gt;
+&lt;p&gt;输入: 8&lt;br&gt;
+输出: 2&lt;br&gt;
+说明: 8 的平方根是 2.82842...,&lt;br&gt;
+     由于返回类型是整数，小数部分将被舍去。&lt;/p&gt;
+&lt;p&gt;来源：力扣（LeetCode）&lt;br&gt;
+链接：https://leetcode-cn.com/problems/sqrtx&lt;br&gt;
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。&lt;/p&gt;
+&lt;h3 id=&#34;思路&#34;&gt;思路&lt;/h3&gt;
+&lt;p&gt;采用二分法每次找到中间元素与x比较大小，大则在左边查找，小则在右边查找&lt;br&gt;
+每次判断一下lo（最左边元素）的平方与lo + 1的平方：&lt;br&gt;
+&lt;code&gt;if (pow(hi, 2) &amp;lt; x &amp;amp;&amp;amp; pow(hi + 1, 2) &amp;gt; x)&lt;/code&gt;这就说明x平方根是lo到lo + 1之间的值，所以直接返回lo即可&lt;br&gt;
+判断hi同理&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;class Solution {
+public:
+    int res = 0;
+    void Sqrt(int lo, int hi, int x) {
+        if (pow(lo, 2) == x) {
+            res = lo;
+            return;
+        }
+        else if (pow(hi, 2) == x) {
+            res = hi;
+            return;
+        }
+        else if (pow(lo, 2) &amp;lt; x &amp;amp;&amp;amp; pow(lo + 1, 2) &amp;gt; x) {
+            res = lo;
+            return;
+        }
+        else if (pow(hi, 2) &amp;lt; x &amp;amp;&amp;amp; pow(hi + 1, 2) &amp;gt; x) {
+            res = hi;
+            return;
+        }
+        else if (pow((lo + hi) / 2, 2) == x) {
+            res = (lo + hi) / 2;
+            return;
+        }
+        else if (pow((lo + hi) / 2, 2) &amp;lt; x) {
+            lo = (lo + hi) / 2;
+            Sqrt(lo, hi, x);
+        }
+        else if (pow((lo + hi) / 2, 2) &amp;gt; x) {
+            hi = (lo + hi) / 2;
+            Sqrt(lo, hi, x);
+        }
+    }
+    int mySqrt(int x) {
+        int lo = 0, hi = x;
+        Sqrt(lo, hi, x);
+        return res;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+">LeetCode 69. x 的平方根(二分)</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://sakuratears.cn/post/c-yu-yan-shi-xian-ge-chong-jin-zhi-zhi-jian-zhuan-huan/"" data-c="
@@ -4795,6 +4861,15 @@ blacklist snd_pcsp
         <a class="result-title" style="opacity: 0;" href="https://sakuratears.cn/post/ji-lu-xue-xi-de-ri-zi/"" data-c="
           &lt;!-- # 2020 --&gt;
 &lt;h2 id=&#34;12&#34;&gt;12&lt;/h2&gt;
+&lt;h3 id=&#34;1221&#34;&gt;12/21&lt;/h3&gt;
+&lt;p&gt;计组考试遇到Teacher Tao。让我不好意思提前交白卷&lt;br&gt;
+然后智障监考员让我回去拿学生证，我真服了你又不查&lt;/p&gt;
+&lt;p&gt;解决一下昨天用sqrt投机取巧水的题，采用二分查找可以轻松A&lt;/p&gt;
+&lt;h3 id=&#34;1220&#34;&gt;12/20&lt;/h3&gt;
+&lt;p&gt;今日水题：sqrt&lt;br&gt;
+用sqrt水过0.0&lt;br&gt;
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/chrome_dcbeXPefB6.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+珍惜眼前人！&lt;/p&gt;
 &lt;h3 id=&#34;1219&#34;&gt;12/19&lt;/h3&gt;
 &lt;p&gt;今日水题：旋转图像&lt;br&gt;
 不让我用辅助数组，我就用😏，反正能过&lt;br&gt;
