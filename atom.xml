@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-12-21T10:05:16.828Z</updated>
+    <updated>2020-12-21T10:09:22.786Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -12,8 +12,8 @@
     <rights>All rights reserved 2020, SakuraTears</rights>
     <entry>
         <title type="html"><![CDATA[LeetCode 69. x 的平方根(二分)]]></title>
-        <id>https://sakuratears.cn/leetcode-69-x-de-ping-fang-gen-er-fen/</id>
-        <link href="https://sakuratears.cn/leetcode-69-x-de-ping-fang-gen-er-fen/">
+        <id>https://sakuratears.cn/post/leetcode-69-x-de-ping-fang-gen-er-fen/</id>
+        <link href="https://sakuratears.cn/post/leetcode-69-x-de-ping-fang-gen-er-fen/">
         </link>
         <updated>2020-12-21T09:32:31.000Z</updated>
         <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
@@ -86,8 +86,8 @@ public:
     </entry>
     <entry>
         <title type="html"><![CDATA[C语言实现各种进制之间转换]]></title>
-        <id>https://sakuratears.cn/c-yu-yan-shi-xian-ge-chong-jin-zhi-zhi-jian-zhuan-huan/</id>
-        <link href="https://sakuratears.cn/c-yu-yan-shi-xian-ge-chong-jin-zhi-zhi-jian-zhuan-huan/">
+        <id>https://sakuratears.cn/post/c-yu-yan-shi-xian-ge-chong-jin-zhi-zhi-jian-zhuan-huan/</id>
+        <link href="https://sakuratears.cn/post/c-yu-yan-shi-xian-ge-chong-jin-zhi-zhi-jian-zhuan-huan/">
         </link>
         <updated>2020-12-20T11:55:47.000Z</updated>
         <content type="html"><![CDATA[<pre><code class="language-C">#include &lt;Windows.h&gt;
@@ -340,8 +340,8 @@ int main()
     </entry>
     <entry>
         <title type="html"><![CDATA[旋转图像(数组)]]></title>
-        <id>https://sakuratears.cn/xuan-zhuan-tu-xiang-shu-zu/</id>
-        <link href="https://sakuratears.cn/xuan-zhuan-tu-xiang-shu-zu/">
+        <id>https://sakuratears.cn/post/xuan-zhuan-tu-xiang-shu-zu/</id>
+        <link href="https://sakuratears.cn/post/xuan-zhuan-tu-xiang-shu-zu/">
         </link>
         <updated>2020-12-19T10:45:03.000Z</updated>
         <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
@@ -405,8 +405,8 @@ public:
     </entry>
     <entry>
         <title type="html"><![CDATA[Markdown语法]]></title>
-        <id>https://sakuratears.cn/markdown-yu-fa/</id>
-        <link href="https://sakuratears.cn/markdown-yu-fa/">
+        <id>https://sakuratears.cn/post/markdown-yu-fa/</id>
+        <link href="https://sakuratears.cn/post/markdown-yu-fa/">
         </link>
         <updated>2020-12-18T13:26:30.000Z</updated>
         <content type="html"><![CDATA[<h1 id="生成目录">生成目录</h1>
@@ -774,8 +774,8 @@ ${$tep1}{\style{visibility:hidden}{(x+1)(x+1)}}
     </entry>
     <entry>
         <title type="html"><![CDATA[找不同(位运算)(哈希表)]]></title>
-        <id>https://sakuratears.cn/zhao-bu-tong-wei-yun-suan-ha-xi-biao/</id>
-        <link href="https://sakuratears.cn/zhao-bu-tong-wei-yun-suan-ha-xi-biao/">
+        <id>https://sakuratears.cn/post/zhao-bu-tong-wei-yun-suan-ha-xi-biao/</id>
+        <link href="https://sakuratears.cn/post/zhao-bu-tong-wei-yun-suan-ha-xi-biao/">
         </link>
         <updated>2020-12-18T09:38:22.000Z</updated>
         <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
@@ -852,8 +852,8 @@ public:
     </entry>
     <entry>
         <title type="html"><![CDATA[最长公共前缀(字符串)]]></title>
-        <id>https://sakuratears.cn/zui-chang-gong-gong-qian-zhui-zi-fu-chuan/</id>
-        <link href="https://sakuratears.cn/zui-chang-gong-gong-qian-zhui-zi-fu-chuan/">
+        <id>https://sakuratears.cn/post/zui-chang-gong-gong-qian-zhui-zi-fu-chuan/</id>
+        <link href="https://sakuratears.cn/post/zui-chang-gong-gong-qian-zhui-zi-fu-chuan/">
         </link>
         <updated>2020-12-18T09:02:23.000Z</updated>
         <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
@@ -909,8 +909,8 @@ public:
     </entry>
     <entry>
         <title type="html"><![CDATA[斐波那契数列(递归)]]></title>
-        <id>https://sakuratears.cn/fei-bo-na-qi-shu-lie-di-gui/</id>
-        <link href="https://sakuratears.cn/fei-bo-na-qi-shu-lie-di-gui/">
+        <id>https://sakuratears.cn/post/fei-bo-na-qi-shu-lie-di-gui/</id>
+        <link href="https://sakuratears.cn/post/fei-bo-na-qi-shu-lie-di-gui/">
         </link>
         <updated>2020-12-17T09:13:05.000Z</updated>
         <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
@@ -1007,8 +1007,8 @@ public:
     </entry>
     <entry>
         <title type="html"><![CDATA[恢复二叉搜索树(二叉树)]]></title>
-        <id>https://sakuratears.cn/hui-fu-er-cha-sou-suo-shu-er-cha-shu/</id>
-        <link href="https://sakuratears.cn/hui-fu-er-cha-sou-suo-shu-er-cha-shu/">
+        <id>https://sakuratears.cn/post/hui-fu-er-cha-sou-suo-shu-er-cha-shu/</id>
+        <link href="https://sakuratears.cn/post/hui-fu-er-cha-sou-suo-shu-er-cha-shu/">
         </link>
         <updated>2020-12-16T11:44:46.000Z</updated>
         <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
@@ -1078,8 +1078,8 @@ public:
     </entry>
     <entry>
         <title type="html"><![CDATA[二叉树的锯齿形层次遍历(二叉树)(BFS)]]></title>
-        <id>https://sakuratears.cn/er-cha-shu-de-ju-chi-xing-ceng-ci-bian-li-er-cha-shu-bfs/</id>
-        <link href="https://sakuratears.cn/er-cha-shu-de-ju-chi-xing-ceng-ci-bian-li-er-cha-shu-bfs/">
+        <id>https://sakuratears.cn/post/er-cha-shu-de-ju-chi-xing-ceng-ci-bian-li-er-cha-shu-bfs/</id>
+        <link href="https://sakuratears.cn/post/er-cha-shu-de-ju-chi-xing-ceng-ci-bian-li-er-cha-shu-bfs/">
         </link>
         <updated>2020-12-15T09:01:22.000Z</updated>
         <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
@@ -1159,8 +1159,8 @@ public:
     </entry>
     <entry>
         <title type="html"><![CDATA[二叉树的序列化与反序列化(二叉树)]]></title>
-        <id>https://sakuratears.cn/er-cha-shu-de-xu-lie-hua-yu-fan-xu-lie-hua/</id>
-        <link href="https://sakuratears.cn/er-cha-shu-de-xu-lie-hua-yu-fan-xu-lie-hua/">
+        <id>https://sakuratears.cn/post/er-cha-shu-de-xu-lie-hua-yu-fan-xu-lie-hua/</id>
+        <link href="https://sakuratears.cn/post/er-cha-shu-de-xu-lie-hua-yu-fan-xu-lie-hua/">
         </link>
         <updated>2020-12-15T00:23:20.000Z</updated>
         <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
