@@ -9,7 +9,7 @@
 <meta name="description" content="努力不一定成功，但不努力一定很轻松">
 <meta name="theme-color" content="#000">
 <title>SakuraTears</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1608549001797">
+<link rel="shortcut icon" href="/favicon.ico?v=1608556773283">
 <link rel="stylesheet" href="/media/css/mist.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -1797,6 +1797,7 @@ int main()
 链接：https://leetcode-cn.com/problems/rotate-image&lt;br&gt;
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。&lt;/p&gt;
 &lt;h3 id=&#34;思路&#34;&gt;思路&lt;/h3&gt;
+&lt;h4 id=&#34;方法1&#34;&gt;方法1&lt;/h4&gt;
 &lt;p&gt;&lt;strong&gt;题目要求不要用辅助数组，此题解用了辅助数组&lt;/strong&gt;&lt;br&gt;
 直接用一个辅助数组arr，arr的列是matrix的行，用两个循环即可&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;class Solution {
@@ -1809,6 +1810,32 @@ public:
             }
         }
         matrix = arr;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;方法2&#34;&gt;方法2&lt;/h4&gt;
+&lt;p&gt;可以先对数组进行从左上到右下对角线为轴进行翻转，再对每一行以中间为轴翻转。即可&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;class Solution {
+public:
+    void rotate(vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt;&amp;amp; matrix) {
+        if (matrix.size() == 0) {
+            return;
+        }
+        int i, j, m, temp;
+        for (i = 0; i &amp;lt; matrix.size() - 1; i++) {
+            for (j = i + 1; j &amp;lt; matrix.size(); j++) {
+                temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
+        for (i = 0; i &amp;lt; matrix.size(); i++) {
+            for (j = matrix[i].size() / 2; j &amp;lt; matrix.size(); j++) {
+                temp = matrix[i][j];
+                matrix[i][j] = matrix[i][matrix.size() - j - 1];
+                matrix[i][matrix.size() - j - 1] = temp;
+            }
+        }
     }
 };
 &lt;/code&gt;&lt;/pre&gt;
@@ -4212,7 +4239,9 @@ blacklist snd_pcsp
 &lt;h3 id=&#34;1221&#34;&gt;12/21&lt;/h3&gt;
 &lt;p&gt;计组考试遇到Teacher Tao。让我不好意思提前交白卷&lt;br&gt;
 然后智障监考员让我回去拿学生证，我真服了你又不查&lt;/p&gt;
-&lt;p&gt;解决一下昨天用sqrt投机取巧水的题，采用二分查找可以轻松A&lt;/p&gt;
+&lt;p&gt;解决一下昨天用sqrt投机取巧水的题，采用二分查找可以轻松A&lt;br&gt;
+再解决一下前天用辅助数组投机取巧的题，大佬的思路就是牛！&lt;br&gt;
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/chrome_4bwNOjnVAz.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;1220&#34;&gt;12/20&lt;/h3&gt;
 &lt;p&gt;今日水题：sqrt&lt;br&gt;
 用sqrt水过0.0&lt;br&gt;

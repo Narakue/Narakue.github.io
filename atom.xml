@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-12-21T11:10:07.354Z</updated>
+    <updated>2020-12-21T13:19:39.486Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -386,6 +386,7 @@ int main()
 链接：https://leetcode-cn.com/problems/rotate-image<br>
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
 <h3 id="思路">思路</h3>
+<h4 id="方法1">方法1</h4>
 <p><strong>题目要求不要用辅助数组，此题解用了辅助数组</strong><br>
 直接用一个辅助数组arr，arr的列是matrix的行，用两个循环即可</p>
 <pre><code class="language-C++">class Solution {
@@ -398,6 +399,32 @@ public:
             }
         }
         matrix = arr;
+    }
+};
+</code></pre>
+<h4 id="方法2">方法2</h4>
+<p>可以先对数组进行从左上到右下对角线为轴进行翻转，再对每一行以中间为轴翻转。即可</p>
+<pre><code class="language-C++">class Solution {
+public:
+    void rotate(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) {
+        if (matrix.size() == 0) {
+            return;
+        }
+        int i, j, m, temp;
+        for (i = 0; i &lt; matrix.size() - 1; i++) {
+            for (j = i + 1; j &lt; matrix.size(); j++) {
+                temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
+        for (i = 0; i &lt; matrix.size(); i++) {
+            for (j = matrix[i].size() / 2; j &lt; matrix.size(); j++) {
+                temp = matrix[i][j];
+                matrix[i][j] = matrix[i][matrix.size() - j - 1];
+                matrix[i][matrix.size() - j - 1] = temp;
+            }
+        }
     }
 };
 </code></pre>
