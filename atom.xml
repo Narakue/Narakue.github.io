@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-12-21T13:19:39.486Z</updated>
+    <updated>2020-12-22T11:28:16.583Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -10,6 +10,322 @@
     <logo>https://sakuratears.cn/images/avatar.png</logo>
     <icon>https://sakuratears.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, SakuraTears</rights>
+    <entry>
+        <title type="html"><![CDATA[LeetCode 12. 整数转罗马数字(字符串)(贪心算法)]]></title>
+        <id>https://sakuratears.cn/post/leetcode-12-zheng-shu-zhuan-luo-ma-shu-zi-zi-fu-chuan/</id>
+        <link href="https://sakuratears.cn/post/leetcode-12-zheng-shu-zhuan-luo-ma-shu-zi-zi-fu-chuan/">
+        </link>
+        <updated>2020-12-22T11:15:18.000Z</updated>
+        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>罗马数字包含以下七种字符： I， V， X， L，C，D 和 M。</p>
+<p>字符          数值<br>
+I             1<br>
+V             5<br>
+X             10<br>
+L             50<br>
+C             100<br>
+D             500<br>
+M             1000<br>
+例如， 罗马数字 2 写做 II ，即为两个并列的 1。12 写做 XII ，即为 X + II 。 27 写做  XXVII, 即为 XX + V + II 。</p>
+]]></summary>
+        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>罗马数字包含以下七种字符： I， V， X， L，C，D 和 M。</p>
+<p>字符          数值<br>
+I             1<br>
+V             5<br>
+X             10<br>
+L             50<br>
+C             100<br>
+D             500<br>
+M             1000<br>
+例如， 罗马数字 2 写做 II ，即为两个并列的 1。12 写做 XII ，即为 X + II 。 27 写做  XXVII, 即为 XX + V + II 。</p>
+<!-- more -->
+<p>通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做 IIII，而是 IV。数字 1 在数字 5 的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为 IX。这个特殊的规则只适用于以下六种情况：</p>
+<p>I 可以放在 V (5) 和 X (10) 的左边，来表示 4 和 9。<br>
+X 可以放在 L (50) 和 C (100) 的左边，来表示 40 和 90。 <br>
+C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。<br>
+给定一个整数，将其转为罗马数字。输入确保在 1 到 3999 的范围内。</p>
+<p>示例 1:</p>
+<p>输入: 3<br>
+输出: &quot;III&quot;<br>
+示例 2:</p>
+<p>输入: 4<br>
+输出: &quot;IV&quot;<br>
+示例 3:</p>
+<p>输入: 9<br>
+输出: &quot;IX&quot;<br>
+示例 4:</p>
+<p>输入: 58<br>
+输出: &quot;LVIII&quot;<br>
+解释: L = 50, V = 5, III = 3.<br>
+示例 5:</p>
+<p>输入: 1994<br>
+输出: &quot;MCMXCIV&quot;<br>
+解释: M = 1000, CM = 900, XC = 90, IV = 4.</p>
+<p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/integer-to-roman<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h3 id="思路">思路</h3>
+<h4 id="方法1暴力解法">方法1:暴力解法</h4>
+<p>把每种情况都写出来然后直接暴力解决</p>
+<pre><code class="language-C++">class Solution {
+public:
+    string five(int num) {
+        string str;
+         if (num == 4) {
+                str = &quot;IV&quot;;
+        }
+        else if (num == 5) {
+            str = &quot;V&quot;;
+        }
+        else {
+            for (int i = 0; i &lt; num; i++) {
+                str += 'I';
+            }
+        }
+        return str;
+    }
+
+    string ten(int num) {
+        string str;
+        if (num == 9) {
+            str = &quot;IX&quot;;
+        }
+        else if (num == 10) {
+            str = &quot;X&quot;;
+        }
+        else {
+            str = &quot;V&quot;;
+            for (int i = 0; i &lt; num - 5; i++) {
+                str += 'I';
+            }
+        }
+        return str;
+    }
+
+    string fifty(int num) {
+        string str;
+        if (num == 40) {
+            str = &quot;XL&quot;;
+        }
+        else if (num == 50) {
+            str = &quot;L&quot;;
+        }
+        else if (num &gt; 40) {
+            str = &quot;XL&quot;;
+            int n = num - 40;
+            if (n &gt; 5) {
+                str += ten(n);
+            }
+            else {
+                str += five(n);
+            }
+        }
+        else {
+            int n = num / 10;
+            num %= 10;
+            for (int i = 0; i &lt; n; i++) {
+                str += 'X';
+            }
+            if (num &lt;= 5) {
+                str += five(num);
+            }
+            else {
+                str += ten(num);
+            }
+        }
+        return str;
+    }
+
+    string hundred(int num) {
+        string str;
+        if (num == 90) {
+            str = &quot;XC&quot;;
+        }
+        else if (num == 100) {
+            str = &quot;C&quot;;
+        }
+        else if (num &gt; 90) {
+            str = &quot;XC&quot;;
+            int n = num - 90;
+            if (n &gt; 5) {
+                str += ten(n);
+            }
+            else {
+                str += five(n);
+            }            
+        }
+        else {
+            str = &quot;L&quot;;
+            num -= 50;
+            int n = num / 10;
+            num %= 10;
+            for (int i = 0; i &lt; n; i++) {
+                str += 'X';
+            }
+            if (num &lt;= 5) {
+                str += five(num);
+            }
+            else {
+                str += ten(num);
+            }            
+        }
+        return str;
+    }
+
+    string fiveh(int num) {
+        string str;
+        if (num == 400) {
+            str = &quot;CD&quot;;
+        }
+        else if (num == 500) {
+            str = &quot;D&quot;;
+        }
+        else if (num &gt; 400) {
+            str = &quot;CD&quot;;
+            int n = num - 400;
+            if (n &gt; 50) {
+                str += hundred(n);
+            }
+            else {
+                str += fifty(n);
+            }
+        }
+        else {
+            int n = num / 100;
+            num %= 100;
+            for (int i = 0; i &lt; n; i++) {
+                str += 'C';
+            }
+            if (num &gt; 50) {
+                str += hundred(num);
+            }
+            else {
+                str += fifty(num);
+            }
+        }
+        return str;
+    }
+
+    string thousand(int num) {
+        string str;
+        if (num == 900) {
+            str = &quot;CM&quot;;
+        }
+        else if (num == 1000) {
+            str = &quot;M&quot;;
+        }
+        else if (num &gt; 900) {
+            str = &quot;CM&quot;;
+            int n = num - 900;
+            // cout&lt;&lt;num;
+            if (n &gt; 50) {
+                str += hundred(n);
+            }
+            else {
+                str += fifty(n);
+            }
+        }
+        else {
+            str = &quot;D&quot;;
+            num -= 500;
+            int n = num / 100;
+            num %= 100;
+            // cout&lt;&lt;num;
+            for (int i = 0; i &lt; n; i++) {
+                str += &quot;C&quot;;
+            }
+            if (num &gt; 50) {
+                str += hundred(num);
+            }
+            else {
+                // cout&lt;&lt;num&lt;&lt;&quot; &quot;&lt;&lt;fifty(num);
+                str += fifty(num);
+            }
+        }
+        return str;
+    }
+
+    string more(int num) {
+        string str;
+        int n = num / 1000;
+        num %= 1000;
+        for (int i = 0; i &lt; n; i++) {
+            str += &quot;M&quot;;
+        }
+        if (num &lt;= 5) {
+            str += five(num);
+        }
+        else if (num &lt;= 10) {
+            str += ten(num);
+        }
+        else if (num &lt;= 50) {
+            str += fifty(num);
+        }
+        else if (num &lt;= 100) {
+            str += hundred(num);
+        }
+        else if (num &lt;= 500) {
+            str += fiveh(num);
+        }
+        else if (num &lt;= 1000) {
+            str += thousand(num);
+        }
+        return str;
+    }
+
+    string intToRoman(int num) {
+        string str = &quot;&quot;;
+        if (num &gt; 0) {
+            if (num &lt;= 5) {
+                str += five(num);
+            }
+            else if (num &lt;= 10) {
+                str += ten(num);
+            }
+            else if (num &lt;= 50) {
+                str += fifty(num);
+            }
+            else if (num &lt;= 100) {
+                str += hundred(num);
+            }
+            else if (num &lt;= 500) {
+                str += fiveh(num);
+            }
+            else if (num &lt;= 1000) {
+                str += thousand(num);
+            }
+            else {
+                str += more(num);
+            }
+        }
+        else {
+            str = &quot;&quot;;
+        }
+        return str;
+    }
+};
+</code></pre>
+<h4 id="方法2贪心算法">方法2:贪心算法</h4>
+<p>把阿拉伯数字与罗马数字可能出现的所有情况和对应关系，放在两个数组中，并且按照阿拉伯数字的大小降序排列。每次尽可能优先使用较大数值对应的字符</p>
+<pre><code class="language-C++">class Solution {
+public:
+	string intToRoman(int num) {
+		int values[]= {1000,900,500,400,100,90,50,40,10,9,5,4,1};
+		string reps[]= {&quot;M&quot;,&quot;CM&quot;,&quot;D&quot;,&quot;CD&quot;,&quot;C&quot;,&quot;XC&quot;,&quot;L&quot;,&quot;XL&quot;,&quot;X&quot;,&quot;IX&quot;,&quot;V&quot;,&quot;IV&quot;,&quot;I&quot;};
+		string res;
+		for(int i=0; i&lt;13; i++) {
+			while(num&gt;=values[i]) {
+				num -= values[i];
+				res += reps[i];
+			}
+		}
+		return res;
+	}
+};
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[LeetCode 69. x 的平方根(二分)]]></title>
         <id>https://sakuratears.cn/post/leetcode-69-x-de-ping-fang-gen-er-fen/</id>
@@ -1181,137 +1497,6 @@ public:
         return arr;
     }
 };
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[二叉树的序列化与反序列化(二叉树)]]></title>
-        <id>https://sakuratears.cn/post/er-cha-shu-de-xu-lie-hua-yu-fan-xu-lie-hua/</id>
-        <link href="https://sakuratears.cn/post/er-cha-shu-de-xu-lie-hua-yu-fan-xu-lie-hua/">
-        </link>
-        <updated>2020-12-15T00:23:20.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>序列化是将一个数据结构或者对象转换为连续的比特位的操作，进而可以将转换后的数据存储在一个文件或者内存中，同时也可以通过网络传输到另一个计算机环境，采取相反方式重构得到原数据。</p>
-]]></summary>
-        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>序列化是将一个数据结构或者对象转换为连续的比特位的操作，进而可以将转换后的数据存储在一个文件或者内存中，同时也可以通过网络传输到另一个计算机环境，采取相反方式重构得到原数据。</p>
-<!-- more -->
-<p>请设计一个算法来实现二叉树的序列化与反序列化。这里不限定你的序列 / 反序列化算法执行逻辑，你只需要保证一个二叉树可以被序列化为一个字符串并且将这个字符串反序列化为原始的树结构。</p>
-<p>示例:</p>
-<p>你可以将以下二叉树：</p>
-<pre><code>      1
-     / \
-    2   3
-       / \
-      4   5
-</code></pre>
-<p>序列化为 &quot;[1,2,3,null,null,4,5]&quot;<br>
-提示: 这与 LeetCode 目前使用的方式一致，详情请参阅 LeetCode 序列化二叉树的格式。你并非必须采取这种方式，你也可以采用其他的方法解决这个问题。</p>
-<p>说明: 不要使用类的成员 / 全局 / 静态变量来存储状态，你的序列化和反序列化算法应该是无状态的。</p>
-<p>来源：力扣（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree<br>
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<h3 id="思路">思路</h3>
-<pre><code class="language-C++">/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
-class Codec {
-public:
-
-    // Encodes a tree to a single string.
-    string serialize(TreeNode* root) {
-        queue&lt;TreeNode*&gt; q;
-        q.push(root);
-        string str = &quot;&quot;;
-        TreeNode* node;
-        while (!q.empty()) {
-            int n = q.size();
-            for (int i = 0; i &lt; n; i++) {
-                node = q.front();
-                q.pop();
-                if (node == NULL) {
-                    str += &quot;null,&quot;;
-                    continue;
-                }
-                str += to_string(node-&gt;val);
-                str += &quot;,&quot;;
-                q.push(node-&gt;left);
-                q.push(node-&gt;right);
-            }
-        }
-        return str;
-    }
-
-    // Decodes your encoded data to tree.
-    TreeNode* deserialize(string data) {
-        if (data[0] == 'n') {
-            return NULL;
-        }
-        int m = 0, n = 0;
-        TreeNode* node;
-        queue&lt;TreeNode*&gt; q;
-        vector&lt;int&gt; arr;
-        string str = &quot;&quot;;
-        while (m &lt; data.size()) {
-            if (data[m] == ',') {
-                if (!str.empty())
-                    arr.push_back(stoi(str));
-                str = &quot;&quot;;
-                m++;
-                continue;
-            }
-            if (data[m] == 'n') {
-                m += 4;
-                if (!str.empty())
-                    arr.push_back(stoi(str));
-                arr.push_back(-1024);
-                str = &quot;&quot;;
-                continue;
-            }
-            str += data[m];
-            m++;
-        }
-        TreeNode* root = new TreeNode(arr[0]);
-        if (arr.size() == 1) {
-            return root;
-        }
-        m = 1;
-        q.push(root);
-        while (!q.empty() &amp;&amp; m &lt; arr.size()) {
-            n = q.size();
-            for (int i = 0; i &lt; n; i++) {
-                node = q.front();
-                q.pop();
-                if (arr[m] != -1024) {
-                    node-&gt;left = new TreeNode(arr[m]);
-                    q.push(node-&gt;left);
-                }
-                else {
-                    node-&gt;left = nullptr;
-                }
-                if (arr[m + 1] != -1024) {
-                    node-&gt;right = new TreeNode(arr[m+1]);
-                    q.push(node-&gt;right);
-                }
-                else {
-                    node-&gt;right = nullptr;
-                }
-                m += 2;
-            }
-        }
-        return root;
-    }
-};
-
-// Your Codec object will be instantiated and called as such:
-// Codec ser, deser;
-// TreeNode* ans = deser.deserialize(ser.serialize(root));
 </code></pre>
 ]]></content>
     </entry>
