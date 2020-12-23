@@ -8,7 +8,7 @@
 <meta name="keywords" content="name=&#34;baidu-site-verification&#34; content=&#34;code-A1cWhYOwgT&#34; ">
 <meta name="description" content="努力不一定成功，但不努力一定很轻松">
 <meta name="theme-color" content="#000">
-<title>凑零钱问题 | SakuraTears</title>
+<title>LeetCode 387. 字符串中的第一个唯一字符(哈希表) | SakuraTears</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1608724856104">
 <link rel="stylesheet" href="/media/css/mist.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -39,8 +39,8 @@
 
 
 
-  <meta name="description" content="凑零钱问题" />
-  <meta name="keywords" content="DP,算法" />
+  <meta name="description" content="LeetCode 387. 字符串中的第一个唯一字符(哈希表)" />
+  <meta name="keywords" content="哈希表,LeetCode,算法" />
 </head>
 
 <body>
@@ -208,7 +208,8 @@
       <div class="sidebar-body mist" id="sidebar_body">
         
           
-            
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper ">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -269,6 +270,205 @@
 
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper  auto"
+    id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
+<li><a href="#%E6%80%9D%E8%B7%AF">思路</a>
+<ul>
+<li><a href="#%E6%96%B9%E6%B3%951%E5%93%88%E5%B8%8C%E8%A1%A8">方法1：哈希表</a></li>
+<li><a href="#%E6%96%B9%E6%B3%952%E6%95%B0%E7%BB%84">方法2：数组</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
+  let active = 'active-show', activeClass = 'active-current';
+  let tocWrapper = document.querySelector('#toc_wrapper');
+  let tocContent = tocWrapper.children[0];
+  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
+
+  function addTocNumber(elem, deep) {
+    if (!elem) {
+      return;
+    }
+    let prop = elem.__proto__;
+
+    if (prop === HTMLUListElement.prototype) {
+      for (let i = 0; i < elem.children.length; i++) {
+        addTocNumber(elem.children[i], deep + (i + 1) + '.');
+      }
+    } else if (prop === HTMLLIElement.prototype) {
+      // 保存li元素
+      if (elem.children[0] && elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+        lList.push(elem);
+      }
+      for (let i = 0; i < elem.children.length; i++) {
+        let cur = elem.children[i];
+        if (cur.__proto__ === HTMLAnchorElement.prototype) {
+          if (autoNumber) {
+            cur.text = deep + ' ' + cur.text;
+          }
+        } else if (cur.__proto__ === HTMLUListElement.prototype) {
+          addTocNumber(cur, deep);
+        }
+      }
+    }
+  }
+
+  function removeParentActiveClass() {
+    let parents = tocContent.querySelectorAll('.' + active)
+    parents.forEach(function (elem) {
+      elem.classList.remove(active);
+    });
+  }
+
+  function addActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.add(activeClass);
+    }
+  }
+
+  function removeActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.remove(activeClass);
+    }
+  }
+
+  function addActiveLiElemment(elem, parent) {
+    if (!elem || elem === parent) {
+      return;
+    } else {
+      if (elem.__proto__ === HTMLLIElement.prototype) {
+        elem.classList.add(active);
+      }
+      addActiveLiElemment(elem.parentElement, parent);
+    }
+  }
+
+  function showToc() {
+    if (tocWrapper) {
+      postBody = document.querySelector('#post_body');
+      for (let i = 0; i < postBody.children.length; i++) {
+        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+          hList.push(postBody.children[i]);
+        }
+      }
+      if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+      } else if (tocWrapper.classList.contains('no_compress')) {
+        tocContent.classList.add('expanded');
+      } else {
+        if (hList.length > 10) {
+          active = 'active-hidden'
+          tocContent.classList.add('closed');
+        } else {
+          tocContent.classList.add('expanded');
+        }
+      }
+    }
+  }
+
+  (function () {
+    // 处理不是从#一级标题开始目录
+    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+      let con = tocContent.children[0].children[0];
+      tocContent.innerHTML = con.innerHTML;
+    }
+    let markdownItTOC = document.querySelector('.markdownIt-TOC');
+    let innerHeight = window.innerHeight;
+    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
+    addTocNumber(tocContent, '');
+  })();
+
+  document.addEventListener('scroll', function (e) {
+    if (lList.length <= 0) {
+      return;
+    }
+    let scrollTop = document.scrollingElement.scrollTop + 10;
+    let dir;
+
+    if (lastTop - scrollTop > 0) {
+      dir = 'up';
+    } else {
+      dir = 'down';
+    }
+
+    lastTop = scrollTop;
+    if (scrollTop <= 0) {
+      if (lastIndex >= 0 && lastIndex < hList.length) {
+        lList[lastIndex].classList.remove(activeClass);
+      }
+      return;
+    }
+
+    let current = 0, hasFind = false;
+    for (let i = 0; i < hList.length; i++) {
+      if (hList[i].offsetTop > scrollTop) {
+        current = i;
+        hasFind = true;
+        break;
+      }
+    }
+    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+      current = hList.length - 1;
+    } else {
+      current--;
+    }
+    if (dir === 'down') {
+      if (current > lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex)
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    } else {
+      if (current < lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex);
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    }
+  });
+
+
+  window.addEventListener('load', function () {
+    showToc();
+    document.querySelector('#sidebar').style = 'display: block;';
+    tocWrapper.classList.add('toc-active');
+    setTimeout(function () {
+      if ("createEvent" in document) {
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("scroll", false, true);
+        document.dispatchEvent(evt);
+      }
+      else {
+        document.fireEvent("scroll");
+      }
+    }, 500)
+  })
+
+</script>
+            </div>
           
         
       </div>
@@ -356,8 +556,8 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://sakuratears.cn/post/cou-ling-qian-wen-ti/">
-      凑零钱问题
+    <a class="post-title-link" href="https://sakuratears.cn/post/leetcode-387-zi-fu-chuan-zhong-de-di-yi-ge-wei-yi-zi-fu-ha-xi-biao/">
+      LeetCode 387. 字符串中的第一个唯一字符(哈希表)
     </a>
   </h1>
   <div class="post-meta">
@@ -365,7 +565,7 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-10-23 14:45:52">2020/10/23</span>
+      <span class="publish-time" data-t="2020-12-23 19:54:29">2020/12/23</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -374,8 +574,14 @@
       <span class="pc-show language" data-lan="category-in">分类于</span>
       
       
-      <a href="https://sakuratears.cn/tag/MdTCimxEd/">
-        <span>DP</span>
+      <a href="https://sakuratears.cn/tag/ga7bsFqfVq/">
+        <span>哈希表</span>
+      </a>、
+      
+      
+      
+      <a href="https://sakuratears.cn/tag/TN0UiB8Cf/">
+        <span>LeetCode</span>
       </a>、
       
       
@@ -395,12 +601,12 @@
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>318<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>221<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
     
     
-    <span id="/post/cou-ling-qian-wen-ti/" data-flag-title="凑零钱问题" class="meta-item pc-show leancloud_visitors">
+    <span id="/post/leetcode-387-zi-fu-chuan-zhong-de-di-yi-ge-wei-yi-zi-fu-ha-xi-biao/" data-flag-title="LeetCode 387. 字符串中的第一个唯一字符(哈希表)" class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-eye"></i>
       <span><span class="language" data-lan="view">浏览量</span>：<span class="leancloud-visitors-count"></span></span>
@@ -409,113 +615,55 @@
   </div>
 </section>
             <div class="post-body next-md-body" id="post_body">
-              <pre><code class="language-C/C++">#include &lt;iostream&gt;
-#include &lt;vector&gt;
-#include &lt;limits.h&gt;
-#define INT_MAX 2147483647;
-using namespace std;
-
-int coinchange(int coin, vector&lt;int&gt; &amp;coins, int amount, vector&lt;int&gt; &amp;bwl) 
-{
-    if (amount &lt; 0) return -1;
-    if (amount == 0) return 0;
-    if (bwl[amount] != 0) return bwl[amount];
-    int res, i, j, dp = 0, m;
-    m = INT_MAX;
-    j = 0;
-    res = INT_MAX;
-    while (j &lt; coin) {
-        i = coins[j];
-        dp = coinchange(coin, coins, amount - i, bwl);
-        if (dp == -1) {
-            j++;
-            continue;
+              <h3 id="题目">题目</h3>
+<p>给定一个字符串，找到它的第一个不重复的字符，并返回它的索引。如果不存在，则返回 -1。</p>
+<!-- more -->
+<p>示例：</p>
+<p>s = &quot;leetcode&quot;<br>
+返回 0</p>
+<p>s = &quot;loveleetcode&quot;<br>
+返回 2</p>
+<p>提示：你可以假定该字符串只包含小写字母。</p>
+<p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/first-unique-character-in-a-string<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h3 id="思路">思路</h3>
+<h4 id="方法1哈希表">方法1：哈希表</h4>
+<pre><code class="language-C++">class Solution {
+public:
+    int firstUniqChar(string s) {
+        if (s.size() &lt;= 0) {
+            return -1;
         }
-        if (res &gt; 1 + dp) {
-            res = 1 + dp;
+        map&lt;int, int&gt; smap;
+        for (char ch : s) {
+            smap[ch]++;
         }
-        j++;
+        for (int i = 0; i &lt; s.size(); i++) {
+            if (smap[s[i]] == 1) {
+                return i;
+            }
+        }
+        return -1;
     }
-    if (res != m) {
-        bwl[amount] = res;
-    }
-    else {
-        bwl[amount] = -1;
-    }
-    return bwl[amount];
-}
-
-int coinChange(vector&lt;int&gt;&amp; coins, int amount) 
-{
-    int coin = coins.size();
-    vector&lt;int&gt; bwl(amount + 1, 0);
-    return coinchange(coin, coins, amount, bwl);
-}
-
-
-int main() 
-{
-    vector&lt;int&gt; coins;
-    int a, n, i = 0, amount, m;
-    cin &gt;&gt; n;
-    coins.clear();
-    while (i &lt; n) {
-        cin &gt;&gt; a;
-        coins.push_back(a);
-        i++;
-    }
-    cin &gt;&gt; amount;
-    m = coinChange(coins, amount);
-    cout &lt;&lt; m;
-    return 0;
-}
-
+};
 </code></pre>
-<pre><code class="language-C/C++">#include &lt;iostream&gt;
-#include &lt;limits.h&gt;
-#include &lt;vector&gt;
-#define INT_MAX 2147483647;
-using namespace std;
-
-int coinChange(vector&lt;int&gt; &amp;coins, int amount)
-{
-    vector&lt;int&gt; dp(amount + 1, amount + 1);
-    dp[0] = 0;
-    int i, j;
-    for (i = 0; i &lt; dp.size(); i++) 
-    {
-        for (j = 0; j &lt; coins.size(); j++)
-        {
-            if (i &lt; coins[j])
-            {
-                continue;
-            }
-            if (dp[i] &gt; dp[i - coins[j]]) 
-            {
-                dp[i] = 1 + dp[i - coins[j]];
+<h4 id="方法2数组">方法2：数组</h4>
+<pre><code class="language-C++">class Solution {
+public:
+    int firstUniqChar(string s) {
+        int map[26] = {0};
+        for (int i = 0; i &lt; s.size(); i++) {
+            map[s[i] - 'a']++;
+        }
+        for (int i = 0; i &lt; s.size(); i++) {
+            if (map[s[i] - 'a'] == 1) {
+                return i;
             }
         }
+        return -1;
     }
-    return (dp[amount] == amount + 1) ? -1 : dp[amount];
-}
-
-int main()
-{
-    vector&lt;int&gt; coins;
-    int a, n, i = 0, amount, m;
-    cin &gt;&gt; n;
-    coins.clear();
-    while (i &lt; n)
-    {
-        cin &gt;&gt; a;
-        coins.push_back(a);
-        i++;
-    }
-    cin &gt;&gt; amount;
-    m = coinChange(coins, amount);
-    cout &lt;&lt; m;
-    return 0;
-}
+};
 </code></pre>
 
             </div>
@@ -529,7 +677,7 @@ int main()
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://sakuratears.cn/post/cou-ling-qian-wen-ti/" title="凑零钱问题">https://sakuratears.cn/post/cou-ling-qian-wen-ti/</a>
+      <a href="https://sakuratears.cn/post/leetcode-387-zi-fu-chuan-zhong-de-di-yi-ge-wei-yi-zi-fu-ha-xi-biao/" title="LeetCode 387. 字符串中的第一个唯一字符(哈希表)">https://sakuratears.cn/post/leetcode-387-zi-fu-chuan-zhong-de-di-yi-ge-wei-yi-zi-fu-ha-xi-biao/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -538,7 +686,9 @@ int main()
   </ul>
   <div class="tags">
     
-      <a href="https://sakuratears.cn/tag/MdTCimxEd/"># DP</a>
+      <a href="https://sakuratears.cn/tag/ga7bsFqfVq/"># 哈希表</a>
+    
+      <a href="https://sakuratears.cn/tag/TN0UiB8Cf/"># LeetCode</a>
     
       <a href="https://sakuratears.cn/tag/e0ZtA0F1A/"># 算法</a>
     
@@ -546,15 +696,11 @@ int main()
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="带备忘录和dp的递归" href="https://sakuratears.cn/post/dai-bei-wang-lu-he-dp-de-di-gui/">带备忘录和dp的递归</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="带备忘录和dp的递归" href="https://sakuratears.cn/post/dai-bei-wang-lu-he-dp-de-di-gui/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="C语言实现链表基本操作（交换第i个和第j个节点）" href="https://sakuratears.cn/post/c-yu-yan-shi-xian-lian-biao-ji-ben-cao-zuo-jiao-huan-di-i-ge-he-di-j-ge-jie-dian/">C语言实现链表基本操作（交换第i个和第j个节点）</a>
-        <a class="nav-mobile-next" title="C语言实现链表基本操作（交换第i个和第j个节点）" href="https://sakuratears.cn/post/c-yu-yan-shi-xian-lian-biao-ji-ben-cao-zuo-jiao-huan-di-i-ge-he-di-j-ge-jie-dian/">下一篇</a>
+        <a class="nav-pc-next" title="LeetCode 12. 整数转罗马数字(字符串)(贪心算法)" href="https://sakuratears.cn/post/leetcode-12-zheng-shu-zhuan-luo-ma-shu-zi-zi-fu-chuan/">LeetCode 12. 整数转罗马数字(字符串)(贪心算法)</a>
+        <a class="nav-mobile-next" title="LeetCode 12. 整数转罗马数字(字符串)(贪心算法)" href="https://sakuratears.cn/post/leetcode-12-zheng-shu-zhuan-luo-ma-shu-zi-zi-fu-chuan/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
