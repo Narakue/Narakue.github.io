@@ -9,7 +9,7 @@
 <meta name="description" content="努力不一定成功，但不努力一定很轻松">
 <meta name="theme-color" content="#000">
 <title>最长回文子串(动态规划) | SakuraTears</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1608724856104">
+<link rel="shortcut icon" href="/favicon.ico?v=1608803131799">
 <link rel="stylesheet" href="/media/css/mist.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -226,7 +226,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">51</span>
+        <span class="site-item-stat-count">52</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -1806,6 +1806,75 @@ public:
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://sakuratears.cn/post/qie-fen-mu-bang-dfsbfs/"" data-c="
+          &lt;h3 id=&#34;题目&#34;&gt;题目&lt;/h3&gt;
+&lt;p&gt;假设要把长度为 n 厘米的木棒切分为 1 厘米长的小段，但是 1 根木棒只能由 1 人切分，当木棒被切分为 3 段后，可以同时由 3 个人分别切分木棒（图 2）。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.ituring.com.cn/figures/2017/ProgrammerPuzzle/07.d01z.014.png&#34; alt=&#34;图 2　n ＝ 8，m ＝ 3 的时候&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+求最多有 m 个人时，最少要切分几次。譬如 n ＝ 8，m＝ 3 时如图所示，切分 4 次就可以了。&lt;/p&gt;
+&lt;p&gt;作者：图灵教育&lt;br&gt;
+链接：https://leetcode-cn.com/leetbook/read/interesting-algorithm-puzzles-for-programmers/90ach5/&lt;br&gt;
+来源：力扣（LeetCode）&lt;br&gt;
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。&lt;/p&gt;
+&lt;h3 id=&#34;思路&#34;&gt;思路&lt;/h3&gt;
+&lt;h4 id=&#34;方法1dfs&#34;&gt;方法1：DFS&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;iostream&amp;gt;
+
+using namespace std;
+
+int sil(int m, int n, int num) //n要求段数  m人数 num目前段数
+{
+	if (num &amp;gt;= n) { //达到要求结束
+		return 0;
+	}
+	else if (num &amp;lt; m) { //目前段数小于人数，直接段数*2
+		return 1 + sil(m, n, num * 2);
+	}
+	else { //目前段数大于等于人数，增加m段
+		return 1 + sil(m, n, num + m);
+	}
+}
+
+int main()
+{
+	cout&amp;lt;&amp;lt;sil(3, 20, 1)&amp;lt;&amp;lt;endl&amp;lt;&amp;lt;sil(5, 100, 1);
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;方法2bfs&#34;&gt;方法2：BFS&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;iostream&amp;gt;
+
+using namespace std;
+
+int sil(int m, int n, int num) //n要求段数  m人数 num目前段数
+{
+	int count = 0;
+	while (num &amp;lt; n) {
+		num += num &amp;lt; m ? num : m;
+        /*
+		if (num &amp;lt; m) {
+			num += num;
+		}
+		else {
+			num += m;
+		}
+		count++;
+		*/
+		count++;
+	}
+	return count;
+}
+
+int main()
+{
+	cout&amp;lt;&amp;lt;sil(3, 20, 1)&amp;lt;&amp;lt;endl&amp;lt;&amp;lt;sil(5, 100, 1);
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+">切分木棒(DFS)(BFS)</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://sakuratears.cn/post/leetcode-387-zi-fu-chuan-zhong-de-di-yi-ge-wei-yi-zi-fu-ha-xi-biao/"" data-c="
@@ -4959,8 +5028,11 @@ blacklist snd_pcsp
         <a class="result-title" style="opacity: 0;" href="https://sakuratears.cn/post/ji-lu-xue-xi-de-ri-zi/"" data-c="
           &lt;!-- # 2020 --&gt;
 &lt;h2 id=&#34;12&#34;&gt;12&lt;/h2&gt;
+&lt;h3 id=&#34;1224&#34;&gt;12/24&lt;/h3&gt;
+&lt;p&gt;看了眼leetcode的跨年任务：切分木棒，递归完成，不太熟练&lt;/p&gt;
 &lt;h3 id=&#34;1223&#34;&gt;12/23&lt;/h3&gt;
 &lt;p&gt;今日做题：字符串中的第一个唯一字符&lt;br&gt;
+leetcode的第50题，正确率也从之前的30%多涨到47%，一边学算法一边刷leetcode确实掌握了不少东西，比之前硬刷洛谷收货颇多&lt;br&gt;
 想用哈希表做，但是不会处理哈希表排序问题看了一眼题解，这可真是，智商压制啊&lt;br&gt;
 &lt;img src=&#34;https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/chrome_MejJlWndqp.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;1222&#34;&gt;12/22&lt;/h3&gt;
@@ -4969,8 +5041,6 @@ blacklist snd_pcsp
 然后看了大佬的贪心算法，茅塞顿开！&lt;br&gt;
 &lt;img src=&#34;https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/chrome_6d4HDwh3pX.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;1221&#34;&gt;12/21&lt;/h3&gt;
-&lt;p&gt;计组考试遇到Teacher Tao。让我不好意思提前交白卷&lt;br&gt;
-然后智障监考员让我回去拿学生证，我真服了你又不查&lt;/p&gt;
 &lt;p&gt;解决一下昨天用sqrt投机取巧水的题，采用二分查找可以轻松A&lt;br&gt;
 再解决一下前天用辅助数组投机取巧的题，大佬的思路就是牛！&lt;br&gt;
 &lt;img src=&#34;https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/chrome_4bwNOjnVAz.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;

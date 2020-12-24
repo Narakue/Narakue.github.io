@@ -8,7 +8,7 @@
 <meta name="keywords" content="name=&#34;baidu-site-verification&#34; content=&#34;code-A1cWhYOwgT&#34; ">
 <meta name="description" content="努力不一定成功，但不努力一定很轻松">
 <meta name="theme-color" content="#000">
-<title>二叉树中的最大路径和(二叉树)(DFS) | SakuraTears</title>
+<title>切分木棒(DFS)(BFS) | SakuraTears</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1608803131799">
 <link rel="stylesheet" href="/media/css/mist.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -39,8 +39,8 @@
 
 
 
-  <meta name="description" content="二叉树中的最大路径和(二叉树)(DFS)" />
-  <meta name="keywords" content="二叉树,搜索,LeetCode,算法" />
+  <meta name="description" content="切分木棒(DFS)(BFS)" />
+  <meta name="keywords" content="搜索,算法" />
 </head>
 
 <body>
@@ -281,7 +281,12 @@
 <li>
 <ul>
 <li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
-<li><a href="#%E6%80%9D%E8%B7%AF">思路</a></li>
+<li><a href="#%E6%80%9D%E8%B7%AF">思路</a>
+<ul>
+<li><a href="#%E6%96%B9%E6%B3%951dfs">方法1：DFS</a></li>
+<li><a href="#%E6%96%B9%E6%B3%952bfs">方法2：BFS</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -551,8 +556,8 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://sakuratears.cn/post/er-cha-shu-zhong-de-zui-da-lu-jing-he-er-cha-shu/">
-      二叉树中的最大路径和(二叉树)(DFS)
+    <a class="post-title-link" href="https://sakuratears.cn/post/qie-fen-mu-bang-dfsbfs/">
+      切分木棒(DFS)(BFS)
     </a>
   </h1>
   <div class="post-meta">
@@ -560,7 +565,7 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-12-08 21:18:54">2020/12/08</span>
+      <span class="publish-time" data-t="2020-12-24 17:29:49">2020/12/24</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -569,20 +574,8 @@
       <span class="pc-show language" data-lan="category-in">分类于</span>
       
       
-      <a href="https://sakuratears.cn/tag/gRTjYccGN/">
-        <span>二叉树</span>
-      </a>、
-      
-      
-      
       <a href="https://sakuratears.cn/tag/ssMjTlXf4/">
         <span>搜索</span>
-      </a>、
-      
-      
-      
-      <a href="https://sakuratears.cn/tag/TN0UiB8Cf/">
-        <span>LeetCode</span>
       </a>、
       
       
@@ -602,12 +595,12 @@
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>323<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>345<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
     
     
-    <span id="/post/er-cha-shu-zhong-de-zui-da-lu-jing-he-er-cha-shu/" data-flag-title="二叉树中的最大路径和(二叉树)(DFS)" class="meta-item pc-show leancloud_visitors">
+    <span id="/post/qie-fen-mu-bang-dfsbfs/" data-flag-title="切分木棒(DFS)(BFS)" class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-eye"></i>
       <span><span class="language" data-lan="view">浏览量</span>：<span class="leancloud-visitors-count"></span></span>
@@ -617,61 +610,68 @@
 </section>
             <div class="post-body next-md-body" id="post_body">
               <h3 id="题目">题目</h3>
-<p>给定一个非空二叉树，返回其最大路径和。<br><br></p>
+<p>假设要把长度为 n 厘米的木棒切分为 1 厘米长的小段，但是 1 根木棒只能由 1 人切分，当木棒被切分为 3 段后，可以同时由 3 个人分别切分木棒（图 2）。</p>
 <!-- more -->
-<p>本题中，路径被定义为一条从树中任意节点出发，沿父节点-子节点连接，达到任意节点的序列。该路径至少包含一个节点，且不一定经过根节点。<br><br></p>
-<p></p>
-<p>示例 1：</p>
-<p>输入：[1,2,3]</p>
-<pre><code>   1
-  / \
- 2   3
-</code></pre>
-<p>输出：6<br><br><br>
-示例 2：</p>
-<p>输入：[-10,9,20,null,null,15,7]</p>
-<p>-10<br>
-   / <br>
-  9  20<br>
-    /  <br>
-   15   7</p>
-<p>输出：42<br><br></p>
-<p>来源：力扣（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/binary-tree-maximum-path-sum<br>
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<p><img src="http://www.ituring.com.cn/figures/2017/ProgrammerPuzzle/07.d01z.014.png" alt="图 2　n ＝ 8，m ＝ 3 的时候" loading="lazy"><br>
+求最多有 m 个人时，最少要切分几次。譬如 n ＝ 8，m＝ 3 时如图所示，切分 4 次就可以了。</p>
+<p>作者：图灵教育<br>
+链接：https://leetcode-cn.com/leetbook/read/interesting-algorithm-puzzles-for-programmers/90ach5/<br>
+来源：力扣（LeetCode）<br>
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
 <h3 id="思路">思路</h3>
-<p>每一个节点的最大路径是它左右子树中最大的路径加上它自己，这样就是先遍历左子树，再遍历右子树。<br>
-这样就是树的后序遍历+DFS的思想。</p>
-<pre><code class="language-C++">/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
-class Solution {
-public:
-    int imax = INT_MIN;
-    int maxpath(TreeNode* root) {
-        if (root == nullptr) {
-            return 0;
-        }
+<h4 id="方法1dfs">方法1：DFS</h4>
+<pre><code class="language-C++">#include &lt;iostream&gt;
 
-        int left = max(0, maxpath(root-&gt;left));
-        int right = max(0, maxpath(root-&gt;right));
-        /*二叉树的后序遍历*/
-        imax = max(imax, left + right + root-&gt;val);
-        return max(left, right) + root-&gt;val;
-    }
-    int maxPathSum(TreeNode* root) {
-        maxpath(root);
-        return imax;
-    }
-};
+using namespace std;
+
+int sil(int m, int n, int num) //n要求段数  m人数 num目前段数
+{
+	if (num &gt;= n) { //达到要求结束
+		return 0;
+	}
+	else if (num &lt; m) { //目前段数小于人数，直接段数*2
+		return 1 + sil(m, n, num * 2);
+	}
+	else { //目前段数大于等于人数，增加m段
+		return 1 + sil(m, n, num + m);
+	}
+}
+
+int main()
+{
+	cout&lt;&lt;sil(3, 20, 1)&lt;&lt;endl&lt;&lt;sil(5, 100, 1);
+	return 0;
+}
+</code></pre>
+<h4 id="方法2bfs">方法2：BFS</h4>
+<pre><code class="language-C++">#include &lt;iostream&gt;
+
+using namespace std;
+
+int sil(int m, int n, int num) //n要求段数  m人数 num目前段数
+{
+	int count = 0;
+	while (num &lt; n) {
+		num += num &lt; m ? num : m;
+        /*
+		if (num &lt; m) {
+			num += num;
+		}
+		else {
+			num += m;
+		}
+		count++;
+		*/
+		count++;
+	}
+	return count;
+}
+
+int main()
+{
+	cout&lt;&lt;sil(3, 20, 1)&lt;&lt;endl&lt;&lt;sil(5, 100, 1);
+	return 0;
+}
 </code></pre>
 
             </div>
@@ -685,7 +685,7 @@ public:
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://sakuratears.cn/post/er-cha-shu-zhong-de-zui-da-lu-jing-he-er-cha-shu/" title="二叉树中的最大路径和(二叉树)(DFS)">https://sakuratears.cn/post/er-cha-shu-zhong-de-zui-da-lu-jing-he-er-cha-shu/</a>
+      <a href="https://sakuratears.cn/post/qie-fen-mu-bang-dfsbfs/" title="切分木棒(DFS)(BFS)">https://sakuratears.cn/post/qie-fen-mu-bang-dfsbfs/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -694,11 +694,7 @@ public:
   </ul>
   <div class="tags">
     
-      <a href="https://sakuratears.cn/tag/gRTjYccGN/"># 二叉树</a>
-    
       <a href="https://sakuratears.cn/tag/ssMjTlXf4/"># 搜索</a>
-    
-      <a href="https://sakuratears.cn/tag/TN0UiB8Cf/"># LeetCode</a>
     
       <a href="https://sakuratears.cn/tag/e0ZtA0F1A/"># 算法</a>
     
@@ -706,15 +702,11 @@ public:
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="平衡二叉树(二叉树)" href="https://sakuratears.cn/post/ping-heng-er-cha-shu-er-cha-shu/">平衡二叉树(二叉树)</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="平衡二叉树(二叉树)" href="https://sakuratears.cn/post/ping-heng-er-cha-shu-er-cha-shu/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="杨辉三角(数组)" href="https://sakuratears.cn/post/yang-hui-san-jiao/">杨辉三角(数组)</a>
-        <a class="nav-mobile-next" title="杨辉三角(数组)" href="https://sakuratears.cn/post/yang-hui-san-jiao/">下一篇</a>
+        <a class="nav-pc-next" title="LeetCode 387. 字符串中的第一个唯一字符(哈希表)" href="https://sakuratears.cn/post/leetcode-387-zi-fu-chuan-zhong-de-di-yi-ge-wei-yi-zi-fu-ha-xi-biao/">LeetCode 387. 字符串中的第一个唯一字符(哈希表)</a>
+        <a class="nav-mobile-next" title="LeetCode 387. 字符串中的第一个唯一字符(哈希表)" href="https://sakuratears.cn/post/leetcode-387-zi-fu-chuan-zhong-de-di-yi-ge-wei-yi-zi-fu-ha-xi-biao/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
