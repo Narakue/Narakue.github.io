@@ -8,7 +8,7 @@
 <meta name="keywords" content="name=&#34;baidu-site-verification&#34; content=&#34;code-A1cWhYOwgT&#34; ">
 <meta name="description" content="努力不一定成功，但不努力一定很轻松">
 <meta name="theme-color" content="#000">
-<title>N皇后(回溯) | SakuraTears</title>
+<title>堆排序(排序) | SakuraTears</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1608896997725">
 <link rel="stylesheet" href="/media/css/mist.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -39,8 +39,8 @@
 
 
 
-  <meta name="description" content="N皇后(回溯)" />
-  <meta name="keywords" content="回溯,LeetCode,算法" />
+  <meta name="description" content="堆排序(排序)" />
+  <meta name="keywords" content="数据结构,排序" />
 </head>
 
 <body>
@@ -208,7 +208,8 @@
       <div class="sidebar-body mist" id="sidebar_body">
         
           
-            
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper ">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -269,6 +270,203 @@
 
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper  auto"
+    id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E5%AE%9A%E4%B9%89">定义</a></li>
+<li><a href="#%E6%A6%82%E8%BF%B0">概述</a></li>
+<li><a href="#%E5%A0%86%E8%8A%82%E7%82%B9%E7%9A%84%E8%AE%BF%E9%97%AE">堆节点的访问</a></li>
+<li><a href="#%E6%93%8D%E4%BD%9C">操作</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0">代码实现</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
+  let active = 'active-show', activeClass = 'active-current';
+  let tocWrapper = document.querySelector('#toc_wrapper');
+  let tocContent = tocWrapper.children[0];
+  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
+
+  function addTocNumber(elem, deep) {
+    if (!elem) {
+      return;
+    }
+    let prop = elem.__proto__;
+
+    if (prop === HTMLUListElement.prototype) {
+      for (let i = 0; i < elem.children.length; i++) {
+        addTocNumber(elem.children[i], deep + (i + 1) + '.');
+      }
+    } else if (prop === HTMLLIElement.prototype) {
+      // 保存li元素
+      if (elem.children[0] && elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+        lList.push(elem);
+      }
+      for (let i = 0; i < elem.children.length; i++) {
+        let cur = elem.children[i];
+        if (cur.__proto__ === HTMLAnchorElement.prototype) {
+          if (autoNumber) {
+            cur.text = deep + ' ' + cur.text;
+          }
+        } else if (cur.__proto__ === HTMLUListElement.prototype) {
+          addTocNumber(cur, deep);
+        }
+      }
+    }
+  }
+
+  function removeParentActiveClass() {
+    let parents = tocContent.querySelectorAll('.' + active)
+    parents.forEach(function (elem) {
+      elem.classList.remove(active);
+    });
+  }
+
+  function addActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.add(activeClass);
+    }
+  }
+
+  function removeActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.remove(activeClass);
+    }
+  }
+
+  function addActiveLiElemment(elem, parent) {
+    if (!elem || elem === parent) {
+      return;
+    } else {
+      if (elem.__proto__ === HTMLLIElement.prototype) {
+        elem.classList.add(active);
+      }
+      addActiveLiElemment(elem.parentElement, parent);
+    }
+  }
+
+  function showToc() {
+    if (tocWrapper) {
+      postBody = document.querySelector('#post_body');
+      for (let i = 0; i < postBody.children.length; i++) {
+        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+          hList.push(postBody.children[i]);
+        }
+      }
+      if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+      } else if (tocWrapper.classList.contains('no_compress')) {
+        tocContent.classList.add('expanded');
+      } else {
+        if (hList.length > 10) {
+          active = 'active-hidden'
+          tocContent.classList.add('closed');
+        } else {
+          tocContent.classList.add('expanded');
+        }
+      }
+    }
+  }
+
+  (function () {
+    // 处理不是从#一级标题开始目录
+    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+      let con = tocContent.children[0].children[0];
+      tocContent.innerHTML = con.innerHTML;
+    }
+    let markdownItTOC = document.querySelector('.markdownIt-TOC');
+    let innerHeight = window.innerHeight;
+    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
+    addTocNumber(tocContent, '');
+  })();
+
+  document.addEventListener('scroll', function (e) {
+    if (lList.length <= 0) {
+      return;
+    }
+    let scrollTop = document.scrollingElement.scrollTop + 10;
+    let dir;
+
+    if (lastTop - scrollTop > 0) {
+      dir = 'up';
+    } else {
+      dir = 'down';
+    }
+
+    lastTop = scrollTop;
+    if (scrollTop <= 0) {
+      if (lastIndex >= 0 && lastIndex < hList.length) {
+        lList[lastIndex].classList.remove(activeClass);
+      }
+      return;
+    }
+
+    let current = 0, hasFind = false;
+    for (let i = 0; i < hList.length; i++) {
+      if (hList[i].offsetTop > scrollTop) {
+        current = i;
+        hasFind = true;
+        break;
+      }
+    }
+    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+      current = hList.length - 1;
+    } else {
+      current--;
+    }
+    if (dir === 'down') {
+      if (current > lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex)
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    } else {
+      if (current < lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex);
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    }
+  });
+
+
+  window.addEventListener('load', function () {
+    showToc();
+    document.querySelector('#sidebar').style = 'display: block;';
+    tocWrapper.classList.add('toc-active');
+    setTimeout(function () {
+      if ("createEvent" in document) {
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("scroll", false, true);
+        document.dispatchEvent(evt);
+      }
+      else {
+        document.fireEvent("scroll");
+      }
+    }, 500)
+  })
+
+</script>
+            </div>
           
         
       </div>
@@ -356,8 +554,8 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://sakuratears.cn/post/n-huang-hou/">
-      N皇后(回溯)
+    <a class="post-title-link" href="https://sakuratears.cn/post/dui-pai-xu/">
+      堆排序(排序)
     </a>
   </h1>
   <div class="post-meta">
@@ -365,7 +563,7 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-11-06 08:56:46">2020/11/06</span>
+      <span class="publish-time" data-t="2020-12-25 18:02:22">2020/12/25</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -374,20 +572,14 @@
       <span class="pc-show language" data-lan="category-in">分类于</span>
       
       
-      <a href="https://sakuratears.cn/tag/Deq-x4lY4/">
-        <span>回溯</span>
+      <a href="https://sakuratears.cn/tag/paeI_AUuZ/">
+        <span>数据结构</span>
       </a>、
       
       
       
-      <a href="https://sakuratears.cn/tag/TN0UiB8Cf/">
-        <span>LeetCode</span>
-      </a>、
-      
-      
-      
-      <a href="https://sakuratears.cn/tag/e0ZtA0F1A/">
-        <span>算法</span>
+      <a href="https://sakuratears.cn/tag/k8BNlgjE1/">
+        <span>排序</span>
       </a>
       
       
@@ -396,17 +588,17 @@
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>3<span class="language" data-lan="minute">分钟</span></span>
+      <span>4<span class="language" data-lan="minute">分钟</span></span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>434<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>746<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
     
     
-    <span id="/post/n-huang-hou/" data-flag-title="N皇后(回溯)" class="meta-item pc-show leancloud_visitors">
+    <span id="/post/dui-pai-xu/" data-flag-title="堆排序(排序)" class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-eye"></i>
       <span><span class="language" data-lan="view">浏览量</span>：<span class="leancloud-visitors-count"></span></span>
@@ -415,102 +607,92 @@
   </div>
 </section>
             <div class="post-body next-md-body" id="post_body">
-              <p>n 皇后问题研究的是如何将 n 个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。</p>
-<!-- more -->
-<p><img src="https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/8-queens.png" alt="图" loading="lazy"><br><br></p>
-<p>上图为 8 皇后问题的一种解法。<br><br></p>
-<p>给定一个整数 n，返回所有不同的 n 皇后问题的解决方案。<br><br></p>
-<p>每一种解法包含一个明确的 n 皇后问题的棋子放置方案，该方案中 'Q' 和 '.' 分别代表了皇后和空位。<br><br></p>
-<p></p>
-<p>示例：<br><br></p>
-<p>输入：4<br>
-输出：[<br>
-[&quot;.Q..&quot;,  // 解法 1<br>
-&quot;...Q&quot;,<br>
-&quot;Q...&quot;,<br>
-&quot;..Q.&quot;],<br><br></p>
-<p>[&quot;..Q.&quot;,  // 解法 2<br>
-&quot;Q...&quot;,<br>
-&quot;...Q&quot;,<br>
-&quot;.Q..&quot;]<br>
-]<br>
-解释: 4 皇后问题存在两个不同的解法。<br><br></p>
-<p>提示：<br><br></p>
-<p>皇后彼此不能相互攻击，也就是说：任何两个皇后都不能处于同一条横行、纵行或斜线上。<br><br></p>
-<p>来源：力扣（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/n-queens<br><br></p>
-<p>经典回溯+递归问题，当发现这种情况不行时就回溯到之前的点。<br><br></p>
-<p>代码：</p>
-<pre><code class="language-C++">class Solution {
-public:
-    int col[12] = {};//将合适的皇后行数放入数组中
-    vector&lt;vector&lt;string&gt;&gt; arr;
-    vector&lt;string&gt; brr;
-    char crr[100][100];
-    int cnumber = 0;
-    int num, number = 0, jud = 0, tot = 0;
-    bool check(int c, int r)
-    {
-        int i = 0;
-        for (i = 0; i &lt; r; i++)
-        {
-            if (col[i] == c || (abs(col[i] - c) == abs(i - r)))
-                return false;
-        }
-        return true;
-    }
+              <h3 id="定义">定义</h3>
+<p><strong>堆排序</strong>：是指利用堆这种数据结构所设计的一种排序算法。堆是一个近似完全二叉树的结构，并同时满足堆的性质：即子节点的键值或索引总是小于（或者大于）它的父节点。</p>
+<h3 id="概述">概述</h3>
+<p>若以升序排序说明，把数组转换成最大堆(Max-Heap Heap)，这是一种满足最大堆性质(Max-Heap Property)的二叉树：对于除了根之外的每个节点i, A[parent(i)] ≥ A[i]。<br>
+重复从最大堆取出数值最大的结点(把根结点和最后一个结点交换，把交换后的最后一个结点移出堆)，并让残余的堆维持最大堆性质。</p>
+<h3 id="堆节点的访问">堆节点的访问</h3>
+<p>通常堆是通过一维数组来实现的。在数组起始位置为0的情形中：</p>
+<p>父节点i的左子节点在位置(2i + 1);<br>
+父节点i的右子节点在位置(2i + 2));<br>
+子节点i的父节点在位置(i - 1) / 2;</p>
+<h3 id="操作">操作</h3>
+<p>在堆的数据结构中，堆中的最大值总是位于根节点（在优先队列中使用堆的话堆中的最小值位于根节点）。堆中定义以下几种操作：</p>
+<ul>
+<li>最大堆调整（Max Heapify）：将堆的末端子节点作调整，使得子节点永远小于父节点</li>
+<li>创建最大堆（Build Max Heap）：将堆中的所有数据重新排序</li>
+<li>堆排序（HeapSort）：移除位在第一个数据的根节点，并做最大堆调整的递归运算</li>
+</ul>
+<h3 id="代码实现">代码实现</h3>
+<pre><code class="language-C++">#include &lt;malloc.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
 
-    void DFS(int r)
-    {
-        if (r == num)
-        {
-            string str = &quot;&quot;;
-            brr.clear();
-            for (int j = 0; j &lt; num; j++)
-            {
-                str = &quot;&quot;;
-                
-                for (int i = 0; i &lt; num; i++)
-                {
-                    if (crr[j][i] == 'Q')
-                        str += &quot;Q&quot;;
-                    else
-                        str += &quot;.&quot;;
-                }
-                brr.push_back(str);
-            }
-            arr.push_back(brr);
+void swap(int *a, int *b)
+{
+    int temp = *b;
+    *b = *a;
+    *a = temp;
+}
+
+void max_heapify(int arr[], int start, int end)
+{
+    // 建立父节点指标和子节点指标
+    int dad = start;
+    int son = dad * 2 + 1;
+    while (son &lt;= end)
+    {                                                  // 若子节点指标在范围内才做比较
+        if (son + 1 &lt;= end &amp;&amp; arr[son] &lt; arr[son + 1]) // 先比较两个子节点大小，选择最大的
+            son++;
+        if (arr[dad] &gt; arr[son]) //如果父节点大于子节点代表调整完毕，直接跳出函数
             return;
-        }
-        for (int c = 0; c &lt; num; c++)
-        {
-            if (check(c, r) == true)
-            {
-                col[r] = c;
-                int i = 0;
-                while (i &lt; num)
-                {
-                    if (i == c)
-                    {
-                        crr[r][i] = 'Q';
-                    }
-                    else
-                        crr[r][i] = '.';
-                    i++;
-                }
-                DFS(r + 1);
-            }
+        else
+        { // 否则交换父子内容再继续子节点和孙节点比较
+            swap(&amp;arr[dad], &amp;arr[son]);
+            dad = son;
+            son = dad * 2 + 1;
         }
     }
+}
 
-    vector&lt;vector&lt;string&gt;&gt; solveNQueens(int n)
+void heap_sort(int arr[], int len)
+{
+    int i;
+    // 初始化，i从最后一个父节点开始调整
+    for (i = len / 2 - 1; i &gt;= 0; i--)
+        max_heapify(arr, i, len - 1);
+    // 先将第一个元素和已排好元素前一位做交换，再重新调整，直到排序完毕
+    for (i = len - 1; i &gt; 0; i--)
     {
-        num = n;
-        DFS(0);
-        return arr;
+        swap(&amp;arr[0], &amp;arr[i]);
+        max_heapify(arr, 0, i - 1);
     }
-};
+}
+
+int main()
+{
+    // int arr[] = {9, 10, 5, 11, 12, 7};
+    // int len = (int)sizeof(arr) / sizeof(*arr);
+
+    int len;
+    printf(&quot;输入数组长度&quot;);
+    scanf(&quot;%d&quot;, &amp;len);
+    int *arr = (int *)malloc(sizeof(int) * len);
+    printf(&quot;输入数组：&quot;);
+    for (int i = 0; i &lt; len; i++)
+    {
+        scanf(&quot;%d&quot;, &amp;arr[i]);
+    }
+    heap_sort(arr, len);
+    int i;
+    for (i = 0; i &lt; len; i++)
+        printf(&quot;%d &quot;, arr[i]);
+    printf(&quot;\n&quot;);
+    return 0;
+}
 </code></pre>
+<p>(来自：维基百科)</p>
 
             </div>
             
@@ -523,7 +705,7 @@ public:
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://sakuratears.cn/post/n-huang-hou/" title="N皇后(回溯)">https://sakuratears.cn/post/n-huang-hou/</a>
+      <a href="https://sakuratears.cn/post/dui-pai-xu/" title="堆排序(排序)">https://sakuratears.cn/post/dui-pai-xu/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -532,25 +714,19 @@ public:
   </ul>
   <div class="tags">
     
-      <a href="https://sakuratears.cn/tag/Deq-x4lY4/"># 回溯</a>
+      <a href="https://sakuratears.cn/tag/paeI_AUuZ/"># 数据结构</a>
     
-      <a href="https://sakuratears.cn/tag/TN0UiB8Cf/"># LeetCode</a>
-    
-      <a href="https://sakuratears.cn/tag/e0ZtA0F1A/"># 算法</a>
+      <a href="https://sakuratears.cn/tag/k8BNlgjE1/"># 排序</a>
     
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="C/C++如何传递二维数组？" href="https://sakuratears.cn/post/ccru-he-chuan-di-er-wei-shu-zu/">C/C++如何传递二维数组？</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="C/C++如何传递二维数组？" href="https://sakuratears.cn/post/ccru-he-chuan-di-er-wei-shu-zu/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="水域大小（DFS）（BFS）" href="https://sakuratears.cn/post/shui-yu-da-xiao-dfsbfs/">水域大小（DFS）（BFS）</a>
-        <a class="nav-mobile-next" title="水域大小（DFS）（BFS）" href="https://sakuratears.cn/post/shui-yu-da-xiao-dfsbfs/">下一篇</a>
+        <a class="nav-pc-next" title="LeetCode 455. 分发饼干(贪心)" href="https://sakuratears.cn/post/leetcode-455-fen-fa-bing-gan-tan-xin/">LeetCode 455. 分发饼干(贪心)</a>
+        <a class="nav-mobile-next" title="LeetCode 455. 分发饼干(贪心)" href="https://sakuratears.cn/post/leetcode-455-fen-fa-bing-gan-tan-xin/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>

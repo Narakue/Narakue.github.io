@@ -9,7 +9,7 @@
 <meta name="description" content="努力不一定成功，但不努力一定很轻松">
 <meta name="theme-color" content="#000">
 <title>整数反转(数组) | SakuraTears</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1608887401148">
+<link rel="shortcut icon" href="/favicon.ico?v=1608896997725">
 <link rel="stylesheet" href="/media/css/mist.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -226,7 +226,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">54</span>
+        <span class="site-item-stat-count">55</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -1767,6 +1767,97 @@ public:
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://sakuratears.cn/post/dui-pai-xu/"" data-c="
+          &lt;h3 id=&#34;定义&#34;&gt;定义&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;堆排序&lt;/strong&gt;：是指利用堆这种数据结构所设计的一种排序算法。堆是一个近似完全二叉树的结构，并同时满足堆的性质：即子节点的键值或索引总是小于（或者大于）它的父节点。&lt;/p&gt;
+&lt;h3 id=&#34;概述&#34;&gt;概述&lt;/h3&gt;
+&lt;p&gt;若以升序排序说明，把数组转换成最大堆(Max-Heap Heap)，这是一种满足最大堆性质(Max-Heap Property)的二叉树：对于除了根之外的每个节点i, A[parent(i)] ≥ A[i]。&lt;br&gt;
+重复从最大堆取出数值最大的结点(把根结点和最后一个结点交换，把交换后的最后一个结点移出堆)，并让残余的堆维持最大堆性质。&lt;/p&gt;
+&lt;h3 id=&#34;堆节点的访问&#34;&gt;堆节点的访问&lt;/h3&gt;
+&lt;p&gt;通常堆是通过一维数组来实现的。在数组起始位置为0的情形中：&lt;/p&gt;
+&lt;p&gt;父节点i的左子节点在位置(2i + 1);&lt;br&gt;
+父节点i的右子节点在位置(2i + 2));&lt;br&gt;
+子节点i的父节点在位置(i - 1) / 2;&lt;/p&gt;
+&lt;h3 id=&#34;操作&#34;&gt;操作&lt;/h3&gt;
+&lt;p&gt;在堆的数据结构中，堆中的最大值总是位于根节点（在优先队列中使用堆的话堆中的最小值位于根节点）。堆中定义以下几种操作：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;最大堆调整（Max Heapify）：将堆的末端子节点作调整，使得子节点永远小于父节点&lt;/li&gt;
+&lt;li&gt;创建最大堆（Build Max Heap）：将堆中的所有数据重新排序&lt;/li&gt;
+&lt;li&gt;堆排序（HeapSort）：移除位在第一个数据的根节点，并做最大堆调整的递归运算&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;代码实现&#34;&gt;代码实现&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;malloc.h&amp;gt;
+#include &amp;lt;stdio.h&amp;gt;
+#include &amp;lt;stdlib.h&amp;gt;
+
+void swap(int *a, int *b)
+{
+    int temp = *b;
+    *b = *a;
+    *a = temp;
+}
+
+void max_heapify(int arr[], int start, int end)
+{
+    // 建立父节点指标和子节点指标
+    int dad = start;
+    int son = dad * 2 + 1;
+    while (son &amp;lt;= end)
+    {                                                  // 若子节点指标在范围内才做比较
+        if (son + 1 &amp;lt;= end &amp;amp;&amp;amp; arr[son] &amp;lt; arr[son + 1]) // 先比较两个子节点大小，选择最大的
+            son++;
+        if (arr[dad] &amp;gt; arr[son]) //如果父节点大于子节点代表调整完毕，直接跳出函数
+            return;
+        else
+        { // 否则交换父子内容再继续子节点和孙节点比较
+            swap(&amp;amp;arr[dad], &amp;amp;arr[son]);
+            dad = son;
+            son = dad * 2 + 1;
+        }
+    }
+}
+
+void heap_sort(int arr[], int len)
+{
+    int i;
+    // 初始化，i从最后一个父节点开始调整
+    for (i = len / 2 - 1; i &amp;gt;= 0; i--)
+        max_heapify(arr, i, len - 1);
+    // 先将第一个元素和已排好元素前一位做交换，再重新调整，直到排序完毕
+    for (i = len - 1; i &amp;gt; 0; i--)
+    {
+        swap(&amp;amp;arr[0], &amp;amp;arr[i]);
+        max_heapify(arr, 0, i - 1);
+    }
+}
+
+int main()
+{
+    // int arr[] = {9, 10, 5, 11, 12, 7};
+    // int len = (int)sizeof(arr) / sizeof(*arr);
+
+    int len;
+    printf(&amp;quot;输入数组长度&amp;quot;);
+    scanf(&amp;quot;%d&amp;quot;, &amp;amp;len);
+    int *arr = (int *)malloc(sizeof(int) * len);
+    printf(&amp;quot;输入数组：&amp;quot;);
+    for (int i = 0; i &amp;lt; len; i++)
+    {
+        scanf(&amp;quot;%d&amp;quot;, &amp;amp;arr[i]);
+    }
+    heap_sort(arr, len);
+    int i;
+    for (i = 0; i &amp;lt; len; i++)
+        printf(&amp;quot;%d &amp;quot;, arr[i]);
+    printf(&amp;quot;\n&amp;quot;);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;(来自：维基百科)&lt;/p&gt;
+">堆排序(排序)</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://sakuratears.cn/post/leetcode-455-fen-fa-bing-gan-tan-xin/"" data-c="
@@ -5105,6 +5196,8 @@ blacklist snd_pcsp
 一边吃饼干一遍做分发饼干😏&lt;br&gt;
 题不难，没注意题目要求饼干有数量限制WA一发，想到了给的数组不一定是有序的，但是忘了排序了WA一发，正确率又被我愚蠢的拉低了&lt;br&gt;
 &lt;img src=&#34;https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/chrome_nJyTuhCxCc.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;p&gt;学习一下爬虫，有道的反爬虫确实有意思，改url能用但是翻译效果很差，用js根据时间生成标签，真不戳啊&lt;br&gt;
+学习一下堆排序看懂代码&lt;/p&gt;
 &lt;h3 id=&#34;1224&#34;&gt;12/24&lt;/h3&gt;
 &lt;p&gt;看了眼leetcode的跨年任务：切分木棒，递归完成，不太熟练&lt;br&gt;
 做题：分发糖果&lt;br&gt;

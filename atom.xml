@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-12-25T09:10:08.361Z</updated>
+    <updated>2020-12-25T11:50:06.044Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -10,6 +10,100 @@
     <logo>https://sakuratears.cn/images/avatar.png</logo>
     <icon>https://sakuratears.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, SakuraTears</rights>
+    <entry>
+        <title type="html"><![CDATA[堆排序(排序)]]></title>
+        <id>https://sakuratears.cn/post/dui-pai-xu/</id>
+        <link href="https://sakuratears.cn/post/dui-pai-xu/">
+        </link>
+        <updated>2020-12-25T10:02:22.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="定义">定义</h3>
+<p><strong>堆排序</strong>：是指利用堆这种数据结构所设计的一种排序算法。堆是一个近似完全二叉树的结构，并同时满足堆的性质：即子节点的键值或索引总是小于（或者大于）它的父节点。</p>
+<h3 id="概述">概述</h3>
+<p>若以升序排序说明，把数组转换成最大堆(Max-Heap Heap)，这是一种满足最大堆性质(Max-Heap Property)的二叉树：对于除了根之外的每个节点i, A[parent(i)] ≥ A[i]。<br>
+重复从最大堆取出数值最大的结点(把根结点和最后一个结点交换，把交换后的最后一个结点移出堆)，并让残余的堆维持最大堆性质。</p>
+<h3 id="堆节点的访问">堆节点的访问</h3>
+<p>通常堆是通过一维数组来实现的。在数组起始位置为0的情形中：</p>
+<p>父节点i的左子节点在位置(2i + 1);<br>
+父节点i的右子节点在位置(2i + 2));<br>
+子节点i的父节点在位置(i - 1) / 2;</p>
+<h3 id="操作">操作</h3>
+<p>在堆的数据结构中，堆中的最大值总是位于根节点（在优先队列中使用堆的话堆中的最小值位于根节点）。堆中定义以下几种操作：</p>
+<ul>
+<li>最大堆调整（Max Heapify）：将堆的末端子节点作调整，使得子节点永远小于父节点</li>
+<li>创建最大堆（Build Max Heap）：将堆中的所有数据重新排序</li>
+<li>堆排序（HeapSort）：移除位在第一个数据的根节点，并做最大堆调整的递归运算</li>
+</ul>
+<h3 id="代码实现">代码实现</h3>
+<pre><code class="language-C++">#include &lt;malloc.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+void swap(int *a, int *b)
+{
+    int temp = *b;
+    *b = *a;
+    *a = temp;
+}
+
+void max_heapify(int arr[], int start, int end)
+{
+    // 建立父节点指标和子节点指标
+    int dad = start;
+    int son = dad * 2 + 1;
+    while (son &lt;= end)
+    {                                                  // 若子节点指标在范围内才做比较
+        if (son + 1 &lt;= end &amp;&amp; arr[son] &lt; arr[son + 1]) // 先比较两个子节点大小，选择最大的
+            son++;
+        if (arr[dad] &gt; arr[son]) //如果父节点大于子节点代表调整完毕，直接跳出函数
+            return;
+        else
+        { // 否则交换父子内容再继续子节点和孙节点比较
+            swap(&amp;arr[dad], &amp;arr[son]);
+            dad = son;
+            son = dad * 2 + 1;
+        }
+    }
+}
+
+void heap_sort(int arr[], int len)
+{
+    int i;
+    // 初始化，i从最后一个父节点开始调整
+    for (i = len / 2 - 1; i &gt;= 0; i--)
+        max_heapify(arr, i, len - 1);
+    // 先将第一个元素和已排好元素前一位做交换，再重新调整，直到排序完毕
+    for (i = len - 1; i &gt; 0; i--)
+    {
+        swap(&amp;arr[0], &amp;arr[i]);
+        max_heapify(arr, 0, i - 1);
+    }
+}
+
+int main()
+{
+    // int arr[] = {9, 10, 5, 11, 12, 7};
+    // int len = (int)sizeof(arr) / sizeof(*arr);
+
+    int len;
+    printf(&quot;输入数组长度&quot;);
+    scanf(&quot;%d&quot;, &amp;len);
+    int *arr = (int *)malloc(sizeof(int) * len);
+    printf(&quot;输入数组：&quot;);
+    for (int i = 0; i &lt; len; i++)
+    {
+        scanf(&quot;%d&quot;, &amp;arr[i]);
+    }
+    heap_sort(arr, len);
+    int i;
+    for (i = 0; i &lt; len; i++)
+        printf(&quot;%d &quot;, arr[i]);
+    printf(&quot;\n&quot;);
+    return 0;
+}
+</code></pre>
+<p>(来自：维基百科)</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[LeetCode 455. 分发饼干(贪心)]]></title>
         <id>https://sakuratears.cn/post/leetcode-455-fen-fa-bing-gan-tan-xin/</id>
@@ -1377,84 +1471,6 @@ ${$tep1}{\style{visibility:hidden}{(x+1)(x+1)}}
 </li>
 </ol>
 </section>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[找不同(位运算)(哈希表)]]></title>
-        <id>https://sakuratears.cn/post/zhao-bu-tong-wei-yun-suan-ha-xi-biao/</id>
-        <link href="https://sakuratears.cn/post/zhao-bu-tong-wei-yun-suan-ha-xi-biao/">
-        </link>
-        <updated>2020-12-18T09:38:22.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>给定两个字符串 s 和 t，它们只包含小写字母。<br>
-字符串 t 由字符串 s 随机重排，然后在随机位置添加一个字母。<br>
-请找出在 t 中被添加的字母。</p>
-]]></summary>
-        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>给定两个字符串 s 和 t，它们只包含小写字母。<br>
-字符串 t 由字符串 s 随机重排，然后在随机位置添加一个字母。<br>
-请找出在 t 中被添加的字母。</p>
-<!-- more -->
-<p></p>
-<p>示例 1：<br>
-输入：s = &quot;abcd&quot;, t = &quot;abcde&quot;<br>
-输出：&quot;e&quot;<br>
-解释：'e' 是那个被添加的字母。</p>
-<p>示例 2：<br>
-输入：s = &quot;&quot;, t = &quot;y&quot;<br>
-输出：&quot;y&quot;</p>
-<p>示例 3：<br>
-输入：s = &quot;a&quot;, t = &quot;aa&quot;<br>
-输出：&quot;a&quot;</p>
-<p>示例 4：<br>
-输入：s = &quot;ae&quot;, t = &quot;aea&quot;<br>
-输出：&quot;a&quot;<br>
- <br>
-提示：</p>
-<p>0 &lt;= s.length &lt;= 1000<br>
-t.length == s.length + 1<br>
-s 和 t 只包含小写字母</p>
-<p>来源：力扣（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/find-the-difference<br>
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<h3 id="思路">思路</h3>
-<h4 id="方法1位运算">方法1：位运算</h4>
-<p><sup>运算符：0与任何数ch做</sup>运算都是ch<br>
-相同字符异或为0</p>
-<p>因为t中的字符是s + ch，所以s与t做异或剩下的就是ch</p>
-<pre><code class="language-C++">class Solution {
-public:
-    char findTheDifference(string s, string t) {
-        char res = 0;
-        for(char c : s + t) {
-            res ^= c;
-        }
-        return res;
-    }
-};
-</code></pre>
-<h4 id="方法2哈希表">方法2：哈希表</h4>
-<p>把s中所有元素存到一个哈希表mpS里，t中所有元素存到一个哈希表mpT里<br>
-然后比较两个哈希表每个元素个数，不一样的就是题目所求</p>
-<pre><code class="language-C++">char findTheDifference(string s, string t) {
-        unordered_map&lt;char, int&gt; mpS;
-        unordered_map&lt;char, int&gt; mpT;
-        char ch;
-        for (auto ch : s) {
-            mpS[ch]++;
-        }
-        for (auto ch : t) {
-            mpT[ch]++;
-        }
-
-        for (ch = 'a'; ch &lt;= 'z'; ch++) {
-            if (mpS[ch] != mpT[ch]) {
-                return ch;
-            }
-        }
-        return ch;
-    }
-    ```</code></pre>
 ]]></content>
     </entry>
 </feed>
