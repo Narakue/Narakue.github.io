@@ -9,7 +9,7 @@
 <meta name="description" content="努力不一定成功，但不努力一定很轻松">
 <meta name="theme-color" content="#000">
 <title>二叉树的最小(最大)路径(二叉树) | SakuraTears</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1608809491313">
+<link rel="shortcut icon" href="/favicon.ico?v=1608887401148">
 <link rel="stylesheet" href="/media/css/mist.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -226,7 +226,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">53</span>
+        <span class="site-item-stat-count">54</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -1749,6 +1749,58 @@ public:
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://sakuratears.cn/post/leetcode-455-fen-fa-bing-gan-tan-xin/"" data-c="
+          &lt;h3 id=&#34;题目&#34;&gt;题目&lt;/h3&gt;
+&lt;p&gt;假设你是一位很棒的家长，想要给你的孩子们一些小饼干。但是，每个孩子最多只能给一块饼干。&lt;/p&gt;
+&lt;p&gt;对每个孩子 i，都有一个胃口值 g[i]，这是能让孩子们满足胃口的饼干的最小尺寸；并且每块饼干 j，都有一个尺寸 s[j] 。如果 s[j] &amp;gt;= g[i]，我们可以将这个饼干 j 分配给孩子 i ，这个孩子会得到满足。你的目标是尽可能满足越多数量的孩子，并输出这个最大数值。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;示例 1:&lt;br&gt;
+输入: g = [1,2,3], s = [1,1]&lt;br&gt;
+输出: 1&lt;br&gt;
+解释:&lt;br&gt;
+你有三个孩子和两块小饼干，3个孩子的胃口值分别是：1,2,3。&lt;br&gt;
+虽然你有两块小饼干，由于他们的尺寸都是1，你只能让胃口值是1的孩子满足。&lt;br&gt;
+所以你应该输出1。&lt;/p&gt;
+&lt;p&gt;示例 2:&lt;br&gt;
+输入: g = [1,2], s = [1,2,3]&lt;br&gt;
+输出: 2&lt;br&gt;
+解释:&lt;br&gt;
+你有两个孩子和三块小饼干，2个孩子的胃口值分别是1,2。&lt;br&gt;
+你拥有的饼干数量和尺寸都足以让所有孩子满足。&lt;br&gt;
+所以你应该输出2.&lt;br&gt;
+ &lt;br&gt;
+提示：&lt;/p&gt;
+&lt;p&gt;1 &amp;lt;= g.length &amp;lt;= 3 * 104&lt;br&gt;
+0 &amp;lt;= s.length &amp;lt;= 3 * 104&lt;br&gt;
+1 &amp;lt;= g[i], s[j] &amp;lt;= 231 - 1&lt;/p&gt;
+&lt;p&gt;来源：力扣（LeetCode）&lt;br&gt;
+链接：https://leetcode-cn.com/problems/assign-cookies&lt;br&gt;
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。&lt;/p&gt;
+&lt;h3 id=&#34;思路&#34;&gt;思路&lt;/h3&gt;
+&lt;p&gt;现将孩子胃口数组和饼干尺寸排序，然后遍历孩子胃口，如果孩子胃口大于当前饼干尺寸饼干尺寸指针后移直到当前孩子胃口小于等于当前饼干尺寸&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;class Solution {
+public:
+    int findContentChildren(vector&amp;lt;int&amp;gt;&amp;amp; g, vector&amp;lt;int&amp;gt;&amp;amp; s) {
+        sort(g.begin(), g.end());
+        sort(s.begin(), s.end());
+        int n = 0;
+        for (int i = 0, j = 0; i &amp;lt; g.size(); i++) {
+            while (j &amp;lt; s.size() &amp;amp;&amp;amp; g[i] &amp;gt; s[j]) {
+                j++;
+            }
+            if (j &amp;lt; s.size() &amp;amp;&amp;amp; g[i] &amp;lt;= s[j]) {
+                n++;
+                j++;
+            }
+        }
+        return n;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+">LeetCode 455. 分发饼干(贪心)</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://sakuratears.cn/post/leetcode-135-fen-fa-tang-guo-tan-xin/"" data-c="
@@ -5030,6 +5082,11 @@ blacklist snd_pcsp
         <a class="result-title" style="opacity: 0;" href="https://sakuratears.cn/post/ji-lu-xue-xi-de-ri-zi/"" data-c="
           &lt;!-- # 2020 --&gt;
 &lt;h2 id=&#34;12&#34;&gt;12&lt;/h2&gt;
+&lt;h3 id=&#34;1225&#34;&gt;12/25&lt;/h3&gt;
+&lt;p&gt;水题：分发饼干&lt;br&gt;
+一边吃饼干一遍做分发饼干😏&lt;br&gt;
+题不难，没注意题目要求饼干有数量限制WA一发，想到了给的数组不一定是有序的，但是忘了排序了WA一发，正确率又被我愚蠢的拉低了&lt;br&gt;
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/chrome_nJyTuhCxCc.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;1224&#34;&gt;12/24&lt;/h3&gt;
 &lt;p&gt;看了眼leetcode的跨年任务：切分木棒，递归完成，不太熟练&lt;br&gt;
 做题：分发糖果&lt;br&gt;
