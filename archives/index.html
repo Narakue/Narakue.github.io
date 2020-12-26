@@ -9,7 +9,7 @@
 <meta name="description" content="努力不一定成功，但不努力一定很轻松">
 <meta name="theme-color" content="#000">
 <title>SakuraTears</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1608896997725">
+<link rel="shortcut icon" href="/favicon.ico?v=1608963609514">
 <link rel="stylesheet" href="/media/css/mist.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -209,7 +209,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">55</span>
+        <span class="site-item-stat-count">56</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -276,7 +276,7 @@
   <div class="archive-timeline-box">
     <div class="archive-timeline-title">
       
-        <h2 class="language" data-lan="archives" data-count="55">非常好！目前共计55篇日志，继续努力！</h2>
+        <h2 class="language" data-lan="archives" data-count="56">非常好！目前共计56篇日志，继续努力！</h2>
       
     </div>
     
@@ -286,6 +286,19 @@
           <h2 class="tag-year">2020</h2>
         </div>    
         
+      
+      <a href="https://sakuratears.cn/post/leetcode-13-luo-ma-shu-zi-zhuan-zheng-shu-tan-xin/">
+        <div class="motion-warpper tag-archive-node">
+          <div class="tag-node">
+            <h1>
+              12/26
+              <small>LeetCode 13. 罗马数字转整数(贪心)</small>
+            </h1>
+          </div>  
+      </div>
+      </a>
+    
+      
       
       <a href="https://sakuratears.cn/post/dui-pai-xu/">
         <div class="motion-warpper tag-archive-node">
@@ -917,19 +930,6 @@
             <h1>
               10/23
               <small>归并排序</small>
-            </h1>
-          </div>  
-      </div>
-      </a>
-    
-      
-      
-      <a href="https://sakuratears.cn/post/fu-jin-zhi/">
-        <div class="motion-warpper tag-archive-node">
-          <div class="tag-node">
-            <h1>
-              10/23
-              <small>负进制</small>
             </h1>
           </div>  
       </div>
@@ -1744,6 +1744,90 @@
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://sakuratears.cn/post/leetcode-13-luo-ma-shu-zi-zhuan-zheng-shu-tan-xin/"" data-c="
+          &lt;h3 id=&#34;题目&#34;&gt;题目&lt;/h3&gt;
+&lt;p&gt;罗马数字包含以下七种字符: I， V， X， L，C，D 和 M。&lt;/p&gt;
+&lt;p&gt;字符          数值&lt;br&gt;
+I             1&lt;br&gt;
+V             5&lt;br&gt;
+X             10&lt;br&gt;
+L             50&lt;br&gt;
+C             100&lt;br&gt;
+D             500&lt;br&gt;
+M             1000&lt;br&gt;
+例如， 罗马数字 2 写做 II ，即为两个并列的 1。12 写做 XII ，即为 X + II 。 27 写做  XXVII, 即为 XX + V + II 。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做 IIII，而是 IV。数字 1 在数字 5 的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为 IX。这个特殊的规则只适用于以下六种情况：&lt;/p&gt;
+&lt;p&gt;I 可以放在 V (5) 和 X (10) 的左边，来表示 4 和 9。&lt;br&gt;
+X 可以放在 L (50) 和 C (100) 的左边，来表示 40 和 90。 &lt;br&gt;
+C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。&lt;br&gt;
+给定一个罗马数字，将其转换成整数。输入确保在 1 到 3999 的范围内。&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;示例 1:&lt;/p&gt;
+&lt;p&gt;输入: &amp;quot;III&amp;quot;&lt;br&gt;
+输出: 3&lt;br&gt;
+示例 2:&lt;/p&gt;
+&lt;p&gt;输入: &amp;quot;IV&amp;quot;&lt;br&gt;
+输出: 4&lt;br&gt;
+示例 3:&lt;/p&gt;
+&lt;p&gt;输入: &amp;quot;IX&amp;quot;&lt;br&gt;
+输出: 9&lt;br&gt;
+示例 4:&lt;/p&gt;
+&lt;p&gt;输入: &amp;quot;LVIII&amp;quot;&lt;br&gt;
+输出: 58&lt;br&gt;
+解释: L = 50, V= 5, III = 3.&lt;br&gt;
+示例 5:&lt;/p&gt;
+&lt;p&gt;输入: &amp;quot;MCMXCIV&amp;quot;&lt;br&gt;
+输出: 1994&lt;br&gt;
+解释: M = 1000, CM = 900, XC = 90, IV = 4.&lt;/p&gt;
+&lt;p&gt;提示：&lt;/p&gt;
+&lt;p&gt;题目所给测试用例皆符合罗马数字书写规则，不会出现跨位等情况。&lt;br&gt;
+IC 和 IM 这样的例子并不符合题目要求，49 应该写作 XLIX，999 应该写作 CMXCIX 。&lt;br&gt;
+关于罗马数字的详尽书写规则，可以参考 罗马数字 - Mathematics 。&lt;/p&gt;
+&lt;p&gt;来源：力扣（LeetCode）&lt;br&gt;
+链接：https://leetcode-cn.com/problems/roman-to-integer&lt;br&gt;
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。&lt;/p&gt;
+&lt;h3 id=&#34;思路&#34;&gt;思路&lt;/h3&gt;
+&lt;p&gt;把罗马数字对应的整数存放到一个数组里，对s从头遍历，如果s[i] != reps[j][0]则j++，因为reps是字符串而且要判断的是首字母，所以是reps[j][0]。当s[i] == reps[j][0]时，还需要判断是不是特殊情况比如：四对应的IV，是对应的IX&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;if (reps[j].size() &amp;gt; 1)&lt;/code&gt;则说明reps当前对应的字符串属于特殊情况，&lt;code&gt;if (i &amp;lt; s.size() - 1 &amp;amp;&amp;amp; s[i + 1] == reps[j][1])&lt;/code&gt;说明s当前对应的数字与reps当前对应的数字相匹配，因为一个数占了两个字符所以要i++，j++。再把num累加。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;if (i &amp;lt; s.size() - 1 &amp;amp;&amp;amp; s[i + 1] == reps[j][1])&lt;/code&gt;不满足的情况有可能为s对应IV，reps对应IX，这样虽然前面的I相同但是后面的字符不相同，这种情况就让i不动（因为每次循环结束都会i++，所以先i--），j往后挪一个。&lt;/p&gt;
+&lt;p&gt;非特殊情况即&lt;code&gt;reps[j].size() &amp;lt;= 1&lt;/code&gt;直接将num累加即可&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;class Solution {
+public:
+    int romanToInt(string s) {
+        if (s.size() == 0) {
+            return 0;
+        }
+        int values[]= {1000,900,500,400,100,90,50,40,10,9,5,4,1};
+		string reps[]= {&amp;quot;M&amp;quot;,&amp;quot;CM&amp;quot;,&amp;quot;D&amp;quot;,&amp;quot;CD&amp;quot;,&amp;quot;C&amp;quot;,&amp;quot;XC&amp;quot;,&amp;quot;L&amp;quot;,&amp;quot;XL&amp;quot;,&amp;quot;X&amp;quot;,&amp;quot;IX&amp;quot;,&amp;quot;V&amp;quot;,&amp;quot;IV&amp;quot;,&amp;quot;I&amp;quot;};
+        int j = 0, num = 0;
+        for (int i = 0; i &amp;lt; s.size(); i++) {
+            while (s[i] != reps[j][0]) {
+                j++;
+            }
+            if (reps[j].size() &amp;gt; 1) {
+                if (i &amp;lt; s.size() - 1 &amp;amp;&amp;amp; s[i + 1] == reps[j][1]) {
+                    i++;
+                    num += values[j];
+                    j++;
+                }
+                else {
+                    i--;
+                    j++;
+                }
+            }
+            else {
+                num += values[j];
+            }
+        }
+        return num;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+">LeetCode 13. 罗马数字转整数(贪心)</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://sakuratears.cn/post/dui-pai-xu/"" data-c="
@@ -5168,6 +5252,9 @@ blacklist snd_pcsp
         <a class="result-title" style="opacity: 0;" href="https://sakuratears.cn/post/ji-lu-xue-xi-de-ri-zi/"" data-c="
           &lt;!-- # 2020 --&gt;
 &lt;h2 id=&#34;12&#34;&gt;12&lt;/h2&gt;
+&lt;h3 id=&#34;1226&#34;&gt;12/26&lt;/h3&gt;
+&lt;p&gt;水题：罗马数字转整数&lt;br&gt;
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/chrome_HywjVczLlI.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;1225&#34;&gt;12/25&lt;/h3&gt;
 &lt;p&gt;水题：分发饼干&lt;br&gt;
 一边吃饼干一遍做分发饼干😏&lt;br&gt;

@@ -8,7 +8,7 @@
 <meta name="keywords" content="name=&#34;baidu-site-verification&#34; content=&#34;code-A1cWhYOwgT&#34; ">
 <meta name="description" content="努力不一定成功，但不努力一定很轻松">
 <meta name="theme-color" content="#000">
-<title>四数之和（双指针） | SakuraTears</title>
+<title>LeetCode 13. 罗马数字转整数(贪心) | SakuraTears</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1608963609514">
 <link rel="stylesheet" href="/media/css/mist.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -39,8 +39,8 @@
 
 
 
-  <meta name="description" content="四数之和（双指针）" />
-  <meta name="keywords" content="双指针,LeetCode,算法" />
+  <meta name="description" content="LeetCode 13. 罗马数字转整数(贪心)" />
+  <meta name="keywords" content="贪心,LeetCode,算法" />
 </head>
 
 <body>
@@ -280,13 +280,8 @@
 <ul>
 <li>
 <ul>
-<li>
-<ul>
-<li><a href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0">题目描述：</a></li>
-<li><a href="#%E9%A2%98%E7%9B%AE%E5%88%86%E6%9E%90">题目分析</a></li>
-<li><a href="#%E4%BB%A3%E7%A0%81%E9%A2%98%E8%A7%A3">代码题解</a></li>
-</ul>
-</li>
+<li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
+<li><a href="#%E6%80%9D%E8%B7%AF">思路</a></li>
 </ul>
 </li>
 </ul>
@@ -556,8 +551,8 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://sakuratears.cn/post/si-shu-zhi-he/">
-      四数之和（双指针）
+    <a class="post-title-link" href="https://sakuratears.cn/post/leetcode-13-luo-ma-shu-zi-zhuan-zheng-shu-tan-xin/">
+      LeetCode 13. 罗马数字转整数(贪心)
     </a>
   </h1>
   <div class="post-meta">
@@ -565,7 +560,7 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-11-01 21:32:08">2020/11/01</span>
+      <span class="publish-time" data-t="2020-12-26 14:16:39">2020/12/26</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -574,8 +569,8 @@
       <span class="pc-show language" data-lan="category-in">分类于</span>
       
       
-      <a href="https://sakuratears.cn/tag/8QK8vw4-Q/">
-        <span>双指针</span>
+      <a href="https://sakuratears.cn/tag/-YQxfJklo/">
+        <span>贪心</span>
       </a>、
       
       
@@ -596,17 +591,17 @@
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>2<span class="language" data-lan="minute">分钟</span></span>
+      <span>4<span class="language" data-lan="minute">分钟</span></span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>404<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>844<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
     
     
-    <span id="/post/si-shu-zhi-he/" data-flag-title="四数之和（双指针）" class="meta-item pc-show leancloud_visitors">
+    <span id="/post/leetcode-13-luo-ma-shu-zi-zhuan-zheng-shu-tan-xin/" data-flag-title="LeetCode 13. 罗马数字转整数(贪心)" class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-eye"></i>
       <span><span class="language" data-lan="view">浏览量</span>：<span class="leancloud-visitors-count"></span></span>
@@ -615,68 +610,84 @@
   </div>
 </section>
             <div class="post-body next-md-body" id="post_body">
-              <h4 id="题目描述">题目描述：</h4>
-<p>给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。<br><br></p>
+              <h3 id="题目">题目</h3>
+<p>罗马数字包含以下七种字符: I， V， X， L，C，D 和 M。</p>
+<p>字符          数值<br>
+I             1<br>
+V             5<br>
+X             10<br>
+L             50<br>
+C             100<br>
+D             500<br>
+M             1000<br>
+例如， 罗马数字 2 写做 II ，即为两个并列的 1。12 写做 XII ，即为 X + II 。 27 写做  XXVII, 即为 XX + V + II 。</p>
 <!-- more -->
-<p>注意：</p>
-<p>答案中不可以包含重复的四元组。<br><br></p>
-<p>示例：</p>
-<p>给定数组 nums = [1, 0, -1, 0, -2, 2]，和 target = 0。</p>
-<p>满足要求的四元组集合为：<br>
-[<br>
-[-1,  0, 0, 1],<br>
-[-2, -1, 1, 2],<br>
-[-2,  0, 0, 2]<br>
-]<br><br></p>
-<p>来源：力扣18题（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/4sum<br><br></p>
-<h4 id="题目分析">题目分析</h4>
-<p>此题可以用双指针法解决，先用两个for循环i, j遍历前面，两个指针left, right收缩，当nums[i] + nums[j] + nums[left] + nums[right] == target 时，入数组，然后注意一下去重。（三数之和一个for循环，四数之和用两个，五数之和用三个......）<br><br></p>
-<h4 id="代码题解">代码题解</h4>
-<pre><code class="language-c++">vector&lt;vector&lt;int&gt;&gt; fourSum(vector&lt;int&gt; &amp;nums, int target)
-{
-    vector&lt;vector&lt;int&gt;&gt; re;
-    sort(nums.begin(), nums.end());
-    for (int i = 0; i &lt; nums.size(); i++)
-    {
-        if (i &gt; 0 &amp;&amp; nums[i] == nums[i - 1])//去重
-            continue;
-        for (int j = i + 1; j &lt; nums.size(); j++)
-        {
-            if (j &gt; i + 1 &amp;&amp; nums[j] == nums[j - 1])//去重
-                continue;
-            int left = j + 1;
-            int right = nums.size() - 1;
-            while (left &lt; right)
-            {
-                if (nums[i] + nums[j] + nums[left] + nums[right] &gt; target)
-                {
-                    right--;
+<p>通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做 IIII，而是 IV。数字 1 在数字 5 的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为 IX。这个特殊的规则只适用于以下六种情况：</p>
+<p>I 可以放在 V (5) 和 X (10) 的左边，来表示 4 和 9。<br>
+X 可以放在 L (50) 和 C (100) 的左边，来表示 40 和 90。 <br>
+C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。<br>
+给定一个罗马数字，将其转换成整数。输入确保在 1 到 3999 的范围内。</p>
+<p></p>
+<p>示例 1:</p>
+<p>输入: &quot;III&quot;<br>
+输出: 3<br>
+示例 2:</p>
+<p>输入: &quot;IV&quot;<br>
+输出: 4<br>
+示例 3:</p>
+<p>输入: &quot;IX&quot;<br>
+输出: 9<br>
+示例 4:</p>
+<p>输入: &quot;LVIII&quot;<br>
+输出: 58<br>
+解释: L = 50, V= 5, III = 3.<br>
+示例 5:</p>
+<p>输入: &quot;MCMXCIV&quot;<br>
+输出: 1994<br>
+解释: M = 1000, CM = 900, XC = 90, IV = 4.</p>
+<p>提示：</p>
+<p>题目所给测试用例皆符合罗马数字书写规则，不会出现跨位等情况。<br>
+IC 和 IM 这样的例子并不符合题目要求，49 应该写作 XLIX，999 应该写作 CMXCIX 。<br>
+关于罗马数字的详尽书写规则，可以参考 罗马数字 - Mathematics 。</p>
+<p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/roman-to-integer<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h3 id="思路">思路</h3>
+<p>把罗马数字对应的整数存放到一个数组里，对s从头遍历，如果s[i] != reps[j][0]则j++，因为reps是字符串而且要判断的是首字母，所以是reps[j][0]。当s[i] == reps[j][0]时，还需要判断是不是特殊情况比如：四对应的IV，是对应的IX</p>
+<p><code>if (reps[j].size() &gt; 1)</code>则说明reps当前对应的字符串属于特殊情况，<code>if (i &lt; s.size() - 1 &amp;&amp; s[i + 1] == reps[j][1])</code>说明s当前对应的数字与reps当前对应的数字相匹配，因为一个数占了两个字符所以要i++，j++。再把num累加。</p>
+<p><code>if (i &lt; s.size() - 1 &amp;&amp; s[i + 1] == reps[j][1])</code>不满足的情况有可能为s对应IV，reps对应IX，这样虽然前面的I相同但是后面的字符不相同，这种情况就让i不动（因为每次循环结束都会i++，所以先i--），j往后挪一个。</p>
+<p>非特殊情况即<code>reps[j].size() &lt;= 1</code>直接将num累加即可</p>
+<pre><code class="language-C++">class Solution {
+public:
+    int romanToInt(string s) {
+        if (s.size() == 0) {
+            return 0;
+        }
+        int values[]= {1000,900,500,400,100,90,50,40,10,9,5,4,1};
+		string reps[]= {&quot;M&quot;,&quot;CM&quot;,&quot;D&quot;,&quot;CD&quot;,&quot;C&quot;,&quot;XC&quot;,&quot;L&quot;,&quot;XL&quot;,&quot;X&quot;,&quot;IX&quot;,&quot;V&quot;,&quot;IV&quot;,&quot;I&quot;};
+        int j = 0, num = 0;
+        for (int i = 0; i &lt; s.size(); i++) {
+            while (s[i] != reps[j][0]) {
+                j++;
+            }
+            if (reps[j].size() &gt; 1) {
+                if (i &lt; s.size() - 1 &amp;&amp; s[i + 1] == reps[j][1]) {
+                    i++;
+                    num += values[j];
+                    j++;
                 }
-                else if (nums[i] + nums[j] + nums[left] + nums[right] &lt; target)
-                {
-                    left++;
-                }
-                else
-                {
-                    re.push_back(vector&lt;int&gt;{nums[i], nums[j], nums[left], nums[right]});//下面两个循环去重
-                    while (right &gt; left &amp;&amp; nums[right] == nums[right - 1])
-                    {
-                        right--;
-                    }
-                    while (right &gt; left &amp;&amp; nums[left] == nums[left + 1])
-                    {
-                        left++;
-                    }
-                    //找到一个适合的后左右指针收缩
-                    left++;
-                    right--;
+                else {
+                    i--;
+                    j++;
                 }
             }
+            else {
+                num += values[j];
+            }
         }
+        return num;
     }
-    return re;
-}
+};
 </code></pre>
 
             </div>
@@ -690,7 +701,7 @@
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://sakuratears.cn/post/si-shu-zhi-he/" title="四数之和（双指针）">https://sakuratears.cn/post/si-shu-zhi-he/</a>
+      <a href="https://sakuratears.cn/post/leetcode-13-luo-ma-shu-zi-zhuan-zheng-shu-tan-xin/" title="LeetCode 13. 罗马数字转整数(贪心)">https://sakuratears.cn/post/leetcode-13-luo-ma-shu-zi-zhuan-zheng-shu-tan-xin/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -699,7 +710,7 @@
   </ul>
   <div class="tags">
     
-      <a href="https://sakuratears.cn/tag/8QK8vw4-Q/"># 双指针</a>
+      <a href="https://sakuratears.cn/tag/-YQxfJklo/"># 贪心</a>
     
       <a href="https://sakuratears.cn/tag/TN0UiB8Cf/"># LeetCode</a>
     
@@ -709,15 +720,11 @@
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="水域大小（DFS）（BFS）" href="https://sakuratears.cn/post/shui-yu-da-xiao-dfsbfs/">水域大小（DFS）（BFS）</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="水域大小（DFS）（BFS）" href="https://sakuratears.cn/post/shui-yu-da-xiao-dfsbfs/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="PyQt5总结" href="https://sakuratears.cn/post/pyqt5-zong-jie/">PyQt5总结</a>
-        <a class="nav-mobile-next" title="PyQt5总结" href="https://sakuratears.cn/post/pyqt5-zong-jie/">下一篇</a>
+        <a class="nav-pc-next" title="堆排序(排序)" href="https://sakuratears.cn/post/dui-pai-xu/">堆排序(排序)</a>
+        <a class="nav-mobile-next" title="堆排序(排序)" href="https://sakuratears.cn/post/dui-pai-xu/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-12-25T11:50:06.044Z</updated>
+    <updated>2020-12-26T06:20:16.995Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -10,6 +10,105 @@
     <logo>https://sakuratears.cn/images/avatar.png</logo>
     <icon>https://sakuratears.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, SakuraTears</rights>
+    <entry>
+        <title type="html"><![CDATA[LeetCode 13. 罗马数字转整数(贪心)]]></title>
+        <id>https://sakuratears.cn/post/leetcode-13-luo-ma-shu-zi-zhuan-zheng-shu-tan-xin/</id>
+        <link href="https://sakuratears.cn/post/leetcode-13-luo-ma-shu-zi-zhuan-zheng-shu-tan-xin/">
+        </link>
+        <updated>2020-12-26T06:16:39.000Z</updated>
+        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>罗马数字包含以下七种字符: I， V， X， L，C，D 和 M。</p>
+<p>字符          数值<br>
+I             1<br>
+V             5<br>
+X             10<br>
+L             50<br>
+C             100<br>
+D             500<br>
+M             1000<br>
+例如， 罗马数字 2 写做 II ，即为两个并列的 1。12 写做 XII ，即为 X + II 。 27 写做  XXVII, 即为 XX + V + II 。</p>
+]]></summary>
+        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>罗马数字包含以下七种字符: I， V， X， L，C，D 和 M。</p>
+<p>字符          数值<br>
+I             1<br>
+V             5<br>
+X             10<br>
+L             50<br>
+C             100<br>
+D             500<br>
+M             1000<br>
+例如， 罗马数字 2 写做 II ，即为两个并列的 1。12 写做 XII ，即为 X + II 。 27 写做  XXVII, 即为 XX + V + II 。</p>
+<!-- more -->
+<p>通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做 IIII，而是 IV。数字 1 在数字 5 的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为 IX。这个特殊的规则只适用于以下六种情况：</p>
+<p>I 可以放在 V (5) 和 X (10) 的左边，来表示 4 和 9。<br>
+X 可以放在 L (50) 和 C (100) 的左边，来表示 40 和 90。 <br>
+C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。<br>
+给定一个罗马数字，将其转换成整数。输入确保在 1 到 3999 的范围内。</p>
+<p></p>
+<p>示例 1:</p>
+<p>输入: &quot;III&quot;<br>
+输出: 3<br>
+示例 2:</p>
+<p>输入: &quot;IV&quot;<br>
+输出: 4<br>
+示例 3:</p>
+<p>输入: &quot;IX&quot;<br>
+输出: 9<br>
+示例 4:</p>
+<p>输入: &quot;LVIII&quot;<br>
+输出: 58<br>
+解释: L = 50, V= 5, III = 3.<br>
+示例 5:</p>
+<p>输入: &quot;MCMXCIV&quot;<br>
+输出: 1994<br>
+解释: M = 1000, CM = 900, XC = 90, IV = 4.</p>
+<p>提示：</p>
+<p>题目所给测试用例皆符合罗马数字书写规则，不会出现跨位等情况。<br>
+IC 和 IM 这样的例子并不符合题目要求，49 应该写作 XLIX，999 应该写作 CMXCIX 。<br>
+关于罗马数字的详尽书写规则，可以参考 罗马数字 - Mathematics 。</p>
+<p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/roman-to-integer<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h3 id="思路">思路</h3>
+<p>把罗马数字对应的整数存放到一个数组里，对s从头遍历，如果s[i] != reps[j][0]则j++，因为reps是字符串而且要判断的是首字母，所以是reps[j][0]。当s[i] == reps[j][0]时，还需要判断是不是特殊情况比如：四对应的IV，是对应的IX</p>
+<p><code>if (reps[j].size() &gt; 1)</code>则说明reps当前对应的字符串属于特殊情况，<code>if (i &lt; s.size() - 1 &amp;&amp; s[i + 1] == reps[j][1])</code>说明s当前对应的数字与reps当前对应的数字相匹配，因为一个数占了两个字符所以要i++，j++。再把num累加。</p>
+<p><code>if (i &lt; s.size() - 1 &amp;&amp; s[i + 1] == reps[j][1])</code>不满足的情况有可能为s对应IV，reps对应IX，这样虽然前面的I相同但是后面的字符不相同，这种情况就让i不动（因为每次循环结束都会i++，所以先i--），j往后挪一个。</p>
+<p>非特殊情况即<code>reps[j].size() &lt;= 1</code>直接将num累加即可</p>
+<pre><code class="language-C++">class Solution {
+public:
+    int romanToInt(string s) {
+        if (s.size() == 0) {
+            return 0;
+        }
+        int values[]= {1000,900,500,400,100,90,50,40,10,9,5,4,1};
+		string reps[]= {&quot;M&quot;,&quot;CM&quot;,&quot;D&quot;,&quot;CD&quot;,&quot;C&quot;,&quot;XC&quot;,&quot;L&quot;,&quot;XL&quot;,&quot;X&quot;,&quot;IX&quot;,&quot;V&quot;,&quot;IV&quot;,&quot;I&quot;};
+        int j = 0, num = 0;
+        for (int i = 0; i &lt; s.size(); i++) {
+            while (s[i] != reps[j][0]) {
+                j++;
+            }
+            if (reps[j].size() &gt; 1) {
+                if (i &lt; s.size() - 1 &amp;&amp; s[i + 1] == reps[j][1]) {
+                    i++;
+                    num += values[j];
+                    j++;
+                }
+                else {
+                    i--;
+                    j++;
+                }
+            }
+            else {
+                num += values[j];
+            }
+        }
+        return num;
+    }
+};
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[堆排序(排序)]]></title>
         <id>https://sakuratears.cn/post/dui-pai-xu/</id>
@@ -1102,375 +1201,6 @@ public:
     }
 };
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Markdown语法]]></title>
-        <id>https://sakuratears.cn/post/markdown-yu-fa/</id>
-        <link href="https://sakuratears.cn/post/markdown-yu-fa/">
-        </link>
-        <updated>2020-12-18T13:26:30.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="生成目录">生成目录</h1>
-<p>在markdown顶部输入<code>[TOC]</code>即可生成目录</p>
-<h1 id="markdown标题">Markdown标题</h1>
-<p>Markdown标题有两种</p>
-<h2 id="第一种标题">第一种标题</h2>
-<p>使用=和-标记</p>
-<pre><code class="language-markdown">我展示的是一级标题
-=================
-
-我展示的是二级标题
------------------
-</code></pre>
-<h2 id="第二种标题">第二种标题</h2>
-<p>使用#标记</p>
-<pre><code class="language-markdown"># 一级标题
-## 二级标题
-### 三级标题
-#### 四级标题
-##### 五级标题
-###### 六级标题
-</code></pre>
-<h1 id="markdown-段落格式">Markdown 段落格式</h1>
-<h2 id="markdown-段落">Markdown 段落</h2>
-<p>Markdown 段落没有特殊的格式，直接编写文字就好，段落的换行是使用两个以上空格加上回车。或者</p>
-<pre><code class="language-markdown">&lt;br&gt;&lt;br&gt;
-</code></pre>
-<h2 id="字体">字体</h2>
-<pre><code class="language-markdown">*斜体文本*
-_斜体文本_
-**粗体文本**
-__粗体文本__
-***粗斜体文本***
-___粗斜体文本___
-</code></pre>
-<p><em>斜体文本</em><br>
-<em>斜体文本</em><br>
-<strong>粗体文本</strong><br>
-<strong>粗体文本</strong><br>
-<em><strong>粗斜体文本</strong></em><br>
-<em><strong>粗斜体文本</strong></em></p>
-<h2 id="分隔线">分隔线</h2>
-<p>你可以在一行中用三个以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。你也可以在星号或是减号中间插入空格。下面每种写法都可以建立分隔线：</p>
-<pre><code class="language-markdown">***
-
-* * *
-
-*****
-
-- - -
-
-----------
-</code></pre>
-<h2 id="删除线">删除线</h2>
-<p>如果段落上的文字要添加删除线，只需要在文字的两端加上两个波浪线 <code>~~</code> 即可，实例如下：</p>
-<pre><code class="language-markdown">RUNOOB.COM
-GOOGLE.COM
-~~BAIDU.COM~~
-</code></pre>
-<p>RUNOOB.COM<br>
-GOOGLE.COM<br>
-<s>BAIDU.COM</s></p>
-<h2 id="下划线">下划线</h2>
-<p>下划线可以通过 HTML 的<code>&lt;u&gt;</code> 标签来实现：</p>
-<pre><code class="language-markdown">&lt;u&gt;带下划线文本&lt;/u&gt;
-</code></pre>
-<p><u>带下划线文本</u></p>
-<h2 id="脚注">脚注</h2>
-<p>脚注是对文本的补充说明。</p>
-<p>Markdown 脚注的格式如下:</p>
-<pre><code class="language-markdown">[^要注明的文本]
-</code></pre>
-<p>以下实例演示了脚注的用法：</p>
-<pre><code class="language-markdown">创建脚注格式类似这样 [^RUNOOB]。
-
-[^RUNOOB]: 菜鸟教程 -- 学的不仅是技术，更是梦想！！！
-</code></pre>
-<p>创建脚注格式类似这样 <sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>。</p>
-<h1 id="markdown-列表">Markdown 列表</h1>
-<h2 id="无序列表">无序列表</h2>
-<p>Markdown 支持有序列表和无序列表。<br>
-无序列表使用星号(*)、加号(+)或是减号(-)作为列表标记，这些标记后面要添加一个空格，然后再填写内容：</p>
-<pre><code class="language-markdown">* 第一项
-* 第二项
-* 第三项
-
-+ 第一项
-+ 第二项
-+ 第三项
-
-- 第一项
-- 第二项
-- 第三项
-</code></pre>
-<ul>
-<li>第一项</li>
-<li>第二项</li>
-<li>第三项</li>
-</ul>
-<ul>
-<li>第一项</li>
-<li>第二项</li>
-<li>第三项</li>
-</ul>
-<ul>
-<li>第一项</li>
-<li>第二项</li>
-<li>第三项</li>
-</ul>
-<h2 id="有序列表">有序列表</h2>
-<p>有序列表使用数字并加上 . 号来表示，如：</p>
-<pre><code class="language-markdown">1. 第一项
-2. 第二项
-3. 第三项
-</code></pre>
-<ol>
-<li>第一项</li>
-<li>第二项</li>
-<li>第三项</li>
-</ol>
-<h2 id="列表嵌套">列表嵌套</h2>
-<p>列表嵌套只需在子列表中的选项前面添加四个空格即可：</p>
-<pre><code class="language-markdown">1. 第一项：
-    - 第一项嵌套的第一个元素
-    - 第一项嵌套的第二个元素
-2. 第二项：
-    - 第二项嵌套的第一个元素
-    - 第二项嵌套的第二个元素
-   
-</code></pre>
-<ol>
-<li>第一项：
-<ul>
-<li>第一项嵌套的第一个元素</li>
-<li>第一项嵌套的第二个元素</li>
-</ul>
-</li>
-<li>第二项：
-<ul>
-<li>第二项嵌套的第一个元素</li>
-<li>第二项嵌套的第二个元素</li>
-</ul>
-</li>
-</ol>
-<h1 id="markdown-区块">Markdown 区块</h1>
-<p>Markdown 区块引用是在段落开头使用 &gt; 符号 ，然后后面紧跟一个空格符号：</p>
-<pre><code class="language-markdown">&gt; 区块引用
-&gt; 菜鸟教程
-&gt; 学的不仅是技术更是梦想
-</code></pre>
-<blockquote>
-<p>区块引用<br>
-菜鸟教程<br>
-学的不仅是技术更是梦想</p>
-</blockquote>
-<p>另外区块是可以嵌套的，一个 &gt; 符号是最外层，两个 &gt; 符号是第一层嵌套，以此类推：</p>
-<pre><code class="language-markdown">&gt; 最外层
-&gt; &gt; 第一层嵌套
-&gt; &gt; &gt; 第二层嵌套
-</code></pre>
-<blockquote>
-<p>最外层</p>
-<blockquote>
-<p>第一层嵌套</p>
-<blockquote>
-<p>第二层嵌套</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<h2 id="区块中使用列表">区块中使用列表</h2>
-<p>区块中使用列表实例如下:</p>
-<pre><code class="language-markdown">&gt; 区块中使用列表
-&gt; 1. 第一项
-&gt; 2. 第二项
-&gt; + 第一项
-&gt; + 第二项
-&gt; + 第三项
-</code></pre>
-<blockquote>
-<p>区块中使用列表</p>
-<ol>
-<li>第一项</li>
-<li>第二项</li>
-</ol>
-<ul>
-<li>第一项</li>
-<li>第二项</li>
-<li>第三项</li>
-</ul>
-</blockquote>
-<h2 id="列表中使用区块">列表中使用区块</h2>
-<p>如果要在列表项目内放进区块，那么就需要在 &gt; 前添加四个空格的缩进。<br>
-区块中使用列表实例如下：</p>
-<pre><code class="language-markdown">* 第一项
-    &gt; 菜鸟教程
-    &gt; 学的不仅是技术更是梦想
-* 第二项
-</code></pre>
-<ul>
-<li>第一项
-<blockquote>
-<p>菜鸟教程<br>
-学的不仅是技术更是梦想</p>
-</blockquote>
-</li>
-<li>第二项</li>
-</ul>
-<h1 id="markdown-代码">Markdown 代码</h1>
-<p>如果是段落上的一个函数或片段的代码可以用反引号把它包起来<code>（`）</code>，例如：</p>
-<pre><code class="language-markdown">`printf()` 函数
-</code></pre>
-<p><code>printf()</code> 函数</p>
-<h2 id="代码区块">代码区块</h2>
-<p>代码区块使用 4 个空格或者一个制表符（Tab 键）。</p>
-<p>实例如下：<br>
-printf(&quot;hello&quot;)</p>
-<p>你也可以用 ``` 包裹一段代码，并指定一种语言（也可以不指定）：</p>
-<pre><code class="language-markdown">​```javascript
-$(document).ready(function () {
-    alert('hello word!');
-});
-​```
-</code></pre>
-<pre><code class="language-javascript">$(document).ready(function () {
-    alert('hello word!');
-});
-</code></pre>
-<h1 id="markdown-链接">Markdown 链接</h1>
-<p>链接使用方法如下：</p>
-<pre><code class="language-markdown">[链接名称](链接地址)
-
-或者
-
-&lt;链接地址&gt;
-</code></pre>
-<p><a href="https://sakuratears.cn">blog</a></p>
-<p>或者</p>
-<p><a href="https://sakuratears.cn">https://sakuratears.cn</a></p>
-<h2 id="高级链接">高级链接</h2>
-<p>我们可以通过变量来设置一个链接，变量赋值在文档末尾进行：</p>
-<pre><code class="language-markdown">这个链接用 1 作为网址变量 [Google][1]
-这个链接用 sakura 作为网址变量 [sakura][sakura]
-然后在文档的结尾为变量赋值（网址）
-
-  [1]: http://www.google.com/
-  [sakura]: https://sakuratears.cn/
-</code></pre>
-<p>这个链接用 1 作为网址变量 <a href="http://www.google.com/">Google</a><br>
-这个链接用 sakura 作为网址变量 <a href="https://sakuratears.cn/">sakura</a><br>
-然后在文档的结尾为变量赋值（网址）</p>
-<h1 id="markdown-图片">Markdown 图片</h1>
-<p>Markdown 图片语法格式如下：</p>
-<pre><code class="language-markdown">![alt 属性文本](图片地址)
-
-![alt 属性文本](图片地址 &quot;可选标题&quot;)
-</code></pre>
-<figure data-type="image" tabindex="1"><img src="http://static.runoob.com/images/runoob-logo.png" alt="RUNOOB 图标" loading="lazy"></figure>
-<figure data-type="image" tabindex="2"><img src="http://static.runoob.com/images/runoob-logo.png" alt="RUNOOB 图标" title="RUNOOB" loading="lazy"></figure>
-<p>当然，你也可以像网址那样对图片网址使用变量:</p>
-<pre><code class="language-markdown">这个链接用 1 作为网址变量 [RUNOOB][1].
-然后在文档的结尾为变量赋值（网址）
-
-[1]: http://static.runoob.com/images/runoob-logo.png
-</code></pre>
-<p>这个链接用 1 作为网址变量 <a href="http://www.google.com/">RUNOOB</a>.<br>
-然后在文档的结尾为变量赋值（网址）</p>
-<p>Markdown 还没有办法指定图片的高度与宽度，如果你需要的话，你可以使用普通的 <img> 标签。</p>
-<pre><code class="language-markdown">&lt;img src=&quot;http://static.runoob.com/images/runoob-logo.png&quot; width=&quot;50%&quot;&gt;
-</code></pre>
-<img src="http://static.runoob.com/images/runoob-logo.png" width="50%">
-<h1 id="markdown-表格">Markdown 表格</h1>
-<p>Markdown 制作表格使用 <code>|</code>来分隔不同的单元格，使用<code>-</code> 来分隔表头和其他行。<br>
-语法格式如下：</p>
-<pre><code class="language-markdown">|  表头   | 表头  |
-|  ----  | ----  |
-| 单元格  | 单元格 |
-| 单元格  | 单元格 |
-</code></pre>
-<p>对齐方式</p>
-<p>我们可以设置表格的对齐方式：</p>
-<p><code>-:</code> 设置内容和标题栏居右对齐。<br>
-<code>:-</code>设置内容和标题栏居左对齐。<br>
-<code>:-:</code>设置内容和标题栏居中对齐。</p>
-<pre><code class="language-markdown">| 左对齐 | 右对齐 | 居中对齐 |
-| :-----| ----: | :----: |
-| 单元格 | 单元格 | 单元格 |
-| 单元格 | 单元格 | 单元格 |
-</code></pre>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">左对齐</th>
-<th style="text-align:right">右对齐</th>
-<th style="text-align:center">居中对齐</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">单元格</td>
-<td style="text-align:right">单元格</td>
-<td style="text-align:center">单元格</td>
-</tr>
-<tr>
-<td style="text-align:left">单元格</td>
-<td style="text-align:right">单元格</td>
-<td style="text-align:center">单元格</td>
-</tr>
-</tbody>
-</table>
-<h1 id="markdown-高级技巧">Markdown 高级技巧</h1>
-<h2 id="支持的-html-元素">支持的 HTML 元素</h2>
-<p>不在 Markdown 涵盖范围之内的标签，都可以直接在文档里面用 HTML 撰写。</p>
-<p>目前支持的 HTML 元素有：<kbd> <b> <i> <em> <sup> <sub> <br>等 ，如：</p>
-<pre><code class="language-markdown">使用 &lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;Alt&lt;/kbd&gt;+&lt;kbd&gt;Del&lt;/kbd&gt; 重启电脑
-</code></pre>
-<p>使用 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd> 重启电脑</p>
-<h2 id="转义">转义</h2>
-<p>Markdown 使用了很多特殊符号来表示特定的意义，如果需要显示特定的符号则需要使用转义字符，Markdown 使用反斜杠转义特殊字符：</p>
-<pre><code class="language-markdown">**文本加粗** 
-\*\* 正常显示星号 \*\*
-</code></pre>
-<p>Markdown 支持以下这些符号前面加上反斜杠来帮助插入普通的符号：</p>
-<pre><code class="language-markdown">\   反斜线
-`   反引号
-*   星号
-_   下划线
-{}  花括号
-[]  方括号
-()  小括号
-#   井字号
-+   加号
--   减号
-.   英文句点
-!   感叹号
-</code></pre>
-<h2 id="公式">公式</h2>
-<p>当你需要在编辑器中插入数学公式时，可以使用两个美元符 $$ 包裹 TeX 或 LaTeX 格式的数学公式来实现。提交后，问答和文章页会根据需要加载 Mathjax 对数学公式进行渲染。如：</p>
-<pre><code class="language-markdown">$$
-\mathbf{V}_1 \times \mathbf{V}_2 =  \begin{vmatrix} 
-\mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \\
-\frac{\partial X}{\partial u} &amp;  \frac{\partial Y}{\partial u} &amp; 0 \\
-\frac{\partial X}{\partial v} &amp;  \frac{\partial Y}{\partial v} &amp; 0 \\
-\end{vmatrix}
-${$tep1}{\style{visibility:hidden}{(x+1)(x+1)}}
-$$
-</code></pre>
-<p class='katex-block katex-error' title='ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 248: …
-\end{vmatrix}
-$̲{$tep1}{\style{…'>\mathbf{V}_1 \times \mathbf{V}_2 =  \begin{vmatrix} 
-\mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \\
-\frac{\partial X}{\partial u} &amp;  \frac{\partial Y}{\partial u} &amp; 0 \\
-\frac{\partial X}{\partial v} &amp;  \frac{\partial Y}{\partial v} &amp; 0 \\
-\end{vmatrix}
-${$tep1}{\style{visibility:hidden}{(x+1)(x+1)}}
-</p>
-<hr class="footnotes-sep">
-<section class="footnotes">
-<ol class="footnotes-list">
-<li id="fn1" class="footnote-item"><p>菜鸟教程 -- 学的不仅是技术，更是梦想！！！ <a href="#fnref1" class="footnote-backref">↩︎</a></p>
-</li>
-</ol>
-</section>
 ]]></content>
     </entry>
 </feed>
