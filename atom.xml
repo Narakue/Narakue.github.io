@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-12-26T06:20:16.995Z</updated>
+    <updated>2020-12-27T12:19:21.300Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -10,6 +10,62 @@
     <logo>https://sakuratears.cn/images/avatar.png</logo>
     <icon>https://sakuratears.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, SakuraTears</rights>
+    <entry>
+        <title type="html"><![CDATA[LeetCode 205. 同构字符串(哈希表)]]></title>
+        <id>https://sakuratears.cn/post/leetcode-205-tong-gou-zi-fu-chuan-ha-xi-biao/</id>
+        <link href="https://sakuratears.cn/post/leetcode-205-tong-gou-zi-fu-chuan-ha-xi-biao/">
+        </link>
+        <updated>2020-12-27T12:13:39.000Z</updated>
+        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>给定两个字符串 s 和 t，判断它们是否是同构的。</p>
+<p>如果 s 中的字符可以被替换得到 t ，那么这两个字符串是同构的。</p>
+<p>所有出现的字符都必须用另一个字符替换，同时保留字符的顺序。两个字符不能映射到同一个字符上，但字符可以映射自己本身。</p>
+]]></summary>
+        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
+<p>给定两个字符串 s 和 t，判断它们是否是同构的。</p>
+<p>如果 s 中的字符可以被替换得到 t ，那么这两个字符串是同构的。</p>
+<p>所有出现的字符都必须用另一个字符替换，同时保留字符的顺序。两个字符不能映射到同一个字符上，但字符可以映射自己本身。</p>
+<!-- more -->
+<p>示例 1:</p>
+<p>输入: s = &quot;egg&quot;, t = &quot;add&quot;<br>
+输出: true<br>
+示例 2:</p>
+<p>输入: s = &quot;foo&quot;, t = &quot;bar&quot;<br>
+输出: false<br>
+示例 3:</p>
+<p>输入: s = &quot;paper&quot;, t = &quot;title&quot;<br>
+输出: true<br>
+说明:<br>
+你可以假设 s 和 t 具有相同的长度。</p>
+<p>来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/isomorphic-strings<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h3 id="思路">思路</h3>
+<p>题意为：s中任意一个字符都在t中有唯一对应，t中任意一个字符也都在s中有唯一对应。<br>
+所以用两个哈希表一一对应再判断。</p>
+<pre><code class="language-C++">class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        unordered_map&lt;char, char&gt; map1;
+        unordered_map&lt;char, char&gt; map2;
+        for (int i = 0; i &lt; s.size(); i++) {
+            if (map1.find(s[i]) == map1.end()) { // map1保存s[i] 到 t[j]的映射
+                map1[s[i]] = t[i];
+            }
+            if (map2.find(t[i]) == map2.end()) { // map2保存t[j] 到 s[i]的映射
+                map2[t[i]] = s[i];
+            }
+            // 发现映射 对应不上，立刻返回false
+            if (map1[s[i]] != t[i] || map2[t[i]] != s[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+};
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[LeetCode 13. 罗马数字转整数(贪心)]]></title>
         <id>https://sakuratears.cn/post/leetcode-13-luo-ma-shu-zi-zhuan-zheng-shu-tan-xin/</id>
@@ -1108,98 +1164,6 @@ int main()
 
     return 0;
 }
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[旋转图像(数组)]]></title>
-        <id>https://sakuratears.cn/post/xuan-zhuan-tu-xiang-shu-zu/</id>
-        <link href="https://sakuratears.cn/post/xuan-zhuan-tu-xiang-shu-zu/">
-        </link>
-        <updated>2020-12-19T10:45:03.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>给定一个 n × n 的二维矩阵表示一个图像。<br>
-将图像顺时针旋转 90 度。</p>
-]]></summary>
-        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>给定一个 n × n 的二维矩阵表示一个图像。<br>
-将图像顺时针旋转 90 度。</p>
-<!-- more -->
-<p>说明：</p>
-<p>你必须在原地旋转图像，这意味着你需要直接修改输入的二维矩阵。请不要使用另一个矩阵来旋转图像。</p>
-<p>示例 1:</p>
-<p>给定 matrix =<br>
-[<br>
-[1,2,3],<br>
-[4,5,6],<br>
-[7,8,9]<br>
-],</p>
-<p>原地旋转输入矩阵，使其变为:<br>
-[<br>
-[7,4,1],<br>
-[8,5,2],<br>
-[9,6,3]<br>
-]<br>
-示例 2:</p>
-<p>给定 matrix =<br>
-[<br>
-[ 5, 1, 9,11],<br>
-[ 2, 4, 8,10],<br>
-[13, 3, 6, 7],<br>
-[15,14,12,16]<br>
-],</p>
-<p>原地旋转输入矩阵，使其变为:<br>
-[<br>
-[15,13, 2, 5],<br>
-[14, 3, 4, 1],<br>
-[12, 6, 8, 9],<br>
-[16, 7,10,11]<br>
-]</p>
-<p>来源：力扣（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/rotate-image<br>
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<h3 id="思路">思路</h3>
-<h4 id="方法1">方法1</h4>
-<p><strong>题目要求不要用辅助数组，此题解用了辅助数组</strong><br>
-直接用一个辅助数组arr，arr的列是matrix的行，用两个循环即可</p>
-<pre><code class="language-C++">class Solution {
-public:
-    void rotate(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) {
-        vector&lt;vector&lt;int&gt;&gt; arr = matrix;
-        for (int i = 0, j = matrix.size() - 1; i &lt; matrix.size(); i++, j--) {
-            for (int m = 0; m &lt; matrix[i].size(); m++) {
-                arr[m][j] = matrix[i][m];
-            }
-        }
-        matrix = arr;
-    }
-};
-</code></pre>
-<h4 id="方法2">方法2</h4>
-<p>可以先对数组进行从左上到右下对角线为轴进行翻转，再对每一行以中间为轴翻转。即可</p>
-<pre><code class="language-C++">class Solution {
-public:
-    void rotate(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) {
-        if (matrix.size() == 0) {
-            return;
-        }
-        int i, j, m, temp;
-        for (i = 0; i &lt; matrix.size() - 1; i++) {
-            for (j = i + 1; j &lt; matrix.size(); j++) {
-                temp = matrix[i][j];
-                matrix[i][j] = matrix[j][i];
-                matrix[j][i] = temp;
-            }
-        }
-        for (i = 0; i &lt; matrix.size(); i++) {
-            for (j = matrix[i].size() / 2; j &lt; matrix.size(); j++) {
-                temp = matrix[i][j];
-                matrix[i][j] = matrix[i][matrix.size() - j - 1];
-                matrix[i][matrix.size() - j - 1] = temp;
-            }
-        }
-    }
-};
 </code></pre>
 ]]></content>
     </entry>
