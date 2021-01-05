@@ -2,14 +2,14 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2020-12-28T08:04:39.162Z</updated>
+    <updated>2021-01-05T09:03:40.365Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
     <subtitle>努力不一定成功，但不努力一定很轻松</subtitle>
     <logo>https://sakuratears.cn/images/avatar.png</logo>
     <icon>https://sakuratears.cn/favicon.ico</icon>
-    <rights>All rights reserved 2020, SakuraTears</rights>
+    <rights>All rights reserved 2021, SakuraTears</rights>
     <entry>
         <title type="html"><![CDATA[LeetCode 188. 买卖股票的最佳时机 IV(动态规划)(递归)]]></title>
         <id>https://sakuratears.cn/post/leetcode-188-mai-mai-gu-piao-de-zui-jia-shi-ji-ivdong-tai-gui-hua-di-gui/</id>
