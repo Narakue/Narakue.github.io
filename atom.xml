@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com</id>
+    <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2021-01-17T08:57:17.958Z</updated>
+    <updated>2021-01-17T08:59:01.291Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com"/>
-    <link rel="self" href="https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/atom.xml"/>
+    <link rel="alternate" href="https://sakuratears.cn"/>
+    <link rel="self" href="https://sakuratears.cn/atom.xml"/>
     <subtitle>努力不一定成功，但不努力一定很轻松</subtitle>
-    <logo>https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/images/avatar.png</logo>
-    <icon>https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/favicon.ico</icon>
+    <logo>https://sakuratears.cn/images/avatar.png</logo>
+    <icon>https://sakuratears.cn/favicon.ico</icon>
     <rights>All rights reserved 2021, SakuraTears</rights>
     <entry>
         <title type="html"><![CDATA[Android添加RecyclerView依赖库]]></title>
-        <id>https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/android-tian-jia-recyclerview-yi-lai-ku/</id>
-        <link href="https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/android-tian-jia-recyclerview-yi-lai-ku/">
+        <id>https://sakuratears.cn/post/android-tian-jia-recyclerview-yi-lai-ku/</id>
+        <link href="https://sakuratears.cn/post/android-tian-jia-recyclerview-yi-lai-ku/">
         </link>
         <updated>2021-01-15T08:56:39.000Z</updated>
         <content type="html"><![CDATA[<p>在app/build.gradle文件中<code>dependencies</code>里面添加</p>
@@ -28,8 +28,8 @@ implementation &quot;androidx.recyclerview:recyclerview-selection:1.1.0-alpha05&
     </entry>
     <entry>
         <title type="html"><![CDATA[Android Toast提示]]></title>
-        <id>https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/android-toast-ti-shi/</id>
-        <link href="https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/android-toast-ti-shi/">
+        <id>https://sakuratears.cn/post/android-toast-ti-shi/</id>
+        <link href="https://sakuratears.cn/post/android-toast-ti-shi/">
         </link>
         <updated>2021-01-07T08:56:07.000Z</updated>
         <content type="html"><![CDATA[<h3 id="默认显示方式">默认显示方式：</h3>
@@ -43,8 +43,8 @@ implementation &quot;androidx.recyclerview:recyclerview-selection:1.1.0-alpha05&
     </entry>
     <entry>
         <title type="html"><![CDATA[LeetCode 188. 买卖股票的最佳时机 IV(动态规划)(递归)]]></title>
-        <id>https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/leetcode-188-mai-mai-gu-piao-de-zui-jia-shi-ji-ivdong-tai-gui-hua-di-gui/</id>
-        <link href="https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/leetcode-188-mai-mai-gu-piao-de-zui-jia-shi-ji-ivdong-tai-gui-hua-di-gui/">
+        <id>https://sakuratears.cn/post/leetcode-188-mai-mai-gu-piao-de-zui-jia-shi-ji-ivdong-tai-gui-hua-di-gui/</id>
+        <link href="https://sakuratears.cn/post/leetcode-188-mai-mai-gu-piao-de-zui-jia-shi-ji-ivdong-tai-gui-hua-di-gui/">
         </link>
         <updated>2020-12-28T07:55:43.000Z</updated>
         <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
@@ -175,8 +175,8 @@ public:
     </entry>
     <entry>
         <title type="html"><![CDATA[LeetCode 205. 同构字符串(哈希表)]]></title>
-        <id>https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/leetcode-205-tong-gou-zi-fu-chuan-ha-xi-biao/</id>
-        <link href="https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/leetcode-205-tong-gou-zi-fu-chuan-ha-xi-biao/">
+        <id>https://sakuratears.cn/post/leetcode-205-tong-gou-zi-fu-chuan-ha-xi-biao/</id>
+        <link href="https://sakuratears.cn/post/leetcode-205-tong-gou-zi-fu-chuan-ha-xi-biao/">
         </link>
         <updated>2020-12-27T12:13:39.000Z</updated>
         <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
@@ -231,8 +231,8 @@ public:
     </entry>
     <entry>
         <title type="html"><![CDATA[LeetCode 13. 罗马数字转整数(贪心)]]></title>
-        <id>https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/leetcode-13-luo-ma-shu-zi-zhuan-zheng-shu-tan-xin/</id>
-        <link href="https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/leetcode-13-luo-ma-shu-zi-zhuan-zheng-shu-tan-xin/">
+        <id>https://sakuratears.cn/post/leetcode-13-luo-ma-shu-zi-zhuan-zheng-shu-tan-xin/</id>
+        <link href="https://sakuratears.cn/post/leetcode-13-luo-ma-shu-zi-zhuan-zheng-shu-tan-xin/">
         </link>
         <updated>2020-12-26T06:16:39.000Z</updated>
         <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
@@ -330,8 +330,8 @@ public:
     </entry>
     <entry>
         <title type="html"><![CDATA[堆排序(排序)]]></title>
-        <id>https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/dui-pai-xu/</id>
-        <link href="https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/dui-pai-xu/">
+        <id>https://sakuratears.cn/post/dui-pai-xu/</id>
+        <link href="https://sakuratears.cn/post/dui-pai-xu/">
         </link>
         <updated>2020-12-25T10:02:22.000Z</updated>
         <content type="html"><![CDATA[<h3 id="定义">定义</h3>
@@ -424,8 +424,8 @@ int main()
     </entry>
     <entry>
         <title type="html"><![CDATA[LeetCode 455. 分发饼干(贪心)]]></title>
-        <id>https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/leetcode-455-fen-fa-bing-gan-tan-xin/</id>
-        <link href="https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/leetcode-455-fen-fa-bing-gan-tan-xin/">
+        <id>https://sakuratears.cn/post/leetcode-455-fen-fa-bing-gan-tan-xin/</id>
+        <link href="https://sakuratears.cn/post/leetcode-455-fen-fa-bing-gan-tan-xin/">
         </link>
         <updated>2020-12-25T09:05:53.000Z</updated>
         <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
@@ -483,8 +483,8 @@ public:
     </entry>
     <entry>
         <title type="html"><![CDATA[LeetCode 135. 分发糖果(贪心)]]></title>
-        <id>https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/leetcode-135-fen-fa-tang-guo-tan-xin/</id>
-        <link href="https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/leetcode-135-fen-fa-tang-guo-tan-xin/">
+        <id>https://sakuratears.cn/post/leetcode-135-fen-fa-tang-guo-tan-xin/</id>
+        <link href="https://sakuratears.cn/post/leetcode-135-fen-fa-tang-guo-tan-xin/">
         </link>
         <updated>2020-12-24T11:14:12.000Z</updated>
         <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
@@ -552,8 +552,8 @@ public:
     </entry>
     <entry>
         <title type="html"><![CDATA[切分木棒(DFS)(BFS)]]></title>
-        <id>https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/qie-fen-mu-bang-dfsbfs/</id>
-        <link href="https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/qie-fen-mu-bang-dfsbfs/">
+        <id>https://sakuratears.cn/post/qie-fen-mu-bang-dfsbfs/</id>
+        <link href="https://sakuratears.cn/post/qie-fen-mu-bang-dfsbfs/">
         </link>
         <updated>2020-12-24T09:29:49.000Z</updated>
         <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
@@ -627,8 +627,8 @@ int main()
     </entry>
     <entry>
         <title type="html"><![CDATA[LeetCode 387. 字符串中的第一个唯一字符(哈希表)]]></title>
-        <id>https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/leetcode-387-zi-fu-chuan-zhong-de-di-yi-ge-wei-yi-zi-fu-ha-xi-biao/</id>
-        <link href="https://coding-pages-bucket-3475583-7982440-3548-351376-1303214965.cos-website.ap-hongkong.myqcloud.com/post/leetcode-387-zi-fu-chuan-zhong-de-di-yi-ge-wei-yi-zi-fu-ha-xi-biao/">
+        <id>https://sakuratears.cn/post/leetcode-387-zi-fu-chuan-zhong-de-di-yi-ge-wei-yi-zi-fu-ha-xi-biao/</id>
+        <link href="https://sakuratears.cn/post/leetcode-387-zi-fu-chuan-zhong-de-di-yi-ge-wei-yi-zi-fu-ha-xi-biao/">
         </link>
         <updated>2020-12-23T11:54:29.000Z</updated>
         <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
