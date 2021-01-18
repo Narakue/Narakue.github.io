@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sakuratears.cn</id>
     <title>SakuraTears</title>
-    <updated>2021-01-17T09:01:08.259Z</updated>
+    <updated>2021-01-18T04:55:46.407Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sakuratears.cn"/>
     <link rel="self" href="https://sakuratears.cn/atom.xml"/>
@@ -10,6 +10,15 @@
     <logo>https://sakuratears.cn/images/avatar.png</logo>
     <icon>https://sakuratears.cn/favicon.ico</icon>
     <rights>All rights reserved 2021, SakuraTears</rights>
+    <entry>
+        <title type="html"><![CDATA[《将博客搬至CSDN》]]></title>
+        <id>https://sakuratears.cn/post/lesslessjiang-bo-ke-ban-zhi-csdngreatergreater/</id>
+        <link href="https://sakuratears.cn/post/lesslessjiang-bo-ke-ban-zhi-csdngreatergreater/">
+        </link>
+        <updated>2021-01-18T04:55:07.000Z</updated>
+        <content type="html"><![CDATA[<p>申请将本博客内容搬至CSDN账号Narakue</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Android添加RecyclerView依赖库]]></title>
         <id>https://sakuratears.cn/post/android-tian-jia-recyclerview-yi-lai-ku/</id>
@@ -622,67 +631,6 @@ int main()
 	cout&lt;&lt;sil(3, 20, 1)&lt;&lt;endl&lt;&lt;sil(5, 100, 1);
 	return 0;
 }
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[LeetCode 387. 字符串中的第一个唯一字符(哈希表)]]></title>
-        <id>https://sakuratears.cn/post/leetcode-387-zi-fu-chuan-zhong-de-di-yi-ge-wei-yi-zi-fu-ha-xi-biao/</id>
-        <link href="https://sakuratears.cn/post/leetcode-387-zi-fu-chuan-zhong-de-di-yi-ge-wei-yi-zi-fu-ha-xi-biao/">
-        </link>
-        <updated>2020-12-23T11:54:29.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>给定一个字符串，找到它的第一个不重复的字符，并返回它的索引。如果不存在，则返回 -1。</p>
-]]></summary>
-        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>给定一个字符串，找到它的第一个不重复的字符，并返回它的索引。如果不存在，则返回 -1。</p>
-<!-- more -->
-<p>示例：</p>
-<p>s = &quot;leetcode&quot;<br>
-返回 0</p>
-<p>s = &quot;loveleetcode&quot;<br>
-返回 2</p>
-<p>提示：你可以假定该字符串只包含小写字母。</p>
-<p>来源：力扣（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/first-unique-character-in-a-string<br>
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<h3 id="思路">思路</h3>
-<h4 id="方法1哈希表">方法1：哈希表</h4>
-<pre><code class="language-C++">class Solution {
-public:
-    int firstUniqChar(string s) {
-        if (s.size() &lt;= 0) {
-            return -1;
-        }
-        map&lt;int, int&gt; smap;
-        for (char ch : s) {
-            smap[ch]++;
-        }
-        for (int i = 0; i &lt; s.size(); i++) {
-            if (smap[s[i]] == 1) {
-                return i;
-            }
-        }
-        return -1;
-    }
-};
-</code></pre>
-<h4 id="方法2数组">方法2：数组</h4>
-<pre><code class="language-C++">class Solution {
-public:
-    int firstUniqChar(string s) {
-        int map[26] = {0};
-        for (int i = 0; i &lt; s.size(); i++) {
-            map[s[i] - 'a']++;
-        }
-        for (int i = 0; i &lt; s.size(); i++) {
-            if (map[s[i] - 'a'] == 1) {
-                return i;
-            }
-        }
-        return -1;
-    }
-};
 </code></pre>
 ]]></content>
     </entry>
