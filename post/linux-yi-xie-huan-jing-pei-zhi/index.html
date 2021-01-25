@@ -10,7 +10,7 @@
 <meta name="description" content="努力不一定成功，但不努力一定很轻松">
 <meta name="theme-color" content="#000">
 <title>Linux一些环境配置 | SakuraTears</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1611506555170">
+<link rel="shortcut icon" href="/favicon.ico?v=1611562435393">
 <link rel="stylesheet" href="/media/css/mist.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -1693,9 +1693,126 @@ sudo apt-get install gdb
     <div class="result" id="result">
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://sakuratears.cn/post/lesslessjiang-bo-ke-ban-zhi-csdngreatergreater/"" data-c="
-          &lt;p&gt;申请将本博客内容搬至CSDN账号Narakue&lt;/p&gt;
-">《将博客搬至CSDN》</a>
+        <a class="result-title" style="opacity: 0;" href="https://sakuratears.cn/post/leetcode959-you-xie-gang-hua-fen-qu-yu-sou-suo-bing-cha-ji/"" data-c="
+          &lt;h3 id=&#34;题目&#34;&gt;题目&lt;/h3&gt;
+&lt;p&gt;在由 1 x 1 方格组成的 N x N 网格 grid 中，每个 1 x 1 方块由 /、\ 或空格构成。这些字符会将方块划分为一些共边的区域。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;（请注意，反斜杠字符是转义的，因此 \ 用 &amp;quot;\&amp;quot; 表示。）。&lt;/p&gt;
+&lt;p&gt;返回区域的数目。&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;示例 1：&lt;/p&gt;
+&lt;p&gt;输入：&lt;br&gt;
+[&lt;br&gt;
+  &amp;quot; /&amp;quot;,&lt;br&gt;
+  &amp;quot;/ &amp;quot;&lt;br&gt;
+]&lt;br&gt;
+输出：2&lt;br&gt;
+解释：2x2 网格如下：&lt;br&gt;
+&lt;img src=&#34;https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/15/1.png&#34; alt=&#34;0&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;p&gt;示例 2：&lt;/p&gt;
+&lt;p&gt;输入：&lt;br&gt;
+[&lt;br&gt;
+  &amp;quot; /&amp;quot;,&lt;br&gt;
+  &amp;quot;  &amp;quot;&lt;br&gt;
+]&lt;br&gt;
+输出：1&lt;br&gt;
+解释：2x2 网格如下：&lt;br&gt;
+&lt;img src=&#34;https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/15/2.png&#34; alt=&#34;0&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;p&gt;示例 3：&lt;/p&gt;
+&lt;p&gt;输入：&lt;br&gt;
+[&lt;br&gt;
+  &amp;quot;\/&amp;quot;,&lt;br&gt;
+  &amp;quot;/\&amp;quot;&lt;br&gt;
+]&lt;br&gt;
+输出：4&lt;br&gt;
+解释：（回想一下，因为 \ 字符是转义的，所以 &amp;quot;\/&amp;quot; 表示 /，而 &amp;quot;/\&amp;quot; 表示 /\。）&lt;br&gt;
+2x2 网格如下：&lt;br&gt;
+&lt;img src=&#34;https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/15/3.png&#34; alt=&#34;0&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;p&gt;示例 4：&lt;/p&gt;
+&lt;p&gt;输入：&lt;br&gt;
+[&lt;br&gt;
+  &amp;quot;/\&amp;quot;,&lt;br&gt;
+  &amp;quot;\/&amp;quot;&lt;br&gt;
+]&lt;br&gt;
+输出：5&lt;br&gt;
+解释：（回想一下，因为 \ 字符是转义的，所以 &amp;quot;/\&amp;quot; 表示 /\，而 &amp;quot;\/&amp;quot; 表示 /。）&lt;br&gt;
+2x2 网格如下：&lt;br&gt;
+&lt;img src=&#34;https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/15/4.png&#34; alt=&#34;0&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;p&gt;示例 5：&lt;/p&gt;
+&lt;p&gt;输入：&lt;br&gt;
+[&lt;br&gt;
+  &amp;quot;//&amp;quot;,&lt;br&gt;
+  &amp;quot;/ &amp;quot;&lt;br&gt;
+]&lt;br&gt;
+输出：3&lt;br&gt;
+解释：2x2 网格如下：&lt;br&gt;
+&lt;img src=&#34;https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/15/5.png&#34; alt=&#34;0&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;p&gt;提示：&lt;/p&gt;
+&lt;p&gt;1 &amp;lt;= grid.length == grid[0].length &amp;lt;= 30&lt;br&gt;
+grid[i][j] 是 &#39;/&#39;、&#39;&#39;、或 &#39; &#39;。&lt;/p&gt;
+&lt;p&gt;来源：力扣（LeetCode）&lt;br&gt;
+链接：https://leetcode-cn.com/problems/regions-cut-by-slashes&lt;br&gt;
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。&lt;/p&gt;
+&lt;h3 id=&#34;思路&#34;&gt;思路&lt;/h3&gt;
+&lt;p&gt;将1x1方块转换成3x3方块，根据对角线填充1，其余填充0。&lt;br&gt;
+如果用搜索遍历循环的次数必须为4不能为8，所以如果把1x1方块转换成2x2方块，本来连通的区域会不连通&lt;br&gt;
+然后用DFS或BFS遍历：&lt;br&gt;
+该数字为0则搜索遍历&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;class Solution {
+public:
+    vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; arr;
+
+    void DFS(int i, int j) {
+        arr[i][j] = 1;
+        if (j - 1 &amp;gt;= 0 &amp;amp;&amp;amp; arr[i][j - 1] != 1) {
+            DFS(i, j - 1);
+        }
+        if (i + 1 &amp;lt; arr.size() &amp;amp;&amp;amp; arr[i + 1][j] != 1) {
+            DFS(i + 1, j);
+        }
+        if (j + 1 &amp;lt; arr.size() &amp;amp;&amp;amp; arr[i][j + 1] != 1) {
+            DFS(i, j + 1);
+        }
+        if (i - 1 &amp;gt;= 0 &amp;amp;&amp;amp; arr[i - 1][j] != 1) {
+            DFS(i - 1, j);
+        }
+    }
+
+    int regionsBySlashes(vector&amp;lt;string&amp;gt;&amp;amp; grid) {
+        int num = 0;
+        vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; brr(grid.size() * 3, vector&amp;lt;int&amp;gt;(grid.size() * 3, 0));
+        arr = brr;
+        for (int i = 0; i &amp;lt; grid.size(); i++) {
+            for (int j = 0; j &amp;lt; grid.size(); j++) {
+                if (grid[i][j] == &#39;/&#39;) {
+                    arr[i * 3][j * 3 + 2] = arr[i * 3 + 1][j * 3 + 1] = arr[i * 3 + 2][j * 3] = 1;
+                }
+                if (grid[i][j] == &#39;\\&#39;) {
+                    arr[i * 3][j * 3] = arr[i * 3 + 1][j * 3 + 1] = arr[i * 3 + 2][j * 3 + 2] = 1;
+                }
+            }
+        }
+
+        for (int i = 0; i &amp;lt; arr.size(); i++) {
+            for (int j = 0; j &amp;lt; arr.size(); j++) {
+                cout&amp;lt;&amp;lt;arr[i][j]&amp;lt;&amp;lt;&amp;quot; &amp;quot;;
+                if (arr[i][j] == 0) {
+                    num++;
+                    DFS(i, j);
+                }
+            }
+            cout&amp;lt;&amp;lt;endl;
+        }
+        return num;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;思路借鉴：&lt;br&gt;
+作者：MiloMusiala&lt;br&gt;
+链接：https://leetcode-cn.com/problems/regions-cut-by-slashes/solution/c-dong-hua-zhuan-huan-cheng-dao-yu-ge-sh-guve/&lt;br&gt;
+来源：力扣（LeetCode）&lt;br&gt;
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。&lt;/p&gt;
+">LeetCode959. 由斜杠划分区域(搜索)(并查集)</a>
       </div>
       
       <div class="item">
@@ -5403,6 +5520,10 @@ blacklist snd_pcsp
         <a class="result-title" style="opacity: 0;" href="https://sakuratears.cn/post/ji-lu-xue-xi-de-ri-zi/"" data-c="
           &lt;h1 id=&#34;2021&#34;&gt;2021&lt;/h1&gt;
 &lt;h2 id=&#34;1&#34;&gt;1&lt;/h2&gt;
+&lt;h3 id=&#34;125&#34;&gt;1/25&lt;/h3&gt;
+&lt;p&gt;解除隔离生活，继续做题。&lt;br&gt;
+每日一题练习：由斜杠划分区域&lt;br&gt;
+刚看不会，看了一眼思路茅塞顿开。牛！&lt;/p&gt;
 &lt;h3 id=&#34;15&#34;&gt;1/5&lt;/h3&gt;
 &lt;p&gt;把书上介绍的kt基本学完，掌握的还行，开始Android，这熟悉的找节点，XML和HTML+JS可真像啊，我终于理解让我们学HTML的意义了0.0&lt;br&gt;
 &lt;img src=&#34;https://cdn.jsdelivr.net/gh/FatePrototype/cdn/img/studio64_JaDSqV93aD.png&#34; alt=&#34;0&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;

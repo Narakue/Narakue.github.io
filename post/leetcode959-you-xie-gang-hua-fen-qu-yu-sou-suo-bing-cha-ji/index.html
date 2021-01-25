@@ -9,7 +9,7 @@
 <meta name="keywords" content="SakuraTears | Coder | 个人博客 | Gridea | NexT | LeetCode">
 <meta name="description" content="努力不一定成功，但不努力一定很轻松">
 <meta name="theme-color" content="#000">
-<title>LeetCode 188. 买卖股票的最佳时机 IV(动态规划)(递归) | SakuraTears</title>
+<title>LeetCode959. 由斜杠划分区域(搜索)(并查集) | SakuraTears</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1611562435393">
 <link rel="stylesheet" href="/media/css/mist.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -40,8 +40,8 @@
 
 
 
-  <meta name="description" content="LeetCode 188. 买卖股票的最佳时机 IV(动态规划)(递归)" />
-  <meta name="keywords" content="动态规划,LeetCode,算法" />
+  <meta name="description" content="LeetCode959. 由斜杠划分区域(搜索)(并查集)" />
+  <meta name="keywords" content="并查集,搜索,LeetCode,算法" />
 </head>
 
 <body>
@@ -282,12 +282,7 @@
 <li>
 <ul>
 <li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
-<li><a href="#%E6%80%9D%E8%B7%AF">思路</a>
-<ul>
-<li><a href="#%E6%96%B9%E6%B3%951%E9%80%92%E5%BD%92%E4%BC%9A%E8%B6%85%E6%97%B6">方法1：递归(会超时)</a></li>
-<li><a href="#%E6%96%B9%E6%B3%952%E9%80%92%E5%BD%92%E8%AE%B0%E5%BF%86">方法2：递归+记忆</a></li>
-</ul>
-</li>
+<li><a href="#%E6%80%9D%E8%B7%AF">思路</a></li>
 </ul>
 </li>
 </ul>
@@ -557,8 +552,8 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://sakuratears.cn/post/leetcode-188-mai-mai-gu-piao-de-zui-jia-shi-ji-ivdong-tai-gui-hua-di-gui/">
-      LeetCode 188. 买卖股票的最佳时机 IV(动态规划)(递归)
+    <a class="post-title-link" href="https://sakuratears.cn/post/leetcode959-you-xie-gang-hua-fen-qu-yu-sou-suo-bing-cha-ji/">
+      LeetCode959. 由斜杠划分区域(搜索)(并查集)
     </a>
   </h1>
   <div class="post-meta">
@@ -566,7 +561,7 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-12-28 15:55:43">2020/12/28</span>
+      <span class="publish-time" data-t="2021-01-25 16:04:03">2021/01/25</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -575,8 +570,14 @@
       <span class="pc-show language" data-lan="category-in">分类于</span>
       
       
-      <a href="https://sakuratears.cn/tag/bmv9G7VzW/">
-        <span>动态规划</span>
+      <a href="https://sakuratears.cn/tag/gVIPoX9MAQ/">
+        <span>并查集</span>
+      </a>、
+      
+      
+      
+      <a href="https://sakuratears.cn/tag/ssMjTlXf4/">
+        <span>搜索</span>
       </a>、
       
       
@@ -597,17 +598,17 @@
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>5<span class="language" data-lan="minute">分钟</span></span>
+      <span>4<span class="language" data-lan="minute">分钟</span></span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>879<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>658<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
     
     
-    <span id="/post/leetcode-188-mai-mai-gu-piao-de-zui-jia-shi-ji-ivdong-tai-gui-hua-di-gui/" data-flag-title="LeetCode 188. 买卖股票的最佳时机 IV(动态规划)(递归)" class="meta-item pc-show leancloud_visitors">
+    <span id="/post/leetcode959-you-xie-gang-hua-fen-qu-yu-sou-suo-bing-cha-ji/" data-flag-title="LeetCode959. 由斜杠划分区域(搜索)(并查集)" class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-eye"></i>
       <span><span class="language" data-lan="view">浏览量</span>：<span class="leancloud-visitors-count"></span></span>
@@ -617,124 +618,123 @@
 </section>
             <div class="post-body next-md-body" id="post_body">
               <h3 id="题目">题目</h3>
-<p>给定一个整数数组 prices ，它的第 i 个元素 prices[i] 是一支给定的股票在第 i 天的价格。<br>
-设计一个算法来计算你所能获取的最大利润。你最多可以完成 k 笔交易。<br>
-注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</p>
+<p>在由 1 x 1 方格组成的 N x N 网格 grid 中，每个 1 x 1 方块由 /、\ 或空格构成。这些字符会将方块划分为一些共边的区域。</p>
 <!-- more -->
-<p>示例 1：<br>
-输入：k = 2, prices = [2,4,1]<br>
+<p>（请注意，反斜杠字符是转义的，因此 \ 用 &quot;\&quot; 表示。）。</p>
+<p>返回区域的数目。</p>
+<p></p>
+<p>示例 1：</p>
+<p>输入：<br>
+[<br>
+  &quot; /&quot;,<br>
+  &quot;/ &quot;<br>
+]<br>
 输出：2<br>
-解释：在第 1 天 (股票价格 = 2) 的时候买入，在第 2 天 (股票价格 = 4) 的时候卖出，这笔交易所能获得利润 = 4-2 = 2 。</p>
-<p>示例 2：<br>
-输入：k = 2, prices = [3,2,6,5,0,3]<br>
-输出：7<br>
-解释：在第 2 天 (股票价格 = 2) 的时候买入，在第 3 天 (股票价格 = 6) 的时候卖出, 这笔交易所能获得利润 = 6-2 = 4 。<br>
-随后，在第 5 天 (股票价格 = 0) 的时候买入，在第 6 天 (股票价格 = 3) 的时候卖出, 这笔交易所能获得利润 = 3-0 = 3 。</p>
+解释：2x2 网格如下：<br>
+<img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/15/1.png" alt="0" loading="lazy"></p>
+<p>示例 2：</p>
+<p>输入：<br>
+[<br>
+  &quot; /&quot;,<br>
+  &quot;  &quot;<br>
+]<br>
+输出：1<br>
+解释：2x2 网格如下：<br>
+<img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/15/2.png" alt="0" loading="lazy"></p>
+<p>示例 3：</p>
+<p>输入：<br>
+[<br>
+  &quot;\/&quot;,<br>
+  &quot;/\&quot;<br>
+]<br>
+输出：4<br>
+解释：（回想一下，因为 \ 字符是转义的，所以 &quot;\/&quot; 表示 /，而 &quot;/\&quot; 表示 /\。）<br>
+2x2 网格如下：<br>
+<img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/15/3.png" alt="0" loading="lazy"></p>
+<p>示例 4：</p>
+<p>输入：<br>
+[<br>
+  &quot;/\&quot;,<br>
+  &quot;\/&quot;<br>
+]<br>
+输出：5<br>
+解释：（回想一下，因为 \ 字符是转义的，所以 &quot;/\&quot; 表示 /\，而 &quot;\/&quot; 表示 /。）<br>
+2x2 网格如下：<br>
+<img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/15/4.png" alt="0" loading="lazy"></p>
+<p>示例 5：</p>
+<p>输入：<br>
+[<br>
+  &quot;//&quot;,<br>
+  &quot;/ &quot;<br>
+]<br>
+输出：3<br>
+解释：2x2 网格如下：<br>
+<img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/15/5.png" alt="0" loading="lazy"></p>
 <p>提示：</p>
-<p>0 &lt;= k &lt;= 109<br>
-0 &lt;= prices.length &lt;= 1000<br>
-0 &lt;= prices[i] &lt;= 1000</p>
+<p>1 &lt;= grid.length == grid[0].length &lt;= 30<br>
+grid[i][j] 是 '/'、''、或 ' '。</p>
 <p>来源：力扣（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv<br>
+链接：https://leetcode-cn.com/problems/regions-cut-by-slashes<br>
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
 <h3 id="思路">思路</h3>
-<p>可以用递归来算，从根开始，要么买入，要么保持不动。<br>
-买入后可以进行的操作有卖出，保持不动<br>
-保持不动后的操作有：买入，保持不动<br>
-看成二叉树操作，把所有情况算出来(可以用一个备忘录记录下来已经算出来的值)</p>
-<h4 id="方法1递归会超时">方法1：递归(会超时)</h4>
+<p>将1x1方块转换成3x3方块，根据对角线填充1，其余填充0。<br>
+如果用搜索遍历循环的次数必须为4不能为8，所以如果把1x1方块转换成2x2方块，本来连通的区域会不连通<br>
+然后用DFS或BFS遍历：<br>
+该数字为0则搜索遍历</p>
 <pre><code class="language-C++">class Solution {
 public:
-    int maxProfit(int k, vector&lt;int&gt;&amp; prices) {
-        if (k == 0 || prices.size() == 0) {
-            return 0;
+    vector&lt;vector&lt;int&gt;&gt; arr;
+
+    void DFS(int i, int j) {
+        arr[i][j] = 1;
+        if (j - 1 &gt;= 0 &amp;&amp; arr[i][j - 1] != 1) {
+            DFS(i, j - 1);
         }
-        return DFS(0, 0, 0, k, prices);
+        if (i + 1 &lt; arr.size() &amp;&amp; arr[i + 1][j] != 1) {
+            DFS(i + 1, j);
+        }
+        if (j + 1 &lt; arr.size() &amp;&amp; arr[i][j + 1] != 1) {
+            DFS(i, j + 1);
+        }
+        if (i - 1 &gt;= 0 &amp;&amp; arr[i - 1][j] != 1) {
+            DFS(i - 1, j);
+        }
     }
-    //计算k次交易，index表示当前是哪天，status是买卖状态，coutnt为交易次数
-    int DFS(int index, int status, int count, int k, vector&lt;int&gt;&amp; prices) {
-        if (index == prices.size() || count == k) {
-            return 0;
+
+    int regionsBySlashes(vector&lt;string&gt;&amp; grid) {
+        int num = 0;
+        vector&lt;vector&lt;int&gt;&gt; brr(grid.size() * 3, vector&lt;int&gt;(grid.size() * 3, 0));
+        arr = brr;
+        for (int i = 0; i &lt; grid.size(); i++) {
+            for (int j = 0; j &lt; grid.size(); j++) {
+                if (grid[i][j] == '/') {
+                    arr[i * 3][j * 3 + 2] = arr[i * 3 + 1][j * 3 + 1] = arr[i * 3 + 2][j * 3] = 1;
+                }
+                if (grid[i][j] == '\\') {
+                    arr[i * 3][j * 3] = arr[i * 3 + 1][j * 3 + 1] = arr[i * 3 + 2][j * 3 + 2] = 1;
+                }
+            }
         }
-        int keep = 0, sell = 0, buy = 0;
-        //保持
-        keep = DFS(index + 1, status, count, k, prices);
-        if (status == 1) {
-            //卖出
-            sell = DFS(index + 1, 0, count + 1, k, prices) + prices[index];
+
+        for (int i = 0; i &lt; arr.size(); i++) {
+            for (int j = 0; j &lt; arr.size(); j++) {
+                cout&lt;&lt;arr[i][j]&lt;&lt;&quot; &quot;;
+                if (arr[i][j] == 0) {
+                    num++;
+                    DFS(i, j);
+                }
+            }
+            cout&lt;&lt;endl;
         }
-        else {
-            //买入
-            buy = DFS(index + 1, 1, count, k, prices) - prices[index];
-        }
-        return max(max(keep, sell), buy);
+        return num;
     }
 };
 </code></pre>
-<h4 id="方法2递归记忆">方法2：递归+记忆</h4>
-<pre><code class="language-Java">class Solution {
-    public int maxProfit(int k, int[] prices) {
-        if(prices==null || prices.length==0) {
-            return 0;
-        }
-        int n = prices.length;
-        //当k非常大时转为无限次交易
-        if(k&gt;=n/2) {
-            int dp0=0,dp1=-prices[0];
-            for(int i=1;i&lt;n;++i) {
-                int tmp = dp0;
-                dp0 = Math.max(dp0,dp1+prices[i]);
-                dp1 = Math.max(dp1,dp0-prices[i]);
-            }
-            return Math.max(dp0,dp1);
-        }
-        Map&lt;Key,Integer&gt; cache = new HashMap&lt;Key,Integer&gt;();
-        return dfs(cache,0,0,0,k,prices);
-    }
-
-    //带记忆化的 计算k次交易，代码和递归版的一样只是前后加了缓存
-    private int dfs(Map&lt;Key,Integer&gt; cache, int index, int status, int count, int k, int[] prices) {
-        Key key = new Key(index,status,count);
-        if(cache.containsKey(key)) {
-            return cache.get(key);
-        }
-        if(index==prices.length || count==k) {
-            return 0;
-        }
-        int a=0,b=0,c=0;
-        a = dfs(cache,index+1,status,count,k,prices);
-        if(status==1) {
-            b = dfs(cache,index+1,0,count+1,k,prices)+prices[index];
-        } else {
-            c = dfs(cache,index+1,1,count,k,prices)-prices[index];
-        }
-        cache.put(key,Math.max(Math.max(a,b),c));
-        return cache.get(key);
-    }
-    //Key对象封装了index、status、交易次数count，作为map的key
-    private class Key {
-        private final int index;
-        private final int status;
-        private final int count;
-        Key(int index,int status,int count) {
-            this.index = index;
-            this.status = status;
-            this.count = count;
-        }
-        //这里需要实现自定义的equals和hashCode函数
-        public int hashCode() {
-            return this.index + this.status + this.count;
-        }
-        public boolean equals(Object obj) {
-            Key other = (Key)obj;
-            if(index==other.index &amp;&amp; status==other.status &amp;&amp; count==other.count) {
-                return true;
-            }
-            return false;
-        }
-    }
-}
-</code></pre>
+<p>思路借鉴：<br>
+作者：MiloMusiala<br>
+链接：https://leetcode-cn.com/problems/regions-cut-by-slashes/solution/c-dong-hua-zhuan-huan-cheng-dao-yu-ge-sh-guve/<br>
+来源：力扣（LeetCode）<br>
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
 
             </div>
             
@@ -747,7 +747,7 @@ public:
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://sakuratears.cn/post/leetcode-188-mai-mai-gu-piao-de-zui-jia-shi-ji-ivdong-tai-gui-hua-di-gui/" title="LeetCode 188. 买卖股票的最佳时机 IV(动态规划)(递归)">https://sakuratears.cn/post/leetcode-188-mai-mai-gu-piao-de-zui-jia-shi-ji-ivdong-tai-gui-hua-di-gui/</a>
+      <a href="https://sakuratears.cn/post/leetcode959-you-xie-gang-hua-fen-qu-yu-sou-suo-bing-cha-ji/" title="LeetCode959. 由斜杠划分区域(搜索)(并查集)">https://sakuratears.cn/post/leetcode959-you-xie-gang-hua-fen-qu-yu-sou-suo-bing-cha-ji/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -756,7 +756,9 @@ public:
   </ul>
   <div class="tags">
     
-      <a href="https://sakuratears.cn/tag/bmv9G7VzW/"># 动态规划</a>
+      <a href="https://sakuratears.cn/tag/gVIPoX9MAQ/"># 并查集</a>
+    
+      <a href="https://sakuratears.cn/tag/ssMjTlXf4/"># 搜索</a>
     
       <a href="https://sakuratears.cn/tag/TN0UiB8Cf/"># LeetCode</a>
     
@@ -766,15 +768,11 @@ public:
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="Android Toast提示" href="https://sakuratears.cn/post/android-toast-ti-shi/">Android Toast提示</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="Android Toast提示" href="https://sakuratears.cn/post/android-toast-ti-shi/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="LeetCode 205. 同构字符串(哈希表)" href="https://sakuratears.cn/post/leetcode-205-tong-gou-zi-fu-chuan-ha-xi-biao/">LeetCode 205. 同构字符串(哈希表)</a>
-        <a class="nav-mobile-next" title="LeetCode 205. 同构字符串(哈希表)" href="https://sakuratears.cn/post/leetcode-205-tong-gou-zi-fu-chuan-ha-xi-biao/">下一篇</a>
+        <a class="nav-pc-next" title="Android添加RecyclerView依赖库" href="https://sakuratears.cn/post/android-tian-jia-recyclerview-yi-lai-ku/">Android添加RecyclerView依赖库</a>
+        <a class="nav-mobile-next" title="Android添加RecyclerView依赖库" href="https://sakuratears.cn/post/android-tian-jia-recyclerview-yi-lai-ku/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
