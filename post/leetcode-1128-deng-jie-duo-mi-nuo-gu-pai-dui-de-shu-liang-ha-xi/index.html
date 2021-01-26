@@ -9,7 +9,7 @@
 <meta name="keywords" content="SakuraTears | Coder | 个人博客 | Gridea | NexT | LeetCode">
 <meta name="description" content="努力不一定成功，但不努力一定很轻松">
 <meta name="theme-color" content="#000">
-<title>N皇后(回溯) | SakuraTears</title>
+<title>LeetCode 1128. 等价多米诺骨牌对的数量(哈希) | SakuraTears</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1611635875358">
 <link rel="stylesheet" href="/media/css/mist.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -40,8 +40,8 @@
 
 
 
-  <meta name="description" content="N皇后(回溯)" />
-  <meta name="keywords" content="回溯,LeetCode,算法" />
+  <meta name="description" content="LeetCode 1128. 等价多米诺骨牌对的数量(哈希)" />
+  <meta name="keywords" content="哈希表,LeetCode,算法" />
 </head>
 
 <body>
@@ -209,7 +209,8 @@
       <div class="sidebar-body mist" id="sidebar_body">
         
           
-            
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper ">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -270,6 +271,201 @@
 
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto"
+    id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
+<li><a href="#%E6%80%9D%E8%B7%AF1%E6%9A%B4%E5%8A%9B%E6%B3%95">思路1：暴力法</a></li>
+<li><a href="#%E6%80%9D%E8%B7%AF2%E5%93%88%E5%B8%8C%E8%A1%A8">思路2：哈希表</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
+  let active = 'active-show', activeClass = 'active-current';
+  let tocWrapper = document.querySelector('#toc_wrapper');
+  let tocContent = tocWrapper.children[0];
+  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
+
+  function addTocNumber(elem, deep) {
+    if (!elem) {
+      return;
+    }
+    let prop = elem.__proto__;
+
+    if (prop === HTMLUListElement.prototype) {
+      for (let i = 0; i < elem.children.length; i++) {
+        addTocNumber(elem.children[i], deep + (i + 1) + '.');
+      }
+    } else if (prop === HTMLLIElement.prototype) {
+      // 保存li元素
+      if (elem.children[0] && elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+        lList.push(elem);
+      }
+      for (let i = 0; i < elem.children.length; i++) {
+        let cur = elem.children[i];
+        if (cur.__proto__ === HTMLAnchorElement.prototype) {
+          if (autoNumber) {
+            cur.text = deep + ' ' + cur.text;
+          }
+        } else if (cur.__proto__ === HTMLUListElement.prototype) {
+          addTocNumber(cur, deep);
+        }
+      }
+    }
+  }
+
+  function removeParentActiveClass() {
+    let parents = tocContent.querySelectorAll('.' + active)
+    parents.forEach(function (elem) {
+      elem.classList.remove(active);
+    });
+  }
+
+  function addActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.add(activeClass);
+    }
+  }
+
+  function removeActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.remove(activeClass);
+    }
+  }
+
+  function addActiveLiElemment(elem, parent) {
+    if (!elem || elem === parent) {
+      return;
+    } else {
+      if (elem.__proto__ === HTMLLIElement.prototype) {
+        elem.classList.add(active);
+      }
+      addActiveLiElemment(elem.parentElement, parent);
+    }
+  }
+
+  function showToc() {
+    if (tocWrapper) {
+      postBody = document.querySelector('#post_body');
+      for (let i = 0; i < postBody.children.length; i++) {
+        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+          hList.push(postBody.children[i]);
+        }
+      }
+      if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+      } else if (tocWrapper.classList.contains('no_compress')) {
+        tocContent.classList.add('expanded');
+      } else {
+        if (hList.length > 10) {
+          active = 'active-hidden'
+          tocContent.classList.add('closed');
+        } else {
+          tocContent.classList.add('expanded');
+        }
+      }
+    }
+  }
+
+  (function () {
+    // 处理不是从#一级标题开始目录
+    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+      let con = tocContent.children[0].children[0];
+      tocContent.innerHTML = con.innerHTML;
+    }
+    let markdownItTOC = document.querySelector('.markdownIt-TOC');
+    let innerHeight = window.innerHeight;
+    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
+    addTocNumber(tocContent, '');
+  })();
+
+  document.addEventListener('scroll', function (e) {
+    if (lList.length <= 0) {
+      return;
+    }
+    let scrollTop = document.scrollingElement.scrollTop + 10;
+    let dir;
+
+    if (lastTop - scrollTop > 0) {
+      dir = 'up';
+    } else {
+      dir = 'down';
+    }
+
+    lastTop = scrollTop;
+    if (scrollTop <= 0) {
+      if (lastIndex >= 0 && lastIndex < hList.length) {
+        lList[lastIndex].classList.remove(activeClass);
+      }
+      return;
+    }
+
+    let current = 0, hasFind = false;
+    for (let i = 0; i < hList.length; i++) {
+      if (hList[i].offsetTop > scrollTop) {
+        current = i;
+        hasFind = true;
+        break;
+      }
+    }
+    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+      current = hList.length - 1;
+    } else {
+      current--;
+    }
+    if (dir === 'down') {
+      if (current > lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex)
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    } else {
+      if (current < lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex);
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    }
+  });
+
+
+  window.addEventListener('load', function () {
+    showToc();
+    document.querySelector('#sidebar').style = 'display: block;';
+    tocWrapper.classList.add('toc-active');
+    setTimeout(function () {
+      if ("createEvent" in document) {
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("scroll", false, true);
+        document.dispatchEvent(evt);
+      }
+      else {
+        document.fireEvent("scroll");
+      }
+    }, 500)
+  })
+
+</script>
+            </div>
           
         
       </div>
@@ -357,8 +553,8 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://sakuratears.cn/post/n-huang-hou/">
-      N皇后(回溯)
+    <a class="post-title-link" href="https://sakuratears.cn/post/leetcode-1128-deng-jie-duo-mi-nuo-gu-pai-dui-de-shu-liang-ha-xi/">
+      LeetCode 1128. 等价多米诺骨牌对的数量(哈希)
     </a>
   </h1>
   <div class="post-meta">
@@ -366,7 +562,7 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-11-06 08:56:46">2020/11/06</span>
+      <span class="publish-time" data-t="2021-01-26 12:32:03">2021/01/26</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -375,8 +571,8 @@
       <span class="pc-show language" data-lan="category-in">分类于</span>
       
       
-      <a href="https://sakuratears.cn/tag/Deq-x4lY4/">
-        <span>回溯</span>
+      <a href="https://sakuratears.cn/tag/ga7bsFqfVq/">
+        <span>哈希表</span>
       </a>、
       
       
@@ -402,12 +598,12 @@
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>434<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>435<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
     
     
-    <span id="/post/n-huang-hou/" data-flag-title="N皇后(回溯)" class="meta-item pc-show leancloud_visitors">
+    <span id="/post/leetcode-1128-deng-jie-duo-mi-nuo-gu-pai-dui-de-shu-liang-ha-xi/" data-flag-title="LeetCode 1128. 等价多米诺骨牌对的数量(哈希)" class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-eye"></i>
       <span><span class="language" data-lan="view">浏览量</span>：<span class="leancloud-visitors-count"></span></span>
@@ -416,99 +612,66 @@
   </div>
 </section>
             <div class="post-body next-md-body" id="post_body">
-              <p>n 皇后问题研究的是如何将 n 个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。</p>
+              <h3 id="题目">题目</h3>
+<p>给你一个由一些多米诺骨牌组成的列表 dominoes。</p>
+<p>如果其中某一张多米诺骨牌可以通过旋转 0 度或 180 度得到另一张多米诺骨牌，我们就认为这两张牌是等价的。</p>
 <!-- more -->
-<p><img src="https://cdn.jsdelivr.net/gh/ZSakuraTears/cdn/img/8-queens.png" alt="图" loading="lazy"><br><br></p>
-<p>上图为 8 皇后问题的一种解法。<br><br></p>
-<p>给定一个整数 n，返回所有不同的 n 皇后问题的解决方案。<br><br></p>
-<p>每一种解法包含一个明确的 n 皇后问题的棋子放置方案，该方案中 'Q' 和 '.' 分别代表了皇后和空位。<br><br></p>
+<p>形式上，dominoes[i] = [a, b] 和 dominoes[j] = [c, d] 等价的前提是 a<mark>c 且 b</mark>d，或是 a<mark>d 且 b</mark>c。</p>
+<p>在 0 &lt;= i &lt; j &lt; dominoes.length 的前提下，找出满足 dominoes[i] 和 dominoes[j] 等价的骨牌对 (i, j) 的数量。</p>
 <p></p>
-<p>示例：<br><br></p>
-<p>输入：4<br>
-输出：[<br>
-[&quot;.Q..&quot;,  // 解法 1<br>
-&quot;...Q&quot;,<br>
-&quot;Q...&quot;,<br>
-&quot;..Q.&quot;],<br><br></p>
-<p>[&quot;..Q.&quot;,  // 解法 2<br>
-&quot;Q...&quot;,<br>
-&quot;...Q&quot;,<br>
-&quot;.Q..&quot;]<br>
-]<br>
-解释: 4 皇后问题存在两个不同的解法。<br><br></p>
-<p>提示：<br><br></p>
-<p>皇后彼此不能相互攻击，也就是说：任何两个皇后都不能处于同一条横行、纵行或斜线上。<br><br></p>
+<p>示例：</p>
+<p>输入：dominoes = [[1,2],[2,1],[3,4],[5,6]]<br>
+输出：1</p>
+<p>提示：</p>
+<p>1 &lt;= dominoes.length &lt;= 40000<br>
+1 &lt;= dominoes[i][j] &lt;= 9</p>
 <p>来源：力扣（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/n-queens<br><br></p>
-<p>经典回溯+递归问题，当发现这种情况不行时就回溯到之前的点。<br><br></p>
-<p>代码：</p>
+链接：https://leetcode-cn.com/problems/number-of-equivalent-domino-pairs<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h3 id="思路1暴力法">思路1：暴力法</h3>
+<p>从头开始向后匹配每个数组，一样则num++<br>
+时间复杂度：O（n2）会超时</p>
 <pre><code class="language-C++">class Solution {
 public:
-    int col[12] = {};//将合适的皇后行数放入数组中
-    vector&lt;vector&lt;string&gt;&gt; arr;
-    vector&lt;string&gt; brr;
-    char crr[100][100];
-    int cnumber = 0;
-    int num, number = 0, jud = 0, tot = 0;
-    bool check(int c, int r)
-    {
-        int i = 0;
-        for (i = 0; i &lt; r; i++)
-        {
-            if (col[i] == c || (abs(col[i] - c) == abs(i - r)))
-                return false;
-        }
-        return true;
-    }
-
-    void DFS(int r)
-    {
-        if (r == num)
-        {
-            string str = &quot;&quot;;
-            brr.clear();
-            for (int j = 0; j &lt; num; j++)
-            {
-                str = &quot;&quot;;
-                
-                for (int i = 0; i &lt; num; i++)
-                {
-                    if (crr[j][i] == 'Q')
-                        str += &quot;Q&quot;;
-                    else
-                        str += &quot;.&quot;;
+    int numEquivDominoPairs(vector&lt;vector&lt;int&gt;&gt;&amp; dominoes) {
+        int num = 0;
+        for (int i = 0; i &lt; dominoes.size(); i++) {
+            for ( int j = i + 1; j &lt; dominoes.size(); j++) {
+                if (dominoes[i][0] == dominoes[j][0] &amp;&amp; dominoes[i][1] == dominoes[j][1]) {
+                    num++;
+                    continue;
                 }
-                brr.push_back(str);
-            }
-            arr.push_back(brr);
-            return;
-        }
-        for (int c = 0; c &lt; num; c++)
-        {
-            if (check(c, r) == true)
-            {
-                col[r] = c;
-                int i = 0;
-                while (i &lt; num)
-                {
-                    if (i == c)
-                    {
-                        crr[r][i] = 'Q';
-                    }
-                    else
-                        crr[r][i] = '.';
-                    i++;
+                if (dominoes[i][1] == dominoes[j][0] &amp;&amp; dominoes[i][0] == dominoes[j][1]) {
+                    num++;
                 }
-                DFS(r + 1);
             }
         }
+        return num;
     }
-
-    vector&lt;vector&lt;string&gt;&gt; solveNQueens(int n)
-    {
-        num = n;
-        DFS(0);
-        return arr;
+};
+</code></pre>
+<h3 id="思路2哈希表">思路2：哈希表</h3>
+<p>将每个数组中两个数小的当做十位，大的当做个位填在哈希表中。<br>
+最后再将哈希表的值取出来<br>
+时间复杂度：O（n）</p>
+<pre><code class="language-C++">class Solution {
+public:
+    int numEquivDominoPairs(vector&lt;vector&lt;int&gt;&gt;&amp; dominoes) {
+        int num = 0;
+        map&lt;int, int&gt; mp;
+        for (int i = 0; i &lt; dominoes.size(); i++) {
+            if (dominoes[i][0] &gt; dominoes[i][1]) {
+                mp[dominoes[i][1] * 10 + dominoes[i][0]]++;
+            }
+            else {
+                mp[dominoes[i][0] * 10 + dominoes[i][1]]++;
+            }
+        }
+        for (auto it : mp) {
+            int n = it.second;
+            if (n &gt; 1) num += n * (n - 1) / 2;
+        }
+        return num;
     }
 };
 </code></pre>
@@ -524,7 +687,7 @@ public:
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://sakuratears.cn/post/n-huang-hou/" title="N皇后(回溯)">https://sakuratears.cn/post/n-huang-hou/</a>
+      <a href="https://sakuratears.cn/post/leetcode-1128-deng-jie-duo-mi-nuo-gu-pai-dui-de-shu-liang-ha-xi/" title="LeetCode 1128. 等价多米诺骨牌对的数量(哈希)">https://sakuratears.cn/post/leetcode-1128-deng-jie-duo-mi-nuo-gu-pai-dui-de-shu-liang-ha-xi/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -533,7 +696,7 @@ public:
   </ul>
   <div class="tags">
     
-      <a href="https://sakuratears.cn/tag/Deq-x4lY4/"># 回溯</a>
+      <a href="https://sakuratears.cn/tag/ga7bsFqfVq/"># 哈希表</a>
     
       <a href="https://sakuratears.cn/tag/TN0UiB8Cf/"># LeetCode</a>
     
@@ -543,15 +706,11 @@ public:
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="C/C++如何传递二维数组？" href="https://sakuratears.cn/post/ccru-he-chuan-di-er-wei-shu-zu/">C/C++如何传递二维数组？</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="C/C++如何传递二维数组？" href="https://sakuratears.cn/post/ccru-he-chuan-di-er-wei-shu-zu/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="水域大小（DFS）（BFS）" href="https://sakuratears.cn/post/shui-yu-da-xiao-dfsbfs/">水域大小（DFS）（BFS）</a>
-        <a class="nav-mobile-next" title="水域大小（DFS）（BFS）" href="https://sakuratears.cn/post/shui-yu-da-xiao-dfsbfs/">下一篇</a>
+        <a class="nav-pc-next" title="LeetCode959. 由斜杠划分区域(搜索)(并查集)" href="https://sakuratears.cn/post/leetcode959-you-xie-gang-hua-fen-qu-yu-sou-suo-bing-cha-ji/">LeetCode959. 由斜杠划分区域(搜索)(并查集)</a>
+        <a class="nav-mobile-next" title="LeetCode959. 由斜杠划分区域(搜索)(并查集)" href="https://sakuratears.cn/post/leetcode959-you-xie-gang-hua-fen-qu-yu-sou-suo-bing-cha-ji/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>

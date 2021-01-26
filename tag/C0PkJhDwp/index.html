@@ -10,7 +10,7 @@
 <meta name="description" content="努力不一定成功，但不努力一定很轻松">
 <meta name="theme-color" content="#000">
 <title>SakuraTears</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1611562435393">
+<link rel="shortcut icon" href="/favicon.ico?v=1611635875358">
 <link rel="stylesheet" href="/media/css/mist.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -209,7 +209,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">60</span>
+        <span class="site-item-stat-count">61</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -279,6 +279,14 @@
           <small class="language" data-lan="tag">标签</small>
         </h2>
       </div>
+      
+      
+      
+      
+      
+      
+      
+      
       
       
       
@@ -1539,6 +1547,74 @@
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://sakuratears.cn/post/leetcode-1128-deng-jie-duo-mi-nuo-gu-pai-dui-de-shu-liang-ha-xi/"" data-c="
+          &lt;h3 id=&#34;题目&#34;&gt;题目&lt;/h3&gt;
+&lt;p&gt;给你一个由一些多米诺骨牌组成的列表 dominoes。&lt;/p&gt;
+&lt;p&gt;如果其中某一张多米诺骨牌可以通过旋转 0 度或 180 度得到另一张多米诺骨牌，我们就认为这两张牌是等价的。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;形式上，dominoes[i] = [a, b] 和 dominoes[j] = [c, d] 等价的前提是 a&lt;mark&gt;c 且 b&lt;/mark&gt;d，或是 a&lt;mark&gt;d 且 b&lt;/mark&gt;c。&lt;/p&gt;
+&lt;p&gt;在 0 &amp;lt;= i &amp;lt; j &amp;lt; dominoes.length 的前提下，找出满足 dominoes[i] 和 dominoes[j] 等价的骨牌对 (i, j) 的数量。&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;示例：&lt;/p&gt;
+&lt;p&gt;输入：dominoes = [[1,2],[2,1],[3,4],[5,6]]&lt;br&gt;
+输出：1&lt;/p&gt;
+&lt;p&gt;提示：&lt;/p&gt;
+&lt;p&gt;1 &amp;lt;= dominoes.length &amp;lt;= 40000&lt;br&gt;
+1 &amp;lt;= dominoes[i][j] &amp;lt;= 9&lt;/p&gt;
+&lt;p&gt;来源：力扣（LeetCode）&lt;br&gt;
+链接：https://leetcode-cn.com/problems/number-of-equivalent-domino-pairs&lt;br&gt;
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。&lt;/p&gt;
+&lt;h3 id=&#34;思路1暴力法&#34;&gt;思路1：暴力法&lt;/h3&gt;
+&lt;p&gt;从头开始向后匹配每个数组，一样则num++&lt;br&gt;
+时间复杂度：O（n2）会超时&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;class Solution {
+public:
+    int numEquivDominoPairs(vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt;&amp;amp; dominoes) {
+        int num = 0;
+        for (int i = 0; i &amp;lt; dominoes.size(); i++) {
+            for ( int j = i + 1; j &amp;lt; dominoes.size(); j++) {
+                if (dominoes[i][0] == dominoes[j][0] &amp;amp;&amp;amp; dominoes[i][1] == dominoes[j][1]) {
+                    num++;
+                    continue;
+                }
+                if (dominoes[i][1] == dominoes[j][0] &amp;amp;&amp;amp; dominoes[i][0] == dominoes[j][1]) {
+                    num++;
+                }
+            }
+        }
+        return num;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;思路2哈希表&#34;&gt;思路2：哈希表&lt;/h3&gt;
+&lt;p&gt;将每个数组中两个数小的当做十位，大的当做个位填在哈希表中。&lt;br&gt;
+最后再将哈希表的值取出来&lt;br&gt;
+时间复杂度：O（n）&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;class Solution {
+public:
+    int numEquivDominoPairs(vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt;&amp;amp; dominoes) {
+        int num = 0;
+        map&amp;lt;int, int&amp;gt; mp;
+        for (int i = 0; i &amp;lt; dominoes.size(); i++) {
+            if (dominoes[i][0] &amp;gt; dominoes[i][1]) {
+                mp[dominoes[i][1] * 10 + dominoes[i][0]]++;
+            }
+            else {
+                mp[dominoes[i][0] * 10 + dominoes[i][1]]++;
+            }
+        }
+        for (auto it : mp) {
+            int n = it.second;
+            if (n &amp;gt; 1) num += n * (n - 1) / 2;
+        }
+        return num;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+">LeetCode 1128. 等价多米诺骨牌对的数量(哈希)</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://sakuratears.cn/post/leetcode959-you-xie-gang-hua-fen-qu-yu-sou-suo-bing-cha-ji/"" data-c="
