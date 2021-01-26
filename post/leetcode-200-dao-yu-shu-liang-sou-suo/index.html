@@ -9,7 +9,7 @@
 <meta name="keywords" content="SakuraTears | Coder | 个人博客 | Gridea | NexT | LeetCode">
 <meta name="description" content="努力不一定成功，但不努力一定很轻松">
 <meta name="theme-color" content="#000">
-<title>二叉树的序列化与反序列化(二叉树) | SakuraTears</title>
+<title>LeetCode 200. 岛屿数量(搜索) | SakuraTears</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1611652850869">
 <link rel="stylesheet" href="/media/css/mist.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -40,8 +40,8 @@
 
 
 
-  <meta name="description" content="二叉树的序列化与反序列化(二叉树)" />
-  <meta name="keywords" content="二叉树,LeetCode,算法" />
+  <meta name="description" content="LeetCode 200. 岛屿数量(搜索)" />
+  <meta name="keywords" content="搜索,LeetCode,算法" />
 </head>
 
 <body>
@@ -282,7 +282,12 @@
 <li>
 <ul>
 <li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
-<li><a href="#%E6%80%9D%E8%B7%AF">思路</a></li>
+<li><a href="#%E6%80%9D%E8%B7%AF">思路</a>
+<ul>
+<li><a href="#bfs">BFS</a></li>
+<li><a href="#dfs">DFS</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -552,8 +557,8 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://sakuratears.cn/post/er-cha-shu-de-xu-lie-hua-yu-fan-xu-lie-hua/">
-      二叉树的序列化与反序列化(二叉树)
+    <a class="post-title-link" href="https://sakuratears.cn/post/leetcode-200-dao-yu-shu-liang-sou-suo/">
+      LeetCode 200. 岛屿数量(搜索)
     </a>
   </h1>
   <div class="post-meta">
@@ -561,7 +566,7 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-12-15 08:23:20">2020/12/15</span>
+      <span class="publish-time" data-t="2021-01-26 17:16:18">2021/01/26</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -570,8 +575,8 @@
       <span class="pc-show language" data-lan="category-in">分类于</span>
       
       
-      <a href="https://sakuratears.cn/tag/gRTjYccGN/">
-        <span>二叉树</span>
+      <a href="https://sakuratears.cn/tag/ssMjTlXf4/">
+        <span>搜索</span>
       </a>、
       
       
@@ -597,12 +602,12 @@
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>634<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>691<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
     
     
-    <span id="/post/er-cha-shu-de-xu-lie-hua-yu-fan-xu-lie-hua/" data-flag-title="二叉树的序列化与反序列化(二叉树)" class="meta-item pc-show leancloud_visitors">
+    <span id="/post/leetcode-200-dao-yu-shu-liang-sou-suo/" data-flag-title="LeetCode 200. 岛屿数量(搜索)" class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-eye"></i>
       <span><span class="language" data-lan="view">浏览量</span>：<span class="leancloud-visitors-count"></span></span>
@@ -612,124 +617,122 @@
 </section>
             <div class="post-body next-md-body" id="post_body">
               <h3 id="题目">题目</h3>
-<p>序列化是将一个数据结构或者对象转换为连续的比特位的操作，进而可以将转换后的数据存储在一个文件或者内存中，同时也可以通过网络传输到另一个计算机环境，采取相反方式重构得到原数据。</p>
+<p>给你一个由 '1'（陆地）和 '0'（水）组成的的二维网格，请你计算网格中岛屿的数量。<br>
+岛屿总是被水包围，并且每座岛屿只能由水平方向和/或竖直方向上相邻的陆地连接形成。<br>
+此外，你可以假设该网格的四条边均被水包围。</p>
 <!-- more -->
-<p>请设计一个算法来实现二叉树的序列化与反序列化。这里不限定你的序列 / 反序列化算法执行逻辑，你只需要保证一个二叉树可以被序列化为一个字符串并且将这个字符串反序列化为原始的树结构。</p>
-<p>示例:</p>
-<p>你可以将以下二叉树：</p>
-<pre><code>      1
-     / \
-    2   3
-       / \
-      4   5
-</code></pre>
-<p>序列化为 &quot;[1,2,3,null,null,4,5]&quot;<br>
-提示: 这与 LeetCode 目前使用的方式一致，详情请参阅 LeetCode 序列化二叉树的格式。你并非必须采取这种方式，你也可以采用其他的方法解决这个问题。</p>
-<p>说明: 不要使用类的成员 / 全局 / 静态变量来存储状态，你的序列化和反序列化算法应该是无状态的。</p>
+<p>示例 1：</p>
+<p>输入：grid = [<br>
+[&quot;1&quot;,&quot;1&quot;,&quot;1&quot;,&quot;1&quot;,&quot;0&quot;],<br>
+[&quot;1&quot;,&quot;1&quot;,&quot;0&quot;,&quot;1&quot;,&quot;0&quot;],<br>
+[&quot;1&quot;,&quot;1&quot;,&quot;0&quot;,&quot;0&quot;,&quot;0&quot;],<br>
+[&quot;0&quot;,&quot;0&quot;,&quot;0&quot;,&quot;0&quot;,&quot;0&quot;]<br>
+]<br>
+输出：1<br>
+示例 2：</p>
+<p>输入：grid = [<br>
+[&quot;1&quot;,&quot;1&quot;,&quot;0&quot;,&quot;0&quot;,&quot;0&quot;],<br>
+[&quot;1&quot;,&quot;1&quot;,&quot;0&quot;,&quot;0&quot;,&quot;0&quot;],<br>
+[&quot;0&quot;,&quot;0&quot;,&quot;1&quot;,&quot;0&quot;,&quot;0&quot;],<br>
+[&quot;0&quot;,&quot;0&quot;,&quot;0&quot;,&quot;1&quot;,&quot;1&quot;]<br>
+]<br>
+输出：3</p>
+<p>提示：</p>
+<p>m == grid.length<br>
+n == grid[i].length<br>
+1 &lt;= m, n &lt;= 300<br>
+grid[i][j] 的值为 '0' 或 '1'</p>
 <p>来源：力扣（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree<br>
+链接：https://leetcode-cn.com/problems/number-of-islands<br>
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
 <h3 id="思路">思路</h3>
-<pre><code class="language-C++">/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
-class Codec {
+<p>经典搜索例题，找到为'1'的点然后遍历别的点。<br>
+每遍历一次岛屿数量++</p>
+<h4 id="bfs">BFS</h4>
+<pre><code class="language-C++">class Solution {
 public:
-
-    // Encodes a tree to a single string.
-    string serialize(TreeNode* root) {
-        queue&lt;TreeNode*&gt; q;
-        q.push(root);
-        string str = &quot;&quot;;
-        TreeNode* node;
-        while (!q.empty()) {
-            int n = q.size();
-            for (int i = 0; i &lt; n; i++) {
-                node = q.front();
-                q.pop();
-                if (node == NULL) {
-                    str += &quot;null,&quot;;
-                    continue;
-                }
-                str += to_string(node-&gt;val);
-                str += &quot;,&quot;;
-                q.push(node-&gt;left);
-                q.push(node-&gt;right);
+    void BFS(int i, int j, vector&lt;vector&lt;char&gt;&gt;&amp; grid) {
+        grid[i][j] = '0';
+        queue&lt;vector&lt;int&gt;&gt; q;
+        vector&lt;int&gt; n;
+        n.push_back(i);
+        n.push_back(j);
+        q.push(n);
+        while (! q.empty()) {
+            n.clear();
+            n = q.front();
+            q.pop();
+            i = n[0];
+            j = n[1];
+            if (j - 1 &gt;= 0 &amp;&amp; grid[i][j - 1] == '1') {
+                n.clear();
+                n.push_back(i);
+                n.push_back(j - 1);
+                grid[i][j - 1] = '0';
+                q.push(n);
+            }
+            if (i + 1 &lt; grid.size() &amp;&amp; grid[i + 1][j] == '1') {
+                n.clear();
+                n.push_back(i + 1);
+                n.push_back(j);
+                grid[i + 1][j] = '0';
+                q.push(n);
+            }
+            if (j + 1 &lt; grid[i].size() &amp;&amp; grid[i][j + 1] == '1') {
+                n.clear();
+                n.push_back(i);
+                n.push_back(j + 1);
+                grid[i][j + 1] = '0';
+                q.push(n);
+            }
+            if (i - 1 &gt;= 0 &amp;&amp; grid[i -1][j] == '1') {
+                n.clear();
+                n.push_back(i - 1);
+                n.push_back(j);
+                grid[i - 1][j] = '0';
+                q.push(n);
             }
         }
-        return str;
     }
 
-    // Decodes your encoded data to tree.
-    TreeNode* deserialize(string data) {
-        if (data[0] == 'n') {
-            return NULL;
-        }
-        int m = 0, n = 0;
-        TreeNode* node;
-        queue&lt;TreeNode*&gt; q;
-        vector&lt;int&gt; arr;
-        string str = &quot;&quot;;
-        while (m &lt; data.size()) {
-            if (data[m] == ',') {
-                if (!str.empty())
-                    arr.push_back(stoi(str));
-                str = &quot;&quot;;
-                m++;
-                continue;
-            }
-            if (data[m] == 'n') {
-                m += 4;
-                if (!str.empty())
-                    arr.push_back(stoi(str));
-                arr.push_back(-1024);
-                str = &quot;&quot;;
-                continue;
-            }
-            str += data[m];
-            m++;
-        }
-        TreeNode* root = new TreeNode(arr[0]);
-        if (arr.size() == 1) {
-            return root;
-        }
-        m = 1;
-        q.push(root);
-        while (!q.empty() &amp;&amp; m &lt; arr.size()) {
-            n = q.size();
-            for (int i = 0; i &lt; n; i++) {
-                node = q.front();
-                q.pop();
-                if (arr[m] != -1024) {
-                    node-&gt;left = new TreeNode(arr[m]);
-                    q.push(node-&gt;left);
+    int numIslands(vector&lt;vector&lt;char&gt;&gt;&amp; grid) {
+        int num = 0;
+        for (int i = 0; i &lt; grid.size(); i++) {
+            for ( int j = 0; j &lt; grid[i].size(); j++) {
+                if (grid[i][j] == '1') {
+                    num++;
+                    BFS(i, j, grid);
                 }
-                else {
-                    node-&gt;left = nullptr;
-                }
-                if (arr[m + 1] != -1024) {
-                    node-&gt;right = new TreeNode(arr[m+1]);
-                    q.push(node-&gt;right);
-                }
-                else {
-                    node-&gt;right = nullptr;
-                }
-                m += 2;
             }
         }
-        return root;
+        return num;
     }
 };
+</code></pre>
+<h4 id="dfs">DFS</h4>
+<pre><code class="language-C++">class Solution {
+public:
+    void DFS(int i, int j, vector&lt;vector&lt;char&gt;&gt;&amp; grid) {
+        grid[i][j] = '0';
+        if (j - 1 &gt;= 0 &amp;&amp; grid[i][j - 1] == '1') DFS(i, j - 1, grid);
+        if (i + 1 &lt; grid.size() &amp;&amp; grid[i + 1][j] == '1') DFS(i + 1, j, grid);
+        if (j + 1 &lt; grid[i].size() &amp;&amp; grid[i][j + 1] == '1') DFS(i, j + 1, grid);
+        if (i - 1 &gt;= 0 &amp;&amp; grid[i -1][j] == '1') DFS(i - 1, j, grid);
+    }
 
-// Your Codec object will be instantiated and called as such:
-// Codec ser, deser;
-// TreeNode* ans = deser.deserialize(ser.serialize(root));
+    int numIslands(vector&lt;vector&lt;char&gt;&gt;&amp; grid) {
+        int num = 0;
+        for (int i = 0; i &lt; grid.size(); i++) {
+            for ( int j = 0; j &lt; grid[i].size(); j++) {
+                if (grid[i][j] == '1') {
+                    num++;
+                    DFS(i, j, grid);
+                }
+            }
+        }
+        return num;
+    }
+};
 </code></pre>
 
             </div>
@@ -743,7 +746,7 @@ public:
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://sakuratears.cn/post/er-cha-shu-de-xu-lie-hua-yu-fan-xu-lie-hua/" title="二叉树的序列化与反序列化(二叉树)">https://sakuratears.cn/post/er-cha-shu-de-xu-lie-hua-yu-fan-xu-lie-hua/</a>
+      <a href="https://sakuratears.cn/post/leetcode-200-dao-yu-shu-liang-sou-suo/" title="LeetCode 200. 岛屿数量(搜索)">https://sakuratears.cn/post/leetcode-200-dao-yu-shu-liang-sou-suo/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -752,7 +755,7 @@ public:
   </ul>
   <div class="tags">
     
-      <a href="https://sakuratears.cn/tag/gRTjYccGN/"># 二叉树</a>
+      <a href="https://sakuratears.cn/tag/ssMjTlXf4/"># 搜索</a>
     
       <a href="https://sakuratears.cn/tag/TN0UiB8Cf/"># LeetCode</a>
     
@@ -762,15 +765,11 @@ public:
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="二叉树的锯齿形层次遍历(二叉树)(BFS)" href="https://sakuratears.cn/post/er-cha-shu-de-ju-chi-xing-ceng-ci-bian-li-er-cha-shu-bfs/">二叉树的锯齿形层次遍历(二叉树)(BFS)</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="二叉树的锯齿形层次遍历(二叉树)(BFS)" href="https://sakuratears.cn/post/er-cha-shu-de-ju-chi-xing-ceng-ci-bian-li-er-cha-shu-bfs/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="二叉树的最近公共祖先(二叉树)" href="https://sakuratears.cn/post/er-cha-shu-de-zui-jin-gong-gong-zu-xian-er-cha-shu/">二叉树的最近公共祖先(二叉树)</a>
-        <a class="nav-mobile-next" title="二叉树的最近公共祖先(二叉树)" href="https://sakuratears.cn/post/er-cha-shu-de-zui-jin-gong-gong-zu-xian-er-cha-shu/">下一篇</a>
+        <a class="nav-pc-next" title="LeetCode 1128. 等价多米诺骨牌对的数量(哈希)" href="https://sakuratears.cn/post/leetcode-1128-deng-jie-duo-mi-nuo-gu-pai-dui-de-shu-liang-ha-xi/">LeetCode 1128. 等价多米诺骨牌对的数量(哈希)</a>
+        <a class="nav-mobile-next" title="LeetCode 1128. 等价多米诺骨牌对的数量(哈希)" href="https://sakuratears.cn/post/leetcode-1128-deng-jie-duo-mi-nuo-gu-pai-dui-de-shu-liang-ha-xi/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
